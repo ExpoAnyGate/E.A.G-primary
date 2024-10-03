@@ -1,0 +1,94 @@
+// 字型
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+// icon（設計稿都有給，以防不夠載入外部資源）
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+//輪播js
+@import url("https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css");
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../../node_modules/bootstrap/scss/functions"; // Bootstrap 函數
+
+// 2. Include any default variable overrides here
+@import './utils/variables';//自定義的BS，裡面有spacer
+
+// 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
+@import "../node_modules/bootstrap/scss/variables";  // 定義 $theme-colors
+
+// 4. Include any default map overrides here
+@import './utils/customer_variables'; // 定義 $custom-colors 並合併到 $theme-colors
+
+// // 5.整包帶走
+// @import "../../node_modules/bootstrap";
+
+// 5.瘦身法（只挑專案要的元件載入）-->必要
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+@import "../node_modules/bootstrap/scss/utilities"; 
+
+
+// 6.選用
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/tables";
+@import "../node_modules/bootstrap/scss/forms";
+@import "../node_modules/bootstrap/scss/buttons";
+@import "../node_modules/bootstrap/scss/transitions";
+@import "../node_modules/bootstrap/scss/dropdown";
+@import "../node_modules/bootstrap/scss/button-group";
+@import "../node_modules/bootstrap/scss/nav";
+@import "../node_modules/bootstrap/scss/navbar";
+@import "../node_modules/bootstrap/scss/card";
+@import "../node_modules/bootstrap/scss/accordion";
+@import "../node_modules/bootstrap/scss/breadcrumb";
+@import "../node_modules/bootstrap/scss/pagination";
+@import "../node_modules/bootstrap/scss/badge";
+@import "../node_modules/bootstrap/scss/alert";
+@import "../node_modules/bootstrap/scss/progress";
+@import "../node_modules/bootstrap/scss/list-group";
+@import "../node_modules/bootstrap/scss/close";
+@import "../node_modules/bootstrap/scss/toasts";
+@import "../node_modules/bootstrap/scss/modal";
+// @import "../node_modules/bootstrap/scss/tooltip";
+// @import "../node_modules/bootstrap/scss/popover";
+// @import "../node_modules/bootstrap/scss/carousel"; ＢＳ輪播難用
+@import "../node_modules/bootstrap/scss/spinners";
+@import "../node_modules/bootstrap/scss/offcanvas";
+@import "../node_modules/bootstrap/scss/placeholders";
+// Helpers
+@import "../node_modules/bootstrap/scss/helpers";
+
+
+// ７.其他自定義樣式或工具(有merge)
+@import './utils/customer_utils';
+@import "../node_modules/bootstrap/scss/utilities/api";
+
+// 8.自定義 reset
+@import "./base/base";
+
+@import './layout/navbar.scss';
+@import './layout/component.scss';
+@import './layout/footer.scss';
+@import './layout/search-bar.scss';
+
+@import './pages/index.scss';
+//@import './pages/demo.scss';
+@import './pages/evaluate.scss';
+//@import './pages/search.scss';
+
+
+
+// 關閉文字rfs
+// $utilities: map-merge(
+//   $utilities, (
+//     "font-size": map-merge(
+//       map-get($utilities, "font-size"),
+//       ( responsive: true ),
+//     ),
+//   )
+// );

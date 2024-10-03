@@ -1,0 +1,16 @@
+// Bootstrap ----1
+@import "bootstrap/scss/functions";
+
+//自訂義手法
+// 1.參考官網的手法
+
+
+// 2. 整個匯進來再去改它。
+@import './helpers/variables';
+@import './pages/dory_hsh';
+// @import './layout/header.scss';
+// @import './layout/footer.scss';
+// @import './pages/index.scss';
+
+// Bootstrap-----2
+@import "bootstrap/scss/bootstrap";

@@ -1,0 +1,36 @@
+
+.search-demo {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+
+    .form-select {
+        --bs-form-select-bg-img: url("../images/icon/Dropdown.png");
+        background-size: initial;
+    }
+
+    .search-icon-position {
+        position: absolute;
+        left: 0;
+        top:0;
+        transform: translate(50%,70%);
+    }
+
+
+    .w-bp-20-15 {
+        width: 20%;
+        @include media-breakpoint-up(xl) {
+            width: 15%;
+        }
+    }
+
+
+    .w-bp-20-25-30 {
+        width: 20%;
+        @include media-breakpoint-up(xl) {
+            width: 25%;
+        }
+        @include media-breakpoint-up(xxl) {
+            width: 30%;
+        }
+    }
+}

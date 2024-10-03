@@ -1,0 +1,83 @@
+.demo-banner {
+    background-image: url("../images/demo-banner.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 480px;
+    @include media-breakpoint-up(md) {
+        background-image: url("../images/demo-banner-lg.png");
+        height: 560px;
+        
+    }
+  }
+
+.main-content{
+	flex-direction: column;
+	@include media-breakpoint-up(xl) {
+        flex-direction: row;
+    }
+	
+}
+
+.large-demo-card{
+	width: 100%;
+	@include media-breakpoint-up(xl) {
+        width: 70%;
+    }
+}
+
+.demo-sub-card{
+	width: 100%;
+	// justify-content: space-between;
+    // align-items: center;
+	flex-direction: column;
+
+	@include media-breakpoint-up(md) {
+
+		flex-direction: row;
+    }
+	@include media-breakpoint-up(xl) {
+        width: 30%;
+		flex-direction: column;
+    }
+
+	
+}
+
+.score-info{
+	width: 100%;
+	@include media-breakpoint-up(md) {
+        width: 50%;
+    }
+	@include media-breakpoint-up(lg) {
+        width: 100%;
+    }
+}
+
+.demo-sponsor {
+	width: 100%;
+	@include media-breakpoint-up(md) {
+        width: 50%;
+    }
+	@include media-breakpoint-up(lg) {
+        width: 100%;
+    }
+}
+
+.demo-card-header{
+
+    gap: 24px;
+	justify-content: space-between;
+    @include media-breakpoint-up(md) {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+
+.demo-score{
+    gap:30px;
+	@include media-breakpoint-up(md) {
+        gap:10px;
+    }
+}

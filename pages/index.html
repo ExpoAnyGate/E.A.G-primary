@@ -12,50 +12,50 @@
     <!-- main -->
     <main class="main">
       <!-- 水平排列的分頁nav-tabs -->
-      <!-- <nav class="header"></nav> -->
+      <nav class="header">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">我的收藏</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">我的評分</button>
+          </li>
+        </ul>
+      </nav>
       <section class="content">
-        <h3 class="mb-5">基本設定</h3>
-        <form class="row">
-          <div class="col-lg-4 col-12 mb-3">
-            <div class="p-5 bg-white shadow-sm rounded-lg">
-              <img src="/assets/images/cat.jpg" alt="" width="80" height="80" class="d-block mx-auto mb-4">
-              <h6 class="text-center mb-4 text-muted">頭像</h6>
-              <div class="col-auto">
-                <!-- <label for="formFile" class="form-label">選擇頭像</label> -->
-                <input class="form-control" type="file" id="formFile">
+        <!-- 我的收藏 -->
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <p>content</p>
+          </div>
+          <!-- 我的評分 -->
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="card border-primary mb-3"> <!----style="max-width: 18rem;"-->
+              <div class="card-header d-flex justify-content-between">
+                <!-- 日期 -->
+                <div class="expoDate">2024/9/15 - 2024/11/15</div>
+                <!-- 縣市 -->
+                <ul class="addressMap d-flex">
+                  <li><i class="me-2">Map</i></li>
+                  <li>台北市</li>
+                </ul>
+             </div>
+              <div class="card-body text-primary d-flex ">
+                <figure class="rounded">
+                  <img src="/assets/images/cat.jpg" alt="郁金香" style="width:300px">
+                </figure>
+                <div class="d-flex flex-column">
+                  <h5 class="card-title">吉依卡哇ChiikawaPOP UP IN 台北...</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <div class="d-flex">
+                    <button class="button rounded-pill" type="button">#攝影展</button>
+                    <button class="button rounded-pill" type="button">#光影藝術</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-12 mb-3">
-            <label for="InputName" class="form-label">顯示名稱<span class="rIcon">*</span></label>
-            <input type="text" class="form-control border border-1" id="InputName" name="name" placeholder="You Name" required>
-          </div>
-          <div class="col-12 mb-3">
-            <label for="InputAccount" class="form-label">帳號<span class="rIcon">*</span></label>
-            <input type="text" class="form-control border border-1" id="InputAccount" name="account" placeholder="You Account" required>
-          </div>
-          <div class="col-12 mb-3">
-            <label for="InputEmail" class="form-label">Email<span class="rIcon">*</span></label>
-            <input type="email" class="form-control border border-1" id="InputEmail" name="email" placeholder="You email" required> 
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-          </div>
-          <div class="col-12 mb-3">
-            <label for="inputAddress" class="form-label">手機號碼</label>
-            <input type="tel" class="form-control border border-1" id="phone" name="phone" placeholder="0900-000-000">
-          </div>
-          <div class="col-12 mb-3">
-            <label for="inputAddress" class="form-label">通訊地址</label>
-            <input type="text" class="form-control border border-1" id="inputAddress" name="address" placeholder="i1234 Main St">
-          </div>
-          <div class="col-12 mb-3">
-            <label for="inputBirthday" class="form-label">生日</label>
-            <input type="date" class="form-control border border-1" id="inputBirthday" name="Birthday" value="2024-10-02" min="2024-01-01" max="2024-12-31" />
-          </div>
-          <div class="col-12 mb-3">
-            <button type="button" class="btn btn-outline-dark mb-3">取消</button>
-            <button type="submit" class="btn btn-dark mb-3">儲存</button>
-          </div>
-        </form>
+        </div>
       </section>
     </main>
 

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>about</title>
+  </head>
+  <body>
+    <%- include('./layout/header'); -%>
+    
+    <!-- main -->
+    <main class="main">
+      <!-- 水平排列的分頁nav-tabs -->
+      <!-- <nav class="header"></nav> -->
+      <section class="content">
+        <h3 class="mb-5">基本設定</h3>
+        <form class="row">
+          <div class="col-lg-4 col-12 mb-3">
+            <div class="p-5 bg-white shadow-sm rounded-lg">
+              <img src="/assets/images/cat.jpg" alt="" width="80" height="80" class="d-block mx-auto mb-4">
+              <h6 class="text-center mb-4 text-muted">頭像</h6>
+              <div class="col-auto">
+                <!-- <label for="formFile" class="form-label">選擇頭像</label> -->
+                <input class="form-control" type="file" id="formFile">
+              </div>
+            </div>
+          </div>
+          <div class="col-12 mb-3">
+            <label for="InputName" class="form-label">顯示名稱<span class="rIcon">*</span></label>
+            <input type="text" class="form-control border border-1" id="InputName" name="name" placeholder="You Name" required>
+          </div>
+          <div class="col-12 mb-3">
+            <label for="InputAccount" class="form-label">帳號<span class="rIcon">*</span></label>
+            <input type="text" class="form-control border border-1" id="InputAccount" name="account" placeholder="You Account" required>
+          </div>
+          <div class="col-12 mb-3">
+            <label for="InputEmail" class="form-label">Email<span class="rIcon">*</span></label>
+            <input type="email" class="form-control border border-1" id="InputEmail" name="email" placeholder="You email" required> 
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div class="col-12 mb-3">
+            <label for="inputAddress" class="form-label">手機號碼</label>
+            <input type="tel" class="form-control border border-1" id="phone" name="phone" placeholder="0900-000-000">
+          </div>
+          <div class="col-12 mb-3">
+            <label for="inputAddress" class="form-label">通訊地址</label>
+            <input type="text" class="form-control border border-1" id="inputAddress" name="address" placeholder="i1234 Main St">
+          </div>
+          <div class="col-12 mb-3">
+            <label for="inputBirthday" class="form-label">生日</label>
+            <input type="date" class="form-control border border-1" id="inputBirthday" name="Birthday" value="2024-10-02" min="2024-01-01" max="2024-12-31" />
+          </div>
+          <div class="col-12 mb-3">
+            <button type="button" class="btn btn-outline-dark mb-3">取消</button>
+            <button type="submit" class="btn btn-dark mb-3">儲存</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    
+   
+    
+
+    <script type="module" src="../main.js"></script>
+   
+  </body>
+</html>

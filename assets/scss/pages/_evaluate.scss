@@ -6,7 +6,7 @@
 ----------------------- */
 *, *::before, *::after {
 	box-sizing: border-box;
-	outline:1px solid $secondary-500;
+	// outline:1px solid $secondary-500;
 }
 html, body {
 	font-family: 'Lato', sans-serif;
@@ -218,3 +218,8 @@ div {
 	text-align: right;
 }
 
+.border{
+	&-primary{
+		border-color:$primary-900;
+	}
+}

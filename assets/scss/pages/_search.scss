@@ -1,8 +1,3 @@
-// .rounded-top-16 {
-//     border-top-left-radius: 16px;
-//     border-top-right-radius: 16px;
-// }
-
 .border-custom {
     border: 1px solid $primary-900;
     border-bottom: none;
@@ -51,4 +46,66 @@
 }
 .nowrap {
     white-space: nowrap;
+}
+
+
+
+// 分頁 自定義樣式
+$pagination-color: $gray-700; // 預設數字顏色  // 不使用 !default
+$pagination-active-bg: $gray-700; // 被選中的背景色
+$pagination-active-color: white; // 被選中的文字顏色
+
+.pagination .page-link {
+    color: $pagination-color;
+    background-color: transparent; // 透明底色
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 8px 16px; 
+}
+
+.pagination .page-item.active .page-link {
+    background-color: $pagination-active-bg; 
+    color: $pagination-active-color; 
+    border-radius: 0.5rem;
+}
+
+.pagination .page-item {
+    // border: 1px solid rgb(32, 84, 151);
+    margin-right: 12px;
+}
+
+ /* 最後一個按鈕 不要右邊距 */
+.pagination .page-item:last-child {
+    margin-right: 0;
+}
+
+//上一頁下一頁
+.pagination .desktop-pre, 
+.pagination .desktop-next {
+    width: 100px;
+    padding: 8px 16px;
+}
+
+.mobile-next span,
+.mobile-pre span {
+    display: none;
+}
+
+@include media-breakpoint-down(md)  {
+    .nextBtn .desktop-next,
+    .preBtn .desktop-pre{
+        display: none;
+    }
+
+     .mobile-next span,
+     .mobile-pre span {
+        display: block;
+    }
 }

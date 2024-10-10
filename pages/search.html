@@ -13,7 +13,7 @@
       <div class="row gx-6 h-100 mb-6"> <!-- style="border: 1px solid red;" -->
         <!-- 左 -->
         <div class="col-lg-8 col-sm-12 focus-card">
-          <div class="d-flex flex-column h-100"> <!--style="border: 1px solid rgb(246, 255, 0);" -->
+          <div class="d-flex flex-column h-100">
           <div class="d-flex justify-content-between align-items-center rounded-top-4 border-custom py-4 px-6">
             <p class="mb-0">2024/8/15 - 2024/9/15</p>
             <div class="d-flex align-items-center">
@@ -224,8 +224,44 @@
           </div>
         </div>
       </div>
-
      </section>
+     <!-- 分頁 -->
+      <div class="container">
+        <div class="d-flex justify-content-center mb-17">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination d-flex justify-content-center ">
+            <li class="page-item preBtn">
+              <a class="page-link mobile-pre d-flex align-items-center" href="#" aria-label="Previous">
+                <span class="material-symbols-outlined fs-12">
+                  keyboard_arrow_left
+                </span>
+              </a>
+            </li>
+            <li class="page-item preBtn">
+              <a class="page-link desktop-pre" href="#" aria-label="Previous">
+                上一頁
+              </a>
+            </li>
+            
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item active"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item nextBtn">
+              <a class="page-link desktop-next" href="#" aria-label="Next">
+                下一頁
+              </a>
+            </li>
+            <li class="page-item nextBtn">
+              <a class="page-link mobile-next d-flex align-items-center" href="#" aria-label="Next">
+                <span class="material-symbols-outlined fs-12">keyboard_arrow_right</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        </div>
+      </div>
     <%- include('./layout/footer'); -%>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

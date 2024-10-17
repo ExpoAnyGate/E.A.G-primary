@@ -25,6 +25,7 @@ $star: #FAC612;
 .eval-main {
 	margin-top: 104px;
 	padding: 48px 12px 0 12px;
+	padding-top: 0;
 	//background: orange;
 
 	@include media-breakpoint-up(sm) { 
@@ -32,12 +33,18 @@ $star: #FAC612;
 		margin-top: 104px;
 	}
 
-	@media (min-width: 576px) and (max-width: 992px) {
+	@include media-breakpoint-up(md){
 		width: calc(100% - 240px);
 		margin-top: 0;
 		margin-left: 240px;
 		padding: 48px 24px 0 24px;
 	}
+	// @media (min-width: 576px) and (max-width: 992px) {
+	// 	width: calc(100% - 240px);
+	// 	margin-top: 0;
+	// 	margin-left: 240px;
+	// 	padding: 48px 24px 0 24px;
+	// }
 	// @media screen and (min-width:821px) and (max-width:1180px){
 	// 	padding: 48px 0 0 0;
 	// }
@@ -182,22 +189,13 @@ $star: #FAC612;
 }
 
 // 開關
-.navBtn{
+.desktop{
 	display: none;
-	@include media-breakpoint-down(sm){
-		display: block;
-	}
-	.dropdown{
-		display: block;
-	}
-	.dropdown-login{
-		display: none;
-	}
 }
 
-@include media-breakpoint-down(sm){
+@include media-breakpoint-up(md){
 	.desktop{
-		display: none;
+		display: block;
 	}
 }
 

@@ -10,29 +10,51 @@
     <%- include('./layout/evaluate-nav'); -%>
 
     <main class="eval-main">
-      <nav class="header">
-        <ul class="nav nav-tabs border-primary-800" id="myTab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button class="nav-link bg-primary-200 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">我的收藏</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">我的評分</button>
-          </li>
-        </ul>
-      </nav>
-      <section class="eval-content">
-        <div class="tab-content" id="myTabContent">
-          <!-- 我的收藏 -->
-          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <section class="eval-centerBox position-relative">
-              <div class="collection">
-                <div class="row g-0 ">
+      <div class="contaioner">
+        <nav class="header">
+          <ul class="nav nav-tabs border-primary-800" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link bg-primary-200 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">我的收藏</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">我的評分</button>
+            </li>
+          </ul>
+        </nav>
+        <section class="eval-content">
+          <div class="tab-content" id="myTabContent">
+            <!-- 我的收藏 -->
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <section class="eval-centerBox position-relative">
+                <div class="collection">
+                  <div class="row g-0 ">
+                      <div class="col-lg-2 col-md-2 cartBox flex-md-column justify-content-start align-items-center mb-3">
+                          <div class="rounded px-5 py-3 bg-gray-800 text-white text-center fs-8">15</div>
+                          <h6 class="cartTxt text-center m-1 mx-2">SET</h6>  
+                      </div>
+                      <div class="col-lg-10 col-md-10 cartBox flex-column ps-lg-0 ps-md-3 ps-0">
+                          <h5 class="cartTitle mb-3">吉卜力的魔法世界111</h5>
+                          <div class="card-header bg-transparent d-flex flex-wrap flex-sm-wrap  justify-content-between mb-3">
+                            <div class="expoDate mb-0">2024/8/15 - 2024/9/15</div>
+                            <div class="d-flex align-items-center">
+                              <span class="material-symbols-outlined fs-6 p-0">location_on</span>
+                              <p class="mb-0 ps-2 nowrap">台北市</p>
+                            </div>
+                          </div>
+                          <div class="cartBody">
+                              <p>所有日本吉卜力工作室創作的作品大集合</p>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="collection active">
+                  <div class="row g-0 ">
                     <div class="col-lg-2 col-md-2 cartBox flex-md-column justify-content-start align-items-center mb-3">
                         <div class="rounded px-5 py-3 bg-gray-800 text-white text-center fs-8">15</div>
-                        <h6 class="cartTxt text-center">SET</h6>  
+                        <h6 class="cartTxt text-center m-1 mx-2">AUG</h6>  
                     </div>
-                    <div class="col-lg-10 col-md-10 cartBox flex-column ps-md-3 ps-0">
-                        <h5 class="cartTitle mb-3">吉卜力的魔法世界111</h5>
+                    <div class="col-lg-10 col-md-10 cartBox flex-column ps-lg-0 ps-md-3 ps-0">
+                        <h5 class="cartTitle mb-3">吉依卡哇</h5>
                         <div class="card-header bg-transparent d-flex flex-wrap flex-sm-wrap  justify-content-between mb-3">
                           <div class="expoDate mb-0">2024/8/15 - 2024/9/15</div>
                           <div class="d-flex align-items-center">
@@ -41,88 +63,103 @@
                           </div>
                         </div>
                         <div class="cartBody">
-                            <p>所有日本吉卜力工作室創作的作品大集合</p>
+                            <p>由日本漫畫家ナガノ(Nagano)創作的漫畫系列,副標題《這又小又可愛的傢伙》</p>
                         </div>
                     </div>
-                </div>
-              </div>
-              <div class="collection active">
-                <div class="row g-0 ">
-                  <div class="col-lg-2 col-md-2 cartBox flex-md-column justify-content-start align-items-center mb-3">
-                      <div class="rounded px-5 py-3 bg-gray-800 text-white text-center fs-8">15</div>
-                      <h6 class="cartTxt text-center">AUG</h6>  
-                  </div>
-                  <div class="col-lg-10 col-md-10 cartBox flex-column ps-md-3 ps-0">
-                      <h5 class="cartTitle mb-3">吉依卡哇</h5>
-                      <div class="card-header bg-transparent d-flex flex-wrap flex-sm-wrap  justify-content-between mb-3">
-                        <div class="expoDate mb-0">2024/8/15 - 2024/9/15</div>
-                        <div class="d-flex align-items-center">
-                          <span class="material-symbols-outlined fs-6 p-0">location_on</span>
-                          <p class="mb-0 ps-2 nowrap">台北市</p>
-                        </div>
-                      </div>
-                      <div class="cartBody">
-                          <p>由日本漫畫家ナガノ(Nagano)創作的漫畫系列,副標題《這又小又可愛的傢伙》</p>
-                      </div>
                   </div>
                 </div>
-              </div>
-              <div class="collection">
-                <div class="row g-0 ">
-                    <div class="col-lg-2 col-md-2 cartBox flex-md-column justify-content-start align-items-center mb-3">
-                        <div class="rounded px-5 py-3 bg-gray-800 text-white text-center fs-8">20</div>
-                        <h6 class="cartTxt text-center">JUL</h6>  
-                    </div>
-                    <div class="col-lg-10 col-md-10 cartBox flex-column ps-md-3 ps-0">
-                        <h5 class="cartTitle mb-3">自然與環境攝影展</h5>
-                        <div class="card-header bg-transparent d-flex flex-wrap flex-sm-wrap  justify-content-between mb-3">
-                          <div class="expoDate mb-0">2024/7/20 - 2024/7/31</div>
-                          <div class="d-flex align-items-center">
-                            <span class="material-symbols-outlined fs-6 p-0">location_on</span>
-                            <p class="mb-0 ps-2 nowrap">台北市</p>
+                <div class="collection">
+                  <div class="row g-0 ">
+                      <div class="col-lg-2 col-md-2 cartBox flex-md-column justify-content-start align-items-center mb-3">
+                          <div class="rounded px-5 py-3 bg-gray-800 text-white text-center fs-8">20</div>
+                          <h6 class="cartTxt text-center m-1 mx-2">JUL</h6>  
+                      </div>
+                      <div class="col-lg-10 col-md-10 cartBox flex-column ps-lg-0 ps-md-3 ps-0">
+                          <h5 class="cartTitle mb-3">自然與環境攝影展</h5>
+                          <div class="card-header bg-transparent d-flex flex-wrap flex-sm-wrap  justify-content-between mb-3">
+                            <div class="expoDate mb-0">2024/7/20 - 2024/7/31</div>
+                            <div class="d-flex align-items-center">
+                              <span class="material-symbols-outlined fs-6 p-0">location_on</span>
+                              <p class="mb-0 ps-2 nowrap">台北市</p>
+                            </div>
+                          </div>
+                          <div class="cartBody">
+                              <p>自然與環境攝影展是一場旨在喚起人們對地球生態環境保護意識的影像盛會。展覽匯集了來自世界各地的攝影師作品,他們透過鏡頭捕捉大自然的壯麗與脆弱。展出的作品涵蓋了廣袤的森林、純淨的河流、壯麗的山脈,以及瀕臨滅絕的動植物,這些影像無不展現自然界的美麗與重要性。</p>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="collection">
+                  <div class="row g-0 ">
+                      <div class="col-lg-2 col-md-2 cartBox flex-md-column justify-content-start align-items-center mb-3">
+                          <div class="rounded px-5 py-3 bg-gray-800 text-white text-center fs-8">30</div>
+                          <h6 class="cartTxt text-center m-1 mx-2">JUN</h6>  
+                      </div>
+                      <div class="col-lg-10 col-md-10 cartBox flex-column ps-lg-0 ps-md-3 ps-0">
+                          <h5 class="cartTitle mb-3">人類身體的奇妙世界</h5>
+                          <div class="card-header bg-transparent d-flex flex-wrap flex-sm-wrap  justify-content-between mb-3">
+                            <div class="expoDate mb-0">2024/6/30 - 2024/7/31</div>
+                            <div class="d-flex align-items-center">
+                              <span class="material-symbols-outlined fs-6 p-0">location_on</span>
+                              <p class="mb-0 ps-2 nowrap">台北市</p>
+                            </div>
+                          </div>
+                          <div class="cartBody">
+                              <p>深入探索人體的結構與功能。透過多媒體展示和互動體驗,揭示了人體的精密運作和健康與疾病的關聯。參觀者可以直觀地了解細胞、器官及系統如何協作,並重識自己的身體。</p>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <!-- 我的評分 -->
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <!-- first -->
+              <section class="eval-centerBox position-relative">
+                <div class="d-flex justify-content-center align-items-center">
+                  <h5 class="month-title text-center text-primary-700">September</h5>
+                </div>
+                <div class="main-timeline text-white">
+                    <div class="timeline left">
+                        <div class="card border-primary-700 mb-3"> 
+                          <div class="card-header bg-transparent d-flex flex-wrap flex-sm-wrap justify-content-between align-items-center fs-4">
+                            <div class="expoDate mb-0">2024/9/15 - 2024/11/15</div>
+                            <div class="d-flex align-items-center">
+                              <span class="material-symbols-outlined fs-6 p-0">location_on</span>
+                              <p class="mb-0 ps-2 nowrap">台北市</p>
+                            </div>
+                          </div>
+                          <div class="row g-0 card-body text-dark d-flex p-4">
+                            <div class="col-4">
+                              <figure class="ml-4 mb-0">
+                                <img class="rounded-3 image-zoom" src="../assets/images/demo-lg-6.png" alt="郁金香">
+                              </figure>
+                            </div>
+                            <div class="col-8">
+                              <div class="d-flex flex-column ms-4">
+                                <p class="card-title text-limit fw-bold mb-2">吉依卡哇ChiikawaPOP UP IN 台北...</p>
+                                <ul class="card-text mb-2">
+                                  <li>
+                                    <span class="star-filled">★</span>
+                                    <span class="star-filled">★</span>
+                                    <span class="star-filled">★</span>
+                                    <span class="star-filled">★</span>
+                                    <span class="star-outline">★</span></li>
+                                  </li>
+                                </ul>
+                                <div class="d-flex justify-content-start">
+                                  <button class="btn button tagLab rounded-pill me-2" type="button">#攝影展</button>
+                                  <button class="btn button tagLab rounded-pill me-2" type="button">#光影藝術</button>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                        <div class="cartBody">
-                            <p>自然與環境攝影展是一場旨在喚起人們對地球生態環境保護意識的影像盛會。展覽匯集了來自世界各地的攝影師作品,他們透過鏡頭捕捉大自然的壯麗與脆弱。展出的作品涵蓋了廣袤的森林、純淨的河流、壯麗的山脈,以及瀕臨滅絕的動植物,這些影像無不展現自然界的美麗與重要性。</p>
-                        </div>
                     </div>
-                </div>
-              </div>
-              <div class="collection">
-                <div class="row g-0 ">
-                    <div class="col-lg-2 col-md-2 cartBox flex-md-column justify-content-start align-items-center mb-3">
-                        <div class="rounded px-5 py-3 bg-gray-800 text-white text-center fs-8">30</div>
-                        <h6 class="cartTxt text-center">JUN</h6>  
-                    </div>
-                    <div class="col-lg-10 col-md-10 cartBox flex-column ps-md-3 ps-0">
-                        <h5 class="cartTitle mb-3">人類身體的奇妙世界</h5>
-                        <div class="card-header bg-transparent d-flex flex-wrap flex-sm-wrap  justify-content-between mb-3">
-                          <div class="expoDate mb-0">2024/6/30 - 2024/7/31</div>
-                          <div class="d-flex align-items-center">
-                            <span class="material-symbols-outlined fs-6 p-0">location_on</span>
-                            <p class="mb-0 ps-2 nowrap">台北市</p>
-                          </div>
-                        </div>
-                        <div class="cartBody">
-                            <p>深入探索人體的結構與功能。透過多媒體展示和互動體驗,揭示了人體的精密運作和健康與疾病的關聯。參觀者可以直觀地了解細胞、器官及系統如何協作,並重識自己的身體。</p>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </section>
-          </div>
-          <!-- 我的評分 -->
-          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <!-- first -->
-            <section class="eval-centerBox position-relative">
-              <div class="d-flex justify-content-center align-items-center">
-                <h5 class="month-title text-center text-primary-700">September</h5>
-              </div>
-              <div class="main-timeline text-white">
-                  <div class="timeline left">
+                    <div class="timeline right">
                       <div class="card border-primary-700 mb-3"> 
                         <div class="card-header bg-transparent d-flex flex-wrap flex-sm-wrap justify-content-between align-items-center fs-4">
-                          <div class="expoDate mb-0">2024/9/15 - 2024/11/15</div>
+                          <div class="expoDate mb-0">2024/9/10 - 2024/12/15</div>
                           <div class="d-flex align-items-center">
                             <span class="material-symbols-outlined fs-6 p-0">location_on</span>
                             <p class="mb-0 ps-2 nowrap">台北市</p>
@@ -131,12 +168,48 @@
                         <div class="row g-0 card-body text-dark d-flex p-4">
                           <div class="col-4">
                             <figure class="ml-4 mb-0">
-                              <img class="rounded-3" src="../assets/images/demo-lg-6.png" alt="郁金香">
+                              <img class="rounded-3 image-zoom" src="../assets/images/demo-lg-3.png" alt="郁金香">
                             </figure>
                           </div>
                           <div class="col-8">
                             <div class="d-flex flex-column ms-4">
-                              <p class="card-title text-limit fw-bold mb-2">吉依卡哇ChiikawaPOP UP IN 台北...</p>
+                              <p class="card-title text-limit fw-bold mb-2">小王子75年特展</p>
+                              <ul class="card-text mb-2">
+                                <li>
+                                  <span class="star-filled">★</span>
+                                  <span class="star-filled">★</span>
+                                  <span class="star-filled">★</span>
+                                  <span class="star-filled">★</span>
+                                  <span class="star-outline">★</span></li>
+                                </li>
+                              </ul>
+                              <div class="d-flex">
+                                <button class="btn button tagLab rounded-pill me-2" type="button">#攝影展</button>
+                                <button class="btn button tagLab rounded-pill me-2" type="button">#光影藝術</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="timeline left">
+                      <div class="card border-primary-700 mb-3"> 
+                        <div class="card-header bg-transparent d-flex flex-wrap flex-sm-wrap justify-content-between align-items-center fs-4">
+                          <div class="expoDate mb-0">2024/9/4 - 2024/10/15</div>
+                          <div class="d-flex align-items-center">
+                            <span class="material-symbols-outlined fs-6 p-0">location_on</span>
+                            <p class="mb-0 ps-2 nowrap">台北市</p>
+                          </div>
+                        </div>
+                        <div class="row g-0 card-body text-dark d-flex p-4">
+                          <div class="col-4">
+                            <figure class="ml-4 mb-0">
+                              <img class="rounded-3 image-zoom" src="../assets/images/demo-sm-7.png" alt="郁金香">
+                            </figure>
+                          </div>
+                          <div class="col-8">
+                            <div class="d-flex flex-column ms-4">
+                              <p class="card-title text-limit fw-bold mb-2">會動的清明上河區</p>
                               <ul class="card-text mb-2">
                                 <li>
                                   <span class="star-filled">★</span>
@@ -147,8 +220,89 @@
                                 </li>
                               </ul>
                               <div class="d-flex justify-content-start">
-                                <button class="btn button tagLab rounded-pill" type="button">#攝影展</button>
-                                <button class="btn button tagLab rounded-pill" type="button">#光影藝術</button>
+                                <button class="btn button tagLab rounded-pill me-2" type="button">#攝影展</button>
+                                <button class="btn button tagLab rounded-pill me-2" type="button">#光影藝術</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="timeline right">
+                      <div class="card border-primary-700 mb-3"> 
+                        <div class="card-header bg-transparent d-flex flex-wrap flex-sm-wrap justify-content-between align-items-center fs-4">
+                          <div class="expoDate mb-0">2024/9/1 - 2024/10/15</div>
+                          <div class="d-flex align-items-center">
+                            <span class="material-symbols-outlined fs-6 p-0">location_on</span>
+                            <p class="mb-0 ps-2 nowrap">台北市</p>
+                          </div>
+                        </div>
+                        <div class="row g-0 card-body text-dark d-flex p-4">
+                          <div class="col-4">
+                            <figure class="ml-4 mb-0">
+                              <img class="rounded-3 image-zoom" src="../assets/images/demo-sm-10.png" alt="郁金香">
+                            </figure>
+                          </div>
+                          <div class="col-8">
+                            <div class="d-flex flex-column ms-4">
+                              <p class="card-title text-limit fw-bold mb-2">大正藝術的浪漫：竹久夢二紀念展</p>
+                              <ul class="card-text mb-2">
+                                <li>
+                                  <span class="star-filled">★</span>
+                                  <span class="star-filled">★</span>
+                                  <span class="star-filled">★</span>
+                                  <span class="star-filled">★</span>
+                                  <span class="star-outline">★</span></li>
+                                </li>
+                              </ul>
+                              <div class="d-flex">
+                                <button class="btn button tagLab rounded-pill me-2" type="button">#攝影展</button>
+                                <button class="btn button tagLab rounded-pill me-2" type="button">#光影藝術</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </section>
+
+              <!-- second -->
+              <section class="eval-centerBox position-relative">
+                <div class="d-flex justify-content-center align-items-center">
+                  <h5 class="month-title text-center text-primary-700">August</h5>
+                </div>
+                <div class="main-timeline text-white">
+                  <div class="timeline left">
+                      <div class="card border-primary-700 mb-3"> 
+                        <div class="card-header bg-transparent d-flex flex-wrap flex-sm-wrap justify-content-between align-items-center fs-4">
+                          <div class="expoDate mb-0">2024/8/31 - 2024/12/15</div>
+                          <div class="d-flex align-items-center">
+                            <span class="material-symbols-outlined fs-6 p-0">location_on</span>
+                            <p class="mb-0 ps-2 nowrap">台北市</p>
+                          </div>
+                        </div>
+                        <div class="row g-0 card-body text-dark d-flex p-4">
+                          <div class="col-4">
+                            <figure class="ml-4 mb-0">
+                              <img class="rounded-3 image-zoom" src="../assets/images/demo-origin-1.png" alt="郁金香">
+                            </figure>
+                          </div>
+                          <div class="col-8">
+                            <div class="d-flex flex-column ms-4">
+                              <p class="card-title text-limit fw-bold mb-2">會動的清明上河區</p>
+                              <ul class="card-text mb-2">
+                                <li>
+                                  <span class="star-filled">★</span>
+                                  <span class="star-filled">★</span>
+                                  <span class="star-outline">★</span>
+                                  <span class="star-outline">★</span>
+                                  <span class="star-outline">★</span></li>
+                                </li>
+                              </ul>
+                              <div class="d-flex justify-content-start">
+                                <button class="btn button tagLab rounded-pill me-2" type="button">#攝影展</button>
+                                <button class="btn button tagLab rounded-pill me-2" type="button">#光影藝術</button>
                               </div>
                             </div>
                           </div>
@@ -158,7 +312,7 @@
                   <div class="timeline right">
                     <div class="card border-primary-700 mb-3"> 
                       <div class="card-header bg-transparent d-flex flex-wrap flex-sm-wrap justify-content-between align-items-center fs-4">
-                        <div class="expoDate mb-0">2024/9/10 - 2024/12/15</div>
+                        <div class="expoDate mb-0">2024/8/15 - 2024/11/15</div>
                         <div class="d-flex align-items-center">
                           <span class="material-symbols-outlined fs-6 p-0">location_on</span>
                           <p class="mb-0 ps-2 nowrap">台北市</p>
@@ -167,188 +321,36 @@
                       <div class="row g-0 card-body text-dark d-flex p-4">
                         <div class="col-4">
                           <figure class="ml-4 mb-0">
-                            <img class="rounded-3" src="../assets/images/demo-lg-3.png" alt="郁金香">
+                            <img class="rounded-3 image-zoom" src="../assets/images/demo-lg-12.png" alt="郁金香">
                           </figure>
                         </div>
                         <div class="col-8">
                           <div class="d-flex flex-column ms-4">
-                            <p class="card-title text-limit fw-bold mb-2">小王子75年特展</p>
+                            <p class="card-title text-limit fw-bold mb-2">侏羅紀恐龍光影展</p>
                             <ul class="card-text mb-2">
                               <li>
                                 <span class="star-filled">★</span>
                                 <span class="star-filled">★</span>
                                 <span class="star-filled">★</span>
                                 <span class="star-filled">★</span>
-                                <span class="star-outline">★</span></li>
+                                <span class="star-filled">★</span></li>
                               </li>
                             </ul>
                             <div class="d-flex">
-                              <button class="btn button tagLab rounded-pill" type="button">#攝影展</button>
-                              <button class="btn button tagLab rounded-pill" type="button">#光影藝術</button>
+                              <button class="btn button tagLab rounded-pill me-2" type="button">#攝影展</button>
+                              <button class="btn button tagLab rounded-pill me-2" type="button">#光影藝術</button>
                             </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="timeline left">
-                    <div class="card border-primary-700 mb-3"> 
-                      <div class="card-header bg-transparent d-flex flex-wrap flex-sm-wrap justify-content-between align-items-center fs-4">
-                        <div class="expoDate mb-0">2024/9/4 - 2024/10/15</div>
-                        <div class="d-flex align-items-center">
-                          <span class="material-symbols-outlined fs-6 p-0">location_on</span>
-                          <p class="mb-0 ps-2 nowrap">台北市</p>
-                        </div>
-                      </div>
-                      <div class="row g-0 card-body text-dark d-flex p-4">
-                        <div class="col-4">
-                          <figure class="ml-4 mb-0">
-                            <img class="rounded-3" src="../assets/images/demo-sm-7.png" alt="郁金香">
-                          </figure>
-                        </div>
-                        <div class="col-8">
-                          <div class="d-flex flex-column ms-4">
-                            <p class="card-title text-limit fw-bold mb-2">會動的清明上河區</p>
-                            <ul class="card-text mb-2">
-                              <li>
-                                <span class="star-filled">★</span>
-                                <span class="star-filled">★</span>
-                                <span class="star-filled">★</span>
-                                <span class="star-filled">★</span>
-                                <span class="star-outline">★</span></li>
-                              </li>
-                            </ul>
-                            <div class="d-flex justify-content-start">
-                              <button class="btn button tagLab rounded-pill" type="button">#攝影展</button>
-                              <button class="btn button tagLab rounded-pill" type="button">#光影藝術</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="timeline right">
-                    <div class="card border-primary-700 mb-3"> 
-                      <div class="card-header bg-transparent d-flex flex-wrap flex-sm-wrap justify-content-between align-items-center fs-4">
-                        <div class="expoDate mb-0">2024/9/1 - 2024/10/15</div>
-                        <div class="d-flex align-items-center">
-                          <span class="material-symbols-outlined fs-6 p-0">location_on</span>
-                          <p class="mb-0 ps-2 nowrap">台北市</p>
-                        </div>
-                      </div>
-                      <div class="row g-0 card-body text-dark d-flex p-4">
-                        <div class="col-4">
-                          <figure class="ml-4 mb-0">
-                            <img class="rounded-3" src="../assets/images/demo-sm-10.png" alt="郁金香">
-                          </figure>
-                        </div>
-                        <div class="col-8">
-                          <div class="d-flex flex-column ms-4">
-                            <p class="card-title text-limit fw-bold mb-2">大正藝術的浪漫：竹久夢二紀念展</p>
-                            <ul class="card-text mb-2">
-                              <li>
-                                <span class="star-filled">★</span>
-                                <span class="star-filled">★</span>
-                                <span class="star-filled">★</span>
-                                <span class="star-filled">★</span>
-                                <span class="star-outline">★</span></li>
-                              </li>
-                            </ul>
-                            <div class="d-flex">
-                              <button class="btn button tagLab rounded-pill" type="button">#攝影展</button>
-                              <button class="btn button tagLab rounded-pill" type="button">#光影藝術</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-            </section>
-
-            <!-- second -->
-            <section class="eval-centerBox position-relative">
-              <div class="d-flex justify-content-center align-items-center">
-                <h5 class="month-title text-center text-primary-700">August</h5>
-              </div>
-              <div class="main-timeline text-white">
-                <div class="timeline left">
-                    <div class="card border-primary-700 mb-3"> 
-                      <div class="card-header bg-transparent d-flex flex-wrap flex-sm-wrap justify-content-between align-items-center fs-4">
-                        <div class="expoDate mb-0">2024/8/31 - 2024/12/15</div>
-                        <div class="d-flex align-items-center">
-                          <span class="material-symbols-outlined fs-6 p-0">location_on</span>
-                          <p class="mb-0 ps-2 nowrap">台北市</p>
-                        </div>
-                      </div>
-                      <div class="row g-0 card-body text-dark d-flex p-4">
-                        <div class="col-4">
-                          <figure class="ml-4 mb-0">
-                            <img class="rounded-3" src="../assets/images/demo-origin-1.png" alt="郁金香">
-                          </figure>
-                        </div>
-                        <div class="col-8">
-                          <div class="d-flex flex-column ms-4">
-                            <p class="card-title text-limit fw-bold mb-2">會動的清明上河區</p>
-                            <ul class="card-text mb-2">
-                              <li>
-                                <span class="star-filled">★</span>
-                                <span class="star-filled">★</span>
-                                <span class="star-outline">★</span>
-                                <span class="star-outline">★</span>
-                                <span class="star-outline">★</span></li>
-                              </li>
-                            </ul>
-                            <div class="d-flex justify-content-start">
-                              <button class="btn button tagLab rounded-pill" type="button">#攝影展</button>
-                              <button class="btn button tagLab rounded-pill" type="button">#光影藝術</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-                <div class="timeline right">
-                  <div class="card border-primary-700 mb-3"> 
-                    <div class="card-header bg-transparent d-flex flex-wrap flex-sm-wrap justify-content-between align-items-center fs-4">
-                      <div class="expoDate mb-0">2024/8/15 - 2024/11/15</div>
-                      <div class="d-flex align-items-center">
-                        <span class="material-symbols-outlined fs-6 p-0">location_on</span>
-                        <p class="mb-0 ps-2 nowrap">台北市</p>
-                      </div>
-                    </div>
-                    <div class="row g-0 card-body text-dark d-flex p-4">
-                      <div class="col-4">
-                        <figure class="ml-4 mb-0">
-                          <img class="rounded-3" src="../assets/images/demo-lg-12.png" alt="郁金香">
-                        </figure>
-                      </div>
-                      <div class="col-8">
-                        <div class="d-flex flex-column ms-4">
-                          <p class="card-title text-limit fw-bold mb-2">侏羅紀恐龍光影展</p>
-                          <ul class="card-text mb-2">
-                            <li>
-                              <span class="star-filled">★</span>
-                              <span class="star-filled">★</span>
-                              <span class="star-filled">★</span>
-                              <span class="star-filled">★</span>
-                              <span class="star-filled">★</span></li>
-                            </li>
-                          </ul>
-                          <div class="d-flex">
-                            <button class="btn button tagLab rounded-pill" type="button">#攝影展</button>
-                            <button class="btn button tagLab rounded-pill" type="button">#光影藝術</button>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </main>
     
     

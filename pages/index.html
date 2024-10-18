@@ -1639,5 +1639,20 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script type="module" src="../main.js"></script>
+	<script  type="module">
+		
+		document.addEventListener("DOMContentLoaded", function() {
+            const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+            if (isLoggedIn === "true") {
+
+                document.getElementsByClassName("recommend")[0].style.display = "block";
+            } else {
+
+                document.getElementsByClassName("recommend")[0].style.display = "none";
+            }
+        });
+		
+	</script>
   </body>
 </html>

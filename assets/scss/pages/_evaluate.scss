@@ -11,9 +11,9 @@ $star: #FAC612;
 	bottom: 0;
 	width: 240px;
 	background: $gray-50;
-	padding: 24px 24px 24px 16px;
+	padding: 24px 24px 24px 24px; //16px;
 	background-color: $gray-50;
-	border-right: 1px solid $gray-200;
+	//border-right: 1px solid $gray-200;
 	.sub-item{
 		padding: map-get($spacers, 3) map-get($spacers, 3); //12px 12px;
 	}
@@ -25,25 +25,37 @@ $star: #FAC612;
 .eval-main {
 	margin-top: 104px;
 	padding: 48px 12px 0 12px;
-
+	padding-top: 0;
+	//background: orange;
 
 	@include media-breakpoint-up(sm) { 
 		width: 100%; 
 		margin-top: 104px;
 	}
 
-	@media (min-width: 576px) and (max-width: 992px) {
+	@include media-breakpoint-up(md){
 		width: calc(100% - 240px);
 		margin-top: 0;
 		margin-left: 240px;
 		padding: 48px 24px 0 24px;
-	  }
+	}
+	// @media (min-width: 576px) and (max-width: 992px) {
+	// 	width: calc(100% - 240px);
+	// 	margin-top: 0;
+	// 	margin-left: 240px;
+	// 	padding: 48px 24px 0 24px;
+	// }
+	// @media screen and (min-width:821px) and (max-width:1180px){
+	// 	padding: 48px 0 0 0;
+	// }
 	@include media-breakpoint-up(lg) { 
 		width: calc(100% - 240px);
 		margin-left: 240px;
 		margin-top: 0;
 	}
-
+	// @media screen and (min-width:1024px) and (max-width:1366px){
+	// 	padding: 48px 24px 0 24px;
+	// }
 	@include media-breakpoint-up(xxl) {
 		width: 1056px;
 	}
@@ -91,6 +103,7 @@ $star: #FAC612;
     //width: 790px;
 	width: 100%;
     padding-top: map-get($spacers, 17);
+	//background-color: pink;
 	@include media-breakpoint-up(md) { 
 		width: 100%;
 		padding: 80px 24px 0 24px;
@@ -99,8 +112,12 @@ $star: #FAC612;
 	@include media-breakpoint-up(lg) { 
 		width: 100%;
 		margin: 0 auto;
-		padding: 80px 12px 0px 12px;
+		padding: 80px 12px 0 12px;
 		// width: 790px;
+	}
+	@media screen and (min-width: 821px) and (max-width: 1180px) and (orientation: landscape) {
+		width: 720px;//734px;
+		padding: 82px 0 0 0;
 	}
 	@include media-breakpoint-up(xl) { 
 		margin-left: 240px;
@@ -108,12 +125,20 @@ $star: #FAC612;
 		width: 790px;
 		margin: 0 auto;
 	}
-
+	// @media screen and (min-width: 1024px) and (max-width: 1366px)  {
+	// 	width: 100%;
+	// 	margin: 0 auto;
+	// 	padding: 80px 0px 0 0px;
+	// }
+	// @media screen and (min-width: 1025px) and (max-width: 1366px) and (orientation: landscape)  {
+	// 	width: 790px;
+    //     margin: 0 auto;
+	// 	padding: 80px 12px 0 12px;
+	// }
 	@include media-breakpoint-up(xxl) { 
 	 	width: 790px;
 		margin: 0 auto;
 		padding: 80px 24px 0px 24px;
-		
 	}
 
     .card{
@@ -164,16 +189,18 @@ $star: #FAC612;
 }
 
 // 開關
+.desktop{
+	display: none;
+}
 .navBtn{
 	display: none;
-	@include media-breakpoint-down(sm){
+	@include media-breakpoint-down(md) { 
 		display: block;
 	}
 }
-
-@include media-breakpoint-down(sm){
+@include media-breakpoint-up(md){
 	.desktop{
-		display: none;
+		display: block;
 	}
 }
 
@@ -212,7 +239,19 @@ $star: #FAC612;
 /* The actual timeline (the vertical ruler) */
 .main-timeline {
 	position: relative;
-  }
+
+	/* 基本圖片樣式 */
+	.image-zoom{
+		width: 300px;
+		height: auto;
+		transition: transform 0.3s ease;
+
+		/* 滑過圖片時的樣式 */
+		&:hover {
+			transform: scale(1.1); /* 圖片放大 1.2 倍 */
+		}
+	}
+}
   
   /* The actual timeline (the vertical ruler) */
 .main-timeline::after {
@@ -227,6 +266,7 @@ $star: #FAC612;
 		right: 0;
 	}
 }
+
 
 /* Container around content */
 .timeline {
@@ -289,7 +329,7 @@ $star: #FAC612;
 		padding: 0px 20px 0px 0px;
 	} 
 }
-  
+
   /* Place the container to the right */
 .right {
 	width: 100%;
@@ -304,8 +344,11 @@ $star: #FAC612;
 		margin: 0 0;
 		padding: 0px 0px 0px 20px;
 	}
+	// @media screen and (min-width:821px) and (max-width:1180px){
+	// 	padding: 0px 0px 0px 20px; 
+	// }
 	@include media-breakpoint-up(xl){
-		padding: 0px 0px 0px 20px;
+		padding: 0px 0px 0px 40px;
 	} 
 	@include media-breakpoint-up(xxl){
 		padding: 0px 0px 0px 28px;

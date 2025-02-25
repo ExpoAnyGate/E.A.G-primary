@@ -45,7 +45,7 @@ export default function SpotlightPage() {
                       <li class="swiper-slide">
                         <img
                           class="d-block object-fit-cover bg-secondary-50"
-                          src="src/assets/images/Spotlight/spotlight-img.png"
+                          src="../assets/images/Spotlight/spotlight-img.png"
                           alt="spotlight-img"
                         />
                       </li>
@@ -59,12 +59,12 @@ export default function SpotlightPage() {
                       <li class="swiper-slide">
                         <img
                           class="d-block w-100 object-fit-cover"
-                          src="src/assets/images/Spotlight/spotlight-img.png"
+                          src="../assets/images/Spotlight/spotlight-img.png"
                           alt="spotlight-img"
                         />
                       </li>
                     </ul>
-                    <div class="swiper-pagination" class="mt-100"></div>
+                    <div class="swiper-pagination mt-100"></div>
                   </div>
                 </div>
               </div>

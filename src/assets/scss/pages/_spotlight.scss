@@ -1,0 +1,326 @@
+.spotlight-banner {
+  background-image: url("../images/spotlight-banner-sm.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  height: 700px;
+  @include media-breakpoint-up(md) {
+    background-image: url("../images/spotlight-banner-lg.png");
+    height: 560px;
+    background-position: bottom;
+  }
+}
+
+.spotlight-card-title {
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  padding: 32px 32px 32px 32px;
+  width: 50%;
+
+  .spotlight-card-topic {
+    font-size: 24px;
+    @include media-breakpoint-up(lg) {
+      font-size: 48px;
+    }
+  }
+
+  .spotlight-card-title-info {
+    font-size: 14px;
+    //
+
+    @include media-breakpoint-up(lg) {
+      // width: 100%;
+      font-size: 24px;
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    width: 60%;
+  }
+  // @include media-breakpoint-up(md) {
+  //     width: 80%;
+  // }
+  @include media-breakpoint-up(md) {
+    width: auto; // 在 lg 以上時取消 width 設定
+  }
+
+  @include media-breakpoint-up(xl) {
+    padding: 44px 64px 44px 64px;
+    gap: 32px;
+    flex-direction: row;
+    text-align: left;
+    align-items: center;
+  }
+}
+
+.spotlight-card-info {
+  // padding: 0 232px;
+  // button {
+  //     display: block;
+  // }
+  .spotlight-button:hover {
+    background-color: $gray-200;
+    color: $gray-900;
+  }
+  border-bottom-right-radius: 36px;
+  border-bottom-left-radius: 36px;
+  position: relative;
+}
+
+.spotlight-card-info::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: 0px;
+  width: 100%; /* 反向圓弧的寬度 */
+  height: 50px; /* 反向圓弧的高度 */
+  background-color: #333333; /* 要與卡片背景相同 */
+  border-top-right-radius: 36px; /* 讓它形成反向圓角 */
+  border-top-left-radius: 36px;
+  z-index: -1;
+}
+
+.spotlight-card {
+  // margin-top: 226px;
+  margin: 226px 80px 80px 80px;
+  // border-radius: 36px 36px 36px 36px;
+
+  // @include media-breakpoint-up(md) {
+  //     width: 50%;
+  // }
+}
+
+
+
+.spotlight-card-title {
+  position: relative;
+  border-top-left-radius: 36px; /* 左上圓角 */
+  border-top-right-radius: 36px; /* 右上圓角 */
+}
+.spotlight-card:nth-child(1) .spotlight-card-title::before,
+.spotlight-card:nth-child(3) .spotlight-card-title::before {
+  content: "";
+  position: absolute;
+  bottom: 50px; /* 讓它稍微下移，蓋住圓弧 */
+  right: -50px;
+  width: 50px;
+  height: 50px;
+  z-index: -1; /* 放在標籤的後面 */
+}
+
+.spotlight-card:nth-child(2) .spotlight-card-title::before,
+.spotlight-card:nth-child(4) .spotlight-card-title::before {
+  content: "";
+  position: absolute;
+  display: block;
+  bottom: 50px; /* 讓它稍微下移，蓋住圓弧 */
+  left: -50px;
+  width: 50px;
+  height: 50px;
+  z-index: -1; /* 放在標籤的後面 */
+}
+
+.spotlight-card:nth-child(1) .spotlight-card-title,
+.spotlight-card:nth-child(1) .spotlight-card-info,
+.spotlight-card:nth-child(1) .spotlight-card-title::before,
+.spotlight-card:nth-child(1) .spotlight-card-info::before {
+  background-color: $secondary-50; /* 卡片 1 的顏色 */
+}
+.spotlight-card:nth-child(2) .spotlight-card-title,
+.spotlight-card:nth-child(2) .spotlight-card-info,
+.spotlight-card:nth-child(2) .spotlight-card-title::before,
+.spotlight-card:nth-child(2) .spotlight-card-info::before {
+  background-color: $primary-50; /* 卡片 2 的顏色 */
+}
+.spotlight-card:nth-child(3) .spotlight-card-title,
+.spotlight-card:nth-child(3) .spotlight-card-info,
+.spotlight-card:nth-child(3) .spotlight-card-title::before,
+.spotlight-card:nth-child(3) .spotlight-card-info::before {
+  background-color: $tertiary-50; /* 卡片 3 的顏色 */
+}
+.spotlight-card:nth-child(4) .spotlight-card-title,
+.spotlight-card:nth-child(4) .spotlight-card-info,
+.spotlight-card:nth-child(4) .spotlight-card-title::before,
+.spotlight-card:nth-child(4) .spotlight-card-info::before {
+  background-color: $gray-50; /* 卡片 3 的顏色 */
+}
+
+.spotlight-card:nth-child(1) .spotlight-card-title {
+  color: $secondary-800;
+}
+.spotlight-card:nth-child(2) .spotlight-card-title {
+  color: $primary-800;
+}
+.spotlight-card:nth-child(3) .spotlight-card-title {
+  color: $tertiary-800;
+}
+.spotlight-card:nth-child(4) .spotlight-card-title {
+  color: $gray-800;
+}
+
+.spotlight-card:nth-child(1) .spotlight-card-title::after,
+.spotlight-card:nth-child(3) .spotlight-card-title::after {
+  content: "";
+  position: absolute;
+  bottom: 50px;
+  right: -50px;
+  width: 50px; /* 反向圓弧的寬度 */
+  height: 67%; /* 反向圓弧的高度 */
+  background-color: #ffffff; /* 要與卡片背景相同 */
+  border-bottom-left-radius: 36px; /* 讓它形成反向圓角 */
+}
+
+.spotlight-card:nth-child(2) .spotlight-card-title::after,
+.spotlight-card:nth-child(4) .spotlight-card-title::after {
+  content: "";
+  position: absolute;
+  bottom: 50px;
+  left: -50px;
+  width: 50px;
+  height: 67%;
+  background-color: #ffffff;
+  border-bottom-right-radius: 36px;
+}
+
+.spotlight-card-content-img {
+  img {
+    width: 100%;
+    border-radius: 50px 10px;
+  }
+}
+
+.marquee-container {
+  overflow: hidden; /* 隱藏超出範圍的內容 */
+  white-space: nowrap;
+  width: 100%;
+}
+
+.marquee {
+  display: flex;
+  gap: 20px; /* 控制圖片間距 */
+  width: max-content;
+  animation: marquee-scroll 20s linear infinite;
+}
+
+.sponsor-img {
+  height: 150px; /* 設定圖片高度，可依需求調整 */
+  width: auto;
+}
+
+/* 定義滾動動畫 */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-container:hover .marquee {
+  animation-play-state: paused;
+}
+
+.spotlight-card-content-text-member-mail {
+  max-height: 400px; /* 限制最大高度 */
+  overflow-y: auto; /* 允許垂直滾動 */
+  padding-right: 10px; /* 避免滾動條蓋住文字 */
+  scrollbar-width: thin; /* 設定滾動條寬度 (Firefox) */
+  scrollbar-color: #bbb #f5f5f5; /* 設定滾動條顏色 (Firefox) */
+}
+
+/* 設定 Chrome / Edge / Safari 的滾動條樣式 */
+.spotlight-card-content-text-member-mail::-webkit-scrollbar {
+  width: 2px; /* 滾動條寬度 */
+}
+
+.spotlight-card-content-text-member-mail::-webkit-scrollbar-thumb {
+  background-color: #bbb; /* 滑塊顏色 */
+  border-radius: 4px;
+}
+
+.spotlight-card-content-text-member-mail::-webkit-scrollbar-track {
+  background-color: #f5f5f5; /* 軌道顏色 */
+}
+
+
+
+
+
+.artist-swiper-slide {
+  width: 100%;
+//   @include media-breakpoint-up(md) {
+//     width: 50%;
+//   }
+//   @include media-breakpoint-up(lg) {
+//     width: 33.33%;
+//   }
+}
+
+.artist-swiper-slide img {
+//   height: calc(100vh - 10rem);
+//   object-fit: cover;
+//   @include media-breakpoint-up(md) {
+//     height: calc(100vh - 156px);
+//   }
+}
+
+
+
+
+
+// .carousel {
+//   overflow-x: clip;
+// }
+
+// .spotlight-swiper {
+//   padding: 5rem 0;
+//   overflow: visible;
+//   .swiper-slide {
+//     width: 400px;
+//   }
+// }
+
+// .single {
+//   position: relative;
+//   pointer-events: none;
+//   user-select: none;
+//   box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+//     rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+//     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+//   img {
+//     width: 100%;
+//     height: auto;
+//     vertical-align: top;
+//     border-radius: 8px;
+//     pointer-events: none;
+//   }
+// }
+
+
+.carousel{
+    overflow-x: clip;
+  }
+  
+  .spotlight-swiper{
+    padding: 5rem 0;
+    overflow: visible;
+    .swiper-slide{
+      width: 400px;
+    }
+  }
+  
+  .single{
+    position: relative;
+    pointer-events: none;
+    user-select: none;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    img{
+      width: 100%;
+      height: auto;
+      vertical-align: top;
+      border-radius: 8px;
+      pointer-events: none;
+     }
+  }

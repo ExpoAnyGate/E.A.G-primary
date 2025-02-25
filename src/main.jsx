@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 
 import { RouterProvider } from 'react-router-dom'
 import router from './router'
-import "./assets/all.scss"
+import "./assets/scss/all.scss"
 
 // import App from './App.jsx'
 

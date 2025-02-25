@@ -1,0 +1,164 @@
+
+.search-demo {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+
+    .form-select {
+        --bs-form-select-bg-img: url("../images/icon/Dropdown.png");
+        background-size: initial;
+    }
+
+    .search-icon-position {
+        position: absolute;
+        left: 0;
+        top:0;
+        transform: translate(50%,70%);
+    }
+
+
+    .w-bp-20-15 {
+        width: 20%;
+        @include media-breakpoint-up(xl) {
+            width: 15%;
+        }
+    }
+
+
+    .w-bp-20-25 {
+        width: 20%;
+        @include media-breakpoint-up(xl) {
+            width: 25%;
+        }
+    }
+}
+
+.tempus-dominus-widget.light{
+    padding: 1.5rem 1rem;
+    width: 20rem;
+    background-color: $gray-000;
+    color: $gray-700;
+    overflow: hidden;
+
+    @include media-breakpoint-up(sm) {
+        width: 23.875rem;
+    }
+
+    [data-action="clear"]{
+    border: 1px solid $gray-500;
+    background-color: $gray-000;
+        &:before{
+            content: "清除";
+            font-size: 1rem;
+            color:$gray-700;
+            font-weight: 400;
+        }
+        &:hover::before{
+            color:$gray-000;
+        }
+    }
+
+    [data-action="close"]{
+    background-color: $gray-400;
+    margin-left: 1rem;
+        &::before {
+            content: "確定";
+            font-size: 1rem;
+            color:$gray-000;
+            font-weight: 400;
+        }
+    }
+
+    [data-action="next"]{
+        &::before {
+            content: "\e5e1";
+            font-family: "Material Symbols Outlined";
+            font-size: 1rem;
+            color:$gray-700;
+            font-weight: 400;
+        }
+    }
+
+    [data-action="previous"]{
+        &::before {
+            content: "\e5e0";
+            font-family: "Material Symbols Outlined";
+            font-size: 1rem;
+            color:$gray-700;
+            font-weight: 400;
+        }
+    }
+
+    .toolbar{
+        margin-top: 1.25rem;
+        border-top: 1px solid $gray-200;
+        padding-top: 1.5rem;
+
+        div {
+            border-radius: 0.5rem;
+            &:hover{
+                background-color: $gray-700 !important;
+                color:$gray-000 !important;
+            }
+        }
+    }
+    
+    .date-container-days div:not(.no-highlight),
+    .date-container-months div:not(.no-highlight),
+    .date-container-years div:not(.no-highlight)
+    {
+        &.old{
+            color: $gray-100;
+            pointer-events: none; 
+        }
+        
+        &.new{
+            display: none;
+        }
+
+        &.day.active , &.month.active, &.year.active {
+            background-color: $gray-700;
+        }
+
+        &:hover{
+            background-color: $gray-400;
+            color:$gray-000;
+        }
+    }
+
+    .date-container-days{
+        overflow: hidden;
+        @include media-breakpoint-up(sm) {
+            row-gap: 0.5rem;
+        }
+
+        div:not(.no-highlight) {
+            width:80%;
+            height:80%;
+            @include media-breakpoint-up(sm) {
+                height:100%;
+            }
+            margin-left: 0.25rem;
+        }
+
+        div.range-start:not(.no-highlight),
+        div.range-end:not(.no-highlight) {
+            background-color: $gray-700;
+            border-radius: 100px !important;
+            z-index: 5;
+        }
+        
+        .range-in {
+            background-color: $secondary-500 !important;
+            box-shadow: -5px 0 0  $secondary-500, 5px 0 0  $secondary-500;
+            border-radius: 0 !important;
+            border: 0;
+            color:$gray-700 !important;
+        }
+
+        .dow {
+            width: 100%;
+            color: $gray-700;
+        } 
+    }  
+}
+

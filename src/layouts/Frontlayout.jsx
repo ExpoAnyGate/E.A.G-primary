@@ -14,8 +14,7 @@ export default function Frontlayout({ children }) {
   return (
     <>
       <nav
-        className="navbar bg-dark border-bottom border-body"
-        data-bs-theme="dark"
+        class="bg-white position-breakpoint"
       >
         <div className="container">
           <ul className="navbar-nav flex-row gap-5 fs-5">
@@ -33,7 +32,7 @@ export default function Frontlayout({ children }) {
           </ul>
         </div>
       </nav>
-
+      
       <Outlet></Outlet>
     </>
   );

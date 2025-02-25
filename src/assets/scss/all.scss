@@ -18,13 +18,13 @@
 @import "bootstrap/scss/functions"; // Bootstrap 函數
 
 // 2. Include any default variable overrides here
-@import '../style/_variable';//自定義的BS，裡面有spacer
+@import 'utils/_variable';//自定義的BS，裡面有spacer
 
 // 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
 @import "bootstrap/scss/variables";  // 定義 $theme-colors
 
 // 4. Include any default map overrides here
-@import '../style/_customer_variables'; // 定義 $custom-colors 並合併到 $theme-colors
+@import 'utils/_customer_variables'; // 定義 $custom-colors 並合併到 $theme-colors
 
 // // 5.整包帶走
 // @import "../bootstrap";
@@ -72,7 +72,7 @@
 
 
 // ７.其他自定義樣式或工具(有merge)
-@import '../style/customer_utils';
+@import 'utils/customer_utils';
 @import "bootstrap/scss/utilities/api";
 
 // 8.自定義 reset

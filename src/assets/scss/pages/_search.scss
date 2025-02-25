@@ -1,0 +1,131 @@
+.border-custom {
+    border: 1px solid $primary-900;
+    border-bottom: none;
+}
+.no-border {
+    border: none; // 移除邊框
+    box-shadow: none; //移除陰影
+}
+
+@media (max-width: 992px){
+    .focus-card {
+        margin-bottom: 24px;
+    }
+}
+
+
+.img-240 {
+    height: 240px;
+    overflow: hidden;
+
+    @include media-breakpoint-down(sm) {
+        min-width: 303px;
+        height: 240px; 
+    }
+}
+
+.img-240 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.search-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); //初始的模糊黑色陰影
+    transition: 0.4s; //滑鼠移開 確保過渡效果平滑
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); // 陰影更模糊且更淡
+        transition: 0.4s; 
+
+        // img放大
+        .img-enlarge {
+            transform: scale(1.05);
+            transition: 0.4s;
+        }
+    }
+}
+
+
+.title-font-size-lg {
+    font-size: 30px;
+}
+
+.title-font-size {
+    font-size: 24px;
+    white-space: nowrap;/* 不換行 */
+    overflow: hidden;
+    text-overflow: ellipsis;   
+    max-width: 100%;
+
+    @include media-breakpoint-up(lg) {
+        font-size: 30px;
+    }
+}
+.nowrap {
+    white-space: nowrap;
+}
+
+
+
+// 分頁 自定義樣式
+$pagination-color: $gray-700; // 預設數字顏色  // 不使用 !default
+$pagination-active-bg: $gray-700; // 被選中的背景色
+$pagination-active-color: white; // 被選中的文字顏色
+
+.pagination .page-link {
+    color: $pagination-color;
+    background-color: transparent; // 透明底色
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 8px 16px; 
+}
+
+.pagination .page-item.active .page-link {
+    background-color: $pagination-active-bg; 
+    color: $pagination-active-color; 
+    border-radius: 0.5rem;
+}
+
+.pagination .page-item {
+    // border: 1px solid rgb(32, 84, 151);
+    margin-right: 12px;
+}
+
+ /* 最後一個按鈕 不要右邊距 */
+.pagination .page-item:last-child {
+    margin-right: 0;
+}
+
+//上一頁下一頁
+.pagination .desktop-pre, 
+.pagination .desktop-next {
+    width: 100px;
+    padding: 8px 16px;
+}
+
+.mobile-next span,
+.mobile-pre span {
+    display: none;
+}
+
+@include media-breakpoint-down(md)  {
+    .nextBtn .desktop-next,
+    .preBtn .desktop-pre{
+        display: none;
+    }
+
+     .mobile-next span,
+     .mobile-pre span {
+        display: block;
+    }
+}

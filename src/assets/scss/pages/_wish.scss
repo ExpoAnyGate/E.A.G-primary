@@ -1,0 +1,413 @@
+@import url("https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css");
+
+.vsBlock {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden; //避免圓圈超出範圍
+}
+
+
+.vsBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* 從容器左邊開始 */
+    width: 100%;
+    /* 寬度為 100% */
+    height: 100%;
+    background: rgba(247, 249, 240, 1);
+    z-index: -3;/* 在圓圈之下 */
+}
+
+
+
+
+.title,
+.time {
+    position: relative;
+    z-index: 2;
+    /* 讓文字和金銀橢圓在裝飾之上 */
+}
+
+.vsBlock-text{
+    white-space: nowrap;
+}
+
+
+/* 銀光和金光 文字 */
+.sliver,
+.gold {
+    color: white;
+    position: relative;
+    display: inline-block;
+    padding: 16px 24px;
+}
+
+/* 銀光的橢圓框 */
+.sliver::after {
+    content: "";
+    position: absolute;
+    bottom: 12px; //橢圓向上移動
+    left: 50%; //橢圓左邊 在銀和光之間
+    transform: translateX(-50%); //橢圓中心點 再向左移50%
+    width: 90px;
+    height: 56px;
+    background: linear-gradient(65.47deg, #9C9894 8.11%, #C7C7C7 90.71%);
+    border-radius: 100px;
+    z-index: -1;
+}
+
+/* 金光的橢圓框 */
+.gold::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 56px;
+    background: linear-gradient(67.42deg, #DDBF48 5.4%, #FFDF5F 93.14%);
+    border-radius: 100px;
+    z-index: -1;
+}
+
+
+.deco-position-lg {
+    &-top-left
+     {
+        width: 80vw;
+        position: absolute;
+    }
+       
+     &-top-right {
+        width: 75vw;
+        position: absolute;
+    }
+
+    &-top-left {
+        left: 0;
+         top: 0;
+
+        &-transform {
+            transform: translate(-50%, -15%);
+            z-index: -2;
+        }
+    }
+
+    &-top-right {
+        right: 0;
+        top: 0;
+        max-width: 100vw;
+        height: auto;
+        overflow: hidden;
+        &-transform {
+            transform: translate(50%, -20%);
+            z-index: -2;
+           
+
+        }
+    }
+
+}
+
+
+.img-240 {
+    height: 240px;
+    overflow: hidden;
+
+    @include media-breakpoint-down(sm) {
+        min-width: 303px;
+        height: 240px;
+    }
+}
+
+.img-240 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.vs-search-card {
+    position: relative;
+    z-index: 5;
+    background: white;
+    /* 確保有背景色 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); //初始的模糊黑色陰影
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out; //滑鼠移開 確保過渡效果平滑
+
+    &:hover {
+        transform: translateY(-3px) ;
+        box-shadow: 0 8px 16px rgba(251, 1, 1, 0.1); // 陰影更模糊且更淡
+
+        .img-enlarge {
+            transform: scale(1.05);
+            display: block;
+            transition: transform 0.4s ease-in-out;
+        }
+    }
+}
+
+
+
+.nowrap {
+    white-space: nowrap;
+}
+
+
+.separator {
+    width: 1px;
+    height: 90%;
+    background-color: #ccc;
+}
+
+
+//進度條
+.progress {
+ //   max-width: 600px;
+    margin: auto;
+    position: relative;
+}
+
+
+.bg-gradient-gray {
+    background: linear-gradient(90deg, #9C9894 0%, #C7C7C7 100%);
+    border-radius: 50px 0 0 50px;
+}
+
+.bg-gradient-gold {
+    background: linear-gradient(90deg, #DDBF48 0%, #FFDF5F 100%);
+    border-radius: 0 50px 50px 0;
+}
+
+// .vs-circle {
+//     background-color: black;
+//     border-radius: 50%;
+//     padding: 6px 12px;
+//     min-width: 50px;
+// }
+
+// .vs-text {
+//     color: white;
+//     font-weight: bold;
+//     position: relative;
+//     display: inline-block;
+// }
+
+/* 讓 VS 文字和圓圈能夠絕對定位 */
+.vs-text-container {
+    position: absolute;
+    left: 60%;
+    /* 讓 VS 文字移動到 15% 的位置 */
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* 讓它完全居中 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* VS 文字 */
+.vs-text {
+    color: white;
+    position: relative;
+    z-index: 1;
+}
+
+/* 黑色圓圈 */
+.vs-circle {
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+
+
+//投票箱
+
+.voteBg {
+width: 100%;
+height: auto;
+margin: 0;
+padding: 0;
+overflow: hidden;
+}
+
+
+/* 電腦版 (>= 992px) */
+@media (min-width: 992px) {
+    #voteTitle {
+        top: 30%;
+        left: 60%;
+        transform: translateX(-50%);
+    }
+
+    #subTitle {
+        top: calc(30% + 4rem);
+        left: 60%;
+        transform: translateX(-50%);
+    }
+
+    #wishButton {
+        top: calc(50%);
+        left: 60%;
+        transform: translateX(-50%);
+    }
+}
+
+/* 平板版 (>= 768px & < 992px) */
+@media (max-width: 991px) and (min-width: 768px) {
+    #voteTitle {
+        top: 35%;
+        left: 60%;
+        transform: translateX(-50%);
+    }
+
+    #subTitle {
+        top: calc(35% + 4rem);
+        left: 60%;
+        transform: translateX(-50%);
+    }
+
+    #wishButton {
+        top: calc(60%);
+        left: 60%;
+        transform: translateX(-50%);
+    }
+}
+
+/* 手機版 (< 768px) */
+@media (max-width: 767px) {
+    #voteTitle {
+        top: 31%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #subTitle {
+        top: 35%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #wishButton {
+        top: calc(40%);
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+
+#days,
+#hours,
+#minutes,
+#seconds {
+    font-size: 36px;
+    color: $secondary-800;
+    margin: 0 1rem;
+}
+
+//跑馬燈
+.wish-swiper {
+    background-color: $primary-200;
+}
+
+.swiper-wrapper {
+    transition-timing-function: linear;
+}
+
+.wish-swiper-slide {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    width: auto;
+    color: $gray-700;
+    margin-right: 50px;
+    color: $primary-800;
+}
+
+
+.wish-swiper-material {
+    vertical-align: middle;
+    font-size: 20px;
+    margin-right: -5px;
+}
+
+/* 大於等於1200px，桌面寬度 */
+@media (min-width: 1200px) {
+    .modal-dialog {
+        max-width: 800px;
+    }
+}
+
+/* 大於等於768px且小於1200px，平板寬度 */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .modal-dialog {
+        max-width: 600px;
+        /* 設置平板寬度 */
+    }
+}
+
+/* 小於768px */
+@media (max-width: 767px) {
+    .modal-dialog {
+        max-width: 100%;
+        margin: 10px; /* 避免緊貼邊緣 */
+    }
+}
+
+
+.modal {
+    z-index: 1050;
+    /* 確保 modal 在 backdrop 之上 */
+    pointer-events: auto;
+    /* 確保 modal 可操作 */
+}
+
+.modal-backdrop {
+    position: fixed;  /* 關鍵 保持背景的相對位置 */
+    top: 0;
+    left: 0;
+    //width: 100%;
+   // height: 100%;
+   // background-color: rgba(0, 0, 0, 0.5);
+    /* 使背景變灰 */
+    z-index: 1040;     
+}
+
+.modal-body .modal-div{  
+   width: 100%;
+   max-width: 800px;
+   //border: 1px red solid;
+}
+
+
+.modal-div img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+}
+
+.expoRow .title{
+    color: $primary-800;
+    margin-bottom: -5px;
+}
+
+.expoRow .title p {
+    font-weight: 700;
+    font-size: 18px;
+
+}
+
+.expoRow .content {
+    font-size: 16px;
+    color: $gray-700;
+    margin-left: 24px;
+}

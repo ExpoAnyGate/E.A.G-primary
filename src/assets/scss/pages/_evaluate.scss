@@ -1,0 +1,346 @@
+@charset "UTF-8";
+// @import "forms.scss";
+
+/* _let 變數  
+----------------------- */
+$star: #FAC612;
+
+.eval-sidebar {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	width: 240px;
+	background: $gray-50;
+	padding: 24px 24px 24px 16px;
+	background-color: $gray-50;
+	border-right: 1px solid $gray-200;
+	.sub-item{
+		padding: map-get($spacers, 3) map-get($spacers, 3); //12px 12px;
+	}
+	.p-sub-item{
+		padding: map-get($spacers, 3) map-get($spacers, 13); //.75rem 4.25rem;;
+	}
+}
+
+.eval-main {
+	margin-top: 104px;
+	padding: 48px 12px 0 12px;
+
+
+	@include media-breakpoint-up(sm) { 
+		width: 100%; 
+		margin-top: 104px;
+	}
+
+	@media (min-width: 576px) and (max-width: 992px) {
+		width: calc(100% - 240px);
+		margin-top: 0;
+		margin-left: 240px;
+		padding: 48px 24px 0 24px;
+	  }
+	@include media-breakpoint-up(lg) { 
+		width: calc(100% - 240px);
+		margin-left: 240px;
+		margin-top: 0;
+	}
+
+	@include media-breakpoint-up(xxl) {
+		width: 1056px;
+	}
+
+	button {
+		border-width:1px;
+		border-style: solid;
+		font-size: 16px;
+		padding: 8px 32px;
+		font-weight: 500;
+		border-radius: 5px;
+		&:hover {
+			background-color: transparent;
+			border: 1px solid $gray-600;
+			color: $gray-800;
+		}
+        &.tagLab {
+            background-color: $gray-000;
+            border-color: $gray-700;
+            font-size: 12px;
+            padding: 4px 8px;
+            &:hover {
+                background-color: $gray-100;
+            }
+        }
+	}
+    
+	.btn{
+		&-outline-dark{
+			color: $gray-800;
+			&:hover{
+				background-color: $gray-800;
+				color: $white;
+			}
+		}
+	}
+}
+
+.eval-content {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.eval-centerBox{
+    //width: 790px;
+	width: 100%;
+    padding-top: map-get($spacers, 17);
+	@include media-breakpoint-up(md) { 
+		width: 100%;
+		padding: 80px 24px 0 24px;
+		margin-top: 0;
+	}
+	@include media-breakpoint-up(lg) { 
+		width: 100%;
+		margin: 0 auto;
+		padding: 80px 12px 0px 12px;
+		// width: 790px;
+	}
+	@include media-breakpoint-up(xl) { 
+		margin-left: 240px;
+		width: calc(100% - 240px);
+		width: 790px;
+		margin: 0 auto;
+	}
+
+	@include media-breakpoint-up(xxl) { 
+	 	width: 790px;
+		margin: 0 auto;
+		padding: 80px 24px 0px 24px;
+		
+	}
+
+    .card{
+        width: 100%;
+        height: 100%; 
+		z-index: 2;
+		cursor: pointer;
+		transition: all .3s;
+		&:hover{
+			box-shadow: 2px 2px 6px $gray-400;
+		}
+		@include media-breakpoint-up(lg) { 
+			width: 340px;
+		}
+
+		img{
+			width: 100%;
+		}
+	}
+
+    .star-filled,
+    .star-outline  {
+        color: $star;
+        display: inline-block;    /* 讓元素保持行內顯示 */
+        width: 20px;
+        height: 19px;
+    }
+    .star-outline {
+        color: $gray-200;
+    }
+
+	.month-title{
+		position: absolute;
+		top: 2rem;
+
+	}    
+}
+
+.collection{
+    border-left:4px solid $gray-400;
+	padding: 0px  map-get($spacers, 4) map-get($spacers, 7)  map-get($spacers, 4);
+	&.active{
+		border-left:4px solid $gray-900;
+	}
+}
+.cartBox{
+    display: flex;
+}
+
+// 開關
+.navBtn{
+	display: none;
+	@include media-breakpoint-down(sm){
+		display: block;
+	}
+}
+
+@include media-breakpoint-down(sm){
+	.desktop{
+		display: none;
+	}
+}
+
+// utils
+.text-limit {
+     /* width: 220px; /* 設置元素的寬度，可以根據需求調整 */
+    white-space: nowrap; /* 防止文字換行 */
+    overflow: hidden; /* 隱藏超出寬度的部分 */
+    text-overflow: ellipsis; /* 超出寬度時顯示 ... */
+}
+
+.border{
+	&-primary{
+		background-color: theme-color("primary-1000");;
+	}
+	&-gray{
+		border-color:$gray-400;
+	}
+}
+
+//bs
+.nav-link{
+	color: $gray-1000;
+	&:hover{
+		border-color: $primary-500 !important;
+		color: $gray-500;
+		transition: all 0.3s;
+	}
+	&.active{
+		border-color: $primary-700 !important;
+	}
+}
+
+
+//evaluate
+/* The actual timeline (the vertical ruler) */
+.main-timeline {
+	position: relative;
+  }
+  
+  /* The actual timeline (the vertical ruler) */
+.main-timeline::after {
+	content: "";
+	position: absolute;
+	width: 1px;
+	background-color: $primary-800;
+	top: 0; 
+	bottom: 0;
+	left: 50%;
+	@include media-breakpoint-up(md){
+		right: 0;
+	}
+}
+
+/* Container around content */
+.timeline {
+	position: relative;
+	background-color: inherit;
+	width: 50%;
+	@media screen and (max-width: 600px) {
+		width: 100%;
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+}
+  
+  /* The circles on the timeline */
+.timeline::after {
+	content: "";
+    position: absolute;
+	right: -8px;
+    top: 88px;
+    z-index: 0;
+	width: 16px;
+	height: 16px;
+	border-radius: 100%;
+	background-color: $primary-600;
+	z-index: 1;
+	@include media-breakpoint-down(lg){
+		right: 0;
+	}
+
+}
+
+.timeline::before{
+	position: absolute;
+	right:0; 
+	top: 15px;
+	z-index: 1;
+	width: 16px;
+	height: 16px;
+	border-radius: 100%;;
+}
+  
+  /* Place the container to the left */
+.left {
+	width: 100%;
+	@include media-breakpoint-up(md){
+		width: 50%;
+		margin: 0 auto;
+		min-width: 340px;
+		padding: 0px 0px 0px 0px;
+	}
+	@include media-breakpoint-up(lg) { 
+		left: 0%;
+		margin: 0 0;
+		padding: 0px 0px 0px 0px;
+	}
+	@include media-breakpoint-up(xl){
+		padding: 0px 20px 0px 0px;
+	} 
+	@include media-breakpoint-up(xxl){
+		padding: 0px 20px 0px 0px;
+	} 
+}
+  
+  /* Place the container to the right */
+.right {
+	width: 100%;
+	@include media-breakpoint-up(md){
+		width: 50%;
+		margin: 0 auto;
+		min-width: 340px;
+		padding: 0px 0px 0px 0px;
+	}
+	@include media-breakpoint-up(lg){
+		left: 50%;
+		margin: 0 0;
+		padding: 0px 0px 0px 20px;
+	}
+	@include media-breakpoint-up(xl){
+		padding: 0px 0px 0px 20px;
+	} 
+	@include media-breakpoint-up(xxl){
+		padding: 0px 0px 0px 28px;
+	} 
+}
+  
+  /* Add arrows to the left container (pointing right) */
+.left::before {
+	content: " ";
+    position: absolute;
+    top: 92px;
+    z-index: 1;
+	right: -12px;
+    border: medium solid #AECBD7;
+    border-width: 00px 2px 35px 65px;
+    border-color: transparent transparent transparent #AECBD7;
+}
+  
+  /* Add arrows to the right container (pointing left) */
+.right::before {
+	content: " ";
+    position: absolute;
+    top: 92px;
+    z-index: 1;
+    left: -12px;
+    border: medium solid #AECBD7;
+    border-width: 00px 2px 35px 65px;
+    border-color: transparent transparent transparent #AECBD7;
+    transform: scaleX(-1);
+}
+  
+  /* Fix the circle for containers on the right side */
+.right::after {
+	left: -8px;
+	@include media-breakpoint-down(lg){
+		left: 0;
+	}
+}

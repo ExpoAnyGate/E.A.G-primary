@@ -5,7 +5,7 @@ export default function WishPage() {
       <section className="topBanner container-fluid p-0 m-0 position-relative">
         <div className="w-100" style={{ height: "900px" }}>
           <img
-            src="src/assets/images/Wish/wish-lg-1.jpeg"
+            src="Wish/wish-lg-1.jpeg"
             className="w-100 h-100 object-fit-cover"
             alt="..."
           />

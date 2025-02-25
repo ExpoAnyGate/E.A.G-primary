@@ -76,18 +76,18 @@
 @import "bootstrap/scss/utilities/api";
 
 // 8.自定義 reset
-// @import "./base/base";
+@import "./base/base";
 
-// @import './layout/navbar.scss';
-// @import './layout/component.scss';
-// @import './layout/footer.scss';
-// @import './layout/search-bar.scss';
+@import './layout/navbar.scss';
+@import './layout/component.scss';
+@import './layout/footer.scss';
+@import './layout/search-bar.scss';
 
-// @import './pages/index.scss';
-// @import './pages/demo.scss';
-// @import './pages/evaluate.scss';
-// @import './pages/search.scss';
-// @import './pages/spotlight.scss';
+@import './pages/index.scss';
+@import './pages/demo.scss';
+@import './pages/evaluate.scss';
+@import './pages/search.scss';
+@import './pages/spotlight.scss';
 
 
 

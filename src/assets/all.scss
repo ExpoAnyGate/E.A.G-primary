@@ -1,0 +1,102 @@
+
+// 字型
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+// icon（設計稿都有給，以防不夠載入外部資源）
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0");
+//輪播js
+@import url("https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css");
+//Tempus Dominus 時間選取器
+@import url("https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/css/tempus-dominus.min.css");
+//AOS
+@import url("https://unpkg.com/aos@2.3.1/dist/aos.css");
+
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "bootstrap/scss/functions"; // Bootstrap 函數
+
+// 2. Include any default variable overrides here
+@import '../style/_variable';//自定義的BS，裡面有spacer
+
+// 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
+@import "bootstrap/scss/variables";  // 定義 $theme-colors
+
+// 4. Include any default map overrides here
+@import '../style/_customer_variables'; // 定義 $custom-colors 並合併到 $theme-colors
+
+// // 5.整包帶走
+// @import "../bootstrap";
+
+// 5.瘦身法（只挑專案要的元件載入）-->必要
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/utilities"; 
+
+
+// 6.選用
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/button-group";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/card";
+@import "bootstrap/scss/accordion";
+@import "bootstrap/scss/breadcrumb";
+@import "bootstrap/scss/pagination";
+@import "bootstrap/scss/badge";
+@import "bootstrap/scss/alert";
+@import "bootstrap/scss/progress";
+@import "bootstrap/scss/list-group";
+@import "bootstrap/scss/close";
+@import "bootstrap/scss/toasts";
+@import "bootstrap/scss/modal";
+// @import "bootstrap/scss/tooltip";
+// @import "bootstrap/scss/popover";
+// @import "bootstrap/scss/carousel"; ＢＳ輪播難用
+@import "bootstrap/scss/spinners";
+@import "bootstrap/scss/offcanvas";
+@import "bootstrap/scss/placeholders";
+// Helpers
+@import "bootstrap/scss/helpers";
+
+
+// ７.其他自定義樣式或工具(有merge)
+@import '../style/customer_utils';
+@import "bootstrap/scss/utilities/api";
+
+// 8.自定義 reset
+// @import "./base/base";
+
+// @import './layout/navbar.scss';
+// @import './layout/component.scss';
+// @import './layout/footer.scss';
+// @import './layout/search-bar.scss';
+
+// @import './pages/index.scss';
+// @import './pages/demo.scss';
+// @import './pages/evaluate.scss';
+// @import './pages/search.scss';
+// @import './pages/spotlight.scss';
+
+
+
+// 關閉文字rfs
+// $utilities: map-merge(
+//   $utilities, (
+//     "font-size": map-merge(
+//       map-get($utilities, "font-size"),
+//       ( responsive: true ),
+//     ),
+//   )
+// );

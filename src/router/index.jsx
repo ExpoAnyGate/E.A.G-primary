@@ -7,6 +7,7 @@ import DonatePage from "../pages/DonatePage";
 import WishPage from "../pages/WishPage";
 import GoodsPage from "../pages/GoodsPage";
 import SpotlightPage from "../pages/SpotlightPage";
+import ErrorPage from "../pages/ErrorPage";
 
 
 const router = createHashRouter([
@@ -41,7 +42,7 @@ const router = createHashRouter([
             {
                 path: "spotlight",
                 element: <SpotlightPage />,
-            },
+            }
         ],
     }
 ]);

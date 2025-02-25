@@ -1,0 +1,93 @@
+
+//手機版容器
+.py-sm-40 {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+  
+  .py-sm-64 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  .py-sm-80 {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+  }
+  
+  // 平板
+  .py-md-80 {
+      @include media-breakpoint-up(md) {
+          padding-top: 5rem;
+          padding-bottom: 5rem;
+      }
+  }
+  
+  .py-lg-100 {
+    @include media-breakpoint-up(lg) {
+      padding-top:6.25rem;
+      padding-bottom:6.25rem;
+  }
+  }
+  
+  // 電腦版容器
+  .py-lg-120 {
+      @include media-breakpoint-up(lg) {
+          padding-top:7.5rem;
+          padding-bottom:7.5rem;
+      }
+  }
+  
+  
+  $utilities: map-merge(
+    $utilities,
+    (
+      "width": map-merge(
+        map-get($utilities, "width"),
+        (
+          values: map-merge(
+            map-get(map-get($utilities, "width"), "values"),
+            (
+              "10": 10%,
+              "15": 15%,   // 新增的自定義
+              "20": 20%,
+              "30": 30%,
+              "35": 35%,
+              "40": 40%,
+              "45": 45%,
+              "50": 50%,
+              "55": 55%,
+              "60": 60%,
+              "65": 65%,
+              "70": 70%,
+              "80": 80%,
+              "85": 85%,
+              "90": 90%
+            )
+          )
+        )
+      )
+    )
+  );
+  
+  $utilities: map-merge(
+    $utilities,
+    (
+      "font-weight": map-merge(
+        map-get($utilities, "font-weight"),
+        (
+          values: map-merge(
+            map-get(map-get($utilities, "font-weight"), "values"),
+            (
+              "400": 400,
+              "500": 500,   // 新增的自定義
+              "600": 600,
+              "700": 700,
+              "800": 800,
+              "900": 900
+            )
+          )
+        )
+      )
+    )
+  );

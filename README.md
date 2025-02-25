@@ -18,7 +18,7 @@ Currently, two official plugins are available:
 
 ``` bash
 npm create vite@latest
-npm i bootstrap@5.3.3 axios react-hook-form react-loading react-router-dom@6 @reduxjs/toolkit react-redux gh-pages
+npm i bootstrap@5.3.3 axios react-hook-form react-loading react-router-dom@6 @reduxjs/toolkit react-redux gh-pages sass-embedded
 ```
 
 ### Recommand for dev (Optional)

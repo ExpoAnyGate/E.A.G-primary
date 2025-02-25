@@ -45,14 +45,14 @@ export default function SpotlightPage() {
                       <li class="swiper-slide">
                         <img
                           class="d-block object-fit-cover bg-secondary-50"
-                          src="../assets/images/Spotlight/spotlight-img.png"
+                          src="public/Spotlight/spotlight-img.png"
                           alt="spotlight-img"
                         />
                       </li>
                       <li class="swiper-slide">
                         <img
                           class="d-block w-100 object-fit-cover"
-                          src="src/assets/images/Spotlight/spotlight-img.png"
+                          src="public/Spotlight/spotlight-img.png"
                           alt="spotlight-img"
                         />
                       </li>
@@ -239,93 +239,93 @@ export default function SpotlightPage() {
             <div class="spotlight-card-info marquee-container">
               <div class="py-22 marquee">
                 <img
-                  src="src/assets/images/Spotlight/Sponsors_1.png"
+                  src="public/Spotlight/Sponsors_1.png"
                   alt
                   class="sponsor-img"
                 />
                 <img
-                  src="src/assets/images/Spotlight/Sponsors_2.png"
+                  src="public/Spotlight/Sponsors_2.png"
                   alt
                   class="sponsor-img"
                 />
                 <img
-                  src="src/assets/images/Spotlight/Sponsors_3.png"
+                  src="public/Spotlight/Sponsors_3.png"
                   alt
                   class="sponsor-img"
                 />
                 <img
-                  src="src/assets/images/Spotlight/Sponsors_4.png"
+                  src="public/Spotlight/Sponsors_4.png"
                   alt
                   class="sponsor-img"
                 />
                 <img
-                  src="src/assets/images/Spotlight/Sponsors_5.png"
+                  src="public/Spotlight/Sponsors_5.png"
                   alt
                   class="sponsor-img"
                 />
                 <img
-                  src="src/assets/images/Spotlight/Sponsors_6.png"
+                  src="public/Spotlight/Sponsors_6.png"
                   alt
                   class="sponsor-img"
                 />
                 <img
-                  src="src/assets/images/Spotlight/Sponsors_7.png"
+                  src="public/Spotlight/Sponsors_7.png"
                   alt
                   class="sponsor-img"
                 />
                 <img
-                  src="src/assets/images/Spotlight/Sponsors_8.png"
+                  src="public/Spotlight/Sponsors_8.png"
                   alt
                   class="sponsor-img"
                 />
                 <img
-                  src="src/assets/images/Spotlight/Sponsors_9.png"
+                  src="public/Spotlight/Sponsors_9.png"
                   alt
                   class="sponsor-img"
                 />
 
                 <img
-                  src="src/assets/images/Spotlight/Sponsors_1.png"
+                  src="public/Spotlight/Sponsors_1.png"
                   alt
                   class="sponsor-img"
                 />
                 <img
-                  src="src/assets/images/Spotlight/Sponsors_2.png"
+                  src="public/Spotlight/Sponsors_2.png"
                   alt
                   class="sponsor-img"
                 />
                 <img
-                  src="src/assets/images/Spotlight/Sponsors_3.png"
+                  src="public/Spotlight/Sponsors_3.png"
                   alt
                   class="sponsor-img"
                 />
                 <img
-                  src="src/assets/images/Spotlight/Sponsors_4.png"
+                  src="public/Spotlight/Sponsors_4.png"
                   alt
                   class="sponsor-img"
                 />
                 <img
-                  src="src/assets/images/Spotlight/Sponsors_5.png"
+                  src="public/Spotlight/Sponsors_5.png"
                   alt
                   class="sponsor-img"
                 />
                 <img
-                  src="src/assets/images/Spotlight/Sponsors_6.png"
+                  src="public/Spotlight/Sponsors_6.png"
                   alt
                   class="sponsor-img"
                 />
                 <img
-                  src="src/assets/images/Spotlight/Sponsors_7.png"
+                  src="public/Spotlight/Sponsors_7.png"
                   alt
                   class="sponsor-img"
                 />
                 <img
-                  src="src/assets/images/Spotlight/Sponsors_8.png"
+                  src="public/Spotlight/Sponsors_8.png"
                   alt
                   class="sponsor-img"
                 />
                 <img
-                  src="src/assets/images/Spotlight/Sponsors_9.png"
+                  src="public/Spotlight/Sponsors_9.png"
                   alt
                   class="sponsor-img"
                 />

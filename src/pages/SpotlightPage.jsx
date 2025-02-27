@@ -27,8 +27,8 @@ export default function SpotlightPage() {
                 釋放內心的小野獸 插畫家陳純虹勇敢畫下自己的《戀物癖》
               </div>
 
-              <div class="spotlight-card-content d-flex gap-15">
-                <div class="spotlight-card-content-text d-flex flex-column w-50">
+              <div class="artist-spotlight-card-content d-flex gap-15">
+                <div class="spotlight-card-content-text d-flex flex-column">
                   <p class="fs-5">
                     「我是浸潤在日本次文化下長大的。」
                     起源於8、90年代的流行名詞「哈日族」，是許多7年級生共同的回憶，那些曾經風行青少年間的傑尼斯、帕妃、SPEED等偶像明星，以及美少女戰士、幽遊白書和灌籃高手等動漫畫，這些次文化就像被嚥下的食物，經由消化早已流淌於身體中，化為骨血的一部分，是共同語言、也是大無畏的少年時代無可取代的回憶。

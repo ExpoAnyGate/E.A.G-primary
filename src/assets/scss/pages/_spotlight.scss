@@ -190,6 +190,27 @@
   }
 }
 
+.artist-spotlight-card-content{
+  flex-direction: column;
+  @include media-breakpoint-up(md) {
+    flex-direction: row;
+  }
+
+  .spotlight-card-content-text{
+    width: 100%;
+    @include media-breakpoint-up(md) {
+      width: 50%;
+    }  
+  }
+
+  .spotlight-card-content-img{
+    width: 100%;
+    @include media-breakpoint-up(md) {
+      width: 50%;
+    } 
+  }
+}
+
 .marquee-container {
   overflow: hidden; /* 隱藏超出範圍的內容 */
   white-space: nowrap;

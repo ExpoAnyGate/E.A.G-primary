@@ -21,7 +21,7 @@ export default function Frontlayout({ }) {
         <div className="container py-6 navbar-layout">
             <div class="d-flex justify-content-between align-items-center">
                 <a href="index.html">
-                    <img src="src/assets/images/Nav/logo-Light.png" alt="logo" />
+                    <img src="Nav/logo-Light.png" alt="logo" />
                 </a>
 
                 <LoginStatus />

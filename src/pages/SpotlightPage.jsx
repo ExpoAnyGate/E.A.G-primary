@@ -1,4 +1,22 @@
+import React, { useState, useEffect } from "react";
+import ArtistSwiper from "../components/mySwiper";
+
+import MarqueePhoto from "../components/MarqueePhoto";
 export default function SpotlightPage() {
+
+  const sponsors = [
+    "Spotlight/Sponsors_1.png",
+    "Spotlight/Sponsors_2.png",
+    "Spotlight/Sponsors_3.png",
+    "Spotlight/Sponsors_4.png",
+    "Spotlight/Sponsors_5.png",
+    "Spotlight/Sponsors_6.png",
+    "Spotlight/Sponsors_7.png",
+    "Spotlight/Sponsors_8.png",
+    "Spotlight/Sponsors_9.png",
+  ];
+    
+
   return (
     <>
       <div class="spotlight-banner mt-bp-140-0 d-flex align-items-center">
@@ -27,8 +45,8 @@ export default function SpotlightPage() {
                 釋放內心的小野獸 插畫家陳純虹勇敢畫下自己的《戀物癖》
               </div>
 
-              <div class="spotlight-card-content d-flex gap-15">
-                <div class="spotlight-card-content-text d-flex flex-column w-50">
+              <div class="artist-spotlight-card-content d-flex gap-15">
+                <div class="spotlight-card-content-text d-flex flex-column">
                   <p class="fs-5">
                     「我是浸潤在日本次文化下長大的。」
                     起源於8、90年代的流行名詞「哈日族」，是許多7年級生共同的回憶，那些曾經風行青少年間的傑尼斯、帕妃、SPEED等偶像明星，以及美少女戰士、幽遊白書和灌籃高手等動漫畫，這些次文化就像被嚥下的食物，經由消化早已流淌於身體中，化為骨血的一部分，是共同語言、也是大無畏的少年時代無可取代的回憶。
@@ -39,33 +57,9 @@ export default function SpotlightPage() {
                     <button class="mt-8 btn">了解更多</button>
                   </div>
                 </div>
-                <div class="spotlight-card-content-img w-50 bg-secondary-50">
-                  <div class="swiper artist-swiper">
-                    <ul class="swiper-wrapper">
-                      <li class="swiper-slide">
-                        <img
-                          class="d-block object-fit-cover bg-secondary-50"
-                          src="Spotlight/spotlight-img.png"
-                          alt="spotlight-img"
-                        />
-                      </li>
-                      <li class="swiper-slide">
-                        <img
-                          class="d-block w-100 object-fit-cover"
-                          src="Spotlight/spotlight-img.png"
-                          alt="spotlight-img"
-                        />
-                      </li>
-                      <li class="swiper-slide">
-                        <img
-                          class="d-block w-100 object-fit-cover"
-                          src="../assets/images/Spotlight/spotlight-img.png"
-                          alt="spotlight-img"
-                        />
-                      </li>
-                    </ul>
-                    <div class="swiper-pagination mt-100"></div>
-                  </div>
+                <div class="spotlight-card-content-img bg-secondary-50">
+                  
+                  <ArtistSwiper />
                 </div>
               </div>
               <div class="d-flex justify-content-center mb-17">
@@ -235,103 +229,16 @@ export default function SpotlightPage() {
               歡迎成為合作夥伴，讓展覽融入日常，讓藝術觸手可及
             </div>
           </div>
-          <div class="spotlight-card-info d-flex flex-column">
-            <div class="spotlight-card-info marquee-container">
-              <div class="py-22 marquee">
-                <img
-                  src="Spotlight/Sponsors_1.png"
-                  alt
-                  class="sponsor-img"
-                />
-                <img
-                  src="Spotlight/Sponsors_2.png"
-                  alt
-                  class="sponsor-img"
-                />
-                <img
-                  src="Spotlight/Sponsors_3.png"
-                  alt
-                  class="sponsor-img"
-                />
-                <img
-                  src="Spotlight/Sponsors_4.png"
-                  alt
-                  class="sponsor-img"
-                />
-                <img
-                  src="Spotlight/Sponsors_5.png"
-                  alt
-                  class="sponsor-img"
-                />
-                <img
-                  src="Spotlight/Sponsors_6.png"
-                  alt
-                  class="sponsor-img"
-                />
-                <img
-                  src="Spotlight/Sponsors_7.png"
-                  alt
-                  class="sponsor-img"
-                />
-                <img
-                  src="Spotlight/Sponsors_8.png"
-                  alt
-                  class="sponsor-img"
-                />
-                <img
-                  src="Spotlight/Sponsors_9.png"
-                  alt
-                  class="sponsor-img"
-                />
 
-                <img
-                  src="Spotlight/Sponsors_1.png"
-                  alt
-                  class="sponsor-img"
-                />
-                <img
-                  src="Spotlight/Sponsors_2.png"
-                  alt
-                  class="sponsor-img"
-                />
-                <img
-                  src="Spotlight/Sponsors_3.png"
-                  alt
-                  class="sponsor-img"
-                />
-                <img
-                  src="Spotlight/Sponsors_4.png"
-                  alt
-                  class="sponsor-img"
-                />
-                <img
-                  src="Spotlight/Sponsors_5.png"
-                  alt
-                  class="sponsor-img"
-                />
-                <img
-                  src="Spotlight/Sponsors_6.png"
-                  alt
-                  class="sponsor-img"
-                />
-                <img
-                  src="Spotlight/Sponsors_7.png"
-                  alt
-                  class="sponsor-img"
-                />
-                <img
-                  src="Spotlight/Sponsors_8.png"
-                  alt
-                  class="sponsor-img"
-                />
-                <img
-                  src="Spotlight/Sponsors_9.png"
-                  alt
-                  class="sponsor-img"
-                />
-              </div>
+          <div class="spotlight-card-info marquee-container">
+            <div className="py-22">
+
+              <MarqueePhoto images={sponsors} /> 
             </div>
+            
+
           </div>
+
         </div>
       </section>
     </>

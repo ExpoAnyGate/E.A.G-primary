@@ -83,12 +83,13 @@
 
 .spotlight-card {
   // margin-top: 226px;
-  margin: 226px 80px 80px 80px;
+  
   // border-radius: 36px 36px 36px 36px;
-
-  // @include media-breakpoint-up(md) {
-  //     width: 50%;
-  // }
+  margin: 64px 12px 0px 12px;
+  @include media-breakpoint-up(sm) {
+      // width: 50%;
+      margin: 80px 80px 0px 80px; 
+  }
 }
 
 
@@ -190,6 +191,27 @@
   }
 }
 
+.artist-spotlight-card-content{
+  flex-direction: column;
+  @include media-breakpoint-up(md) {
+    flex-direction: row;
+  }
+
+  .spotlight-card-content-text{
+    width: 100%;
+    @include media-breakpoint-up(md) {
+      width: 50%;
+    }  
+  }
+
+  .spotlight-card-content-img{
+    width: 100%;
+    @include media-breakpoint-up(md) {
+      width: 50%;
+    } 
+  }
+}
+
 .marquee-container {
   overflow: hidden; /* 隱藏超出範圍的內容 */
   white-space: nowrap;
@@ -198,9 +220,9 @@
 
 .marquee {
   display: flex;
-  gap: 20px; /* 控制圖片間距 */
+  // gap: 20px; /* 控制圖片間距 */
   width: max-content;
-  animation: marquee-scroll 20s linear infinite;
+  // animation: marquee-scroll 20s linear infinite;
 }
 
 .sponsor-img {
@@ -218,9 +240,9 @@
   }
 }
 
-.marquee-container:hover .marquee {
-  animation-play-state: paused;
-}
+// .marquee-container:hover .marquee {
+//   animation-play-state: paused;
+// }
 
 .spotlight-card-content-text-member-mail {
   max-height: 400px; /* 限制最大高度 */

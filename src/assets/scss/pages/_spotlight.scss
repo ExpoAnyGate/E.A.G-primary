@@ -220,9 +220,9 @@
 
 .marquee {
   display: flex;
-  gap: 20px; /* 控制圖片間距 */
+  // gap: 20px; /* 控制圖片間距 */
   width: max-content;
-  animation: marquee-scroll 20s linear infinite;
+  // animation: marquee-scroll 20s linear infinite;
 }
 
 .sponsor-img {
@@ -240,9 +240,9 @@
   }
 }
 
-.marquee-container:hover .marquee {
-  animation-play-state: paused;
-}
+// .marquee-container:hover .marquee {
+//   animation-play-state: paused;
+// }
 
 .spotlight-card-content-text-member-mail {
   max-height: 400px; /* 限制最大高度 */

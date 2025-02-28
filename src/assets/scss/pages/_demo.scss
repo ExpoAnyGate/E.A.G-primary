@@ -1,11 +1,11 @@
 .demo-banner {
-    background-image: url("../images/demo-banner.png");
+    background-image: url("../../../../public/Demo/demo-banner.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     height: 480px;
     @include media-breakpoint-up(md) {
-        background-image: url("../images/demo-banner-lg.png");
+        background-image: url("../../../../public/Demo/demo-banner-lg.png");
         height: 560px;
         
     }

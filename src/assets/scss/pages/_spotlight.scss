@@ -1,11 +1,11 @@
 .spotlight-banner {
-  background-image: url("../images/spotlight-banner-sm.png");
+  background-image: url("Spotlight/spotlight-banner-sm.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
   height: 700px;
   @include media-breakpoint-up(md) {
-    background-image: url("../images/spotlight-banner-lg.png");
+    background-image: url("Spotlight/spotlight-banner-lg.png");
     height: 560px;
     background-position: bottom;
   }
@@ -242,12 +242,91 @@
 
 
 .spotlight-card-content-text-member-mail {
-  max-height: 400px; /* 限制最大高度 */
+  max-height: 600px; /* 限制最大高度 */
   overflow-y: auto; /* 允許垂直滾動 */
   padding-right: 10px; /* 避免滾動條蓋住文字 */
   scrollbar-width: thin; /* 設定滾動條寬度 (Firefox) */
   scrollbar-color: #bbb #f5f5f5; /* 設定滾動條顏色 (Firefox) */
+  border-width: 2px;
+  border-style: solid;
+  border-color: #333333;
+  border-radius: 12px;
+  padding: 40px;
+  margin-left: 200px;
+  margin-right: 200px;
+  z-index: 10;
+  background-color: #f5f5f5;
+  // position: relative;
 }
+
+// .mail-spotlight-card-content-text-member-mail::before {
+//   content: "";
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 50px;
+//   height: 50px;
+//   // background-color: #333333;
+//   image: url('Spotlight/mailback.png');
+//   z-index: 100;
+// }
+
+// .mail {
+//   position: relative;
+// }
+// .mail-letter {
+// // .mail-letter::before{
+//   width: 80%;
+//   // background-image: url('Spotlight/mailback.png');
+//   z-index: 0;
+
+// }
+
+.mail {
+  position: relative;
+  z-index: 0;
+  margin-bottom: 80px;
+  padding-bottom: 300px;
+  margin-top: 80px;
+}
+
+.mail-letter {
+  position: relative;
+  // width: 80%; /* 設定寬度 */
+  z-index: 0;
+}
+
+.mail::before {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  width: 80%;
+  height: 100%;
+  // background-color: #333333;
+  background-image: url('Spotlight/mail_back.png'); /* 替換為你的圖片路徑 */
+  background-size: cover; /* 使圖片覆蓋區域 */
+  background-position: center; /* 讓圖片居中 */
+  z-index: -1; /* 確保背景圖片在元素後面 */
+  transform: translate(-50%, 0%); 
+}
+
+.mail::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  width: 80%;
+  height: 100%;
+  // background-color: #333333;
+  background-image: url('Spotlight/mail_front.png'); /* 替換為你的圖片路徑 */
+  background-size: cover; /* 使圖片覆蓋區域 */
+  background-position: center; /* 讓圖片居中 */
+  z-index: 1; /* 確保背景圖片在元素後面 */
+  transform: translate(-50%, 0%); 
+  pointer-events: none;
+}
+
 
 /* 設定 Chrome / Edge / Safari 的滾動條樣式 */
 .spotlight-card-content-text-member-mail::-webkit-scrollbar {

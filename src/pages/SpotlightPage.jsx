@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import ArtistSwiper from "../components/mySwiper";
 
 import MarqueePhoto from "../components/MarqueePhoto";
+import MemorySwiper from "../components/MemorySwiper";
 
 export default function SpotlightPage() {
 
+
+  
   const sponsors = [
     "Spotlight/Sponsors_1.png",
     "Spotlight/Sponsors_2.png",
@@ -16,6 +19,7 @@ export default function SpotlightPage() {
     "Spotlight/Sponsors_8.png",
     "Spotlight/Sponsors_9.png",
   ];
+
 
 
     
@@ -88,13 +92,15 @@ export default function SpotlightPage() {
 
           <div class="spotlight-card-info">
             <div class="container d-flex flex-column">
-              <div class="spotlight-card-tag">#藝術家專訪</div>
-              <div class="spotlight-card-subtitle fs-8 fw-700 mb-10">
-                釋放內心的小野獸 插畫家陳純虹勇敢畫下自己的《戀物癖》
-              </div>
 
-              <div class="spotlight-card-content d-flex gap-15 flex-column px-15">
-                <div class="spotlight-card-content-text-member-mail d-flex flex-column">
+
+              
+
+              <div class="spotlight-card-content d-flex gap-15 flex-column px-15 mail">
+                <div class="spotlight-card-content-text-member-mail d-flex flex-column mail-letter">
+                  <div className="mb-8">
+                    <h3>復古奇幻：細膩插畫與水彩創作的魅力</h3>
+                  </div>
                   <p class="fs-5">
                     第一眼看到她的作品，就被細膩的畫風還有時不時出現的可愛角色所吸引。展出的畫作都很耐看，即使先快速看過一遍，還是可以再觀察畫中的細節，我常常忍不住貼近仔細看她細緻的排線。
                     <br />
@@ -139,10 +145,30 @@ export default function SpotlightPage() {
                     在展出的畫作中，除了固定的幾個角色外，常常有反覆出現的象徵圖像，像是心臟、章魚、香菇等等，因為實在太常出現了，可以感受到作者的執念，而且這些東西還會跟不同的動植物融合，蹦出新滋味。
                   </p>
                   <br />
+                  <br />
+                  <br />
 
                   <p class="fs-5 mb-15">展覽中最吸睛可愛的 GUSTAVE 君</p>
+                  <br />
+                  <br />
+                  <br />
                 </div>
+                {/* <img
+                    class="position-absolute mail-letter"
+                    src="Spotlight/mail_back.png"
+                    alt="mail_back.png"
+
+                  /> */}
               </div>
+
+              {/* <img
+                    class="position-absolute mail-letter"
+                    src="Spotlight/mail_back.png"
+                    alt="mail_back.png"
+
+                  /> */}
+              
+
               <div class="d-flex justify-content-center my-20">
                 <button
                   type="button"
@@ -164,63 +190,9 @@ export default function SpotlightPage() {
             </div>
           </div>
 
-          <div class="spotlight-card-info">
-            <div class="carousel">
-              <div class="spotlight-swiper">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=1" alt />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=2" alt />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=3" alt />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=4" alt />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=5" alt />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=6" alt />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=7" alt />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=8" alt />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=9" alt />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=10" alt />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="spotlight-card-info overflow-hidden pb-20">
+
+            <MemorySwiper />
           </div>
         </div>
 

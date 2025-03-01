@@ -144,7 +144,7 @@
 .spotlight-card:nth-child(4) .spotlight-card-info,
 .spotlight-card:nth-child(4) .spotlight-card-title::before,
 .spotlight-card:nth-child(4) .spotlight-card-info::before {
-  background-color: $gray-50; /* 卡片 3 的顏色 */
+  background-color: $gray-50; /* 卡片 4 的顏色 */
 }
 
 .spotlight-card:nth-child(1) .spotlight-card-title {
@@ -240,9 +240,6 @@
   }
 }
 
-// .marquee-container:hover .marquee {
-//   animation-play-state: paused;
-// }
 
 .spotlight-card-content-text-member-mail {
   max-height: 400px; /* 限制最大高度 */
@@ -272,53 +269,8 @@
 
 .artist-swiper-slide {
   width: 100%;
-//   @include media-breakpoint-up(md) {
-//     width: 50%;
-//   }
-//   @include media-breakpoint-up(lg) {
-//     width: 33.33%;
-//   }
 }
 
-.artist-swiper-slide img {
-//   height: calc(100vh - 10rem);
-//   object-fit: cover;
-//   @include media-breakpoint-up(md) {
-//     height: calc(100vh - 156px);
-//   }
-}
-
-
-
-
-
-// .carousel {
-//   overflow-x: clip;
-// }
-
-// .spotlight-swiper {
-//   padding: 5rem 0;
-//   overflow: visible;
-//   .swiper-slide {
-//     width: 400px;
-//   }
-// }
-
-// .single {
-//   position: relative;
-//   pointer-events: none;
-//   user-select: none;
-//   box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
-//     rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-//     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-//   img {
-//     width: 100%;
-//     height: auto;
-//     vertical-align: top;
-//     border-radius: 8px;
-//     pointer-events: none;
-//   }
-// }
 
 
 .carousel{

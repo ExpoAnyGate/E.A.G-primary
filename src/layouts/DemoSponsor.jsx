@@ -66,7 +66,7 @@ export default function DemoSponsor({ }) {
                     <div class="user-score d-flex align-items-center">
                         <div class="user-rate d-flex gap-4 align-items-center justify-content-space-between">
                             <div class="d-flex gap-2 align-items-center">
-                                <img src="../assets/images/user.png" alt="" />
+                                <img src="Demo/user.png" alt="" />
                                 <p class="fs-3 nowrap rating-status">已經評價過</p>
                             </div>
                             
@@ -89,13 +89,13 @@ export default function DemoSponsor({ }) {
                     <div class="sponsor-title fs-3">主辦方</div>
                     <div class="sponsor-announce d-flex flex-column gap-4">
                     <div class="sponsor d-flex bg-gray-50 py-4 align-items-center">
-                        <img src="../assets/images/sponsor.png" alt="" class="ms-8" />
+                        <img src="Demo/sponsor.png" alt="" class="ms-8" />
                         <p class="sponsor-name fs-6 fw-700 ms-8">台灣藝術中心</p>
                     </div>
 
                     <div class="announce d-flex bg-primary-900 py-4 align-items-center rounded-3 py-4 px-3 position-relative">
-                        <img src="../assets/images/icon/Polygon.png" alt="" class="position-absolute triangel" />
-                        <img src="../assets/images/icon/mdi_announcement-outline.png" alt="" />
+                        <img src="icon/Polygon.png" alt="" class="position-absolute triangel" />
+                        <img src="icon/mdi_announcement-outline.png" alt="" />
                         <p class="sponsor-name text-gray-000 ms-3">活動會安排工作人員拍攝照片、影像、聲音等作為活動過程紀錄，並於社群公開 宣傳，如不同意請勿報名。 </p>
                     </div>
 

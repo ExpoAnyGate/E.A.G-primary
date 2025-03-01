@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ArtistSwiper from "../components/mySwiper";
 
 import MarqueePhoto from "../components/MarqueePhoto";
+
 export default function SpotlightPage() {
 
   const sponsors = [
@@ -15,6 +16,8 @@ export default function SpotlightPage() {
     "Spotlight/Sponsors_8.png",
     "Spotlight/Sponsors_9.png",
   ];
+
+
     
 
   return (
@@ -230,14 +233,16 @@ export default function SpotlightPage() {
             </div>
           </div>
 
-          <div class="spotlight-card-info marquee-container">
+          <div class="spotlight-card-info">
             <div className="py-22">
 
               <MarqueePhoto images={sponsors} /> 
+              
             </div>
             
 
           </div>
+
 
         </div>
       </section>

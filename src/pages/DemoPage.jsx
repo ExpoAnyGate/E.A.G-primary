@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DemoLike from "../layouts/DemoLike";
 import DemoSponsor from "../layouts/DemoSponsor";
+import MapComponent from "../components/GoogleMap";
 
 export default function DemoPage({}) {
   return (
@@ -98,7 +99,7 @@ export default function DemoPage({}) {
                   </h2>
                   <img
                     class="position-absolute z-0 demo-title-underline"
-                    src="../assets/images/deco/line-4.png"
+                    src="deco/line-4.png"
                     alt="line-3"
                   />
                 </div>
@@ -178,22 +179,22 @@ export default function DemoPage({}) {
                   </h2>
                   <img
                     class="position-absolute z-0 demo-title-underline"
-                    src="../assets/images/deco/line-4.png"
+                    src="deco/line-4.png"
                     alt="line-3"
                   />
                 </div>
 
                 <div class="demo-cast d-flex gap-14 mt-10">
                   <div class="d-flex flex-column align-items-center gap-2">
-                    <img src="../assets/images/cast01.png" alt="" />
+                    <img src="Demo/cast01.png" alt="" />
                     <p class="fs-5 fw-700">小智</p>
                   </div>
                   <div class="d-flex flex-column align-items-center gap-2">
-                    <img src="../assets/images/cast02.png" alt="" />
+                    <img src="Demo/cast02.png" alt="" />
                     <p class="fs-5 fw-700">小霞</p>
                   </div>
                   <div class="d-flex flex-column align-items-center gap-2">
-                    <img src="../assets/images/cast03.png" alt="" />
+                    <img src="Demo/cast03.png" alt="" />
                     <p class="fs-5 fw-700">小剛</p>
                   </div>
                 </div>
@@ -216,18 +217,12 @@ export default function DemoPage({}) {
             </h2>
             <img
               class="position-absolute z-0 demo-title-underline"
-              src="../assets/images/deco/line-4.png"
+              src="deco/line-4.png"
               alt="line-3"
             />
           </div>
 
-          <iframe
-            id="map"
-            height="600px"
-            allowfullscreen=""
-            loading="lazy"
-            class="w-100 mt-10 rounded-4 border-3 border-gray-200"
-          ></iframe>
+          <MapComponent />
         </div>
 
         <div class="sm-showed mb-17">

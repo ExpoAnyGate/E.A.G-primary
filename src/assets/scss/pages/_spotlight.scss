@@ -304,7 +304,7 @@
   width: 80%;
   height: 100%;
   // background-color: #333333;
-  background-image: url('Spotlight/mail_back.png'); /* 替換為你的圖片路徑 */
+  background-image: url('/Spotlight/mail_back.png'); /* 替換為你的圖片路徑 */
   background-size: cover; /* 使圖片覆蓋區域 */
   background-position: center; /* 讓圖片居中 */
   z-index: -1; /* 確保背景圖片在元素後面 */
@@ -319,7 +319,7 @@
   width: 80%;
   height: 100%;
   // background-color: #333333;
-  background-image: url('Spotlight/mail_front.png'); /* 替換為你的圖片路徑 */
+  background-image: url('/Spotlight/mail_front.png'); /* 替換為你的圖片路徑 */
   background-size: cover; /* 使圖片覆蓋區域 */
   background-position: center; /* 讓圖片居中 */
   z-index: 1; /* 確保背景圖片在元素後面 */

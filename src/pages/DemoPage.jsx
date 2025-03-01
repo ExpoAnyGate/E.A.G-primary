@@ -8,6 +8,7 @@ import axios from "axios";
 import {useParams } from "react-router-dom";
 
 const API_URL = "https://e-a-g-api.vercel.app/"; // 替換成實際 API 路徑
+// const API_URL = "http://localhost:3000/"; 
 const API_KEY = "ZtQ5rmRFtoev3sK1eFTLnEaP"; // 替換成你的 API Key
 
 export default function DemoPage({}) {
@@ -17,8 +18,8 @@ export default function DemoPage({}) {
 
     const getDemoData = async () => {
         try {
-          const response = await axios.get(`${API_URL}api/exhibitions/${demo_id}`,{
-            headers: { "api-key": `${API_KEY}` }, // 可能需要 "x-api-key"，請確認 API 文件
+          const response = await axios.get(`${API_URL}api/exhibitions/${demo_id}?_expand=organizer`,{
+            headers: { "api-key": `${API_KEY}` }, 
           });
           console.log(response.data);
           setDemo(response.data);
@@ -119,7 +120,7 @@ export default function DemoPage({}) {
             </div>
 
             <div class="main-demo-special">
-              <DemoSponsor />
+              <DemoSponsor organizer={demo.organizer ? demo.organizer.name : 'No Organizer'}/>
             </div>
 
             <div class="demo-detail">
@@ -235,7 +236,7 @@ export default function DemoPage({}) {
 
           <div class="other-info">
             <div class="d-flex flex-column gap-4">
-              <DemoSponsor />
+              <DemoSponsor organizer={demo.organizer ? demo.organizer.name : 'No Organizer'}/>
               <DemoLike />
             </div>
           </div>

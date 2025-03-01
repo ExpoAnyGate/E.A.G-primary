@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-export default function DemoSponsor({ }) {
+export default function DemoSponsor({ organizer }) {
+    
     return (
         <>
             <div class="sub-sponsor d-flex align-items-center gap-6">
@@ -90,7 +91,7 @@ export default function DemoSponsor({ }) {
                     <div class="sponsor-announce d-flex flex-column gap-4">
                     <div class="sponsor d-flex bg-gray-50 py-4 align-items-center">
                         <img src="Demo/sponsor.png" alt="" class="ms-8" />
-                        <p class="sponsor-name fs-6 fw-700 ms-8">台灣藝術中心</p>
+                        <p class="sponsor-name fs-6 fw-700 ms-8">{organizer}</p>
                     </div>
 
                     <div class="announce d-flex bg-primary-900 py-4 align-items-center rounded-3 py-4 px-3 position-relative">

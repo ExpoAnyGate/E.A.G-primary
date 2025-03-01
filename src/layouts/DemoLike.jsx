@@ -22,7 +22,7 @@ export default function DemoLike({}) {
 
           <div class="demo-small-info d-flex flex-column justify-content-between bg-gray-000 rounded-bottom-2 w-100 p-6 gap-4">
             <img
-              src="../assets/images/youmaylike01.png"
+              src="Demo/youmaylike01.png"
               alt=""
               class=" youmaylikeimg w-100"
             />
@@ -61,7 +61,7 @@ export default function DemoLike({}) {
 
           <div class="demo-small-info d-flex flex-column justify-content-between bg-gray-000 rounded-bottom-2 w-100 p-6 gap-4">
             <img
-              src="../assets/images/youmaylike02.png"
+              src="Demo/youmaylike02.png"
               alt=""
               class="youmaylikeimg w-100"
             />

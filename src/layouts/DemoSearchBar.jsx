@@ -1,12 +1,45 @@
 import { TempusDominus } from "@eonasdan/tempus-dominus";
 import "@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
-const DemoSearch = () => {
+const DemoSearchBar = () => {
 	const timePickerSM = useRef(null);
-	const timePickerInstanceSM = useRef(null);
 	const timePickerLG = useRef(null);
+	const timePickerInstanceSM = useRef(null);
 	const timePickerInstanceLG = useRef(null);
+	const keyWordInputSM = useRef(null);
+	const keyWordInputLG = useRef(null);
+	const [citySelectedSM, setCitySelectedSM] = useState("");
+	const [categorySelectedSM, setCategorySelectedSM] = useState("");
+	const [citySelectedLG, setCitySelectedLG] = useState("");
+	const [categorySelectedLG, setCategorySelectedLG] = useState("");
+
+	const cityList = ["台北市", "新北市", "桃園市", "台中市", "台南市", "高雄市"];
+	const categoryList = [
+		"藝文",
+		"學習",
+		"漫畫",
+		"互動",
+		"資訊",
+		"科學",
+		"圖文",
+		"其他",
+	];
+
+	const cleanSearchSM = () => {
+		setCitySelectedSM("");
+		setCategorySelectedSM("");
+		keyWordInputSM.current.reset();
+		timePickerInstanceSM.current.dates.clear();
+	};
+
+	const cleanSearchLG = () => {
+		setCitySelectedLG("");
+		setCategorySelectedLG("");
+		keyWordInputLG.current.reset();
+		timePickerInstanceLG.current.dates.clear();
+	};
 
 	const getTimePicker = (timePicker, timePickerInstance) => {
 		timePickerInstance.current = new TempusDominus(timePicker.current, {
@@ -48,29 +81,36 @@ const DemoSearch = () => {
 					<li className='col-6'>
 						<select
 							className='form-select px-6 py-3 fs-4 border-gray-400'
-							aria-label='Default select example'>
-							<option selected>地區(縣/市)</option>
-							<option value='台北市'>台北市</option>
-							<option value='新北市'>新北市</option>
-							<option value='桃園市'>桃園市</option>
-							<option value='台中市'>台中市</option>
-							<option value='台南市'>台南市</option>
-							<option value='高雄市'>高雄市</option>
+							aria-label='Default select example'
+							value={citySelectedSM}
+							onChange={(e) => setCitySelectedSM(e.target.value)}>
+							<option disabled value=''>
+								地區(縣/市)
+							</option>
+							{cityList.map((city) => {
+								return (
+									<option key={city} value={city}>
+										{city}
+									</option>
+								);
+							})}
 						</select>
 					</li>
 					<li className='col-6'>
 						<select
 							className='form-select px-6 py-3 fs-4 border-gray-400'
-							aria-label='Default select example'>
-							<option selected>展覽類別</option>
-							<option value='藝文'>藝文</option>
-							<option value='學習'>學習</option>
-							<option value='漫畫'>漫畫</option>
-							<option value='互動'>互動</option>
-							<option value='資訊'>資訊</option>
-							<option value='科學'>科學</option>
-							<option value='圖文'>圖文</option>
-							<option value='其他'>其他</option>
+							value={categorySelectedSM}
+							onChange={(e) => setCategorySelectedSM(e.target.value)}>
+							<option value='' disabled>
+								展覽類別
+							</option>
+							{categoryList.map((category) => {
+								return (
+									<option key={category} value={category}>
+										{category}
+									</option>
+								);
+							})}
 						</select>
 					</li>
 					<li className='col-12'>
@@ -88,7 +128,10 @@ const DemoSearch = () => {
 						</button>
 					</li>
 					<li className='col-12'>
-						<form className='position-relative text-gray-500' role='search'>
+						<form
+							ref={keyWordInputSM}
+							className='position-relative text-gray-500'
+							role='search'>
 							<span className='material-symbols-outlined p-0 search-icon-position'>
 								search
 							</span>
@@ -107,6 +150,7 @@ const DemoSearch = () => {
 							</a>
 							<button
 								type='button'
+								onClick={() => cleanSearchSM()}
 								className='btn btn-gray-000 w-30 py-3 border-gray-400'>
 								清除篩選
 							</button>
@@ -116,19 +160,22 @@ const DemoSearch = () => {
 			</div>
 			<div className='container d-none d-lg-block search-demo'>
 				<ul className='row'>
-					<li className='col-1'></li>
-					<li className='col-10'>
+					<li className='col-12'>
 						<div className='d-flex justify-content-between align-items-center'>
 							<select
 								className='form-select py-3 fs-4 w-bp-20-15 border-gray-400'
-								aria-label='Default select example'>
-								<option selected>地區(縣/市)</option>
-								<option value='台北市'>台北市</option>
-								<option value='新北市'>新北市</option>
-								<option value='桃園市'>桃園市</option>
-								<option value='台中市'>台中市</option>
-								<option value='台南市'>台南市</option>
-								<option value='高雄市'>高雄市</option>
+								value={citySelectedLG}
+								onChange={(e) => setCitySelectedLG(e.target.value)}>
+								<option value='' disabled>
+									地區(縣/市)
+								</option>
+								{cityList.map((city) => {
+									return (
+										<option key={city} value={city}>
+											{city}
+										</option>
+									);
+								})}
 							</select>
 
 							<button
@@ -146,19 +193,22 @@ const DemoSearch = () => {
 
 							<select
 								className='form-select py-3 fs-4 w-15 border-gray-400'
-								aria-label='Default select example'>
-								<option selected>展覽類別</option>
-								<option value='藝文'>藝文</option>
-								<option value='學習'>學習</option>
-								<option value='漫畫'>漫畫</option>
-								<option value='互動'>互動</option>
-								<option value='資訊'>資訊</option>
-								<option value='科學'>科學</option>
-								<option value='圖文'>圖文</option>
-								<option value='其他'>其他</option>
+								value={categorySelectedLG}
+								onChange={(e) => setCategorySelectedLG(e.target.value)}>
+								<option value='' disabled>
+									展覽類別
+								</option>
+								{categoryList.map((category) => {
+									return (
+										<option key={category} value={category}>
+											{category}
+										</option>
+									);
+								})}
 							</select>
 
 							<form
+								ref={keyWordInputLG}
 								className='position-relative text-gray-500 w-bp-20-25'
 								role='search'>
 								<span className='material-symbols-outlined p-0 search-icon-position'>
@@ -172,23 +222,22 @@ const DemoSearch = () => {
 								/>
 							</form>
 
-							<a href='search.html' className='btn btn-gray-700 w-10 py-3'>
+							<Link to={"/search"} className='btn btn-gray-700 w-10 py-3'>
 								搜尋
-							</a>
+							</Link>
 
 							<button
 								type='button'
+								onClick={() => cleanSearchLG()}
 								className='btn btn-gray-000 w-auto py-3 border-gray-400'>
 								清除篩選
 							</button>
 						</div>
 					</li>
-
-					<li className='col-1'></li>
 				</ul>
 			</div>
 		</section>
 	);
 };
 
-export default DemoSearch;
+export default DemoSearchBar;

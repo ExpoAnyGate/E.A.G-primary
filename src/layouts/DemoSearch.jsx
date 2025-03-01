@@ -1,7 +1,48 @@
+import { TempusDominus } from "@eonasdan/tempus-dominus";
+import "@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css";
+import { useEffect, useRef } from "react";
+
 const DemoSearch = () => {
+	const timePickerSM = useRef(null);
+	const timePickerInstanceSM = useRef(null);
+	const timePickerLG = useRef(null);
+	const timePickerInstanceLG = useRef(null);
+
+	const getTimePicker = (timePicker, timePickerInstance) => {
+		timePickerInstance.current = new TempusDominus(timePicker.current, {
+			dateRange: true,
+			display: {
+				components: {
+					calendar: true,
+					date: true,
+					month: true,
+					year: true,
+					decades: false,
+					clock: false,
+					hours: false,
+					minutes: false,
+				},
+				theme: "light",
+				buttons: {
+					clear: true,
+					close: true,
+				},
+			},
+			localization: {
+				locale: "en",
+				format: "yy/MM/dd",
+			},
+			multipleDatesSeparator: "-",
+		});
+	};
+
+	useEffect(() => {
+		getTimePicker(timePickerSM, timePickerInstanceSM);
+		getTimePicker(timePickerLG, timePickerInstanceLG);
+	}, []);
+
 	return (
 		<section className='bg-secondary-600'>
-			{/* <!-- 手機至平板版 --> */}
 			<div className='container d-lg-none search-demo'>
 				<ul className='row gy-9'>
 					<li className='col-6'>
@@ -33,25 +74,18 @@ const DemoSearch = () => {
 						</select>
 					</li>
 					<li className='col-12'>
-						<div
-							className='input-group w-100'
-							id='dateTimepickerSM'
-							data-td-target-input='nearest'
-							data-td-target-toggle='nearest'>
+						<button
+							ref={timePickerSM}
+							className='input-group w-100 border-0 p-0 bg-secondary-600'>
 							<input
-								id='dateTimepicker1Input'
 								type='text'
 								className='form-control py-3 fs-4 border-gray-400 ps-6'
-								data-td-target='#dateTimepicker1'
 								placeholder='展覽日期'
 							/>
-							<span
-								className='input-group-text material-symbols-outlined border-gray-400'
-								data-td-target='#dateTimepicker1'
-								data-td-toggle='dateTimepicker'>
+							<span className='input-group-text material-symbols-outlined border-gray-400'>
 								calendar_month
 							</span>
-						</div>
+						</button>
 					</li>
 					<li className='col-12'>
 						<form className='position-relative text-gray-500' role='search'>
@@ -80,7 +114,6 @@ const DemoSearch = () => {
 					</li>
 				</ul>
 			</div>
-			{/* <!-- 電腦版以上 --> */}
 			<div className='container d-none d-lg-block search-demo'>
 				<ul className='row'>
 					<li className='col-1'></li>
@@ -98,25 +131,18 @@ const DemoSearch = () => {
 								<option value='高雄市'>高雄市</option>
 							</select>
 
-							<div
-								className='input-group w-20'
-								id='dateTimepickerLG'
-								data-td-target-input='nearest'
-								data-td-target-toggle='nearest'>
+							<button
+								ref={timePickerLG}
+								className='border-0 input-group w-20 p-0 bg-secondary-600'>
 								<input
-									id='dateTimepicker1Input'
 									type='text'
 									className='form-control py-3 fs-4 border-gray-400 text-gray-700'
-									data-td-target='#dateTimepicker1'
 									placeholder='展覽日期'
 								/>
-								<span
-									className='input-group-text material-symbols-outlined border-gray-400'
-									data-td-target='#dateTimepicker1'
-									data-td-toggle='dateTimepicker'>
+								<span className='input-group-text material-symbols-outlined border-gray-400'>
 									calendar_month
 								</span>
-							</div>
+							</button>
 
 							<select
 								className='form-select py-3 fs-4 w-15 border-gray-400'

@@ -1,5 +1,5 @@
-import ContactFooter from "../components/ContactFooter";
-import DemoSearch from "../components/DemoSearch";
+import ContactFooter from "../layouts/ContactFooter";
+import DemoSearch from "../layouts/DemoSearch";
 export default function HomePage() {
 	return (
 		<>
@@ -1461,6 +1461,7 @@ export default function HomePage() {
 					</div>
 				</div>
 			</section>
+
 			{/* AOS暫時去除 */}
 			<section className='bg-white py-sm-80 py-lg-100'>
 				{/* <!-- 手機版 --> */}

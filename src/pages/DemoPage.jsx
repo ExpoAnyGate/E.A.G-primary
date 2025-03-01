@@ -4,8 +4,37 @@ import DemoSponsor from "../layouts/DemoSponsor";
 import MapComponent from "../components/GoogleMap";
 import ContactFooter from "../components/ContactFooter";
 import FloatingButton from "../components/WalletKun";
+import axios from "axios";
+import {useParams } from "react-router-dom";
+
+const API_URL = "https://e-a-g-api.vercel.app/"; // 替換成實際 API 路徑
+const API_KEY = "ZtQ5rmRFtoev3sK1eFTLnEaP"; // 替換成你的 API Key
 
 export default function DemoPage({}) {
+    const [demo, setDemo] = useState({});
+    const {id: demo_id} = useParams();
+
+    const getDemoData = async () => {
+        try {
+          const response = await axios.get(`${API_URL}api/exhibitions/${demo_id}`,{
+            headers: { "api-key": `${API_KEY}` }, // 可能需要 "x-api-key"，請確認 API 文件
+          });
+          console.log(response.data);
+          setDemo(response.data);
+          
+        //   const data = await response.json();
+        //   return data;
+        } catch (error) {
+          console.error("Error fetching demo data:", error);
+        //   return null;
+        }
+    }
+
+    useEffect(() => {
+        getDemoData();
+      }, []);
+
+
   return (
     <>
       <div class="demo-banner mt-bp-140-0"></div>
@@ -16,7 +45,7 @@ export default function DemoPage({}) {
             <div class="border border-gray-700 rounded-3 p-10">
               <div class="demo-card-header d-flex">
                 <div class="demo-title d-flex align-items-center">
-                  <p class="fs-12 fw-bold me-2">現代藝術展</p>
+                  <p class="fs-12 fw-bold me-2">{demo.title}</p>
                   <span
                     id="bookmark-icon"
                     class="material-symbols-outlined fs-6 px-0 demo-bookmark"
@@ -25,16 +54,14 @@ export default function DemoPage({}) {
                   </span>
                 </div>
                 <ul class="demo-tags d-flex align-items-center gap-3 fs-3 ">
-                  <li>
-                    <span class="rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2">
-                      #多媒體藝術
-                    </span>
-                  </li>
-                  <li>
-                    <span class="rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2">
-                      ＃視聽體驗
-                    </span>
-                  </li>
+                    {
+                     demo.tags && demo.tags.map((tag, index) => (
+                      <li key={index}>
+                        <span class="rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2">
+                          #{tag}
+                        </span>
+                      </li>
+                    ))}
                 </ul>
               </div>
 
@@ -43,7 +70,7 @@ export default function DemoPage({}) {
                   <span class="material-symbols-outlined fs-6 px-0 py-0">
                     calendar_month
                   </span>
-                  <span>2024/8/15 - 2024/9/15</span>
+                  <span>{demo.start_date} - {demo.end_date}</span>
                 </li>
                 <li class="d-flex align-items-center gap-3">
                   <span class="material-symbols-outlined fs-6 px-0 py-0">
@@ -55,18 +82,19 @@ export default function DemoPage({}) {
                   <span class="material-symbols-outlined fs-6 px-0 py-0">
                     location_on
                   </span>
-                  <span>台北市中區繼光街59號</span>
+                  <span>{demo.address}</span>
                 </li>
                 <li class="d-flex align-items-center gap-3">
                   <span class="material-symbols-outlined fs-6 px-0 py-0">
                     public
                   </span>
-                  <span>http:123456789.com</span>
+                  <span>{demo.url}</span>
                 </li>
               </ul>
 
               <p class="mt-6">
-                現代藝術展是一場充滿創新與思想碰撞的視覺盛宴，匯集了來自全球的前衛藝術家和創作者,他們以獨特的視角和風格呈現了當代藝術的多樣性和豐富性。本次展覽以“無限創意"為主題,探索了當代社會中的多元文化、科技變革、環境保護等議題,並以藝術的形式展現出對這些主題的深刻思考與詮釋。
+                {demo.description}
+                {/* 現代藝術展是一場充滿創新與思想碰撞的視覺盛宴，匯集了來自全球的前衛藝術家和創作者,他們以獨特的視角和風格呈現了當代藝術的多樣性和豐富性。本次展覽以“無限創意"為主題,探索了當代社會中的多元文化、科技變革、環境保護等議題,並以藝術的形式展現出對這些主題的深刻思考與詮釋。 */}
               </p>
 
               <ul class="action-icons d-flex gap-6 mt-6">
@@ -74,13 +102,13 @@ export default function DemoPage({}) {
                   <span class="material-symbols-outlined p-0 demo-favorite fs-6">
                     favorite
                   </span>
-                  <span>1,200</span>
+                  <span>{demo.likes}</span>
                 </li>
                 <li class="d-flex align-items-center gap-2">
                   <span class="material-symbols-rounded p-0 fs-6">
                     visibility
                   </span>
-                  <span>15,000</span>
+                  <span>{demo.views}</span>
                 </li>
               </ul>
 

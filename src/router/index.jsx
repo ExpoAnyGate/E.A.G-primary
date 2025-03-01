@@ -23,8 +23,12 @@ const router = createHashRouter([
 				path: "search",
 				element: <SearchPage />,
 			},
+			// {
+			// 	path: "demo",
+			// 	element: <DemoPage />,
+			// },
 			{
-				path: "demo",
+				path: "demo/:id",
 				element: <DemoPage />,
 			},
 			{

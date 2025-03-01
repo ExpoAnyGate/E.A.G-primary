@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import ArtistSwiper from "../components/mySwiper";
 
 import MarqueePhoto from "../components/MarqueePhoto";
+import MemorySwiper from "../components/MemorySwiper";
 
 export default function SpotlightPage() {
 
+
+  
   const sponsors = [
     "Spotlight/Sponsors_1.png",
     "Spotlight/Sponsors_2.png",
@@ -16,6 +19,7 @@ export default function SpotlightPage() {
     "Spotlight/Sponsors_8.png",
     "Spotlight/Sponsors_9.png",
   ];
+
 
 
     
@@ -88,10 +92,7 @@ export default function SpotlightPage() {
 
           <div class="spotlight-card-info">
             <div class="container d-flex flex-column">
-              {/* <div class="spotlight-card-tag">#藝術家專訪</div>
-              <div class="spotlight-card-subtitle fs-8 fw-700 mb-10">
-                釋放內心的小野獸 插畫家陳純虹勇敢畫下自己的《戀物癖》
-              </div> */}
+
 
               
 
@@ -189,63 +190,9 @@ export default function SpotlightPage() {
             </div>
           </div>
 
-          <div class="spotlight-card-info">
-            <div class="carousel">
-              <div class="spotlight-swiper">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=1" alt />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=2" alt />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=3" alt />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=4" alt />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=5" alt />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=6" alt />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=7" alt />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=8" alt />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=9" alt />
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="single">
-                      <img src="https://picsum.photos/800/1200?random=10" alt />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="spotlight-card-info overflow-hidden pb-20">
+
+            <MemorySwiper />
           </div>
         </div>
 

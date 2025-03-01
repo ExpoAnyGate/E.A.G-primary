@@ -1,11 +1,11 @@
 .spotlight-banner {
-  background-image: url("../images/spotlight-banner-sm.png");
+  background-image: url("Spotlight/spotlight-banner-sm.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top;
   height: 700px;
   @include media-breakpoint-up(md) {
-    background-image: url("../images/spotlight-banner-lg.png");
+    background-image: url("Spotlight/spotlight-banner-lg.png");
     height: 560px;
     background-position: bottom;
   }

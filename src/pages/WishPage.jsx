@@ -1,17 +1,51 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import WishMarquee from "../components/WishMarquee";
+import FloatingButton from "../components/WalletKun";
 
 export default function WishPage() {
+  const targetDate = new Date("2025-03-18T00:00:00").getTime(); //目標時間
+  const [days, setDays] = useState(0);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+  const [charCount, setCharCount] = useState(0);
+  const maxLength = 1000;
+
+  //倒數計時
+  const updateCountdown = () => {
+    const now = new Date().getTime();
+    const timeGap = targetDate - now;
+
+    if (timeGap <= 0) {
+      setDays(0);
+      setHours(0);
+      setMinutes(0);
+      setSeconds(0);
+      return;
+    }
+    setDays(Math.floor(timeGap / (1000 * 60 * 60 * 24)));
+    setHours(Math.floor((timeGap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+    setMinutes(Math.floor((timeGap % (1000 * 60 * 60)) / (1000 * 60)));
+    setSeconds(Math.floor((timeGap % (1000 * 60)) / 1000));
+  };
+
+  useEffect(() => {
+    updateCountdown();
+    const countdownInterval = setInterval(updateCountdown, 1000);
+    return () => {
+      clearInterval(countdownInterval);
+    }; // 清除計時器
+  }, []);
 
   //跑馬燈文字
-const wishes = [
-  { icon: "candle", text: "阿鼠：許願一場沉浸式香氛展@桃園~~" },
-  { icon: "favorite", text: "1457：許願一場農漁地景藝術展@彰化~~" },
-  { icon: "family_star", text: "禮央：許願Day6見面會@台中~~" },
-  { icon: "favorite", text: "Harry：許願咖波主題展@高雄~~" },
-  { icon: "candle", text: "阿鼠：許願獵人原畫展@台北！" },
-  { icon: "family_star", text: "1457：吉卜力展覽快來@新竹~~" },
-];
+  const wishes = [
+    { icon: "candle", text: "阿鼠：許願一場沉浸式香氛展@桃園~~" },
+    { icon: "favorite", text: "1457：許願一場農漁地景藝術展@彰化~~" },
+    { icon: "family_star", text: "禮央：許願Day6見面會@台中~~" },
+    { icon: "favorite", text: "Harry：許願咖波主題展@高雄~~" },
+    { icon: "candle", text: "阿鼠：許願獵人原畫展@台北！" },
+    { icon: "family_star", text: "1457：吉卜力展覽快來@新竹~~" },
+  ];
 
   return (
     <>
@@ -57,13 +91,21 @@ const wishes = [
               <span id="" className="fw-400">
                 投票倒數：
               </span>
-              <span id="days" className="fw-400"></span>
+              <span id="days" className="fw-400">
+                {days}
+              </span>
               <span className="fw-400">天</span>
-              <span id="hours" className="fw-400"></span>
+              <span id="hours" className="fw-400">
+                {hours}
+              </span>
               <span className="fw-400">小時</span>
-              <span id="minutes" className="fw-400"></span>
+              <span id="minutes" className="fw-400">
+                {minutes}
+              </span>
               <span className="fw-400">分</span>
-              <span id="seconds" className="fw-400"></span>
+              <span id="seconds" className="fw-400">
+                {seconds}
+              </span>
               <span className="fw-400">秒</span>
             </div>
           </div>
@@ -673,15 +715,17 @@ const wishes = [
                       <textarea
                         className="form-control"
                         id="describe-text"
-                        maxLength="1000"
+                        maxLength={maxLength}
                         style={{ height: "200px" }}
-                        onInput="updateCharacterCount()"
+                        onChange={(e) => setCharCount(e.target.value.length)}
                       ></textarea>
                       <div
                         id="char-count"
                         className="fs-3 text-muted text-end mt-2"
                       >
-                        <p className="fs-3 text-muted text-end mt-2">0/1000</p>
+                        <p className="fs-3 text-muted text-end mt-2">
+                          {charCount}/{maxLength}
+                        </p>
                       </div>
                     </div>
                   </form>
@@ -716,6 +760,7 @@ const wishes = [
           <WishMarquee wishList={wishes} />
         </div>
       </div>
+      <FloatingButton />
     </>
   );
 }

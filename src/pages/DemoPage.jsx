@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import DemoLike from "../layouts/DemoLike";
 import DemoSponsor from "../layouts/DemoSponsor";
 import MapComponent from "../components/GoogleMap";
+import ContactFooter from "../components/ContactFooter";
+import FloatingButton from "../components/WalletKun";
 
 export default function DemoPage({}) {
   return (
@@ -225,10 +227,15 @@ export default function DemoPage({}) {
           <MapComponent />
         </div>
 
+
+        
+
         <div class="sm-showed mb-17">
           <DemoLike />
         </div>
       </div>
+      <ContactFooter />
+      <FloatingButton/>
     </>
   );
 }

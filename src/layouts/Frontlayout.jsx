@@ -18,7 +18,7 @@ export default function FrontLayout() {
 		<>
 			<nav className='bg-white position-breakpoint'>
 				<div className='container py-6 navbar-layout'>
-					<div className='d-flex justify-content-between align-items-center'>
+					<ul className='d-flex justify-content-between align-items-center'>
 						{routes
 							.filter((route) => NavbarItem.includes(route.path))
 							.map((route) => {
@@ -26,10 +26,7 @@ export default function FrontLayout() {
 									<li key={route.path}>
 										<NavLink to={route.path}>
 											{route.path === "/" ? (
-												<img
-													src='src/assets/images/Nav/logo-Light.png'
-													alt='logo'
-												/>
+												<img src='common/logo-Light.png' alt='logo' />
 											) : (
 												route.name
 											)}
@@ -39,7 +36,7 @@ export default function FrontLayout() {
 							})}
 
 						<LoginStatus />
-					</div>
+					</ul>
 				</div>
 			</nav>
 

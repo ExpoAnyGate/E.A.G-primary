@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DemoLike from "../layouts/DemoLike";
 import DemoSponsor from "../layouts/DemoSponsor";
 import MapComponent from "../components/GoogleMap";
-import ContactFooter from "../components/ContactFooter";
+import ContactFooter from "../layouts/ContactFooter";
 import FloatingButton from "../components/WalletKun";
 import axios from "axios";
 import {useParams } from "react-router-dom";
@@ -11,6 +11,7 @@ const API_URL = "https://e-a-g-api.vercel.app/"; // 替換成實際 API 路徑
 const API_KEY = "ZtQ5rmRFtoev3sK1eFTLnEaP"; // 替換成你的 API Key
 
 export default function DemoPage({}) {
+
     const [demo, setDemo] = useState({});
     const {id: demo_id} = useParams();
 

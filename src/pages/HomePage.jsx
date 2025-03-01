@@ -1,6 +1,18 @@
-import ContactFooter from "../components/ContactFooter";
-import DemoSearch from "../components/DemoSearch";
+import ContactFooter from "../layouts/ContactFooter";
+import DemoSearchBar from "../layouts/DemoSearchBar";
+import AOS from "aos";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+
 export default function HomePage() {
+	useEffect(() => {
+		AOS.init({ once: false });
+		setTimeout(() => {
+			// 強制重新計算動畫元素位置
+			AOS.refresh();
+		}, 200);
+	}, []);
+
 	return (
 		<>
 			<section className='bg-primary-800'>
@@ -112,7 +124,7 @@ export default function HomePage() {
 			</section>
 
 			{/* 搜尋列 */}
-			<DemoSearch />
+			<DemoSearchBar />
 
 			<section className='bg-secondary-50 overflow-hidden'>
 				{/* <!-- 手機版到電腦版 --> */}
@@ -1461,10 +1473,15 @@ export default function HomePage() {
 					</div>
 				</div>
 			</section>
-			{/* AOS暫時去除 */}
+
 			<section className='bg-white py-sm-80 py-lg-100'>
 				{/* <!-- 手機版 --> */}
-				<div className='overflow-hidden'>
+				<div
+					data-aos='fade-right'
+					data-aos-easing='ease-out'
+					data-aos-duration='500'
+					data-aos-offset='50'
+					className='overflow-hidden'>
 					<div className='bg-secondary-600 py-14 border-top-right-radius-100 mb-10 d-md-none'>
 						<div className='container'>
 							<div className='ms-8 mb-8'>
@@ -1476,7 +1493,7 @@ export default function HomePage() {
 								</p>
 							</div>
 							<div className='text-center'>
-								<a
+								<Link
 									href='#'
 									type='button'
 									className='btn btn-gray-1000 py-4 px-6 text-gray-000 fw-700'>
@@ -1486,11 +1503,17 @@ export default function HomePage() {
 											arrow_right_alt
 										</span>
 									</div>
-								</a>
+								</Link>
 							</div>
 						</div>
 					</div>
-					<div className='bg-primary-800 py-14 border-bottom-left-radius-100 d-md-none'>
+					<div
+						data-aos='fade-left'
+						data-aos-easing='ease-out'
+						data-aos-duration='500'
+						data-aos-delay='100'
+						data-aos-offset='50'
+						className='bg-primary-800 py-14 border-bottom-left-radius-100 d-md-none'>
 						<div className='container'>
 							<div className='text-gray-000 mb-8'>
 								<h2 className='fw-700 mb-3 text-end'>探索藝展任意門！</h2>
@@ -1516,14 +1539,19 @@ export default function HomePage() {
 				</div>
 				{/* <!-- 平板以上 --> */}
 				<div className='overflow-hidden'>
-					<div className='bg-secondary-600 py-14 border-top-right-radius-100 mb-10 d-none d-md-block'>
+					<div
+						data-aos='fade-right'
+						data-aos-easing='ease-out'
+						data-aos-duration='500'
+						data-aos-offset='50'
+						className='bg-secondary-600 py-14 border-top-right-radius-100 mb-10 d-none d-md-block'>
 						<div className='container'>
 							<div className='d-flex align-items-center justify-content-between'>
 								<div>
 									<h2 className='fw-700 mb-3'>開啟活動新天地！</h2>
 									<p>與我們合作，通過藝展任意門擴展推廣渠道，提升曝光度！</p>
 								</div>
-								<a
+								<Link
 									href='#'
 									type='button'
 									className='btn btn-gray-1000 py-4 px-6 d-flex align-items-center text-gray-000 fw-700'>
@@ -1531,14 +1559,20 @@ export default function HomePage() {
 									<span className='material-symbols-outlined p-0 ms-4'>
 										arrow_right_alt
 									</span>
-								</a>
+								</Link>
 							</div>
 						</div>
 					</div>
-					<div className='bg-primary-800 py-14 border-bottom-left-radius-100 d-none d-md-block'>
+					<div
+						data-aos='fade-left'
+						data-aos-easing='ease-out'
+						data-aos-duration='500'
+						data-aos-delay='100'
+						data-aos-offset='50'
+						className='bg-primary-800 py-14 border-bottom-left-radius-100 d-none d-md-block'>
 						<div className='container'>
 							<div className='d-flex align-items-center justify-content-between'>
-								<a
+								<Link
 									href='#'
 									type='button'
 									className='btn btn-gray-1000 py-4 px-6 d-flex align-items-center text-gray-000 fw-700'>
@@ -1546,7 +1580,7 @@ export default function HomePage() {
 										arrow_left_alt
 									</span>
 									<span>成為會員</span>
-								</a>
+								</Link>
 								<div className='text-gray-000'>
 									<h2 className='fw-700 mb-3'>探索藝展任意門！</h2>
 									<p>輕鬆找到並參與更多展覽，開啟您的藝術與文化之旅。</p>

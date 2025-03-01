@@ -1,5 +1,4 @@
 import { createHashRouter } from "react-router-dom";
-import FrontLayout from "../layouts/FrontLayout";
 import HomePage from "../pages/HomePage";
 import SearchPage from "../pages/SearchPage";
 import DemoPage from "../pages/DemoPage";
@@ -8,6 +7,7 @@ import WishPage from "../pages/WishPage";
 import GoodsPage from "../pages/GoodsPage";
 import SpotlightPage from "../pages/SpotlightPage";
 import NotFound from "../pages/NotFound";
+import FrontLayout from "../layouts/Frontlayout";
 
 const router = createHashRouter([
 	{

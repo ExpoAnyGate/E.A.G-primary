@@ -9,10 +9,11 @@ import SpotlightPage from "../pages/SpotlightPage";
 import NotFound from "../pages/NotFound";
 import FrontLayout from "../layouts/FrontLayout";
 
+
 const router = createHashRouter([
 	{
 		path: "/",
-		element: <FrontLayout />,
+		element: <FrontLayout />, 
 		children: [
 			{
 				path: "",

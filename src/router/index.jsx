@@ -1,5 +1,5 @@
 import { createHashRouter } from "react-router-dom";
-import Frontlayout from "../layouts/Frontlayout";
+import FrontLayout from "../layouts/FrontLayout";
 import HomePage from "../pages/HomePage";
 import SearchPage from "../pages/SearchPage";
 import DemoPage from "../pages/DemoPage";
@@ -12,7 +12,7 @@ import NotFound from "../pages/NotFound";
 const router = createHashRouter([
 	{
 		path: "/",
-		element: <Frontlayout />,
+		element: <FrontLayout />,
 		children: [
 			{
 				path: "",

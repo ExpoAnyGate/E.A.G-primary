@@ -26,10 +26,7 @@ export default function FrontLayout() {
 									<li key={route.path}>
 										<NavLink to={route.path}>
 											{route.path === "/" ? (
-												<img
-													src='src/assets/images/Nav/logo-Light.png'
-													alt='logo'
-												/>
+												<img src='common/logo-Light.png' alt='logo' />
 											) : (
 												route.name
 											)}

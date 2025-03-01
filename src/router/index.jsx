@@ -7,7 +7,7 @@ import WishPage from "../pages/WishPage";
 import GoodsPage from "../pages/GoodsPage";
 import SpotlightPage from "../pages/SpotlightPage";
 import NotFound from "../pages/NotFound";
-import FrontLayout from "../layouts/Frontlayout";
+import FrontLayout from "../layouts/FrontLayout";
 
 const router = createHashRouter([
 	{

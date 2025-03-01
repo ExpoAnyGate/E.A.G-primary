@@ -1,5 +1,6 @@
 import ContactFooter from "../layouts/ContactFooter";
 import DemoSearchBar from "../layouts/DemoSearchBar";
+import FloatingButton from "../components/WalletKun";
 import AOS from "aos";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
@@ -22,9 +23,9 @@ export default function HomePage() {
 							{" "}
 							campaign{" "}
 						</span>
-						<h3 className='fs-4 fw-400 ms-3'>
+						<Link to={"/donate"} className='fs-4 fw-400 ms-3'>
 							開放展覽主辦單位贊助，成為本網站的乾爹
-						</h3>
+						</Link>
 					</div>
 				</div>
 			</section>
@@ -1592,6 +1593,8 @@ export default function HomePage() {
 			</section>
 
 			<ContactFooter />
+
+			<FloatingButton />
 		</>
 	);
 }

@@ -571,12 +571,12 @@ const wishes = [
         {/* <!-- 電腦版 底部圓--> */}
         <img
           className="deco-position-lg-top-left deco-position-lg-top-left-transform d-none d-md-block"
-          src="deco/vs-deco-lg-01.png"
+          src="Wish/vs-deco-lg-01.png"
           alt="vs-deco-lg-1"
         />
         <img
           className="deco-position-lg-top-right deco-position-lg-top-right-transform d-none d-md-block"
-          src="deco/vs-deco-lg-02.png"
+          src="Wish/vs-deco-lg-02.png"
           alt="vs-deco-lg-2"
         />
       </section>

@@ -1,7 +1,6 @@
-
 // 字型
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 // icon（設計稿都有給，以防不夠載入外部資源）
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
@@ -13,18 +12,17 @@
 //AOS
 @import url("https://unpkg.com/aos@2.3.1/dist/aos.css");
 
-
 // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
 @import "bootstrap/scss/functions"; // Bootstrap 函數
 
 // 2. Include any default variable overrides here
-@import 'utils/_variable';//自定義的BS，裡面有spacer
+@import "utils/_variable"; //自定義的BS，裡面有spacer
 
 // 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
-@import "bootstrap/scss/variables";  // 定義 $theme-colors
+@import "bootstrap/scss/variables"; // 定義 $theme-colors
 
 // 4. Include any default map overrides here
-@import 'utils/_customer_variables'; // 定義 $custom-colors 並合併到 $theme-colors
+@import "utils/_customer_variables"; // 定義 $custom-colors 並合併到 $theme-colors
 
 // // 5.整包帶走
 // @import "../bootstrap";
@@ -33,8 +31,7 @@
 @import "bootstrap/scss/maps";
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/root";
-@import "bootstrap/scss/utilities"; 
-
+@import "bootstrap/scss/utilities";
 
 // 6.選用
 @import "bootstrap/scss/reboot";
@@ -70,27 +67,26 @@
 // Helpers
 @import "bootstrap/scss/helpers";
 
-
 // ７.其他自定義樣式或工具(有merge)
-@import 'utils/customer_utils';
+@import "utils/customer_utils";
 @import "bootstrap/scss/utilities/api";
 
 // 8.自定義 reset
 @import "./base/base";
 
-@import './layout/navbar.scss';
-@import './layout/component.scss';
-@import './layout/footer.scss';
-@import './layout/search-bar.scss';
+@import "./layout/navbar.scss";
+@import "./layout/component.scss";
+@import "./layout/footer.scss";
+@import "./layout/search-bar.scss";
 
-@import './pages/index.scss';
-@import './pages/demo.scss';
-@import './pages/evaluate.scss';
-@import './pages/search.scss';
-@import './pages/spotlight.scss';
-@import './pages/wish.scss';
+@import "./pages/home.scss";
+@import "./pages/demo.scss";
+@import "./pages/evaluate.scss";
+@import "./pages/search.scss";
+@import "./pages/spotlight.scss";
+@import "./pages/wish.scss";
+@import "./pages/donate.scss";
 
-// @import 'swiper/css';
 // 關閉文字rfs
 // $utilities: map-merge(
 //   $utilities, (

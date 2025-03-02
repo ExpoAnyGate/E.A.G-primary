@@ -1,6 +1,9 @@
 import ContactFooter from "../layouts/ContactFooter";
 import DemoSearchBar from "../layouts/DemoSearchBar";
 import FloatingButton from "../components/WalletKun";
+import HomeBanner from "../components/HmeBanner";
+import HomeHotDemo from "../components/HomeHotDemo";
+import DemoRecommend from "../layouts/DemoRecommend";
 import AOS from "aos";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
@@ -30,6 +33,7 @@ export default function HomePage() {
 				</div>
 			</section>
 
+			{/* Banner */}
 			<section>
 				{/* <!-- 手機版 --> */}
 				<div className='container-fluid position-relative d-md-none banner px-0'>
@@ -49,32 +53,7 @@ export default function HomePage() {
 
 						<h2 className='fs-6 fw-700'>參與自己感興趣的展覽</h2>
 					</div>
-					<div className='swiper mybanner'>
-						<ul className='swiper-wrapper'>
-							<li className='swiper-slide w-100'>
-								<img
-									className='d-block w-100 object-fit-cover'
-									src='Demo/banner-sm-2.png'
-									alt='banner-sm-2'
-								/>
-							</li>
-							<li className='swiper-slide w-100'>
-								<img
-									className='d-block w-100 object-fit-cover'
-									src='Demo/banner-sm-1.png'
-									alt='banner-sm-1'
-								/>
-							</li>
-							<li className='swiper-slide w-100'>
-								<img
-									className='d-block w-100 object-fit-cover'
-									src='Demo/banner-sm-3.png'
-									alt='banner-sm-3'
-								/>
-							</li>
-						</ul>
-						<div className='swiper-pagination'></div>
-					</div>
+					<HomeBanner device={"sm"} />
 				</div>
 				{/* <!-- 平板以上 --> */}
 				<div className='container-fluid d-none d-md-block p-0 banner position-relative'>
@@ -95,495 +74,15 @@ export default function HomePage() {
 						</h2>
 					</div>
 
-					<div className='swiper mybanner'>
-						<ul className='swiper-wrapper'>
-							<li className='swiper-slide w-100 banner-mask'>
-								<img
-									className='d-block w-100'
-									src='Demo/demo-origin-4.png'
-									alt='banner-4'
-								/>
-							</li>
-							<li className='swiper-slide w-100 banner-mask'>
-								<img
-									className='d-block w-100'
-									src='Demo/demo-origin-9.png'
-									alt='banner-9'
-								/>
-							</li>
-							<li className='swiper-slide w-100 banner-mask'>
-								<img
-									className='d-block w-100'
-									src='Demo/demo-origin-5.png'
-									alt='banner-5'
-								/>
-							</li>
-						</ul>
-						<div className='swiper-pagination'></div>
-					</div>
+					<HomeBanner device={"lg"} />
 				</div>
 			</section>
 
 			{/* 搜尋列 */}
 			<DemoSearchBar />
 
-			<section className='bg-secondary-50 overflow-hidden'>
-				{/* <!-- 手機版到電腦版 --> */}
-				<div className='container py-sm-80 recommend position-relative py-lg-120'>
-					<h2 className='fw-700 position-relative mb-15'>
-						<span className='position-relative z-2'>推薦給你</span>
-						<img
-							className='title-line-position'
-							src='deco/line-2.png'
-							alt='line-2'
-						/>
-					</h2>
-					{/* <!-- 裝飾 --> */}
-					<picture>
-						<source media='(min-width: 768px)' srcSet='deco/vector-lg-1.png' />
-						<img
-							className='vector-position-right vector-position-right-transform-1'
-							src='deco/vector-sm-1.png'
-							alt='vector-sm-1'
-						/>
-					</picture>
-					<picture>
-						<source media='(min-width:768px)' srcSet='deco/vector-lg-2.png' />
-						<img
-							className='vector-position-right vector-position-right-transform-2'
-							src='deco/vector-sm-2.png'
-							alt='vector-sm-2'
-						/>
-					</picture>
-					<img
-						className='vector-position-left vector-position-left-transform-3 d-none d-md-block'
-						src='deco/vector-lg-3.png'
-						alt='vector-3'
-					/>
-					<img
-						className='vector-position-left vector-position-left-transform-4 d-none d-md-block'
-						src='deco/vector-lg-4.png'
-						alt='vector-4'
-					/>
-
-					<div className='swiper myrecommend z-3 overflow-visible'>
-						<ul className='swiper-wrapper'>
-							<li className='swiper-slide'>
-								<a href='demo.html' className='d-block'>
-									<div className='d-flex flex-column'>
-										<picture>
-											<source
-												media='(min-width: 768px)'
-												srcSet='Demo/demo-lg-6.png'
-											/>
-											<img
-												className='w-100'
-												src='Demo/demo-sm-6.png'
-												alt='demo-sm-6'
-											/>
-										</picture>
-										<ul className='mt-4 text-gray-700'>
-											<li className='mb-4 d-flex justify-content-between'>
-												<time
-													dateTime='2024/8/15-2024/9/15'
-													className='font-family-Noto'>
-													2024/8/15-2024/9/15
-												</time>
-												<div>
-													<img
-														className='align-top'
-														src='icon/location_outlined.png'
-														alt='location_outlined'
-													/>
-													<span>台北市</span>
-												</div>
-											</li>
-											<li className='mb-4'>
-												<div className='d-flex'>
-													<h3 className='fw-700 fs-6 text-truncate'>
-														光影交錯：攝影藝術展
-													</h3>
-													<img
-														className='align-top'
-														src='icon/Bookmark_add.png'
-														alt='Bookmark_add'
-													/>
-												</div>
-											</li>
-											<li className='mb-4'>
-												<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-													#攝影展
-												</span>
-												<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-													#光影藝術
-												</span>
-											</li>
-											<li className='mb-4'>
-												<p className='fs-4 fw-400'>
-													透過鏡頭捕捉光與影的交錯瞬間，展現攝影師對日常與自然世界的深刻觀察，帶來一場視覺與情感的雙重饗宴。
-												</p>
-											</li>
-											<li className='mb-4'>
-												<div className='d-flex'>
-													<div>
-														<img
-															className='align-top me-1'
-															src='icon/heart-outline.png'
-															alt='heart'
-														/>
-														<span>1,200</span>
-													</div>
-													<div className='ms-6'>
-														<img
-															className='align-top me-1'
-															src='icon/eye-filled.png'
-															alt='eye'
-														/>
-														<span>15,000</span>
-													</div>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</a>
-							</li>
-							<li className='swiper-slide'>
-								<a href='#' className='d-block'>
-									<div className='d-flex flex-column'>
-										<picture>
-											<source
-												media='(min-width: 768px)'
-												srcSet='Demo/demo-lg-3.png'
-											/>
-											<img
-												className='w-100'
-												src='Demo/demo-sm-3.png'
-												alt='demo-sm-3'
-											/>
-										</picture>
-										<ul className='mt-4 text-gray-700'>
-											<li className='mb-4 d-flex justify-content-between'>
-												<time
-													dateTime='2024/8/15-2024/9/15'
-													className='font-family-Noto'>
-													2024/8/15-2024/9/15
-												</time>
-												<div>
-													<img
-														className='align-top'
-														src='icon/location_outlined.png'
-														alt='location_outlined'
-													/>
-													<span>桃園市</span>
-												</div>
-											</li>
-											<li className='mb-4'>
-												<div className='d-flex'>
-													<h3 className='fw-700 fs-6 text-truncate'>
-														現代設計未來：數位創作引領跨世代潮流
-													</h3>
-													<img
-														className='align-top'
-														src='icon/Bookmark_add.png'
-														alt='Bookmark_add'
-													/>
-												</div>
-											</li>
-											<li className='mb-4'>
-												<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-													#數位藝術
-												</span>
-												<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-													#未來設計
-												</span>
-											</li>
-											<li className='mb-4'>
-												<p className='fs-4 fw-400'>
-													以數位技術為核心，這場展覽探討未來設計的可能性，結合藝術與科技，呈現前所未有的創意形式，讓觀眾一窺未來的藝術世界。
-												</p>
-											</li>
-											<li className='mb-4'>
-												<div className='d-flex'>
-													<div>
-														<img
-															className='align-top me-1'
-															src='icon/heart-outline.png'
-															alt='heart'
-														/>
-														<span>1,200</span>
-													</div>
-													<div className='ms-6'>
-														<img
-															className='align-top me-1'
-															src='icon/eye-filled.png'
-															alt='eye'
-														/>
-														<span>15,000</span>
-													</div>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</a>
-							</li>
-							<li className='swiper-slide'>
-								<a href='#' className='d-block'>
-									<div className='d-flex flex-column'>
-										<picture>
-											<source
-												media='(min-width: 768px)'
-												srcSet='Demo/demo-lg-13.png'
-											/>
-											<img
-												className='w-100'
-												src='Demo/demo-sm-13.png'
-												alt='demo-sm-13'
-											/>
-										</picture>
-										<ul className='mt-4 text-gray-700'>
-											<li className='mb-4 d-flex justify-content-between'>
-												<time
-													dateTime='2024/8/15-2024/9/15'
-													className='font-family-Noto'>
-													2024/8/15-2024/9/15
-												</time>
-												<div>
-													<img
-														className='align-top'
-														src='icon/location_outlined.png'
-														alt='location_outlined'
-													/>
-													<span>高雄市</span>
-												</div>
-											</li>
-											<li className='mb-4'>
-												<div className='d-flex'>
-													<h3 className='fw-700 fs-6 text-truncate'>
-														色彩的力量：抽象繪畫展
-													</h3>
-													<img
-														className='align-top'
-														src='icon/Bookmark_add.png'
-														alt='Bookmark_add'
-													/>
-												</div>
-											</li>
-											<li className='mb-4'>
-												<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-													#攝影展
-												</span>
-												<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-													#光影藝術
-												</span>
-											</li>
-											<li className='mb-4'>
-												<p className='fs-4 fw-400'>
-													這場現代藝術展是一場跨越全球的創意饗宴，集合了當代藝術家的精選作品，涵蓋繪畫、雕塑、裝置藝術、數位藝術及多媒體創作。每件作品都深刻反映了藝術家對社會、文化、科技和個人情感的獨特探索，運用抽象與具象的表現手法，帶來感官的刺激和思想的啟發。觀眾將透過這些作品，體驗到不僅是藝術的美感，還有作品中隱含的深層思考與觀點。
-												</p>
-											</li>
-											<li className='mb-4'>
-												<div className='d-flex'>
-													<div>
-														<img
-															className='align-top me-1'
-															src='icon/heart-outline.png'
-															alt='heart'
-														/>
-														<span>1,200</span>
-													</div>
-													<div className='ms-6'>
-														<img
-															className='align-top me-1'
-															src='icon/eye-filled.png'
-															alt='eye'
-														/>
-														<span>15,000</span>
-													</div>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</a>
-							</li>
-							<li className='swiper-slide'>
-								<a href='#' className='d-block'>
-									<div className='d-flex flex-column'>
-										<picture>
-											<source
-												media='(min-width: 768px)'
-												srcSet='Demo/demo-lg-6.png'
-											/>
-											<img
-												className='w-100'
-												src='Demo/demo-sm-6.png'
-												alt='demo-sm-6'
-											/>
-										</picture>
-										<ul className='mt-4 text-gray-700'>
-											<li className='mb-4 d-flex justify-content-between'>
-												<time
-													dateTime='2024/8/15-2024/9/15'
-													className='font-family-Noto'>
-													2024/8/15-2024/9/15
-												</time>
-												<div>
-													<img
-														className='align-top'
-														src='icon/location_outlined.png'
-														alt='location_outlined'
-													/>
-													<span>台北市</span>
-												</div>
-											</li>
-											<li className='mb-4'>
-												<div className='d-flex'>
-													<h3 className='fw-700 fs-6 text-truncate'>
-														光影交錯：攝影藝術展
-													</h3>
-													<img
-														className='align-top'
-														src='icon/Bookmark_add.png'
-														alt='Bookmark_add'
-													/>
-												</div>
-											</li>
-											<li className='mb-4'>
-												<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-													#攝影展
-												</span>
-												<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-													#光影藝術
-												</span>
-											</li>
-											<li className='mb-4'>
-												<p className='fs-4 fw-400'>
-													透過鏡頭捕捉光與影的交錯瞬間，展現攝影師對日常與自然世界的深刻觀察，帶來一場視覺與情感的雙重饗宴。
-												</p>
-											</li>
-											<li className='mb-4'>
-												<div className='d-flex'>
-													<div>
-														<img
-															className='align-top me-1'
-															src='icon/heart-outline.png'
-															alt='heart'
-														/>
-														<span>1,200</span>
-													</div>
-													<div className='ms-6'>
-														<img
-															className='align-top me-1'
-															src='icon/eye-filled.png'
-															alt='eye'
-														/>
-														<span>15,000</span>
-													</div>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</a>
-							</li>
-							<li className='swiper-slide'>
-								<a href='#' className='d-block'>
-									<div className='d-flex flex-column'>
-										<picture>
-											<source
-												media='(min-width: 768px)'
-												srcSet='Demo/demo-lg-3.png'
-											/>
-											<img
-												className='w-100'
-												src='Demo/demo-sm-3.png'
-												alt='demo-sm-3'
-											/>
-										</picture>
-										<ul className='mt-4 text-gray-700'>
-											<li className='mb-4 d-flex justify-content-between'>
-												<time
-													dateTime='2024/8/15-2024/9/15'
-													className='font-family-Noto'>
-													2024/8/15-2024/9/15
-												</time>
-												<div>
-													<img
-														className='align-top'
-														src='icon/location_outlined.png'
-														alt='location_outlined'
-													/>
-													<span>桃園市</span>
-												</div>
-											</li>
-											<li className='mb-4'>
-												<div className='d-flex'>
-													<h3 className='fw-700 fs-6 text-truncate'>
-														現代設計未來：數位創作引領跨世代潮流
-													</h3>
-													<img
-														className='align-top'
-														src='icon/Bookmark_add.png'
-														alt='Bookmark_add'
-													/>
-												</div>
-											</li>
-											<li className='mb-4'>
-												<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-													#數位藝術
-												</span>
-												<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-													#未來設計
-												</span>
-											</li>
-											<li className='mb-4'>
-												<p className='fs-4 fw-400'>
-													以數位技術為核心，這場展覽探討未來設計的可能性，結合藝術與科技，呈現前所未有的創意形式，讓觀眾一窺未來的藝術世界。
-												</p>
-											</li>
-											<li className='mb-4'>
-												<div className='d-flex'>
-													<div>
-														<img
-															className='align-top me-1'
-															src='icon/heart-outline.png'
-															alt='heart'
-														/>
-														<span>1,200</span>
-													</div>
-													<div className='ms-6'>
-														<img
-															className='align-top me-1'
-															src='icon/eye-filled.png'
-															alt='eye'
-														/>
-														<span>15,000</span>
-													</div>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</a>
-							</li>
-						</ul>
-						<div className='d-flex justify-content-bp-between-center align-items-center mt-15'>
-							<button
-								type='button'
-								className='btn btn-secondary-700 py-2 pe-3 myrecommend-button-prev'>
-								<span className='material-symbols-outlined p-0 text-gray-000 align-middle ps-2'>
-									arrow_back_ios
-								</span>
-							</button>
-							<div className='swiper-pagination position-static'></div>
-							<button
-								type='button'
-								className='btn btn-secondary-700 py-2 px-4 myrecommend-button-next'>
-								<span className='material-symbols-outlined p-0 text-gray-000 align-middle'>
-									arrow_forward_ios
-								</span>
-							</button>
-						</div>
-					</div>
-				</div>
-			</section>
+			{/* 展覽推薦	 */}
+			<DemoRecommend />
 
 			<section className='bg-primary-50 overflow-hidden'>
 				<div className='container py-sm-80 last-demo py-lg-120 position-relative'>
@@ -597,32 +96,36 @@ export default function HomePage() {
 					</h2>
 
 					{/* <!-- 手機版 --> */}
-					<img
-						className='linegp-position-sm-2 linegp-position-sm-2-transform d-md-none'
-						src='deco/linegp-sm-2.png'
-						alt='linegp-sm-2'
-					/>
-					<img
-						className='linegp-position-sm-1 linegp-position-sm-1-transform d-md-none'
-						src='deco/linegp-sm-1.png'
-						alt='linegp-sm-1'
-					/>
-					<img
-						className='linegp-position-sm-3 linegp-position-sm-3-transform d-md-none'
-						src='deco/linegp-sm-3.png'
-						alt='linegp-sm-3'
-					/>
+					<div>
+						<img
+							className='linegp-position-sm-2 linegp-position-sm-2-transform d-md-none'
+							src='deco/linegp-sm-2.png'
+							alt='linegp-sm-2'
+						/>
+						<img
+							className='linegp-position-sm-1 linegp-position-sm-1-transform d-md-none'
+							src='deco/linegp-sm-1.png'
+							alt='linegp-sm-1'
+						/>
+						<img
+							className='linegp-position-sm-3 linegp-position-sm-3-transform d-md-none'
+							src='deco/linegp-sm-3.png'
+							alt='linegp-sm-3'
+						/>
+					</div>
 					{/* <!-- 電腦版裝飾 --> */}
-					<img
-						className='linegp-position-lg-top linegp-position-lg-top-transform d-none d-md-block'
-						src='deco/linegp-lg-2.png'
-						alt='linegp-lg-2'
-					/>
-					<img
-						className='linegp-position-lg-bottom linegp-position-lg-bottom-transform d-none d-md-block'
-						src='deco/linegp-lg-1.png'
-						alt='linegp-lg-1'
-					/>
+					<div>
+						<img
+							className='linegp-position-lg-top linegp-position-lg-top-transform d-none d-md-block'
+							src='deco/linegp-lg-2.png'
+							alt='linegp-lg-2'
+						/>
+						<img
+							className='linegp-position-lg-bottom linegp-position-lg-bottom-transform d-none d-md-block'
+							src='deco/linegp-lg-1.png'
+							alt='linegp-lg-1'
+						/>
+					</div>
 
 					{/* <!-- 手機版 --> */}
 					<div className='d-md-none'>
@@ -800,12 +303,11 @@ export default function HomePage() {
 							</li>
 						</ul>
 						<div className='text-center mt-10'>
-							<a
-								href='#'
+							<button
 								className='btn btn-gray-700 text-gray-000 py-2'
 								role='button'>
 								查看更多
-							</a>
+							</button>
 						</div>
 					</div>
 
@@ -978,12 +480,11 @@ export default function HomePage() {
 								</li>
 							</ul>
 
-							<a
-								href='#'
-								className='btn btn-gray-700 text-gray-000 mx-auto py-2'
+							<button
+								className='btn btn-read-more btn-gray-700 text-gray-000 mx-auto py-2'
 								role='button'>
 								查看更多
-							</a>
+							</button>
 						</div>
 					</div>
 				</div>
@@ -1074,156 +575,14 @@ export default function HomePage() {
 						</ul>
 					</div>
 
-					<div className='swiper myHotdemo overflow-visible'>
-						<ul className='swiper-wrapper'>
-							<li className='swiper-slide'>
-								<img
-									className='w-100 mb-6'
-									src='Demo/demo-sm-1.png'
-									alt='demo-sm-1'
-								/>
-								<ul className='d-flex flex-column'>
-									<li className='d-flex justify-content-between mb-3'>
-										<time
-											dateTime='2024/8/15-2024/9/15'
-											className='font-family-Noto'>
-											2024/8/15-2024/9/15
-										</time>
-										<div>
-											<img
-												className='align-top ms-6'
-												src='icon/location_outlined.png'
-												alt='location_outlined'
-											/>
-											<span>新北市</span>
-										</div>
-									</li>
-									<li className='mb-6'>
-										<div className='d-flex'>
-											<h3 className='fw-700 fs-6 text-truncate'>
-												聲音與視覺的對話
-											</h3>
-											<img
-												className='align-top'
-												src='icon/Bookmark_add.png'
-												alt='Bookmark_add'
-											/>
-										</div>
-									</li>
-									<li className='mb-6'>
-										<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-											#多媒體藝術
-										</span>
-										<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-											#視聽體驗
-										</span>
-									</li>
-									<li className='mb-6'>
-										<p>
-											這場展覽將聲音與視覺融合，展示了當代多媒體藝術的創新表達方式。藝術家們通過聲音裝置、視覺影像與互動技術，創造出跨感官的藝術體驗，讓觀眾沉浸在聲音與視覺的對話之中。展覽打破了傳統藝術的界限，探索了聲音與視覺如何共同作用於我們的感知與情感。這是一場多感官的藝術之旅，邀請觀眾進入一個充滿聲音與圖像交織的世界，並重新思考藝術的可能性。
-										</p>
-									</li>
-									<li>
-										<div className='d-flex'>
-											<div>
-												<img
-													className='align-top me-1'
-													src='icon/heart-outline.png'
-													alt='heart'
-												/>
-												<span>1,200</span>
-											</div>
-											<div className='ms-6'>
-												<img
-													className='align-top me-1'
-													src='icon/eye-filled.png'
-													alt='eye'
-												/>
-												<span>15,000</span>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</li>
-							<li className='swiper-slide'>
-								<img
-									className='w-100 mb-6'
-									src='Demo/demo-sm-10.png'
-									alt='demo-sm-10'
-								/>
-								<ul className='d-flex flex-column'>
-									<li className='d-flex justify-content-between mb-3'>
-										<time
-											dateTime='2024/8/15-2024/9/15'
-											className='font-family-Noto'>
-											2024/8/15-2024/9/15
-										</time>
-										<div>
-											<img
-												className='align-top ms-6'
-												src='icon/location_outlined.png'
-												alt='location_outlined'
-											/>
-											<span>台北市</span>
-										</div>
-									</li>
-									<li className='mb-6'>
-										<div className='d-flex'>
-											<h3 className='fw-700 fs-6 text-truncate'>
-												藝術中的女性力量
-											</h3>
-											<img
-												className='align-top'
-												src='icon/Bookmark_add.png'
-												alt='Bookmark_add'
-											/>
-										</div>
-									</li>
-									<li className='mb-6'>
-										<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-											#女性藝術
-										</span>
-										<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-											#女性力量
-										</span>
-									</li>
-									<li className='mb-6'>
-										<p>
-											這場展覽專注於展示女性藝術家的力量與創造力，透過她們的作品探討女性在當代藝術中的角色與貢獻。每件作品都代表了女性藝術家們對社會、身份與性別問題的獨特視角，強調了女性在藝術領域中的不可忽視的重要性。展覽展示了多樣化的藝術形式，從繪畫到裝置藝術，表現了女性藝術家們在各個領域中的卓越表現，為觀眾提供了一個全新視角來理解藝術與性別的交互關係。
-										</p>
-									</li>
-									<li>
-										<div className='d-flex'>
-											<div>
-												<img
-													className='align-top me-1'
-													src='icon/heart-outline.png'
-													alt='heart'
-												/>
-												<span>1,200</span>
-											</div>
-											<div className='ms-6'>
-												<img
-													className='align-top me-1'
-													src='icon/eye-filled.png'
-													alt='eye'
-												/>
-												<span>15,000</span>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
+					<HomeHotDemo />
 
 					<div className='text-center mt-10'>
-						<a
-							href='#'
+						<button
 							className='btn btn-gray-700 text-gray-000 py-2'
 							role='button'>
 							查看更多
-						</a>
+						</button>
 					</div>
 				</div>
 
@@ -1237,16 +596,18 @@ export default function HomePage() {
 							alt='line-1'
 						/>
 					</h2>
-					<img
-						className='round-position-lg-left'
-						src='deco/round-lg-2.png'
-						alt='round-lg-2.png'
-					/>
-					<img
-						className='round-position-lg-right'
-						src='deco/round-lg-1.png'
-						alt='round-lg-1.png'
-					/>
+					<div>
+						<img
+							className='round-position-lg-left'
+							src='deco/round-lg-2.png'
+							alt='round-lg-2.png'
+						/>
+						<img
+							className='round-position-lg-right'
+							src='deco/round-lg-1.png'
+							alt='round-lg-1.png'
+						/>
+					</div>
 
 					<ul className='row gy-100 mb-15 position-relative z-2'>
 						<li className='col-5'>
@@ -1465,12 +826,11 @@ export default function HomePage() {
 					</ul>
 
 					<div className='text-center'>
-						<a
-							href='#'
-							className='btn btn-gray-700 text-gray-000 py-2'
+						<button
+							className='btn btn-gray-700 text-gray-000 py-2 btn-read-more'
 							role='button'>
 							查看更多
-						</a>
+						</button>
 					</div>
 				</div>
 			</section>
@@ -1553,9 +913,8 @@ export default function HomePage() {
 									<p>與我們合作，通過藝展任意門擴展推廣渠道，提升曝光度！</p>
 								</div>
 								<Link
-									href='#'
-									type='button'
-									className='btn btn-gray-1000 py-4 px-6 d-flex align-items-center text-gray-000 fw-700'>
+									to={"/"}
+									className='btn btn-gray-1000 py-4 px-6 d-flex align-items-center text-gray-000 fw-700 '>
 									<span>展覽主辦方申請</span>
 									<span className='material-symbols-outlined p-0 ms-4'>
 										arrow_right_alt

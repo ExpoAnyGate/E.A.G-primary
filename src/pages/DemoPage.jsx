@@ -34,7 +34,7 @@ export default function DemoPage({}) {
 
     useEffect(() => {
         getDemoData();
-      }, []);
+      }, [demo_id]);
 
 
   return (

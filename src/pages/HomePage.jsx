@@ -7,8 +7,24 @@ import DemoRecommend from "../layouts/DemoRecommend";
 import AOS from "aos";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 export default function HomePage() {
+	const getLastDemoList = async () => {
+		try {
+			const res = await axios.get(
+				`${API_URL}}/api/exhibitions?_sort=likes&_order=desc&_page=0&_limit=3`,
+				{
+					headers: { "api-key": `${API_KEY}` },
+				}
+			);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	useEffect(() => {
 		AOS.init({ once: false });
 		setTimeout(() => {

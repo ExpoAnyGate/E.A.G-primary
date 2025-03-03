@@ -3,7 +3,8 @@ import "@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+const API_URL = import.meta.env.VITE_API_URL;
+const API_KEY = import.meta.env.VITE_API_KEY;
 const DemoSearchBar = () => {
 	const timePickerSM = useRef(null);
 	const timePickerLG = useRef(null);
@@ -17,9 +18,6 @@ const DemoSearchBar = () => {
 	const [categorySelectedLG, setCategorySelectedLG] = useState("");
 	const [cityList, setCityList] = useState([]);
 	const [categoryList, setCategoryList] = useState([]);
-
-	const API_URL = "https://e-a-g-api.vercel.app";
-	const API_KEY = "ZtQ5rmRFtoev3sK1eFTLnEaP";
 
 	const getCityList = async () => {
 		try {

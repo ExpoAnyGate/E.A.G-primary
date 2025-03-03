@@ -6,15 +6,62 @@ import HomeHotDemo from "../components/HomeHotDemo";
 import DemoRecommend from "../layouts/DemoRecommend";
 import AOS from "aos";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 export default function HomePage() {
+	const [lastDemo, setLastDemo] = useState([]);
+	const [hotDemo, setHotDemo] = useState([]);
+
+	const lastDemoImg = [
+		{ sm: "Demo/demo-sm-11.png", lg: "Demo/demo-sm-11.png" },
+		{ sm: "Demo/demo-sm-8.png", lg: "Demo/demo-sm-8.png" },
+		{ sm: "Demo/demo-sm-7.png", lg: "Demo/demo-lg-7.png" },
+	];
+
+	const hotDemoImg = [
+		{ sm: "Demo/demo-sm-12.png", lg: "Demo/demo-lg-12.png" },
+		{ sm: "Demo/demo-sm-1.png", lg: "Demo/demo-lg-1.png" },
+		{ sm: "Demo/demo-sm-10.png", lg: "Demo/demo-lg-10.png" },
+	];
+
+	const getLastDemo = async () => {
+		try {
+			const res = await axios.get(
+				`${API_URL}/api/exhibitions?_sort=start_date&_order=desc&_page=0&_limit=3`,
+				{
+					headers: { "api-key": `${API_KEY}` },
+				}
+			);
+			setLastDemo(res.data.data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const getHotDemo = async () => {
+		try {
+			const res = await axios.get(
+				`${API_URL}/api/exhibitions?_sort=views&_order=desc&_page=0&_limit=3`,
+				{
+					headers: { "api-key": `${API_KEY}` },
+				}
+			);
+			setHotDemo(res.data.data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	useEffect(() => {
 		AOS.init({ once: false });
 		setTimeout(() => {
-			// 強制重新計算動畫元素位置
 			AOS.refresh();
 		}, 200);
+		getLastDemo();
+		getHotDemo();
 	}, []);
 
 	return (
@@ -84,6 +131,7 @@ export default function HomePage() {
 			{/* 展覽推薦	 */}
 			<DemoRecommend />
 
+			{/* 最新展覽 */}
 			<section className='bg-primary-50 overflow-hidden'>
 				<div className='container py-sm-80 last-demo py-lg-120 position-relative'>
 					<h2 className='fw-700 position-relative mb-15'>
@@ -95,7 +143,7 @@ export default function HomePage() {
 						/>
 					</h2>
 
-					{/* <!-- 手機版 --> */}
+					{/* <!-- 手機版裝飾 --> */}
 					<div>
 						<img
 							className='linegp-position-sm-2 linegp-position-sm-2-transform d-md-none'
@@ -130,177 +178,65 @@ export default function HomePage() {
 					{/* <!-- 手機版 --> */}
 					<div className='d-md-none'>
 						<ul className='row gy-17 position-relative z-2'>
-							<li className='col-12'>
-								<div className='d-flex flex-column'>
-									<picture>
-										<source
-											media='(min-width: 768px)'
-											srcSet='Demo/demo-lg-11.png'
-										/>
-										<img
-											className='w-100'
-											src='Demo/demo-sm-11.png'
-											alt='demo-sm-6'
-										/>
-									</picture>
-									<ul className='mt-4 text-gray-700'>
-										<li className='mb-4 d-flex justify-content-between'>
-											<time
-												dateTime='2024/8/15-2024/9/15'
-												className='font-family-Noto'>
-												2024/8/15-2024/9/15
-											</time>
-										</li>
-										<li className='mb-4'>
-											<div className='d-flex'>
-												<h3 className='fw-700 fs-6 text-truncate'>
-													夢境與現實
-												</h3>
-												<img
-													className='align-top'
-													src='icon/Bookmark_add.png'
-													alt='Bookmark_add'
-												/>
-											</div>
-										</li>
-										<li className='mb-4'>
-											<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-												#超現實主義
-											</span>
-											<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-												#夢幻藝術
-											</span>
-										</li>
-										<li className='mb-4'>
-											<p className='fs-4 fw-400'>
-												這場展覽帶領觀眾進入超現實主義的夢幻世界，模糊了夢境與現實的界線。每一幅作品都充滿了象徵與隱喻，讓人思考潛意識、夢想與現實之間的關係。藝術家通過奇異的場景與不合常理的組合，挑戰了我們對現實的理解。這場展覽是一場視覺的冒險，邀請觀眾在畫布中探索那些難以解釋的世界，並重新審視日常生活中被忽略的奇蹟。
-											</p>
-										</li>
-										<li className='mb-4'>
-											<a
-												href='#'
-												className='btn btn-gray-000 border-gray-400'
-												role='button'>
-												瞭解更多
-											</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li className='col-12'>
-								<div className='d-flex flex-column'>
-									<picture>
-										<source
-											media='(min-width: 768px)'
-											srcSet='Demo/demo-lg-8.png'
-										/>
-										<img
-											className='w-100'
-											src='Demo/demo-sm-8.png'
-											alt='demo-sm-6'
-										/>
-									</picture>
-									<ul className='mt-4 text-gray-700'>
-										<li className='mb-4 d-flex justify-content-between'>
-											<time
-												dateTime='2024/8/15-2024/9/15'
-												className='font-family-Noto'>
-												2024/8/15-2024/9/15
-											</time>
-										</li>
-										<li className='mb-4'>
-											<div className='d-flex'>
-												<h3 className='fw-700 fs-6 text-truncate'>
-													無形之美：雕塑與空間的對話
-												</h3>
-												<img
-													className='align-top'
-													src='icon/Bookmark_add.png'
-													alt='Bookmark_add'
-												/>
-											</div>
-										</li>
-										<li className='mb-4'>
-											<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-												#雕塑藝術
-											</span>
-											<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-												#空間美學
-											</span>
-										</li>
-										<li className='mb-4'>
-											<p className='fs-4 fw-400'>
-												這場雕塑展超越了傳統的雕塑藝術表達形式，探索了雕塑作品與其所處空間之間的互動。每件作品不僅是獨立的藝術品，還與周圍環境形成對話，通過材質、形狀和比例，重新定義了空間的使用與感知。藝術家們運用金屬、木材、玻璃等多種材料，創造出令人驚嘆的雕塑作品，挑戰觀眾對空間、物質和形態的既有認識。這場展覽不僅邀請觀眾從不同角度欣賞雕塑的形態美，更鼓勵人們思考空間與人之間的關係。
-											</p>
-										</li>
-										<li className='mb-4'>
-											<a
-												href='#'
-												className='btn btn-gray-000 border-gray-400'
-												role='button'>
-												瞭解更多
-											</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li className='col-12'>
-								<div className='d-flex flex-column'>
-									<picture>
-										<source
-											media='(min-width: 768px)'
-											srcSet='Demo/demo-lg-7.png'
-										/>
-										<img
-											className='w-100'
-											src='Demo/demo-sm-7.png'
-											alt='demo-sm-6'
-										/>
-									</picture>
-									<ul className='mt-4 text-gray-700'>
-										<li className='mb-4 d-flex justify-content-between'>
-											<time
-												dateTime='2024/8/15-2024/9/15'
-												className='font-family-Noto'>
-												2024/8/15-2024/9/15
-											</time>
-										</li>
-										<li className='mb-4'>
-											<div className='d-flex'>
-												<h3 className='fw-700 fs-6 text-truncate'>
-													自然的回聲：環保主題藝術展
-												</h3>
-												<img
-													className='align-top'
-													src='icon/Bookmark_add.png'
-													alt='Bookmark_add'
-												/>
-											</div>
-										</li>
-										<li className='mb-4'>
-											<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-												#環保藝術
-											</span>
-											<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-												#自然力量
-											</span>
-										</li>
-										<li className='mb-4'>
-											<p className='fs-4 fw-400'>
-												以環保為主題，這場展覽通過藝術家的視角，表達了對自然的敬畏和對環境問題的關注。作品涵蓋繪畫、雕塑、裝置藝術和多媒體創作，每一件作品都反映了藝術家對自然環境的深刻洞察與思考。這些作品不僅展現了自然的美麗，還強調了環境的脆弱性，呼籲觀眾採取行動，保護我們的地球。觀眾在參觀展覽的同時，會不自覺地反思我們與自然的關係，並被激勵去更深刻地理解和關心我們賴以生存的環境。
-											</p>
-										</li>
-										<li className='mb-4'>
-											<a
-												href='#'
-												className='btn btn-gray-000 border-gray-400'
-												role='button'>
-												瞭解更多
-											</a>
-										</li>
-									</ul>
-								</div>
-							</li>
+							{lastDemo.map((demo, index) => {
+								return (
+									<li key={demo.id} className='col-12'>
+										<div className='d-flex flex-column'>
+											<img
+												className='w-100'
+												src={lastDemoImg[index].sm}
+												alt='demo-sm-6'
+											/>
+											<ul className='mt-4 text-gray-700'>
+												<li className='mb-4 d-flex justify-content-between'>
+													<time
+														dateTime={`${demo.start_date} - ${demo.end_date}`}
+														className='font-family-Noto'>
+														{`${demo.start_date.split("-")[0]}/${
+															demo.start_date.split("-")[1]
+														}/${demo.start_date.split("-")[2]} - 
+														${demo.end_date.split("-")[0]}/${demo.end_date.split("-")[1]}/${
+															demo.end_date.split("-")[2]
+														}`}
+													</time>
+												</li>
+												<li className='mb-4'>
+													<div className='d-flex'>
+														<h3 className='fw-700 fs-6 text-truncate'>
+															{demo.title}
+														</h3>
+														<span className='material-symbols-outlined p-0 fs-6'>
+															bookmarks
+														</span>
+													</div>
+												</li>
+												<li className='mb-4'>
+													{demo.tags.map((tag) => {
+														return (
+															<span
+																key={tag}
+																className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2 me-5'>
+																#{tag}
+															</span>
+														);
+													})}
+												</li>
+												<li className='mb-4'>
+													<p className='fs-4 fw-400'>{demo.description}</p>
+												</li>
+												<li className='mb-4'>
+													<Link
+														to={"/demo"}
+														className='btn btn-gray-000 border-gray-400'
+														role='button'>
+														瞭解更多
+													</Link>
+												</li>
+											</ul>
+										</div>
+									</li>
+								);
+							})}
 						</ul>
 						<div className='text-center mt-10'>
 							<button
@@ -314,172 +250,69 @@ export default function HomePage() {
 					{/* <!-- 平板以上 --> */}
 					<div className='d-none d-md-block position-relative z-3'>
 						<div className='d-flex flex-column'>
-							<ul className='row mb-17'>
-								<li className='col-7'>
-									<div className='overflow-hidden border-top-left-radius-100 border-bottom-left-radius-10 border-top-right-radius-10 border-bottom-right-radius-100'>
-										<img
-											className='w-100 img-enlarge object-fit-cover'
-											src='Demo/demo-lg-11.png'
-											alt='demo-11'
-										/>
-									</div>
-								</li>
-								<li className='col-5'>
-									<ul className='text-gray-700'>
-										<li className='mb-4 d-flex justify-content-between'>
-											<time
-												dateTime='2024/8/15-2024/9/15'
-												className='font-family-Noto'>
-												2024/8/15-2024/9/15
-											</time>
-										</li>
-										<li className='mb-4'>
-											<div className='d-flex'>
-												<h3 className='fw-700 fs-6 text-truncate'>
-													夢境與現實
-												</h3>
+							{lastDemo.map((demo, index) => {
+								return (
+									<ul key={demo.id} className='row mb-17'>
+										<li className='col-7'>
+											<div className='overflow-hidden border-top-left-radius-100 border-bottom-left-radius-10 border-top-right-radius-10 border-bottom-right-radius-100'>
 												<img
-													className='align-top'
-													src='icon/Bookmark_add.png'
-													alt='Bookmark_add'
+													className='w-100 img-enlarge object-fit-cover'
+													src={lastDemoImg[index].lg}
+													alt='demo-11'
 												/>
 											</div>
 										</li>
-										<li className='mb-4'>
-											<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-												#超現實主義
-											</span>
-											<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-												#夢幻藝術
-											</span>
-										</li>
-										<li className='mb-4'>
-											<p className='fs-4 fw-400'>
-												這場展覽帶領觀眾進入超現實主義的夢幻世界，模糊了夢境與現實的界線。每一幅作品都充滿了象徵與隱喻，讓人思考潛意識、夢想與現實之間的關係。藝術家通過奇異的場景與不合常理的組合，挑戰了我們對現實的理解。這場展覽是一場視覺的冒險，邀請觀眾在畫布中探索那些難以解釋的世界，並重新審視日常生活中被忽略的奇蹟。
-											</p>
-										</li>
-										<li className='mb-4'>
-											<a
-												href='#'
-												role='button'
-												className='btn btn-gray-000 border-gray-400 align-middle py-2'>
-												瞭解更多
-											</a>
-										</li>
-									</ul>
-								</li>
-							</ul>
-							<ul className='row mb-17'>
-								<li className='col-5'>
-									<ul className='text-gray-700'>
-										<li className='mb-4 d-flex justify-content-between'>
-											<time
-												dateTime='2024/8/15-2024/9/15'
-												className='font-family-Noto'>
-												2024/8/15-2024/9/15
-											</time>
-										</li>
-										<li className='mb-4'>
-											<div className='d-flex'>
-												<h3 className='fw-700 fs-6 text-truncate'>
-													無形之美：雕塑與空間的對話
-												</h3>
-												<img
-													className='align-top'
-													src='icon/Bookmark_add.png'
-													alt='Bookmark_add'
-												/>
-											</div>
-										</li>
-										<li className='mb-4'>
-											<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-												#空間美學
-											</span>
-											<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-												#雕塑藝術
-											</span>
-										</li>
-										<li className='mb-4'>
-											<p className='fs-4 fw-400'>
-												這場雕塑展超越了傳統的雕塑藝術表達形式，探索了雕塑作品與其所處空間之間的互動。每件作品不僅是獨立的藝術品，還與周圍環境形成對話，通過材質、形狀和比例，重新定義了空間的使用與感知。藝術家們運用金屬、木材、玻璃等多種材料，創造出令人驚嘆的雕塑作品，挑戰觀眾對空間、物質和形態的既有認識。這場展覽不僅邀請觀眾從不同角度欣賞雕塑的形態美，更鼓勵人們思考空間與人之間的關係。
-											</p>
-										</li>
-										<li className='mb-4'>
-											<a
-												href='#'
-												role='button'
-												className='btn btn-gray-000 border-gray-400 align-middle py-2'>
-												瞭解更多
-											</a>
+										<li className='col-5'>
+											<ul className='text-gray-700'>
+												<li className='mb-4 d-flex justify-content-between'>
+													<time
+														dateTime={`${demo.start_date} - ${demo.end_date}`}
+														className='font-family-Noto'>
+														{`${demo.start_date.split("-")[0]}/${
+															demo.start_date.split("-")[1]
+														}/${demo.start_date.split("-")[2]} - 
+														${demo.end_date.split("-")[0]}/${demo.end_date.split("-")[1]}/${
+															demo.end_date.split("-")[2]
+														}`}
+													</time>
+												</li>
+												<li className='mb-4'>
+													<div className='d-flex'>
+														<h3 className='fw-700 fs-6 text-truncate'>
+															{demo.title}
+														</h3>
+														<span className='material-symbols-outlined p-0 fs-6'>
+															bookmarks
+														</span>
+													</div>
+												</li>
+												<li className='mb-4'>
+													{demo.tags.map((tag) => {
+														return (
+															<span
+																key={tag}
+																className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2 me-5'>
+																#{tag}
+															</span>
+														);
+													})}
+												</li>
+												<li className='mb-4'>
+													<p className='fs-4 fw-400'>{demo.description}</p>
+												</li>
+												<li className='mb-4'>
+													<button
+														href='#'
+														role='button'
+														className='btn btn-gray-000 border-gray-400 align-middle py-2'>
+														瞭解更多
+													</button>
+												</li>
+											</ul>
 										</li>
 									</ul>
-								</li>
-								<li className='col-7'>
-									<div className='overflow-hidden border-top-left-radius-10 border-top-right-radius-100 border-bottom-right-radius-10 border-bottom-left-radius-100'>
-										<img
-											className='w-100 img-enlarge object-fit-cover'
-											src='Demo/demo-lg-8.png'
-											alt='demo-8'
-										/>
-									</div>
-								</li>
-							</ul>
-							<ul className='row mb-17'>
-								<li className='col-7'>
-									<div className='overflow-hidden border-top-left-radius-100 border-bottom-left-radius-10 border-top-right-radius-10 border-bottom-right-radius-100'>
-										<img
-											className='w-100 img-enlarge object-fit-cover'
-											src='Demo/demo-lg-7.png'
-											alt='demo-7'
-										/>
-									</div>
-								</li>
-								<li className='col-5'>
-									<ul className='text-gray-700'>
-										<li className='mb-4 d-flex justify-content-between'>
-											<time
-												dateTime='2024/8/15-2024/9/15'
-												className='font-family-Noto'>
-												2024/8/15-2024/9/15
-											</time>
-										</li>
-										<li className='mb-4'>
-											<div className='d-flex'>
-												<h3 className='fw-700 fs-6 text-truncate'>
-													自然的回聲：環保主題藝術展
-												</h3>
-												<img
-													className='align-top'
-													src='icon/Bookmark_add.png'
-													alt='Bookmark_add'
-												/>
-											</div>
-										</li>
-										<li className='mb-4'>
-											<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-												#環保藝術
-											</span>
-											<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-												#自然力量
-											</span>
-										</li>
-										<li className='mb-4'>
-											<p className='fs-4 fw-400'>
-												以環保為主題，這場展覽通過藝術家的視角，表達了對自然的敬畏和對環境問題的關注。作品涵蓋繪畫、雕塑、裝置藝術和多媒體創作，每一件作品都反映了藝術家對自然環境的深刻洞察與思考。這些作品不僅展現了自然的美麗，還強調了環境的脆弱性，呼籲觀眾採取行動，保護我們的地球。觀眾在參觀展覽的同時，會不自覺地反思我們與自然的關係，並被激勵去更深刻地理解和關心我們賴以生存的環境。
-											</p>
-										</li>
-										<li className='mb-4'>
-											<a
-												href='#'
-												role='button'
-												className='btn btn-gray-000 border-gray-400 align-middle py-2'>
-												瞭解更多
-											</a>
-										</li>
-									</ul>
-								</li>
-							</ul>
-
+								);
+							})}
 							<button
 								className='btn btn-read-more btn-gray-700 text-gray-000 mx-auto py-2'
 								role='button'>
@@ -490,6 +323,7 @@ export default function HomePage() {
 				</div>
 			</section>
 
+			{/* 熱門展覽 */}
 			<section className='bg-tertiary-50 overflow-hidden'>
 				{/* <!-- 手機版 --> */}
 				<div className='container d-md-none hot-demo py-sm-80 position-relative'>
@@ -507,75 +341,7 @@ export default function HomePage() {
 						alt='round-sm-2'
 					/>
 
-					<div className='mb-100'>
-						<img
-							className='w-100 mb-4'
-							src='Demo/demo-sm-12.png'
-							alt='demo-sm-12'
-						/>
-						<ul className='d-flex flex-column'>
-							<li className='d-flex justify-content-between mb-3'>
-								<time
-									dateTime='2024/8/15-2024/9/15'
-									className='font-family-Noto'>
-									2024/8/15-2024/9/15
-								</time>
-								<div>
-									<img
-										className='align-top ms-6'
-										src='icon/location_outlined.png'
-										alt='location_outlined'
-									/>
-									<span>新北市</span>
-								</div>
-							</li>
-							<li className='mb-6'>
-								<div className='d-flex'>
-									<h3 className='fw-700 fs-6 text-truncate'>記憶的印記</h3>
-									<img
-										className='align-top'
-										src='icon/Bookmark_add.png'
-										alt='Bookmark_add'
-									/>
-								</div>
-							</li>
-							<li className='mb-6'>
-								<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-									#歷史影像
-								</span>
-								<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-									#時光記憶
-								</span>
-							</li>
-							<li className='mb-6'>
-								<p className='d-block h-auto'>
-									這場展覽通過歷史影像，將觀眾帶回過去的關鍵時刻，重溫那些影響我們生活的重大事件。從戰爭到革命，從個人故事到集體記憶，每一張照片都記錄了人類歷史中的重要瞬間。展覽不僅讓我們重新認識歷史，更幫助我們理解這些事件如何塑造了現代世界。透過這些珍貴的影像，觀眾能夠深入思考歷史的連續性，並對當下的社會現象有更深的理解。
-								</p>
-							</li>
-							<li>
-								<div className='d-flex'>
-									<div>
-										<img
-											className='align-top me-1'
-											src='icon/heart-outline.png'
-											alt='heart'
-										/>
-										<span>1,200</span>
-									</div>
-									<div className='ms-6'>
-										<img
-											className='align-top me-1'
-											src='icon/eye-filled.png'
-											alt='eye'
-										/>
-										<span>15,000</span>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-
-					<HomeHotDemo />
+					<HomeHotDemo hotDemo={hotDemo} hotDemoImg={hotDemoImg} />
 
 					<div className='text-center mt-10'>
 						<button
@@ -612,217 +378,157 @@ export default function HomePage() {
 					<ul className='row gy-100 mb-15 position-relative z-2'>
 						<li className='col-5'>
 							<ul className='d-flex flex-column'>
-								<li className='d-flex mb-3'>
+								<li className='d-flex mb-3 '>
 									<time
-										dateTime='2024/8/15-2024/9/15'
+										dateTime={`${hotDemo[0]?.start_date} - ${hotDemo[0]?.end_date}`}
 										className='font-family-Noto'>
-										2024/8/15-2024/9/15
+										{`${hotDemo[0]?.start_date.split("-")[0]}/${
+											hotDemo[0]?.start_date.split("-")[1]
+										}/${hotDemo[0]?.start_date.split("-")[2]} - 
+							${hotDemo[0]?.end_date.split("-")[0]}/${hotDemo[0]?.end_date.split("-")[1]}/${
+											hotDemo[0]?.end_date.split("-")[2]
+										}`}
 									</time>
-									<div>
+									<div className='text-nowrap'>
 										<img
 											className='align-top ms-6'
 											src='icon/location_outlined.png'
 											alt='location_outlined'
 										/>
-										<span>新北市</span>
+										<span>{hotDemo[0]?.address}</span>
 									</div>
 								</li>
 								<li className='mb-6'>
 									<div className='d-flex'>
-										<h3 className='fw-700 fs-6 text-truncate'>記憶的印記</h3>
-										<img
-											className='align-top'
-											src='icon/Bookmark_add.png'
-											alt='Bookmark_add'
-										/>
+										<h3 className='fw-700 fs-6 text-truncate'>
+											{hotDemo[0]?.title}
+										</h3>
+										<span className='material-symbols-outlined p-0 fs-6'>
+											bookmarks
+										</span>
 									</div>
 								</li>
 								<li className='mb-6'>
-									<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-										#歷史影像
-									</span>
-									<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-										#時光記憶
-									</span>
+									{hotDemo[0]?.tags.map((tag) => {
+										return (
+											<span
+												key={tag}
+												className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2 me-5'>
+												# {tag}
+											</span>
+										);
+									})}
 								</li>
 								<li className='mb-6'>
-									<p className='d-block h-auto'>
-										這場展覽通過歷史影像，將觀眾帶回過去的關鍵時刻，重溫那些影響我們生活的重大事件。從戰爭到革命，從個人故事到集體記憶，每一張照片都記錄了人類歷史中的重要瞬間。展覽不僅讓我們重新認識歷史，更幫助我們理解這些事件如何塑造了現代世界。透過這些珍貴的影像，觀眾能夠深入思考歷史的連續性，並對當下的社會現象有更深的理解。
-									</p>
+									<div className='main-box'>{hotDemo[0]?.description}</div>
 								</li>
 								<li>
 									<div className='d-flex'>
 										<div>
-											<img
-												className='align-top me-1'
-												src='icon/heart-outline.png'
-												alt='heart'
-											/>
-											<span>1,200</span>
+											<span className='fs-6 text-danger align-middle me-1 p-0 material-symbols-outlined'>
+												favorite
+											</span>
+											<span>{hotDemo[0]?.likes}</span>
 										</div>
 										<div className='ms-6'>
-											<img
-												className='align-top me-1'
-												src='icon/eye-filled.png'
-												alt='eye'
-											/>
-											<span>15,000</span>
+											<span className='fs-6 align-middle me-1 p-0 material-symbols-outlined material-symbols-filled '>
+												visibility
+											</span>
+											<span>{hotDemo[0]?.views}</span>
 										</div>
 									</div>
 								</li>
 							</ul>
 						</li>
 						<li className='col-7'>
-							<div className='overflow-hidden border-top-left-radius-50 border-top-right-radius-50 border-bottom-right-radius-10 border-bottom-left-radius-10'>
+							<div className=' overflow-hidden border-top-left-radius-50 border-top-right-radius-50 border-bottom-right-radius-10 border-bottom-left-radius-10'>
 								<img
-									className='w-100 object-fit-cover img-enlarge'
-									src='Demo/demo-lg-12.png'
+									className=' w-100 object-fit-cover img-enlarge'
+									src={hotDemoImg[0].lg}
 									alt='demo-lg-12'
 								/>
 							</div>
 						</li>
-						<li className='col-6 pe-14'>
-							<div className='mb-4 overflow-hidden border-top-left-radius-50 border-top-right-radius-50 border-bottom-right-radius-10 border-bottom-left-radius-10'>
-								<img
-									className='w-100 img-enlarge object-fit-cover'
-									src='Demo/demo-lg-1.png'
-									alt='demo-lg-1'
-								/>
-							</div>
-							<ul className='d-flex flex-column'>
-								<li className='d-flex mb-3'>
-									<time
-										dateTime='2024/8/15-2024/9/15'
-										className='font-family-Noto'>
-										2024/8/15-2024/9/15
-									</time>
-									<div>
-										<img
-											className='align-top ms-6'
-											src='icon/location_outlined.png'
-											alt='location_outlined'
-										/>
-										<span>台北市</span>
-									</div>
-								</li>
-								<li className='mb-6'>
-									<div className='d-flex'>
-										<h3 className='fw-700 fs-6 text-truncate'>
-											聲音與視覺的對話
-										</h3>
-										<img
-											className='align-top'
-											src='icon/Bookmark_add.png'
-											alt='Bookmark_add'
-										/>
-									</div>
-								</li>
-								<li className='mb-6'>
-									<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-										#多媒體藝術
-									</span>
-									<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-										#視覺體驗
-									</span>
-								</li>
-								<li className='mb-6'>
-									<p>
-										這場展覽將聲音與視覺融合，展示了當代多媒體藝術的創新表達方式。藝術家們通過聲音裝置、視覺影像與互動技術，創造出跨感官的藝術體驗，讓觀眾沉浸在聲音與視覺的對話之中。展覽打破了傳統藝術的界限，探索了聲音與視覺如何共同作用於我們的感知與情感。這是一場多感官的藝術之旅，邀請觀眾進入一個充滿聲音與圖像交織的世界，並重新思考藝術的可能性。
-									</p>
-								</li>
-								<li>
-									<div className='d-flex'>
-										<div>
+
+						{hotDemo.map((_, i, demos) => {
+							return (
+								i !== 0 && (
+									<li key={demos[i]?.id} className='col-6'>
+										<div className='mb-4 overflow-hidden border-top-left-radius-50 border-top-right-radius-50 border-bottom-right-radius-10 border-bottom-left-radius-10'>
 											<img
-												className='align-top me-1'
-												src='icon/heart-outline.png'
-												alt='heart'
+												className='w-100 img-enlarge object-fit-cover'
+												src={hotDemoImg[i]?.lg}
+												alt='demo-lg-1'
 											/>
-											<span>1,200</span>
 										</div>
-										<div className='ms-6'>
-											<img
-												className='align-top me-1'
-												src='icon/eye-filled.png'
-												alt='eye'
-											/>
-											<span>15,000</span>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</li>
-						<li className='col-6 ps-14'>
-							<div className='mb-4 overflow-hidden border-top-left-radius-50 border-top-right-radius-50 border-bottom-right-radius-10 border-bottom-left-radius-10'>
-								<img
-									className='w-100 img-enlarge object-fit-cover'
-									src='Demo/demo-lg-10.png'
-									alt='demo-lg-10'
-								/>
-							</div>
-							<ul className='d-flex flex-column'>
-								<li className='d-flex mb-3'>
-									<time
-										dateTime='2024/8/15-2024/9/15'
-										className='font-family-Noto'>
-										2024/8/15-2024/9/15
-									</time>
-									<div>
-										<img
-											className='align-top ms-6'
-											src='icon/location_outlined.png'
-											alt='location_outlined'
-										/>
-										<span>台北市</span>
-									</div>
-								</li>
-								<li className='mb-6'>
-									<div className='d-flex'>
-										<h3 className='fw-700 fs-6 text-truncate'>
-											藝術中的女性力量
-										</h3>
-										<img
-											className='align-top'
-											src='icon/Bookmark_add.png'
-											alt='Bookmark_add'
-										/>
-									</div>
-								</li>
-								<li className='mb-6'>
-									<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-										#女性藝術
-									</span>
-									<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-										#女性力量
-									</span>
-								</li>
-								<li className='mb-6'>
-									<p>
-										這場展覽專注於展示女性藝術家的力量與創造力，透過她們的作品探討女性在當代藝術中的角色與貢獻。每件作品都代表了女性藝術家們對社會、身份與性別問題的獨特視角，強調了女性在藝術領域中的不可忽視的重要性。展覽展示了多樣化的藝術形式，從繪畫到裝置藝術，表現了女性藝術家們在各個領域中的卓越表現，為觀眾提供了一個全新視角來理解藝術與性別的交互關係。
-									</p>
-								</li>
-								<li>
-									<div className='d-flex'>
-										<div>
-											<img
-												className='align-top me-1'
-												src='icon/heart-outline.png'
-												alt='heart'
-											/>
-											<span>1,200</span>
-										</div>
-										<div className='ms-6'>
-											<img
-												className='align-top me-1'
-												src='icon/eye-filled.png'
-												alt='eye'
-											/>
-											<span>15,000</span>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</li>
+										<ul className='d-flex flex-column'>
+											<li className='d-flex mb-3'>
+												<time
+													dateTime={`${demos[i]?.start_date} - ${demos[i]?.end_date}`}
+													className='font-family-Noto'>
+													{`${demos[i]?.start_date.split("-")[0]}/${
+														demos[i]?.start_date.split("-")[1]
+													}/${demos[i]?.start_date.split("-")[2]} - 
+														${demos[i]?.end_date.split("-")[0]}/${demos[i]?.end_date.split("-")[1]}/${
+														demos[i]?.end_date.split("-")[2]
+													}`}
+												</time>
+												<div className='text-nowrap'>
+													<img
+														className='align-top ms-6'
+														src='icon/location_outlined.png'
+														alt='location_outlined'
+													/>
+													<span>{demos[i]?.address}</span>
+												</div>
+											</li>
+											<li className='mb-6'>
+												<div className='d-flex'>
+													<h3 className='fw-700 fs-6 text-truncate'>
+														{demos[i]?.title}
+													</h3>
+													<img
+														className='align-top'
+														src='icon/Bookmark_add.png'
+														alt='Bookmark_add'
+													/>
+												</div>
+											</li>
+											<li className='mb-6'>
+												{demos[i]?.tags.map((tag) => {
+													return (
+														<span
+															key={tag}
+															className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2 me-5'>
+															#{tag}
+														</span>
+													);
+												})}
+											</li>
+											<li className='mb-6'>
+												<p>{demos[i]?.description}</p>
+											</li>
+											<li>
+												<div className='d-flex'>
+													<div>
+														<span className='fs-6 text-danger align-middle me-1 p-0 material-symbols-outlined'>
+															favorite
+														</span>
+														<span>{demos[i]?.likes}</span>
+													</div>
+													<div className='ms-6'>
+														<span className='fs-6 align-middle me-1 p-0 material-symbols-outlined material-symbols-filled '>
+															visibility
+														</span>
+														<span>{demos[i]?.views}</span>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</li>
+								)
+							);
+						})}
 					</ul>
 
 					<div className='text-center'>

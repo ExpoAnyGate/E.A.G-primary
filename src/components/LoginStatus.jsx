@@ -62,7 +62,7 @@ function LoginStatus({}) {
 									<ul className='row'>
 										<li className='col-4'>
 											<span className='h-100 d-flex flex-column justify-content-center'>
-												<img src='common/lgoo-Dark.png' alt='logo-Dark' />
+												<img src='common/logo-Dark.png' alt='logo-Dark' />
 											</span>
 										</li>
 										<li className='col-8'>

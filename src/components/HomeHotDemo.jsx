@@ -6,89 +6,167 @@ import { useRef } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const HomeHotDemo = () => {
+const HomeHotDemo = ({ hotDemo, hotDemoImg }) => {
 	const swiperRef = useRef(null);
+	console.log(hotDemo[0]);
 
 	return (
 		<>
+			<div className='mb-100'>
+				<img className='w-100 mb-4' src={hotDemoImg[0].sm} alt='demo-sm-12' />
+				<ul className='d-flex flex-column'>
+					<li className='d-flex justify-content-between mb-3'>
+						<time
+							dateTime={`${hotDemo[0]?.start_date} - ${hotDemo[0]?.end_date}`}
+							className='font-family-Noto'>
+							{`${hotDemo[0]?.start_date.split("-")[0]}/${
+								hotDemo[0]?.start_date.split("-")[1]
+							}/
+							${hotDemo[0]?.start_date.split("-")[2]} - 
+							${hotDemo[0]?.end_date.split("-")[0]}/${hotDemo[0]?.end_date.split("-")[1]}/${
+								hotDemo[0]?.end_date.split("-")[2]
+							}`}
+						</time>
+						<div>
+							<img
+								className='align-top ms-6'
+								src='icon/location_outlined.png'
+								alt='location_outlined'
+							/>
+							<span>{hotDemo[0]?.address}</span>
+						</div>
+					</li>
+					<li className='mb-6'>
+						<div className='d-flex'>
+							<h3 className='fw-700 fs-6 text-truncate'>{hotDemo[0]?.title}</h3>
+							<span className='material-symbols-outlined p-0 fs-6'>
+								bookmarks
+							</span>
+						</div>
+					</li>
+					<li className='mb-6'>
+						{hotDemo[0]?.tags.map((tag) => {
+							return (
+								<span
+									key={tag}
+									className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2 me-5'>
+									#{tag}
+								</span>
+							);
+						})}
+					</li>
+					<li className='mb-6'>
+						<p className='d-block h-auto position-relative z-3'>
+							{hotDemo[0]?.description}
+						</p>
+					</li>
+					<li>
+						<div className='d-flex'>
+							<div>
+								<span className='fs-6 text-danger align-middle me-1 p-0 material-symbols-outlined'>
+									favorite
+								</span>
+								<span>{hotDemo[0]?.likes}</span>
+							</div>
+							<div className='ms-6'>
+								<span className='fs-6 align-middle me-1 p-0 material-symbols-outlined material-symbols-filled '>
+									visibility
+								</span>
+								<span>{hotDemo[0]?.views}</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+
 			<Swiper
 				modules={[Pagination]}
 				slidesPerView='auto'
 				spaceBetween={24}
 				onSwiper={(swiper) => (swiperRef.current = swiper)}
 				className='z-3 overflow-visible'>
-				<SwiperSlide className='swiper-slide'>
-					<Link to={"/demo"} className='d-block'>
-						<img
-							className='w-100 mb-6'
-							src='Demo/demo-sm-1.png'
-							alt='demo-sm-1'
-						/>
-						<ul className='d-flex flex-column'>
-							<li className='d-flex justify-content-between mb-3'>
-								<time
-									dateTime='2024/8/15-2024/9/15'
-									className='font-family-Noto'>
-									2024/8/15-2024/9/15
-								</time>
-								<div>
+				{hotDemo.map((_, i, demos) => {
+					return (
+						i !== 0 && (
+							<SwiperSlide key={demos[i]?.id} className='swiper-slide'>
+								<Link to={"/demo"} className='d-block'>
 									<img
-										className='align-top ms-6'
-										src='icon/location_outlined.png'
-										alt='location_outlined'
+										className='w-100 mb-6'
+										src={hotDemoImg[i]?.sm}
+										alt='demo-sm-1'
 									/>
-									<span>新北市</span>
-								</div>
-							</li>
-							<li className='mb-6'>
-								<div className='d-flex'>
-									<h3 className='fw-700 fs-6 text-truncate'>
-										聲音與視覺的對話
-									</h3>
-									<img
-										className='align-top'
-										src='icon/Bookmark_add.png'
-										alt='Bookmark_add'
-									/>
-								</div>
-							</li>
-							<li className='mb-6'>
-								<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-									#多媒體藝術
-								</span>
-								<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-									#視聽體驗
-								</span>
-							</li>
-							<li className='mb-6'>
-								<p>
-									這場展覽將聲音與視覺融合，展示了當代多媒體藝術的創新表達方式。藝術家們通過聲音裝置、視覺影像與互動技術，創造出跨感官的藝術體驗，讓觀眾沉浸在聲音與視覺的對話之中。展覽打破了傳統藝術的界限，探索了聲音與視覺如何共同作用於我們的感知與情感。這是一場多感官的藝術之旅，邀請觀眾進入一個充滿聲音與圖像交織的世界，並重新思考藝術的可能性。
-								</p>
-							</li>
-							<li>
-								<div className='d-flex'>
-									<div>
-										<img
-											className='align-top me-1'
-											src='icon/heart-outline.png'
-											alt='heart'
-										/>
-										<span>1,200</span>
-									</div>
-									<div className='ms-6'>
-										<img
-											className='align-top me-1'
-											src='icon/eye-filled.png'
-											alt='eye'
-										/>
-										<span>15,000</span>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</Link>
-				</SwiperSlide>
-				<SwiperSlide className='swiper-slide'>
+									<ul className='d-flex flex-column'>
+										<li className='d-flex justify-content-between mb-3'>
+											<time
+												dateTime={`${demos[i]?.start_date} - ${demos[i]?.end_date}`}
+												className='font-family-Noto'>
+												{`${demos[i]?.start_date.split("-")[0]}/${
+													demos[i]?.start_date.split("-")[1]
+												}/
+														${demos[i]?.start_date.split("-")[2]} - 
+														${demos[i]?.end_date.split("-")[0]}/${demos[i]?.end_date.split("-")[1]}/${
+													demos[i]?.end_date.split("-")[2]
+												}`}
+											</time>
+											<div>
+												<img
+													className='align-top ms-6'
+													src='icon/location_outlined.png'
+													alt='location_outlined'
+												/>
+												<span>{demos[i]?.address}</span>
+											</div>
+										</li>
+										<li className='mb-6'>
+											<div className='d-flex'>
+												<h3 className='fw-700 fs-6 text-truncate'>
+													{demos[i]?.title}
+												</h3>
+												<img
+													className='align-top'
+													src='icon/Bookmark_add.png'
+													alt='Bookmark_add'
+												/>
+											</div>
+										</li>
+										<li className='mb-6'>
+											{demos[i]?.tags.map((tag) => {
+												return (
+													<span
+														key={tag}
+														className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2 me-5'>
+														#{tag}
+													</span>
+												);
+											})}
+										</li>
+										<li className='mb-6'>
+											<p>{demos[i]?.description}</p>
+										</li>
+										<li>
+											<div className='d-flex'>
+												<div>
+													<span className='fs-6 text-danger align-middle me-1 p-0 material-symbols-outlined'>
+														favorite
+													</span>
+													<span>{demos[i]?.likes}</span>
+												</div>
+												<div className='ms-6'>
+													<span className='fs-6 align-middle me-1 p-0 material-symbols-outlined material-symbols-filled '>
+														visibility
+													</span>
+													<span>{demos[i]?.views}</span>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</Link>
+							</SwiperSlide>
+						)
+					);
+				})}
+
+				{/* <SwiperSlide className='swiper-slide'>
 					<Link to={"/demo"} className='d-block'>
 						<img
 							className='w-100 mb-6'
@@ -158,7 +236,7 @@ const HomeHotDemo = () => {
 							</li>
 						</ul>
 					</Link>
-				</SwiperSlide>
+				</SwiperSlide> */}
 			</Swiper>
 		</>
 	);
@@ -167,5 +245,11 @@ const HomeHotDemo = () => {
 export default HomeHotDemo;
 
 HomeHotDemo.propTypes = {
-	device: PropTypes.string,
+	hotDemo: PropTypes.shape({
+		start_date: PropTypes.string,
+		end_date: PropTypes.string,
+		address: PropTypes.string,
+		likes: PropTypes.number,
+		views: PropTypes.number,
+	}),
 };

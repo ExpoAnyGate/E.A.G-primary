@@ -291,9 +291,13 @@
 	}
 
 	.main-box {
-		height: 12rem;
+		height: 6rem;
+		-webkit-line-clamp: 4;
+		@include media-breakpoint-up(lg) {
+			height: 12rem;
+			-webkit-line-clamp: 8;
+		}
 		display: -webkit-box;
-		-webkit-line-clamp: 8;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
 		text-overflow: ellipsis;

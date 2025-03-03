@@ -1,12 +1,37 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
+import axios from "axios";
 import "swiper/css/pagination";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
+const API_KEY = import.meta.env.VITE_API_KEY;
 
-export default function DemoRecommend() {
+export default function HomeDemoRecommend() {
 	const swiperRef = useRef(null);
+	const [recommendDemo, setRecommendDemo] = useState([]);
+	const recommendDemoImg = [
+		{ sm: "Demo/demo-sm-6.png", lg: "Demo/demo-lg-6.png" },
+		{ sm: "Demo/demo-sm-3.png", lg: "Demo/demo-lg-3.png" },
+		{ sm: "Demo/demo-sm-13.png", lg: "Demo/demo-lg-13.png" },
+	];
+
+	const getRecommendDemo = async () => {
+		try {
+			const res = await axios.get(
+				`${API_URL}/api/exhibitions?featured=true&_page=0&_limit=5`,
+				{
+					headers: { "api-key": `${API_KEY}` },
+				}
+			);
+			setRecommendDemo(res.data.data);
+		} catch (error) {}
+	};
+
+	useEffect(() => {
+		getRecommendDemo();
+	}, []);
 
 	return (
 		<section className='bg-secondary-50 overflow-hidden'>
@@ -61,86 +86,97 @@ export default function DemoRecommend() {
 						}}
 						onSwiper={(swiper) => (swiperRef.current = swiper)}
 						className='z-3 overflow-visible'>
-						<SwiperSlide className='swiper-slide'>
-							<Link to={"/demo"} className='d-block'>
-								<div className='d-flex flex-column'>
-									<picture>
-										<source
-											media='(min-width: 768px)'
-											srcSet='Demo/demo-lg-6.png'
-										/>
-										<img
-											className='w-100'
-											src='Demo/demo-sm-6.png'
-											alt='demo-sm-6'
-										/>
-									</picture>
-									<ul className='mt-4 text-gray-700'>
-										<li className='mb-4 d-flex justify-content-between'>
-											<time
-												dateTime='2024/8/15-2024/9/15'
-												className='font-family-Noto'>
-												2024/8/15-2024/9/15
-											</time>
-											<div>
-												<img
-													className='align-top'
-													src='icon/location_outlined.png'
-													alt='location_outlined'
+						{recommendDemo.map((demo, i) => {
+							return (
+								<SwiperSlide key={demo.id} className='swiper-slide'>
+									<Link to={"/demo"} className='d-block'>
+										<div className='d-flex flex-column'>
+											<picture>
+												<source
+													media='(min-width: 768px)'
+													srcSet={
+														i < recommendDemoImg.length
+															? recommendDemoImg[i].lg
+															: recommendDemoImg[i - recommendDemoImg.length].lg
+													}
 												/>
-												<span>台北市</span>
-											</div>
-										</li>
-										<li className='mb-4'>
-											<div className='d-flex'>
-												<h3 className='fw-700 fs-6 text-truncate'>
-													光影交錯：攝影藝術展
-												</h3>
 												<img
-													className='align-top'
-													src='icon/Bookmark_add.png'
-													alt='Bookmark_add'
+													className='w-100'
+													src={
+														i < recommendDemoImg.length
+															? recommendDemoImg[i].sm
+															: recommendDemoImg[i - recommendDemoImg.length].sm
+													}
+													alt='demo-sm-6'
 												/>
-											</div>
-										</li>
-										<li className='mb-4'>
-											<span className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-												#攝影展
-											</span>
-											<span className='ms-4 rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2'>
-												#光影藝術
-											</span>
-										</li>
-										<li className='mb-4'>
-											<p className='fs-4 fw-400'>
-												透過鏡頭捕捉光與影的交錯瞬間，展現攝影師對日常與自然世界的深刻觀察，帶來一場視覺與情感的雙重饗宴。
-											</p>
-										</li>
-										<li className='mb-4'>
-											<div className='d-flex'>
-												<div>
-													<img
-														className='align-top me-1'
-														src='icon/heart-outline.png'
-														alt='heart'
-													/>
-													<span>1,200</span>
-												</div>
-												<div className='ms-6'>
-													<img
-														className='align-top me-1'
-														src='icon/eye-filled.png'
-														alt='eye'
-													/>
-													<span>15,000</span>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</Link>
-						</SwiperSlide>
-						<SwiperSlide className='swiper-slide'>
+											</picture>
+											<ul className='mt-4 text-gray-700'>
+												<li className='mb-4 d-flex justify-content-between'>
+													<time
+														dateTime={`${demo.start_date} - ${demo.end_date}`}
+														className='font-family-Noto'>
+														{`${demo.start_date.split("-").join("/")} - 
+														${demo.end_date.split("-").join("/")}`}
+													</time>
+													<div>
+														<img
+															className='align-top'
+															src='icon/location_outlined.png'
+															alt='location_outlined'
+														/>
+														<span>{demo.address}</span>
+													</div>
+												</li>
+												<li className='mb-4'>
+													<div className='d-flex'>
+														<h3 className='fw-700 fs-6 text-truncate'>
+															{demo.title}
+														</h3>
+														<img
+															className='align-top'
+															src='icon/Bookmark_add.png'
+															alt='Bookmark_add'
+														/>
+													</div>
+												</li>
+												<li className='mb-4'>
+													{demo.tags.map((tag) => {
+														return (
+															<span
+																key={tag}
+																className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2 me-5'>
+																#{tag}
+															</span>
+														);
+													})}
+												</li>
+												<li className='mb-4'>
+													<p className='fs-4 fw-400'>{demo.description}</p>
+												</li>
+												<li className='mb-4'>
+													<div className='d-flex'>
+														<div>
+															<span className='fs-6 text-danger align-middle me-1 p-0 material-symbols-outlined material-symbols-filled'>
+																favorite
+															</span>
+															<span>{demo.likes}</span>
+														</div>
+														<div className='ms-6'>
+															<span className='fs-6 align-middle me-1 p-0 material-symbols-outlined material-symbols-filled '>
+																visibility
+															</span>
+															<span>{demo.views}</span>
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</Link>
+								</SwiperSlide>
+							);
+						})}
+
+						{/* <SwiperSlide className='swiper-slide'>
 							<Link to={"/demo"} className='d-block'>
 								<div className='d-flex flex-column'>
 									<picture>
@@ -455,8 +491,9 @@ export default function DemoRecommend() {
 									</ul>
 								</div>
 							</Link>
-						</SwiperSlide>
+						</SwiperSlide> */}
 					</Swiper>
+
 					<div className='d-flex justify-content-bp-between-center  align-items-center mt-15'>
 						<button
 							className='btn btn-secondary-700 py-2 pe-3'

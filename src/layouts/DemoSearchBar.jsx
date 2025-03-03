@@ -2,6 +2,7 @@ import { TempusDominus } from "@eonasdan/tempus-dominus";
 import "@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const DemoSearchBar = () => {
 	const timePickerSM = useRef(null);
@@ -14,18 +15,33 @@ const DemoSearchBar = () => {
 	const [categorySelectedSM, setCategorySelectedSM] = useState("");
 	const [citySelectedLG, setCitySelectedLG] = useState("");
 	const [categorySelectedLG, setCategorySelectedLG] = useState("");
+	const [cityList, setCityList] = useState([]);
+	const [categoryList, setCategoryList] = useState([]);
 
-	const cityList = ["台北市", "新北市", "桃園市", "台中市", "台南市", "高雄市"];
-	const categoryList = [
-		"藝文",
-		"學習",
-		"漫畫",
-		"互動",
-		"資訊",
-		"科學",
-		"圖文",
-		"其他",
-	];
+	const API_URL = "https://e-a-g-api.vercel.app";
+	const API_KEY = "ZtQ5rmRFtoev3sK1eFTLnEaP";
+
+	const getCityList = async () => {
+		try {
+			const res = await axios.get(`${API_URL}/api/regions`, {
+				headers: { "api-key": `${API_KEY}` },
+			});
+			setCityList(res.data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const getCategoryList = async () => {
+		try {
+			const res = await axios.get(`${API_URL}/api/exhibitions_categories`, {
+				headers: { "api-key": `${API_KEY}` },
+			});
+			setCategoryList(res.data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	const cleanSearchSM = () => {
 		setCitySelectedSM("");
@@ -72,6 +88,8 @@ const DemoSearchBar = () => {
 	useEffect(() => {
 		getTimePicker(timePickerSM, timePickerInstanceSM);
 		getTimePicker(timePickerLG, timePickerInstanceLG);
+		getCityList();
+		getCategoryList();
 	}, []);
 
 	return (
@@ -89,8 +107,8 @@ const DemoSearchBar = () => {
 							</option>
 							{cityList.map((city) => {
 								return (
-									<option key={city} value={city}>
-										{city}
+									<option key={city.id} value={city.name}>
+										{city.name}
 									</option>
 								);
 							})}
@@ -106,8 +124,8 @@ const DemoSearchBar = () => {
 							</option>
 							{categoryList.map((category) => {
 								return (
-									<option key={category} value={category}>
-										{category}
+									<option key={category.id} value={category.name}>
+										{category.name}
 									</option>
 								);
 							})}
@@ -171,8 +189,8 @@ const DemoSearchBar = () => {
 								</option>
 								{cityList.map((city) => {
 									return (
-										<option key={city} value={city}>
-											{city}
+										<option key={city.id} value={city.name}>
+											{city.name}
 										</option>
 									);
 								})}
@@ -200,8 +218,8 @@ const DemoSearchBar = () => {
 								</option>
 								{categoryList.map((category) => {
 									return (
-										<option key={category} value={category}>
-											{category}
+										<option key={category.id} value={category.name}>
+											{category.name}
 										</option>
 									);
 								})}

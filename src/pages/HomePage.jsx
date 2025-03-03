@@ -16,8 +16,8 @@ export default function HomePage() {
 	const [hotDemo, setHotDemo] = useState([]);
 
 	const lastDemoImg = [
-		{ sm: "Demo/demo-sm-11.png", lg: "Demo/demo-sm-11.png" },
-		{ sm: "Demo/demo-sm-8.png", lg: "Demo/demo-sm-8.png" },
+		{ sm: "Demo/demo-sm-11.png", lg: "Demo/demo-lg-11.png" },
+		{ sm: "Demo/demo-sm-8.png", lg: "Demo/demo-lg-8.png" },
 		{ sm: "Demo/demo-sm-7.png", lg: "Demo/demo-lg-7.png" },
 	];
 

@@ -2,34 +2,54 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
 const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 const HomeHotDemo = () => {
 	const swiperRef = useRef(null);
 	const [hotDemo, setHotDemo] = useState([]);
+	const readMoreBtnLG = useRef(null);
+	const readMoreBtnSM = useRef(null);
+	const [clickCount, setClickCount] = useState(2);
+	const [isWaiting, setIsWaiting] = useState(false);
 
 	const hotDemoImg = [
 		{ sm: "Demo/demo-sm-12.png", lg: "Demo/demo-lg-12.png" },
 		{ sm: "Demo/demo-sm-1.png", lg: "Demo/demo-lg-1.png" },
 		{ sm: "Demo/demo-sm-10.png", lg: "Demo/demo-lg-10.png" },
+		{ sm: "Demo/demo-lg-17.jpg", lg: "Demo/demo-lg-17.jpg" },
+		{ sm: "Demo/demo-lg-18.jpg", lg: "Demo/demo-lg-18.jpg" },
+		{ sm: "Demo/demo-lg-19.jpg", lg: "Demo/demo-lg-19.jpg" },
+		{ sm: "Demo/demo-lg-20.jpg", lg: "Demo/demo-lg-20.jpg" },
+		{ sm: "Demo/demo-lg-21.jpg", lg: "Demo/demo-lg-21.jpg" },
+		{ sm: "Demo/demo-lg-22.jpg", lg: "Demo/demo-lg-22.jpg" },
+		{ sm: "Demo/demo-lg-23.jpg", lg: "Demo/demo-lg-23.jpg" },
+		{ sm: "Demo/demo-lg-24.jpg", lg: "Demo/demo-lg-24.jpg" },
 	];
 
-	const getHotDemo = async () => {
+	const getHotDemo = async (page = 0) => {
 		try {
+			setIsWaiting(true);
 			const res = await axios.get(
-				`${API_URL}/api/exhibitions?_sort=views&_order=desc&_page=0&_limit=3`,
+				`${API_URL}/api/exhibitions?_sort=views&_order=desc&_page=${page}&_limit=3`,
 				{
 					headers: { "api-key": `${API_KEY}` },
 				}
 			);
-			setHotDemo(res.data.data);
-		} catch (error) {}
+
+			if (page === 0) {
+				setHotDemo(res.data.data);
+			} else {
+				setHotDemo((pre) => [...pre, ...res.data.data]);
+				setClickCount((pre) => pre + 1);
+			}
+		} finally {
+			setIsWaiting(false);
+		}
 	};
 
 	useEffect(() => {
@@ -119,18 +139,26 @@ const HomeHotDemo = () => {
 					modules={[Pagination]}
 					slidesPerView='auto'
 					spaceBetween={24}
+					pagination={{
+						clickable: true,
+						dynamicBullets: true,
+						el: ".hot-pagination",
+					}}
 					onSwiper={(swiper) => (swiperRef.current = swiper)}
 					className='z-3 overflow-visible'>
 					{hotDemo.map((_, i, demos) => {
 						return (
-							i !== 0 && (
-								<SwiperSlide key={demos[i]?.id} className='swiper-slide'>
+							i !== 0 &&
+							i < 3 && (
+								<SwiperSlide key={demos[i]?.id} className='swiper-slide '>
 									<Link to={"/demo"} className='d-block'>
-										<img
-											className='w-100 mb-6'
-											src={hotDemoImg[i]?.sm}
-											alt='demo-sm-1'
-										/>
+										<div className='img-box'>
+											<img
+												className='w-100 mb-6 '
+												src={hotDemoImg[i]?.sm}
+												alt='demo-sm-1'
+											/>
+										</div>
 										<ul className='d-flex flex-column'>
 											<li className='d-flex justify-content-between mb-3'>
 												<time
@@ -198,11 +226,18 @@ const HomeHotDemo = () => {
 					})}
 				</Swiper>
 
-				<div className='text-center mt-10'>
+				<div className='swiper-pagination hot-pagination '></div>
+
+				{/*<div className='text-center mt-10'>
 					<button className='btn btn-gray-700 text-gray-000 py-2' role='button'>
-						查看更多
+						查看更多{" "}
+						{isWaiting && (
+							<div className='spinner-border spinner-border-sm' role='status'>
+								<span className='visually-hidden'>Loading...</span>
+							</div>
+						)}
 					</button>
-				</div>
+				</div> */}
 			</div>
 
 			{/* <!-- 平板版以上 --> */}
@@ -301,9 +336,9 @@ const HomeHotDemo = () => {
 
 					{hotDemo.map((_, i, demos) => {
 						return (
-							i !== 0 && (
+							((i !== 0 && i % 3 !== 2) || i === 2) && (
 								<li key={demos[i]?.id} className='col-6'>
-									<div className='mb-4 overflow-hidden border-top-left-radius-50 border-top-right-radius-50 border-bottom-right-radius-10 border-bottom-left-radius-10'>
+									<div className='mb-4 overflow-hidden img-box'>
 										<img
 											className='w-100 img-enlarge object-fit-cover'
 											src={hotDemoImg[i]?.lg}
@@ -378,9 +413,19 @@ const HomeHotDemo = () => {
 
 				<div className='text-center'>
 					<button
+						ref={readMoreBtnLG}
+						onClick={() => getHotDemo(clickCount)}
 						className='btn btn-gray-700 text-gray-000 py-2 btn-read-more'
-						role='button'>
+						style={{ display: clickCount > 4 && "none" }}
+						role='button'
+						disabled={isWaiting}>
 						查看更多
+						{isWaiting && (
+							<div className='spinner-border spinner-border-sm' role='status'>
+								{" "}
+								<span className='visually-hidden'>Loading...</span>
+							</div>
+						)}
 					</button>
 				</div>
 			</div>

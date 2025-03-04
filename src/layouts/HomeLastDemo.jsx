@@ -1,31 +1,46 @@
 import "swiper/css";
 import "swiper/css/pagination";
-import { useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
 const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 const HomeLastDemo = () => {
 	const [lastDemo, setLastDemo] = useState([]);
+	const readMoreBtnLG = useRef(null);
+	const readMoreBtnSM = useRef(null);
+	const [isWaiting, setIsWaiting] = useState(false);
 
 	const lastDemoImg = [
 		{ sm: "Demo/demo-sm-11.png", lg: "Demo/demo-lg-11.png" },
 		{ sm: "Demo/demo-sm-8.png", lg: "Demo/demo-lg-8.png" },
 		{ sm: "Demo/demo-sm-7.png", lg: "Demo/demo-lg-7.png" },
+		{ sm: "Demo/demo-lg-14.jpg", lg: "Demo/demo-lg-14.jpg" },
+		{ sm: "Demo/demo-lg-15.jpg", lg: "Demo/demo-lg-15.jpg" },
+		{ sm: "Demo/demo-lg-16.jpg", lg: "Demo/demo-lg-16.jpg" },
 	];
 
-	const getLastDemo = async () => {
+	const getLastDemo = async (page = 0) => {
 		try {
+			setIsWaiting(true);
 			const res = await axios.get(
-				`${API_URL}/api/exhibitions?_sort=start_date&_order=desc&_page=0&_limit=3`,
+				`${API_URL}/api/exhibitions?_sort=start_date&_order=desc&_page=${page}&_limit=3`,
 				{
 					headers: { "api-key": `${API_KEY}` },
 				}
 			);
-			setLastDemo(res.data.data);
-		} catch (error) {}
+
+			if (page === 0) {
+				setLastDemo(res.data.data);
+			} else {
+				setLastDemo((pre) => [...pre, ...res.data.data]);
+				readMoreBtnLG.current.style.display = "none";
+				readMoreBtnSM.current.style.display = "none";
+			}
+		} finally {
+			setIsWaiting(false);
+		}
 	};
 
 	useEffect(() => {
@@ -137,9 +152,17 @@ const HomeLastDemo = () => {
 					</ul>
 					<div className='text-center mt-10'>
 						<button
+							onClick={() => getLastDemo(2)}
+							ref={readMoreBtnSM}
 							className='btn btn-gray-700 text-gray-000 py-2'
-							role='button'>
-							查看更多
+							role='button'
+							disabled={isWaiting}>
+							查看更多{" "}
+							{isWaiting && (
+								<div className='spinner-border spinner-border-sm' role='status'>
+									<span className='visually-hidden'>Loading...</span>
+								</div>
+							)}
 						</button>
 					</div>
 				</div>
@@ -206,10 +229,19 @@ const HomeLastDemo = () => {
 								</ul>
 							);
 						})}
+
 						<button
+							onClick={() => getLastDemo(2)}
+							ref={readMoreBtnLG}
 							className='btn btn-read-more btn-gray-700 text-gray-000 mx-auto py-2'
-							role='button'>
-							查看更多
+							role='button'
+							disabled={isWaiting}>
+							查看更多{" "}
+							{isWaiting && (
+								<div className='spinner-border spinner-border-sm' role='status'>
+									<span className='visually-hidden'>Loading...</span>
+								</div>
+							)}
 						</button>
 					</div>
 				</div>

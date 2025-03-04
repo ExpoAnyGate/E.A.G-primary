@@ -89,7 +89,7 @@ export default function HomeDemoRecommend() {
 						{recommendDemo.map((demo, i) => {
 							return (
 								<SwiperSlide key={demo.id} className='swiper-slide'>
-									<Link to={"/demo"} className='d-block'>
+									<Link to={`/demo/${demo.id}`} className='d-block'>
 										<div className='d-flex flex-column'>
 											<picture>
 												<source

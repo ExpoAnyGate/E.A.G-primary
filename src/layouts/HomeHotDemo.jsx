@@ -27,8 +27,8 @@ const HomeHotDemo = () => {
 		{ sm: "Demo/demo-lg-20.jpg", lg: "Demo/demo-lg-20.jpg" },
 		{ sm: "Demo/demo-lg-21.jpg", lg: "Demo/demo-lg-21.jpg" },
 		{ sm: "Demo/demo-lg-22.jpg", lg: "Demo/demo-lg-22.jpg" },
-		{ sm: "Demo/demo-lg-24.jpg", lg: "Demo/demo-lg-24.jpg" },
 		{ sm: "Demo/demo-lg-23.jpg", lg: "Demo/demo-lg-23.jpg" },
+		{ sm: "Demo/demo-lg-24.jpg", lg: "Demo/demo-lg-24.jpg" },
 	];
 
 	const getHotDemo = async (page = 0) => {
@@ -419,9 +419,10 @@ const HomeHotDemo = () => {
 						style={{ display: clickCount > 4 && "none" }}
 						role='button'
 						disabled={isWaiting}>
-						查看更多{" "}
+						查看更多
 						{isWaiting && (
 							<div className='spinner-border spinner-border-sm' role='status'>
+								{" "}
 								<span className='visually-hidden'>Loading...</span>
 							</div>
 						)}

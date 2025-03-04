@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import ContactFooter from "../layouts/ContactFooter";
 import DemoSearchBar from "../layouts/DemoSearchBar";
 import axios from "axios";
-//import SearchCardLayout from "../layouts/SearchCardLayout";
 import SearchCardFocus from "../layouts/SearchCardFocus";
 import SearchCard from "../layouts/SearchCard";
 import Pagination from "../components/Pagination"; 
+//const API_URL = import.meta.env.VITE_API_URL;
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 // {{DOMAIN}}/api/exhibitions?startDate=2025-9-05&endDate=2025-11-10&_page=0&_limit=6&tags=時尚&search=時尚潮流&regionId=8
 
-//const API_URL = "https://e-a-g-api.vercel.app/"; // 替換成實際 API 路徑
 const API_URL = "http://localhost:3000/";
-const API_KEY = "ZtQ5rmRFtoev3sK1eFTLnEaP"; // 替換成你的 API Key
+
 
   
 export default function SearchPage() {
@@ -33,7 +33,6 @@ export default function SearchPage() {
       const response = await axios.get(
         `${API_URL}api/exhibitions?_page=${page}&_limit=6&regionId=1&_expand=region`
       );
-
         setSearchData(response.data.data);
         setTotalPages(response.data.meta.totalPages);
         
@@ -50,8 +49,8 @@ export default function SearchPage() {
   }, []);
     
     const handlePageChange = (page) => {
-        // setPage(page);
         getSearchData(page);
+        setPage(page)
     };
 
 
@@ -111,87 +110,12 @@ export default function SearchPage() {
       </section>
 
       {/* <!-- 分頁 --> */}
-      {/* <div className="container">
-        <div className="mb-17">
-          <nav aria-label="Page navigation example">
-            <ul className="pagination justify-content-center ">
-              <li className="page-item preBtn">
-                <a
-                  className="page-link mobile-pre d-flex align-items-center"
-                  href="#"
-                  aria-label="Previous"
-                >
-                  <span className="material-symbols-outlined fs-12">
-                    keyboard_arrow_left
-                  </span>
-                </a>
-              </li>
-              <li className="page-item preBtn">
-                <a
-                  className="page-link desktop-pre"
-                  href="#"
-                  aria-label="Previous"
-                >
-                  上一頁
-                </a>
-              </li>
-
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  1
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  2
-                </a>
-              </li>
-              <li className="page-item active">
-                <a className="page-link" href="#">
-                  3
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  4
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  5
-                </a>
-              </li>
-              <li className="page-item nextBtn">
-                <a
-                  className="page-link desktop-next"
-                  href="#"
-                  aria-label="Next"
-                >
-                  下一頁
-                </a>
-              </li>
-              <li className="page-item nextBtn">
-                <a
-                  className="page-link mobile-next d-flex align-items-center"
-                  href="#"
-                  aria-label="Next"
-                >
-                  <span className="material-symbols-outlined fs-12">
-                    keyboard_arrow_right
-                  </span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div> */}
       <div className="container">
         <div className="mb-17">
           <Pagination
             handlePageChange={handlePageChange}
             totalPages={totalPages}
             page={page}
-            setPage={setPage}
           />
         </div>
       </div>

@@ -96,6 +96,7 @@ $pagination-active-color: white; // 被選中的文字顏色
     border-radius: 0.5rem;
 }
 
+
 .pagination .page-item {
     // border: 1px solid rgb(32, 84, 151);
     margin-right: 12px;
@@ -116,6 +117,15 @@ $pagination-active-color: white; // 被選中的文字顏色
 .mobile-next span,
 .mobile-pre span {
     display: none;
+}
+
+// 禁用按鈕樣式
+.pagination .page-item.disabled .page-link,
+.pagination .page-link:disabled {
+    color: #6c757d; // 文字顏色變灰
+    cursor: not-allowed; // 滑鼠變成禁止符號
+    opacity: 0.5; // 淡一點
+    pointer-events: none; //禁止點擊
 }
 
 @include media-breakpoint-down(md)  {

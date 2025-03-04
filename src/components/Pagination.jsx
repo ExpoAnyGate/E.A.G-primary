@@ -5,26 +5,24 @@ function Pagination({ page, totalPages, handlePageChange, setPage }) {
     <div className="d-flex justify-content-center">
       <nav aria-label="Page navigation example">
         <ul className="pagination justify-content-center ">
-          <li className="page-item preBtn">
-            <a
+          {/* <li className="page-item preBtn">
+            <button
               className="page-link mobile-pre d-flex align-items-center"
-              href="#"
               aria-label="Previous"
             >
               <span className="material-symbols-outlined fs-12">
                 keyboard_arrow_left
               </span>
-            </a>
-          </li>
+            </button>
+          </li> */}
           <li className="page-item preBtn">
-            <a
+            <button
               onClick={() => handlePageChange(page - 1)}
               className="page-link desktop-pre"
-              href="#"
               aria-label="Previous"
             >
               上一頁
-            </a>
+            </button>
           </li>
 
           {/* <li className="page-item">
@@ -37,36 +35,34 @@ function Pagination({ page, totalPages, handlePageChange, setPage }) {
               className={`page-item ${page === index + 1 && "active"}`}
               key={index}
             >
-              <a
+              <button
                 onClick={() => handlePageChange(index + 1)}
                 className="page-link"
                 href="#"
               >
                 {index + 1}
-              </a>
+              </button>
             </li>
           ))}
           <li className="page-item nextBtn">
-            <a
+            <button
               onClick={() => handlePageChange(page + 1)}
               className="page-link desktop-next"
-              href="#"
               aria-label="Next"
             >
               下一頁
-            </a>
+            </button>
           </li>
-          <li className="page-item nextBtn">
-            <a
+          {/* <li className="page-item nextBtn">
+            <button
               className="page-link mobile-next d-flex align-items-center"
-              href="#"
               aria-label="Next"
             >
               <span className="material-symbols-outlined fs-12">
                 keyboard_arrow_right
               </span>
-            </a>
-          </li>
+            </button>
+          </li> */}
         </ul>
       </nav>
     </div>

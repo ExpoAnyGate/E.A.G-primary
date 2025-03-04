@@ -5,7 +5,9 @@ import { Modal } from "bootstrap";
 export default function DonatePage() {
 	const donateModal = useRef(null);
 	const donateModalInstance = useRef(null);
-
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	  }, []);
 	useEffect(() => {
 		donateModalInstance.current = new Modal(donateModal.current);
 	}, []);

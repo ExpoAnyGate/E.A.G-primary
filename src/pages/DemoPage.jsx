@@ -12,6 +12,10 @@ const API_URL = "https://e-a-g-api.vercel.app/"; // 替換成實際 API 路徑
 const API_KEY = "ZtQ5rmRFtoev3sK1eFTLnEaP"; // 替換成你的 API Key
 
 export default function DemoPage({}) {
+    
+    useEffect(() => {
+		window.scrollTo(0, 0);
+	  }, []);
 
     const [demo, setDemo] = useState({});
     const {id: demo_id} = useParams();

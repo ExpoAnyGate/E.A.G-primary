@@ -1,5 +1,6 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import LoginStatus from "../components/LoginStatus";
+import { AuthProvider } from "../hook/useAuth";
 import React from "react";
 
 const routes = [
@@ -35,7 +36,9 @@ export default function FrontLayout() {
 								);
 							})}
 
-						<LoginStatus />
+						<AuthProvider>
+							<LoginStatus />
+						</AuthProvider>
 					</ul>
 				</div>
 			</nav>

@@ -1,11 +1,14 @@
-import { use, useEffect } from "react";
+import { use, useEffect, useState } from "react";
 import { useAuth } from "../hook/useAuth";
+
 
 const LoginStatus = () => {
 	const { isLoggedIn, handleLogin, handleLogout } = useAuth();
 	const reflashWindow = () => {
 		isLoggedIn && window.location.reload();
 	};
+
+  const [isOpen, setIsOpen] = useState(false);
 
 	return (
 		<div>
@@ -14,16 +17,15 @@ const LoginStatus = () => {
 					<button
 						className='btn btn-white border border-gray-400  rounded-3 login-btn py-2 px-4'
 						type='button'
-						data-bs-toggle='dropdown'
-						data-bs-auto-close='outside'
-						aria-expanded='false'>
+						onClick={() => setIsOpen(!isOpen)}>
 						<span
 							style={{ height: "1.5rem", width: "1.5rem" }}
 							className='material-symbols-outlined p-0 align-middle user-icon'>
 							person
 						</span>
 					</button>
-					<ul className='dropdown-menu' style={{ left: "-175px" }}>
+          {isOpen && (
+            <ul className='dropdown-menu' style={{ left: "-175px" }}>
 						<li>
 							<button
 								className='dropdown-item d-flex align-items-center p-item'
@@ -107,6 +109,8 @@ const LoginStatus = () => {
 							</a>
 						</li>
 					</ul>
+          )}
+					
 				</div>
 			) : (
 				<div className='dropdown-login'>

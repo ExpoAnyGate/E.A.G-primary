@@ -138,7 +138,7 @@ const HomeLastDemo = () => {
 											</li>
 											<li className='mb-4'>
 												<Link
-													to={"/demo"}
+													to={`/demo/${demo.id}`}
 													className='btn btn-gray-000 border-gray-400'
 													role='button'>
 													瞭解更多
@@ -217,12 +217,12 @@ const HomeLastDemo = () => {
 												<p className='fs-4 fw-400'>{demo.description}</p>
 											</li>
 											<li className='mb-4'>
-												<button
-													href='#'
+												<Link
+													to={`demo/${demo.id}`}
 													role='button'
 													className='btn btn-gray-000 border-gray-400 align-middle py-2'>
 													瞭解更多
-												</button>
+												</Link>
 											</li>
 										</ul>
 									</li>

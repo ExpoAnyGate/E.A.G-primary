@@ -4,7 +4,9 @@ import DemoSearchBar from "../layouts/DemoSearchBar";
 import axios from "axios";
 import SearchCardFocus from "../layouts/SearchCardFocus";
 import SearchCard from "../layouts/SearchCard";
-import Pagination from "../components/Pagination"; 
+import Pagination from "../components/Pagination";
+import FloatingButton from "../components/WalletKun";
+import { Link } from "react-router-dom";
 //const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -12,14 +14,12 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 
 const API_URL = "http://localhost:3000/";
 
-
-  
 export default function SearchPage() {
   const [searchData, setSearchData] = useState([]);
-    const [page, setPage] = useState(1); //資料頁
-    const [totalPages, setTotalPages] = useState(1); //總頁數
-   // const [total, setTotal] = useState(0); //總筆數
-    
+  const [page, setPage] = useState(1); //資料頁
+  const [totalPages, setTotalPages] = useState(1); //總頁數
+  // const [total, setTotal] = useState(0); //總筆數
+
   const getSearchData = async (page) => {
     try {
       //   const response = await axios.get(
@@ -33,26 +33,23 @@ export default function SearchPage() {
       const response = await axios.get(
         `${API_URL}api/exhibitions?_page=${page}&_limit=6&regionId=1&_expand=region`
       );
-        setSearchData(response.data.data);
-        setTotalPages(response.data.meta.totalPages);
-        
-      console.log("response.data", response.data);
-      console.log("searchData", searchData);
+      setSearchData(response.data.data);
+      setTotalPages(response.data.meta.totalPages);
+
     } catch (error) {
       console.error("Error fetching demo data:", error);
-      //   return null;
+
     }
   };
 
   useEffect(() => {
     getSearchData(page);
   }, []);
-    
-    const handlePageChange = (page) => {
-        getSearchData(page);
-        setPage(page)
-    };
 
+  const handlePageChange = (page) => {
+    getSearchData(page);
+    setPage(page);
+  };
 
   return (
     <>
@@ -73,17 +70,31 @@ export default function SearchPage() {
               <div className="col-lg-4 col-md-12 col-sm-12">
                 <div className="h-100 row align-items-stretch">
                   {searchData.length > 1 && (
-                    <div className="col-lg-12 col-sm-12 d-flex flex-column">
-                      <div className="rightT mb-6 d-flex flex-column rounded-4 search-card h-100">
-                        <SearchCard data={searchData[1]} />
-                      </div>
+                    <div className="col-lg-12 col-sm-12 d-flex flex-column mb-6">
+                      <Link
+                        to={`/demo/${searchData[1].id}`}
+                        className="d-block"
+                      >
+                        <div
+                          className={`rightT d-flex flex-column rounded-4 search-card ${
+                            searchData.length === 2 ? "h-auto" : "h-100"
+                          }`}
+                        >
+                          <SearchCard data={searchData[1]} />
+                        </div>
+                      </Link>
                     </div>
                   )}
                   {searchData.length > 2 && (
                     <div className="col-lg-12 col-sm-12 d-flex flex-column">
-                      <div className="rightB d-flex flex-column search-card rounded-4 h-100">
-                        <SearchCard data={searchData[2]} />
-                      </div>
+                      <Link
+                        to={`/demo/${searchData[2].id}`}
+                        className="d-block"
+                      >
+                        <div className="rightB d-flex flex-column search-card rounded-4 h-100">
+                          <SearchCard data={searchData[2]} />
+                        </div>
+                      </Link>
                     </div>
                   )}
                 </div>
@@ -97,9 +108,11 @@ export default function SearchPage() {
           <div className="row h-100">
             {searchData.slice(3, 6).map((data, index) => (
               <div className="col-lg-4" key={data.id}>
-                <div className="mb-6 d-flex flex-column rounded-4 search-card">
-                  <SearchCard data={data} />
-                </div>
+                <Link to={`/demo/${data.id}`} className="d-block">
+                  <div className="mb-6 d-flex flex-column rounded-4 search-card">
+                    <SearchCard data={data} />
+                  </div>
+                </Link>
               </div>
             ))}
           </div>
@@ -121,6 +134,7 @@ export default function SearchPage() {
       </div>
       {/* footer    */}
       <ContactFooter />
+      <FloatingButton />
     </>
   );
 }

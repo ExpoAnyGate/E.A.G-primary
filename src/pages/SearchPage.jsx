@@ -5,8 +5,12 @@ import axios from "axios";
 import SearchCardFocus from "../layouts/SearchCardFocus";
 import SearchCard from "../layouts/SearchCard";
 import Pagination from "../components/Pagination";
+
+import { useLocation } from "react-router-dom";
+
 import FloatingButton from "../components/WalletKun";
 import { Link } from "react-router-dom";
+
 //const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -15,10 +19,19 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 const API_URL = "http://localhost:3000/";
 
 export default function SearchPage() {
+
   const [searchData, setSearchData] = useState([]);
   const [page, setPage] = useState(1); //資料頁
   const [totalPages, setTotalPages] = useState(1); //總頁數
   // const [total, setTotal] = useState(0); //總筆數
+  
+  // Harry 新增承接資料的23-25行，24行可以使用setSearchData(location.state?.searchData))寫入資料後，渲染畫面
+	const location = useLocation();
+	const testData = location.state?.searchData || [];
+	console.log("來自阿鼠", testData);
+	useEffect(() => {
+		window.scrollTo(0, 0), [];
+	});
 
   const getSearchData = async (page) => {
     try {
@@ -51,19 +64,21 @@ export default function SearchPage() {
     setPage(page);
   };
 
-  return (
-    <>
-      <DemoSearchBar />
-      <section className="container mt-17 mb-17">
-        {/* 第一組區塊 (左側大卡 + 右側兩個小卡) */}
-        {searchData.length > 0 && (
-          <div className="row gx-6 h-100 mb-6">
-            {/* 左邊的大卡片 */}
-            <div className="col-lg-8 col-sm-12 focus-card">
-              <div className="d-flex flex-column h-100 search-card rounded-4">
-                <SearchCardFocus data={searchData[0]} />
-              </div>
-            </div>
+
+	return (
+		<>
+			<DemoSearchBar />
+			<section className='container mt-17 mb-17'>
+				{/* 第一組區塊 (左側大卡 + 右側兩個小卡) */}
+				{searchData.length > 0 && (
+					<div className='row gx-6 h-100 mb-6'>
+						{/* 左邊的大卡片 */}
+						<div className='col-lg-8 col-sm-12 focus-card'>
+							<div className='d-flex flex-column h-100 search-card rounded-4'>
+								<SearchCardFocus data={searchData[0]} />
+							</div>
+						</div>
+
 
             {/* 右側兩個小卡片（如果有足夠的資料才渲染） */}
             {searchData.length > 1 && (
@@ -118,9 +133,11 @@ export default function SearchPage() {
           </div>
         )}
 
-        {/* 無資料顯示 */}
-        {searchData.length === 0 && <p>無符合條件的展覽</p>}
-      </section>
+
+				{/* 無資料顯示 */}
+				{searchData.length === 0 && <p>無符合條件的展覽</p>}
+			</section>
+
 
       {/* <!-- 分頁 --> */}
       <div className="container">
@@ -137,4 +154,5 @@ export default function SearchPage() {
       <FloatingButton />
     </>
   );
+
 }

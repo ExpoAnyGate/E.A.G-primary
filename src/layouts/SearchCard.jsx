@@ -1,7 +1,10 @@
+import PropTypes from "prop-types";
+
 const SearchCard = ({ data }) => {
-    return (
-      <>
-        {/* <!-- 小card --> */}
+  return (
+    <>
+      {/* <!-- 小card --> */}
+    
         <div className="d-flex justify-content-between align-items-center rounded-top-4 border-custom py-4 px-6">
           <p className="mb-0">
             {data.start_date}-{data.end_date}
@@ -17,7 +20,7 @@ const SearchCard = ({ data }) => {
           <div className="card mx-auto py-0 no-border">
             <div className="img-240 rounded-4">
               <img
-                src="Demo/demo-origin-3.png"
+                src={data.url}
                 className="card-img-top rounded-4 w-100 img-enlarge"
                 alt="..."
               />
@@ -31,14 +34,6 @@ const SearchCard = ({ data }) => {
                   </span>
                 </div>
               </div>
-              {/* <div className="card-tag">
-                <span className="badge rounded-pill border border-gray-700 text-gray-700 fw-400 px-2 py-1">
-                  #攝影展
-                </span>
-                <span className="badge rounded-pill border border-gray-700 text-gray-700 fw-400 px-2 py-1 ms-4">
-                  #光影藝術
-                </span>
-              </div> */}
               {Array.isArray(data.tags) && data.tags.length > 0 && (
                 <div className="card-tag">
                   {data.tags.map((tag, index) => (
@@ -56,8 +51,13 @@ const SearchCard = ({ data }) => {
             </div>
           </div>
         </div>
-      </>
-    );
+    
+    </>
+  );
 };
+SearchCard.propTypes = {
+  data: PropTypes.object.isRequired, 
+};
+
 
 export default SearchCard;

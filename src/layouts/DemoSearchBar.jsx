@@ -3,7 +3,7 @@ import "@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -25,7 +25,7 @@ const DemoSearchBar = ({ setFilters }) => {
   const [isValid, setIsValid] = useState(true);
 
   const navigate = useNavigate();
-  //存在sessionStorage中 避免搜尋條件被清空
+  //存在sessionStorage中 避免從首頁跳轉時搜尋條件被清空
   const [searchInput, setSearchInput] = useState(() => {
     return (
       JSON.parse(sessionStorage.getItem("searchFilters")) || {
@@ -45,14 +45,6 @@ const DemoSearchBar = ({ setFilters }) => {
       [e.target.name]: e.target.value,
     }));
   };
-
-  //   const handleSearch = () => {
-  //     if (location.hash === "#/search") {
-  //       setFilters(searchInput);
-  //     } else {
-  //       navigate("/search", { state: { searchInput } });
-  //     }
-  //   };
 
   const handleSearch = () => {
     sessionStorage.setItem("searchFilters", JSON.stringify(searchInput)); // 存入 sessionStorage
@@ -163,20 +155,6 @@ const DemoSearchBar = ({ setFilters }) => {
     timePickerInstanceLG.current.dates.clear();
     setIsValid(false);
   };
-	
-	const handleDateSelection = (dateSelected) => {
-    const start_date = dateSelected[0] && dateSelected[0].split("/").join("-"); // 格式化 start_date
-    const end_date = dateSelected[1]
-      ? dateSelected[1].split("/").join("-") 
-      : start_date; 
-
-    setSearchInput({
-      ...searchInput,
-      start_date,
-      end_date,
-    });
-	  };
-	
 
   const getTimePicker = (timePicker, timePickerInstance) => {
     if (timePicker.current) {
@@ -211,7 +189,14 @@ const DemoSearchBar = ({ setFilters }) => {
         const inputValue = timePicker.current.querySelector("input").value; // 取得 input 標籤裡面的值
         const dates = inputValue.split("-");
         setDateSelected(dates);
-       
+        const start_date = dates[0] && dates[0].split("/").join("-");
+        const end_date = dates[1] ? dates[1].split("/").join("-") : start_date;
+
+        setSearchInput((prevInput) => ({
+          ...prevInput,
+          start_date,
+          end_date,
+        }));
       });
 
       return () => {
@@ -281,8 +266,6 @@ const DemoSearchBar = ({ setFilters }) => {
                   //type="date"
                   className="form-control py-3 fs-4 border-gray-400 ps-6"
                   placeholder="展覽日期"
-                  //onChange={(e) => handleDateSelection(e.target.value)}
-                  onChange={handleDateSelection}
                 />
                 <span className="input-group-text material-symbols-outlined border-gray-400">
                   calendar_month
@@ -361,9 +344,7 @@ const DemoSearchBar = ({ setFilters }) => {
                   <input
                     type="text"
                     className="form-control py-3 fs-4 border-gray-400 text-gray-700"
-                    placeholder="展覽日期4"
-                    //onChange={(e) => handleDateSelection(e.target.value)}
-                    onChange={handleDateSelection}
+                    placeholder="展覽日期"
                   />
                   <span className="input-group-text material-symbols-outlined border-gray-400">
                     calendar_month

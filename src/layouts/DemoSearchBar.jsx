@@ -57,10 +57,6 @@ const DemoSearchBar = () => {
 			setIsValid(true);
 		}
 	};
-<<<<<<< Updated upstream
-=======
-	// console.log(searchInfo);
->>>>>>> Stashed changes
 
 	useEffect(() => {
 		checkValid(searchInfo);

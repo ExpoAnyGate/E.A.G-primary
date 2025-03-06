@@ -3,6 +3,8 @@ import ArtistSwiper from "../components/mySwiper";
 
 import MarqueePhoto from "../components/MarqueePhoto";
 import MemorySwiper from "../components/MemorySwiper";
+import SpotlightCard from '../components/SpotlightCard/SpotlightCard';
+import FloatingButton from "../components/WalletKun";
 
 export default function SpotlightPage() {
 
@@ -26,14 +28,18 @@ export default function SpotlightPage() {
 
   return (
     <>
+    <SpotlightCard spotlightColor="rgba(222, 32, 32, 0.34)" className="w-100">
       <div class="spotlight-banner mt-bp-140-0 d-flex align-items-center">
+        
         <div class="spotlight-banner-text text-center w-100">
           <h1 class="fs-15 fw-900 text-primary-800">藝展聚光燈</h1>
           <h3 class="fs-6 fw-400 text-primary-800 mt-2">
             透過藝術特寫、會員投稿與回顧特寫，感受展覽的每一份感動。
           </h3>
         </div>
+        
       </div>
+      </SpotlightCard>
 
       <section class="overflow-hidden">
         <div class="spotlight-card d-flex flex-column">
@@ -190,7 +196,7 @@ export default function SpotlightPage() {
             </div>
           </div>
 
-          <div class="spotlight-card-info overflow-hidden pb-20">
+          <div class="spotlight-card-info  pb-20">
 
             <MemorySwiper />
           </div>
@@ -218,6 +224,7 @@ export default function SpotlightPage() {
 
         </div>
       </section>
+      <FloatingButton/>  
     </>
   );
 }

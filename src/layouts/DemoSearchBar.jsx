@@ -57,14 +57,25 @@ const DemoSearchBar = () => {
 			setIsValid(true);
 		}
 	};
+<<<<<<< Updated upstream
+=======
+	// console.log(searchInfo);
+>>>>>>> Stashed changes
 
 	useEffect(() => {
 		checkValid(searchInfo);
 	}, [searchInfo]);
 
+	useEffect(() => {
+		if (location.state?.searchData) {
+		  sessionStorage.setItem("searchData", JSON.stringify(location.state.searchData));
+		}
+	  }, [location.state]);
+
 	const getSearchInfo = async (info) => {
 		const { regionId, category, keyWord, start_date, end_date } = info;
 		//動態路由，每一個元素都有一個判斷式，如果有值就加入，沒有就不加入
+
 		const queryParams = [
 			start_date ? `startDate=${start_date}` : "",
 			end_date ? `endDate=${end_date}` : "",
@@ -72,7 +83,7 @@ const DemoSearchBar = () => {
 			"_limit=6",
 			category ? `exhibitions_categoriesId=${category}` : "",
 			keyWord ? `search=${keyWord}` : "",
-			regionId ? `regionId=${regionId}` : "",
+			regionId ? `regionId=${regionId}&_expand=region` : "_expand=region",
 		]
 			.filter(Boolean) // 過濾掉空字串，避免 `&startDate=&endDate=`
 			.join("&"); // 以 `&` 連接

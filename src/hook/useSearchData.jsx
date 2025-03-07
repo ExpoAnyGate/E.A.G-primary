@@ -1,24 +1,54 @@
-import { useState } from "react";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-//const API_URL = import.meta.env.VITE_API_URL;
+// API URL
 const API_URL = "http://localhost:3000/";
-export const useSearchData = () => {
-  const [searchData, setSearchData] = useState([]);
-  const [totalPages, setTotalPages] = useState(1);
 
-  const getSearchData = async (filters, page = 1) => {
-    const { regionId, category, keyWord, start_date, end_date } = filters;
+// 定義異步 thunk 來取得搜尋資料
+export const fetchSearchData = createAsyncThunk(
+  "search/fetchSearchData",
+  async ({ filters, page = 1 }, { rejectWithValue }) => {
     try {
+      const { regionId, category, keyWord, start_date, end_date } = filters;
       const response = await axios.get(
-        `${API_URL}api/exhibitions?_page=${page}&_limit=6&start_date=${start_date}&end_date=${end_date}&category=${category}&search=${keyWord}&regionId=${regionId}&_expand=region`
+        `${API_URL}api/exhibitions?_page=${page}&_limit=6&startDate=${start_date}&endDate=${end_date}&exhibitions_categoriesId=${category}&search=${keyWord}&regionId=${regionId}&_expand=region,exhibitions_categories`
       );
-      setSearchData(response.data.data);
-      setTotalPages(response.data.meta.totalPages);
-    } catch (error) {
-      console.error("Error fetching search data:", error);
-    }
-  };
 
-  return { searchData, totalPages, getSearchData };
-};
+      return {
+        data: response.data.data,
+        totalPages: response.data.meta.totalPages,
+      };
+    } catch (error) {
+      return rejectWithValue(error.response?.data || "Error fetching search data");
+    }
+  }
+);
+
+// 建立 slice
+const searchSlice = createSlice({
+  name: "search",
+  initialState: {
+    searchData: [],
+    totalPages: 1,
+    status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
+    error: null,
+  },
+  reducers: {}, // 目前不需要額外 reducers
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchSearchData.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchSearchData.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.searchData = action.payload.data;
+        state.totalPages = action.payload.totalPages;
+      })
+      .addCase(fetchSearchData.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload;
+      });
+  },
+});
+
+export default searchSlice.reducer;

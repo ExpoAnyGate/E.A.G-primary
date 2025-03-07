@@ -29,6 +29,7 @@ export default function SearchPage() {
 
   const handleFilterChange = (newFilters) => {
     dispatch(setFilters(newFilters));
+    setPage(1);
   };
 
   return (

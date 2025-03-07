@@ -34,7 +34,7 @@ const HomeHotDemo = () => {
 		try {
 			setIsWaiting(true);
 			const res = await axios.get(
-				`${API_URL}/api/exhibitions?_sort=views&_order=desc&_page=${page}&_limit=3`,
+				`${API_URL}/api/exhibitions?_sort=views&_order=desc&_page=${page}&_limit=3&_expand=region`,
 				{
 					headers: { "api-key": `${API_KEY}` },
 				}
@@ -93,7 +93,7 @@ const HomeHotDemo = () => {
 										src='icon/location_outlined.png'
 										alt='location_outlined'
 									/>
-									<span>{hotDemo[0]?.address}</span>
+									<span>{hotDemo[0]?.region.name}</span>
 								</div>
 							</li>
 							<li className='mb-6'>
@@ -180,7 +180,7 @@ const HomeHotDemo = () => {
 														src='icon/location_outlined.png'
 														alt='location_outlined'
 													/>
-													<span>{demos[i]?.address}</span>
+													<span>{demos[i]?.region.name}</span>
 												</div>
 											</li>
 											<li className='mb-6'>
@@ -276,7 +276,7 @@ const HomeHotDemo = () => {
 											src='icon/location_outlined.png'
 											alt='location_outlined'
 										/>
-										<span>{hotDemo[0]?.address}</span>
+										<span>{hotDemo[0]?.region.name}</span>
 									</div>
 								</li>
 								<li className='mb-6'>
@@ -360,7 +360,7 @@ const HomeHotDemo = () => {
 														src='icon/location_outlined.png'
 														alt='location_outlined'
 													/>
-													<span>{demos[i]?.address}</span>
+													<span>{demos[i]?.region.name}</span>
 												</div>
 											</li>
 											<li className='mb-6'>

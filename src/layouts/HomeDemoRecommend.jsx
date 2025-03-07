@@ -20,7 +20,6 @@ export default function HomeDemoRecommend() {
 
 	const location = useLocation();
 	const { isLoggedIn } = location.state;
-	console.log("來自推薦", isLoggedIn);
 
 	const getRecommendDemo = async () => {
 		try {

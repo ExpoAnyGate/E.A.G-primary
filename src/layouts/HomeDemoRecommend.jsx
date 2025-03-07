@@ -19,7 +19,7 @@ export default function HomeDemoRecommend() {
 	];
 
 	const location = useLocation();
-	const isLoggedIn = location.state?.isLoggedIn || false;
+	const isLoggedIn = (location.state && location.state.isLoggedIn) || false;
 
 	const getRecommendDemo = async () => {
 		try {

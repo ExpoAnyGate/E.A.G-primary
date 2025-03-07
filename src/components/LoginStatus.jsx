@@ -1,14 +1,31 @@
 import { use, useEffect, useState } from "react";
 import { useAuth } from "../hook/useAuth";
-
+import { useNavigate } from "react-router-dom";
 
 const LoginStatus = () => {
 	const { isLoggedIn, handleLogin, handleLogout } = useAuth();
-	const reflashWindow = () => {
-		isLoggedIn && window.location.reload();
+	const navigate = useNavigate();
+	const handleUserLogin = () => {
+		handleLogin();
+		// 利用路由傳遞登入的訊號
+		navigate("/", {
+			state: {
+				isLoggedIn: true,
+			},
+		});
 	};
 
-  const [isOpen, setIsOpen] = useState(false);
+	const handleUserLogout = () => {
+		handleLogout();
+		// 利用路由傳遞登出的訊號
+		navigate("/", {
+			state: {
+				isLoggedIn: false,
+			},
+		});
+	};
+
+	const [isOpen, setIsOpen] = useState(false);
 
 	return (
 		<div>
@@ -24,93 +41,100 @@ const LoginStatus = () => {
 							person
 						</span>
 					</button>
-          {isOpen && (
-            <ul className='dropdown-menu' style={{ left: "-175px" }}>
-						<li>
-							<button
-								className='dropdown-item d-flex align-items-center p-item'
-								data-bs-toggle='collapse'
-								data-bs-target='#collapseAccount'
-								role='button'
-								aria-expanded='false'
-								aria-controls='collapseAccount'>
-								<img
-									src='icon/User-edit_outlined.png'
-									alt='User-edit_outlined'
-									className='me-4'
-								/>
-								<span>帳號管理</span>
-								<img src='icon/Dropdown.png' className='ms-12' alt='Dropdown' />
-							</button>
-							<ul className='collapse' id='collapseAccount'>
-								<li>
-									<a href='#' className='p-sub-item dropdown-item'>
-										基本設定
-									</a>
-								</li>
-								<li>
-									<a href='#' className='p-sub-item dropdown-item'>
-										密碼設定
-									</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a
-								className='dropdown-item p-item d-flex align-items-center'
-								href='#'>
-								<img
-									src='icon/Thumb up_outlined.png'
-									alt='Thumb up_outlined'
-									className='me-4'
-								/>
-								<span>展覽推薦設定</span>
-							</a>
-						</li>
-						<li>
-							<a
-								className='dropdown-item p-item d-flex align-items-center'
-								href='#'>
-								<img
-									src='icon/Bookmark_add.png'
-									alt='Bookmark_add'
-									className='me-4'
-								/>
-								<span>收藏／評分</span>
-							</a>
-						</li>
-						<li>
-							<a
-								className='dropdown-item p-item d-flex align-items-center'
-								href='#'>
-								<img src='icon/Calendar.png' alt='Calendar' className='me-4' />
-								<span>我的行事曆</span>
-							</a>
-						</li>
-						<li>
-							<button
-								onClick={handleLogout}
-								className='dropdown-item p-item d-flex align-items-center'>
-								<img src='icon/Login.png' alt='Login.png' className='me-4' />
-								<span>會員登出</span>
-							</button>
-						</li>
-						<li>
-							<a
-								className='dropdown-item p-item d-flex align-items-center'
-								href='evaluate.html'>
-								<img src='icon/User.png' className='me-4' alt='User' />
-								<span>我是會員</span>
-								<img
-									src='icon/Settings_outlined.png'
-									alt='Settings_outlined'
-									className='ms-12'
-								/>
-							</a>
-						</li>
-					</ul>
-          )}
-					
+					{isOpen && (
+						<ul className='dropdown-menu' style={{ left: "-175px" }}>
+							<li>
+								<button
+									className='dropdown-item d-flex align-items-center p-item'
+									data-bs-toggle='collapse'
+									data-bs-target='#collapseAccount'
+									role='button'
+									aria-expanded='false'
+									aria-controls='collapseAccount'>
+									<img
+										src='icon/User-edit_outlined.png'
+										alt='User-edit_outlined'
+										className='me-4'
+									/>
+									<span>帳號管理</span>
+									<img
+										src='icon/Dropdown.png'
+										className='ms-12'
+										alt='Dropdown'
+									/>
+								</button>
+								<ul className='collapse' id='collapseAccount'>
+									<li>
+										<a href='#' className='p-sub-item dropdown-item'>
+											基本設定
+										</a>
+									</li>
+									<li>
+										<a href='#' className='p-sub-item dropdown-item'>
+											密碼設定
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a
+									className='dropdown-item p-item d-flex align-items-center'
+									href='#'>
+									<img
+										src='icon/Thumb up_outlined.png'
+										alt='Thumb up_outlined'
+										className='me-4'
+									/>
+									<span>展覽推薦設定</span>
+								</a>
+							</li>
+							<li>
+								<a
+									className='dropdown-item p-item d-flex align-items-center'
+									href='#'>
+									<img
+										src='icon/Bookmark_add.png'
+										alt='Bookmark_add'
+										className='me-4'
+									/>
+									<span>收藏／評分</span>
+								</a>
+							</li>
+							<li>
+								<a
+									className='dropdown-item p-item d-flex align-items-center'
+									href='#'>
+									<img
+										src='icon/Calendar.png'
+										alt='Calendar'
+										className='me-4'
+									/>
+									<span>我的行事曆</span>
+								</a>
+							</li>
+							<li>
+								<button
+									onClick={() => handleUserLogout()}
+									className='dropdown-item p-item d-flex align-items-center'>
+									<img src='icon/Login.png' alt='Login.png' className='me-4' />
+									<span>會員登出</span>
+								</button>
+							</li>
+							<li>
+								<a
+									className='dropdown-item p-item d-flex align-items-center'
+									href='evaluate.html'>
+									<img src='icon/User.png' className='me-4' alt='User' />
+									<span>我是會員</span>
+									<img
+										src='icon/Settings_outlined.png'
+										alt='Settings_outlined'
+										className='ms-12'
+									/>
+								</a>
+							</li>
+						</ul>
+					)}
 				</div>
 			) : (
 				<div className='dropdown-login'>
@@ -252,7 +276,7 @@ const LoginStatus = () => {
 													className='btn btn-primary-600 text-gray-000 w-50 py-3 ms-3'
 													data-bs-dismiss='modal'
 													id='login-btn'
-													onClick={handleLogin}
+													onClick={() => handleUserLogin()}
 													aria-label='Close'>
 													登入
 												</button>

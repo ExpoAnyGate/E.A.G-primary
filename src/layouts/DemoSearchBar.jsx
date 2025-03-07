@@ -13,7 +13,7 @@ const DemoSearchBar = () => {
 	const timePickerInstanceSM = useRef(null);
 	const timePickerInstanceLG = useRef(null);
 
-	const [dateSelected, setDateSelected] = useState([]);
+	const [dateSelected, setDateSelected] = useState("");
 	const [keyWordInput, setKeyWordInput] = useState("");
 	const [regionSelected, setRegionSelected] = useState("");
 	const [categorySelected, setCategorySelected] = useState("");
@@ -51,12 +51,13 @@ const DemoSearchBar = () => {
 	);
 
 	const checkValid = (info) => {
-		const { regionId, category, keyWord, start_date } = info;
-		if (start_date || category || keyWord || regionId) {
+		const { regionId, category, keyWord } = info;
+		if (category || keyWord || regionId) {
 			// 有效代表使用者至少有一個篩選條件
 			setIsValid(true);
 		}
 	};
+	console.log(searchInfo);
 
 	useEffect(() => {
 		checkValid(searchInfo);
@@ -84,7 +85,26 @@ const DemoSearchBar = () => {
 			const res = await axios.get(`${API_URL}/api/exhibitions?${queryParams}`, {
 				headers: { "api-key": `${API_KEY}` },
 			});
-			navigate("/search", { state: { searchData: res.data.data } });
+			const searchData = res.data.data;
+			navigate("/search", {
+				state: {
+					searchData: {
+						searchData: searchData,
+						regionList: searchData.map((data) => {
+							const region = regionList.find(
+								(region) => region.id === data.regionId
+							);
+							return region ? region.name : "";
+						}),
+						categoryList: searchData.map((data) => {
+							const category = categoryList.find(
+								(category) => category.id === data.regionId
+							);
+							return category ? category.name : "";
+						}),
+					},
+				},
+			});
 			cleanSearch();
 		} catch (error) {}
 	};
@@ -153,6 +173,11 @@ const DemoSearchBar = () => {
 			timePicker.current.addEventListener("change.td", () => {
 				const inputValue = timePicker.current.querySelector("input").value; // 取得 input 標籤裡面的值
 				setDateSelected(inputValue.split("-"));
+				if (inputValue === "" || inputValue === undefined) {
+					setIsValid(false);
+				} else {
+					setIsValid(true);
+				}
 			});
 
 			return () => {
@@ -329,12 +354,13 @@ const DemoSearchBar = () => {
 
 								{isValid ? (
 									<Link
-										onClick={() => getSearchInfo(searchInfo)}
-										className='btn btn-gray-700 w-10 py-3'>
+										to={"/search"}
+										className='btn btn-gray-700 w-10 py-3'
+										onClick={() => getSearchInfo(searchInfo)}>
 										搜尋
 									</Link>
 								) : (
-									<button disabled className='btn btn-gray-700 w-10 py-3'>
+									<button className='btn btn-gray-700 w-10 py-3' disabled>
 										搜尋
 									</button>
 								)}

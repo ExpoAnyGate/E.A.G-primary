@@ -13,7 +13,6 @@ const HomeHotDemo = () => {
 	const swiperRef = useRef(null);
 	const [hotDemo, setHotDemo] = useState([]);
 	const readMoreBtnLG = useRef(null);
-	const readMoreBtnSM = useRef(null);
 	const [clickCount, setClickCount] = useState(2);
 	const [isWaiting, setIsWaiting] = useState(false);
 
@@ -422,10 +421,9 @@ const HomeHotDemo = () => {
 						style={{ display: clickCount > 4 && "none" }}
 						role='button'
 						disabled={isWaiting}>
-						查看更多
+						查看更多{" "}
 						{isWaiting && (
 							<div className='spinner-border spinner-border-sm' role='status'>
-								{" "}
 								<span className='visually-hidden'>Loading...</span>
 							</div>
 						)}

@@ -74,13 +74,6 @@ const DemoSearchBar = ({ setFilters }) => {
   //     };
   //   };
 
-  //會因為使用者的操作而改變的資料
-  //   const searchInfo = handleSearchInfo(
-  //     regionSelected,
-  //     categorySelected,
-  //     keyWordInput,
-  //     dateSelected
-  //   );
 
   const checkValid = (searchInput) => {
     const { regionId, category, keyWord, start_date } = searchInput;
@@ -94,32 +87,6 @@ const DemoSearchBar = ({ setFilters }) => {
     checkValid(searchInput);
   }, [searchInput]);
 
-  //   const getSearchInfo = async (info) => {
-  //     const { regionId, category, keyWord, start_date, end_date } = info;
-  //     //動態路由，每一個元素都有一個判斷式，如果有值就加入，沒有就不加入
-  //     const queryParams = [
-  //       start_date ? `startDate=${start_date}` : "",
-  //       end_date ? `endDate=${end_date}` : "",
-  //       "_page=0",
-  //       "_limit=6",
-  //       category ? `exhibitions_categoriesId=${category}` : "",
-  //       keyWord ? `search=${keyWord}` : "",
-  //       regionId ? `regionId=${regionId}` : "",
-  //     ]
-  //       .filter(Boolean) // 過濾掉空字串，避免 `&startDate=&endDate=`
-  //       .join("&"); // 以 `&` 連接
-
-  //      `${API_URL}/api/exhibitions?startDate=${start_date}&endDate=${end_date}&_page=0&_limit=6&tags=${tags}&search=${search}&regionId=${regionId}`
-  //      console.log(`${API_URL}/api/exhibitions?${queryParams}`);
-  //     try {
-  //       //至少要有一個篩選條件才打API
-  //       const res = await axios.get(`${API_URL}/api/exhibitions?${queryParams}`, {
-  //         headers: { "api-key": `${API_KEY}` },
-  //       });
-  //       navigate("/search", { state: { searchData: res.data.data } });
-  //       cleanSearch();
-  //     } catch (error) {}
-  //   };
 
   const getRegionList = async () => {
     try {
@@ -156,6 +123,7 @@ const DemoSearchBar = ({ setFilters }) => {
     setIsValid(false);
   };
 
+
   const getTimePicker = (timePicker, timePickerInstance) => {
     if (timePicker.current) {
       timePickerInstance.current = new TempusDominus(timePicker.current, {
@@ -183,6 +151,7 @@ const DemoSearchBar = ({ setFilters }) => {
         },
         multipleDatesSeparator: "-",
       });
+
 
       // 監聽日期變更事件
       timePicker.current.addEventListener("change.td", () => {
@@ -351,6 +320,7 @@ const DemoSearchBar = ({ setFilters }) => {
                   </span>
                 </button>
 
+
                 <select
                   className="form-select py-3 fs-4 w-15 border-gray-400"
                   //   value={categorySelected}
@@ -368,6 +338,7 @@ const DemoSearchBar = ({ setFilters }) => {
                     );
                   })}
                 </select>
+
 
                 <form
                   className="position-relative text-gray-500 w-bp-20-25"

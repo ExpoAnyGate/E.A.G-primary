@@ -22,7 +22,7 @@ const DemoSearchBar = ({ setFilters }) => {
 
   const [regionList, setRegionList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
-  const [isValid, setIsValid] = useState(true);
+  const [isValid, setIsValid] = useState(false);
 
   const navigate = useNavigate();
   //存在sessionStorage中 避免從首頁跳轉時搜尋條件被清空

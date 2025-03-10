@@ -2,7 +2,7 @@ import { useAuth } from "../hook/useAuth";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-  const { handleLogin, setAccount, setPassword, setCaptcha } = useAuth();
+  const { isLoggedIn, handleLogin, setAccount, setPassword, setCaptcha } = useAuth();
   const navigate = useNavigate();
   // const handleSubmit = (e) => {
   //   e.preventDefault();
@@ -32,7 +32,7 @@ const handleSubmit = async (e) => {
     if (success) {
       console.log("登入成功");
       // navigate("/");
-      window.location.reload();
+      // window.location.reload();
     } else {
       alert("登入失敗，請檢查帳號、密碼或驗證碼");
     }

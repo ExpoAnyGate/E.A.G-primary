@@ -5,7 +5,7 @@ import axios from "axios";
 import "swiper/css/pagination";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -18,9 +18,8 @@ export default function HomeDemoRecommend() {
 		{ sm: "Demo/demo-sm-13.png", lg: "Demo/demo-lg-13.png" },
 	];
 
-	const location = useLocation();
-	// const isLoggedIn = (location.state && location.state.isLoggedIn) || false;
-	const isLoggedIn = localStorage.getItem("isLoggedIn")==='true' ? true : false;
+	const { isLoggedIn } = useAuth();
+	console.log("isLoggedIn", isLoggedIn);
 
 	const getRecommendDemo = async () => {
 		try {

@@ -139,3 +139,9 @@ $pagination-active-color: white; // 被選中的文字顏色
         display: block;
     }
 }
+
+.SearchCardFocus.img-enlarge {
+    width: 100%;
+    aspect-ratio: 686 / 453; //保持比例
+    object-fit: cover;
+}

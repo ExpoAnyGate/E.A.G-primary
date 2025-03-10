@@ -148,7 +148,7 @@ const LoginStatus = () => {
 							className='material-symbols-outlined p-0 align-middle user-icon me-1'>
 							login
 						</span>
-						登入
+						<span className='d-none d-md-inline'>登入</span>
 					</button>
 
 					<div

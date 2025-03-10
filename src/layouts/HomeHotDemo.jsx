@@ -368,11 +368,9 @@ const HomeHotDemo = () => {
 													<h3 className='fw-700 fs-6 text-truncate'>
 														{demos[i]?.title}
 													</h3>
-													<img
-														className='align-top'
-														src='icon/Bookmark_add.png'
-														alt='Bookmark_add'
-													/>
+													<span className='material-symbols-outlined p-0 fs-6'>
+														bookmarks
+													</span>
 												</div>
 											</li>
 											<li className='mb-6'>

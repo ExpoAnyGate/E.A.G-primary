@@ -9,7 +9,7 @@ import { useLocation } from "react-router-dom";
 const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-export default function HomeDemoRecommend() {
+export default function HomeDemoRecommend({isLoggedIn}) {
 	const swiperRef = useRef(null);
 	const [recommendDemo, setRecommendDemo] = useState([]);
 	const recommendDemoImg = [
@@ -17,9 +17,10 @@ export default function HomeDemoRecommend() {
 		{ sm: "Demo/demo-sm-3.png", lg: "Demo/demo-lg-3.png" },
 		{ sm: "Demo/demo-sm-13.png", lg: "Demo/demo-lg-13.png" },
 	];
-
+	console.log("isLoggedIn", isLoggedIn);
 	const location = useLocation();
-	const isLoggedIn = (location.state && location.state.isLoggedIn) || false;
+	// const isLoggedIn = (location.state && location.state.isLoggedIn) || false;
+	//const isLoggedIn = localStorage.getItem("isLoggedIn")==='true' ? true : false;
 
 	const getRecommendDemo = async () => {
 		try {
@@ -35,7 +36,7 @@ export default function HomeDemoRecommend() {
 
 	useEffect(() => {
 		getRecommendDemo();
-	}, []);
+	}, [isLoggedIn]);
 
 	return (
 		isLoggedIn && (

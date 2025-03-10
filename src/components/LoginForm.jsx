@@ -4,19 +4,35 @@ import { useNavigate } from "react-router-dom";
 const LoginForm = () => {
   const { handleLogin, setAccount, setPassword, setCaptcha } = useAuth();
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const account = e.target.Account.value;
+  //   const password = e.target.Password.value;
+  //   const captcha = e.target.captcha.value;
+
+  //   // 嘗試登入
+  //   if (handleLogin(account, password, captcha)) {
+  //       navigate("/", {
+	// 		state: {
+	// 			isLoggedIn: true,
+	// 		},
+	// 	});
+  //   } else {
+  //     alert("登入失敗，請檢查帳號、密碼或驗證碼");
+  //   }
+  // };
+
+const handleSubmit = async (e) => {
     e.preventDefault();
     const account = e.target.Account.value;
     const password = e.target.Password.value;
     const captcha = e.target.captcha.value;
-
-    // 嘗試登入
-    if (handleLogin(account, password, captcha)) {
-        navigate("/", {
-			state: {
-				isLoggedIn: true,
-			},
-		});
+  
+    const success = await handleLogin(account, password, captcha);
+    if (success) {
+      console.log("登入成功");
+      // navigate("/");
+      window.location.reload();
     } else {
       alert("登入失敗，請檢查帳號、密碼或驗證碼");
     }

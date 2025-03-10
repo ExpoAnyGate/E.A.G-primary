@@ -18,15 +18,21 @@ const LoginStatus = () => {
 		});
 	};
 
+	// const handleUserLogout = () => {
+	// 	handleLogout();
+	// 	// 利用路由傳遞登出的訊號
+	// 	navigate("/", {
+	// 		state: {
+	// 			isLoggedIn: false,
+	// 		},
+	// 	});
+	// };
 	const handleUserLogout = () => {
 		handleLogout();
-		// 利用路由傳遞登出的訊號
-		navigate("/", {
-			state: {
-				isLoggedIn: false,
-			},
-		});
-	};
+		navigate("/", { state: { isLoggedIn: false } });
+		window.location.reload();  // 強制刷新頁面
+	  };
+	  
 
 //   useEffect(() => {
 // 		if (location.pathname === "/") {

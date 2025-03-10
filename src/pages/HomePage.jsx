@@ -6,21 +6,31 @@ import HomeHotDemo from "../layouts/HomeHotDemo";
 import HomeLastDemo from "../layouts/HomeLastDemo";
 import HomeDemoRecommend from "../layouts/HomeDemoRecommend";
 import AOS from "aos";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function HomePage() {
+	const location = useLocation();
+	const [pageKey, setPageKey] = useState(0);
+	const [isLoggedIn, setIsLoggedIn] = useState(
+		() => localStorage.getItem("isLoggedIn") === "true"
+	);
 	useEffect(() => {
 		AOS.init({ once: false });
 		setTimeout(() => {
 			AOS.refresh();
 		}, 300);
 		window.scrollTo(0, 0);
+		setPageKey(prevKey => prevKey + 1);
+		console.log(pageKey);
+		// setPageKey(prevKey => prevKey + 1); 
 	}, []);
+
+
 
 	return (
 		<>
-			<section className='bg-primary-800'>
+			<section className='bg-primary-800' key={pageKey}>
 				<div className='container'>
 					<div className='mt-bp-104-0 d-flex align-items-center justify-content-bp-center-start py-4 px-3 text-white'>
 						<span className='material-symbols-outlined p-0 fs-6'>
@@ -83,7 +93,7 @@ export default function HomePage() {
 			<DemoSearchBar />
 
 			{/* 展覽推薦	 */}
-			<HomeDemoRecommend />
+			<HomeDemoRecommend isLoggedIn={isLoggedIn}/>
 
 			{/* 最新展覽 */}
 			<HomeLastDemo />

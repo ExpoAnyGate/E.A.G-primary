@@ -24,7 +24,7 @@ export default function HomeDemoRecommend() {
 	const getRecommendDemo = async () => {
 		try {
 			const res = await axios.get(
-				`${API_URL}/api/exhibitions?featured=true&_page=0&_limit=5`,
+				`${API_URL}/api/exhibitions?featured=true&_page=0&_limit=5&_expand=region`,
 				{
 					headers: { "api-key": `${API_KEY}` },
 				}
@@ -134,7 +134,7 @@ export default function HomeDemoRecommend() {
 																src='icon/location_outlined.png'
 																alt='location_outlined'
 															/>
-															<span>{demo.address}</span>
+															<span>{demo.region.name}</span>
 														</div>
 													</li>
 													<li className='mb-4'>

@@ -1,14 +1,13 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import LoginStatus from "../components/LoginStatus";
 import { AuthProvider } from "../hook/useAuth";
-import React from "react";
 
 const routes = [
 	{ path: "/", name: "首頁" },
 	{ path: "/search", name: "搜尋" },
 	{ path: "/wish", name: "展覽選擇泉" },
 	{ path: "/demo", name: "展覽資訊" },
-	{ path: "/goods", name: "周邊商品頁" },
+	{ path: "/goods", name: "周邊商品" },
 	{ path: "/spotlight", name: "藝展聚光燈" },
 	{ path: "/donate", name: "乾爹抖內" },
 ];

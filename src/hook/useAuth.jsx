@@ -17,63 +17,6 @@ export const AuthProvider = ({ children }) => {
 		setIsLoggedIn(loggedIn);
 	}, []);
 
-	// const handleLogin = (inputAccount, inputPassword, inputCaptcha) => {
-	// 	// 這裡進行驗證邏輯（帳號、密碼、驗證碼）
-	// 	if (inputAccount === "admin" && inputPassword === "1234" && inputCaptcha === "02915") {
-	// 		localStorage.setItem("isLoggedIn", "true");
-	// 		setIsLoggedIn(true);
-	// 		return true;
-	// 	}
-	// 	return false;
-	// };
-	// const handleLogin = async (inputAccount, inputPassword, inputCaptcha) => {
-	// 	try {
-	// 		const response = await axios.post(`${API_URL}api/login`, {
-	// 			email: inputAccount,
-	// 			password: inputPassword,
-	// 			// captcha: inputCaptcha,
-	// 		});
-	// 		// const response = await axios.get(`${API_URL}api/exhibitions/${demo_id}?_expand=organizer`,{
-	// 		// 	headers: { "api-key": `${API_KEY}` }, 
-	// 		//   });
-
-	// 		console.log(response.data);
-	// 		console.log(response.status);
-	// 		// 確保 API 回傳的格式正確
-	// 		if (response.status === 200 && response.data) {
-	// 			localStorage.setItem("isLoggedIn", "true");
-	// 			// localStorage.setItem("authToken", response.data.token);
-	// 			localStorage.setItem("userId", response.data.id); // 儲存使用者 ID
-	// 			setIsLoggedIn(true);
-				
-	// 			return true;
-	// 		}
-	// 	} catch (error) {
-	// 		console.error("登入失敗", error);
-	// 	}
-	// 	return false;
-	// };
-
-	// const handleLogin = async (inputAccount, inputPassword, inputCaptcha) => {
-	// 	try {
-	// 	  const response = await axios.post(`${API_URL}api/login`, {
-	// 		email: inputAccount,
-	// 		password: inputPassword,
-	// 		// captcha: inputCaptcha,
-	// 	  });
-	
-	// 	  if (response.status === 200 && response.data) {
-	// 		localStorage.setItem("isLoggedIn", "true");
-	// 		localStorage.setItem("userId", response.data.id);
-	// 		setIsLoggedIn(true);
-	// 		return true;
-	// 	  }
-	// 	} catch (error) {
-	// 	  console.error("登入失敗", error);
-	// 	}
-	// 	return false;
-	//   };
-
 	const handleLogin = async (inputAccount, inputPassword, inputCaptcha) => {
 		try {
 		  const response = await axios.post(`${API_URL}api/login`, {

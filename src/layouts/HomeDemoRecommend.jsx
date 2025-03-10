@@ -5,7 +5,7 @@ import axios from "axios";
 import "swiper/css/pagination";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hook/useAuth";
 const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -18,8 +18,9 @@ export default function HomeDemoRecommend() {
 		{ sm: "Demo/demo-sm-13.png", lg: "Demo/demo-lg-13.png" },
 	];
 
-	const { isLoggedIn } = useAuth();
-	console.log("isLoggedIn", isLoggedIn);
+	// const location = useLocation();
+	// const isLoggedIn = (location.state && location.state.isLoggedIn) || false;
+	const isLoggedIn = localStorage.getItem("isLoggedIn")==='true' ? true : false;
 
 	const getRecommendDemo = async () => {
 		try {
@@ -166,7 +167,7 @@ export default function HomeDemoRecommend() {
 														</h3>
 														<button
 															className='btn p-0'
-															onClick={() => postAddBookmark(1, demo.id, i)}>
+															onClick={() => postAddBookmark(localStorage.getItem("userId"), demo.id, i)}>
 															<span
 																className={`material-symbols-outlined p-0 fs-6 ${
 																	demo.isBookmarked &&

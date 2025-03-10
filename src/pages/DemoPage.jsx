@@ -7,9 +7,11 @@ import FloatingButton from "../components/WalletKun";
 import axios from "axios";
 import {useParams } from "react-router-dom";
 
-const API_URL = "https://e-a-g-api.vercel.app/"; // 替換成實際 API 路徑
+// const API_URL = "https://e-a-g-api.vercel.app/"; // 替換成實際 API 路徑
 // const API_URL = "http://localhost:3000/"; 
-const API_KEY = "ZtQ5rmRFtoev3sK1eFTLnEaP"; // 替換成你的 API Key
+// const API_KEY = "ZtQ5rmRFtoev3sK1eFTLnEaP"; // 替換成你的 API Key
+const API_URL = import.meta.env.VITE_API_URL;
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 export default function DemoPage({}) {
     
@@ -18,15 +20,33 @@ export default function DemoPage({}) {
 	  }, []);
 
     const [demo, setDemo] = useState({});
+    const [isFavorite, setIsFavorite] = useState(false); 
     const {id: demo_id} = useParams();
+
+    const toggleFavorite = () => {
+      // 切換收藏狀態
+      setIsFavorite(prevState => !prevState);
+  
+      // 假設 API 可以更新收藏狀態，發送請求來更新
+      axios.post(`${API_URL}api/exhibitions/${demo_id}/favorite`, {
+        isFavorite: !isFavorite,
+      }, {
+        headers: { "api-key": `${API_KEY}` },
+      }).then(response => {
+        console.log('Favorite status updated');
+      }).catch(error => {
+        console.error('Error updating favorite status:', error);
+      });
+    };
 
     const getDemoData = async () => {
         try {
-          const response = await axios.get(`${API_URL}api/exhibitions/${demo_id}?_expand=organizer`,{
+          const response = await axios.get(`${API_URL}api/exhibitions/${demo_id}?userId=${localStorage.getItem("userId")}&_expand=organizers`,{
             headers: { "api-key": `${API_KEY}` }, 
           });
           console.log(response.data);
           setDemo(response.data);
+          setIsFavorite(response.data.isFavorite); 
           
         //   const data = await response.json();
         //   return data;
@@ -52,11 +72,18 @@ export default function DemoPage({}) {
               <div class="demo-card-header d-flex">
                 <div class="demo-title d-flex align-items-center">
                   <p class="fs-12 fw-bold me-2">{demo.title}</p>
-                  <span
+                  {/* <span
                     id="bookmark-icon"
                     class="material-symbols-outlined fs-6 px-0 demo-bookmark"
                   >
                     bookmark_add
+                  </span> */}
+                  <span
+                    id="bookmark-icon"
+                    className={`material-symbols-outlined fs-6 px-0 demo-bookmark ${isFavorite ? 'material-symbols-rounded demo-bookmark-added' : ''}`}
+                    onClick={toggleFavorite}
+                  >
+                    {isFavorite ? 'bookmark_added' : 'bookmark_add'}
                   </span>
                 </div>
                 <ul class="demo-tags d-flex align-items-center gap-3 fs-3 ">

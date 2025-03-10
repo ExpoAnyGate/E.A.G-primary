@@ -11,13 +11,11 @@ import { useEffect } from "react";
 
 export default function HomePage() {
 	useEffect(() => {
-		//不的出現在AOS之後，影響捲軸定位
-		window.scrollTo(0, 0);
-
 		AOS.init({ once: false });
 		setTimeout(() => {
 			AOS.refresh();
-		}, 100);
+		}, 300);
+		window.scrollTo(0, 0);
 	}, []);
 
 	return (
@@ -59,7 +57,7 @@ export default function HomePage() {
 					<HomeBanner device={"sm"} />
 				</div>
 				{/* <!-- 平板以上 --> */}
-				<div className='container-fluid d-none d-md-block p-0 banner position-relative mb-n1'>
+				<div className='container-fluid d-none d-md-block p-0 banner position-relative'>
 					<div className='text-gray-000 text-nowrap position-absolute banner-text'>
 						<h1 className='fs-15 fw-900 mb-2'>E.A.G - 藝展任意門</h1>
 						<p className='fs-6 fw-500 mb-6'>

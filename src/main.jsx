@@ -1,5 +1,5 @@
 import { StrictMode } from "react";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider } from "./hook/useAuth";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";

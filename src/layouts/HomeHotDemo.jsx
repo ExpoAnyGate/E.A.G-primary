@@ -102,7 +102,7 @@ const HomeHotDemo = () => {
 										{hotDemo[0]?.title}
 									</h3>
 									<span className='material-symbols-outlined p-0 fs-6'>
-										bookmarks
+										bookmark_add
 									</span>
 								</div>
 							</li>
@@ -188,11 +188,9 @@ const HomeHotDemo = () => {
 													<h3 className='fw-700 fs-6 text-truncate'>
 														{demos[i]?.title}
 													</h3>
-													<img
-														className='align-top'
-														src='icon/Bookmark_add.png'
-														alt='Bookmark_add'
-													/>
+													<span className='material-symbols-outlined p-0 fs-6'>
+														bookmark_add
+													</span>
 												</div>
 											</li>
 											<li className='mb-6'>
@@ -285,7 +283,7 @@ const HomeHotDemo = () => {
 											{hotDemo[0]?.title}
 										</h3>
 										<span className='material-symbols-outlined p-0 fs-6'>
-											bookmarks
+											bookmark_add
 										</span>
 									</div>
 								</li>
@@ -368,11 +366,9 @@ const HomeHotDemo = () => {
 													<h3 className='fw-700 fs-6 text-truncate'>
 														{demos[i]?.title}
 													</h3>
-													<img
-														className='align-top'
-														src='icon/Bookmark_add.png'
-														alt='Bookmark_add'
-													/>
+													<span className='material-symbols-outlined p-0 fs-6'>
+														bookmark_add
+													</span>
 												</div>
 											</li>
 											<li className='mb-6'>

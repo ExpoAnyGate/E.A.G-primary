@@ -39,7 +39,7 @@ export default function DemoPage({}) {
 
     const getDemoData = async () => {
         try {
-          const response = await axios.get(`${API_URL}api/exhibitions/${demo_id}?userId=${localStorage.getItem("userId")}&_expand=origanizer`,{
+          const response = await axios.get(`${API_URL}api/exhibitions/${demo_id}?userId=${localStorage.getItem("userId")}&_expand=organizers`,{
             // headers: { "api-key": `${API_KEY}` }, 
           });
           console.log(response.data);

@@ -23,7 +23,7 @@ const SearchCardFocus = ({ data }) => {
             <div className="overflow-hidden rounded-4">
               <img
                 src={data.url}
-                className="card-img-top rounded-4 img-enlarge object-fit-cover"
+                className="SearchCardFocus card-img-top rounded-4 img-enlarge object-fit-cover"
                 alt="..."
               />
             </div>
@@ -52,7 +52,16 @@ const SearchCardFocus = ({ data }) => {
               )}
 
               <div className="card-text d-none d-sm-block">
-                <p className="mb-4">{data.description}</p>
+                <p className="mb-4">
+                  {data.description.length > 235 ? (
+                    <>
+                      {data.description.slice(0, 235)}
+                      <span className="text-muted">......(看更多)</span>
+                    </>
+                  ) : (
+                    data.description
+                  )}
+                </p>
               </div>
             </div>
           </div>

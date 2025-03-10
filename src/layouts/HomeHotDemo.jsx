@@ -34,7 +34,7 @@ const HomeHotDemo = () => {
 		try {
 			setIsWaiting(true);
 			const res = await axios.get(
-				`${API_URL}/api/exhibitions?_sort=views&_order=desc&_page=${page}&_limit=3`,
+				`${API_URL}/api/exhibitions?_sort=views&_order=desc&_page=${page}&_limit=3&_expand=region`,
 				{
 					headers: { "api-key": `${API_KEY}` },
 				}
@@ -93,7 +93,7 @@ const HomeHotDemo = () => {
 										src='icon/location_outlined.png'
 										alt='location_outlined'
 									/>
-									<span>{hotDemo[0]?.address}</span>
+									<span>{hotDemo[0]?.region.name}</span>
 								</div>
 							</li>
 							<li className='mb-6'>
@@ -102,7 +102,7 @@ const HomeHotDemo = () => {
 										{hotDemo[0]?.title}
 									</h3>
 									<span className='material-symbols-outlined p-0 fs-6'>
-										bookmarks
+										bookmark_add
 									</span>
 								</div>
 							</li>
@@ -180,7 +180,7 @@ const HomeHotDemo = () => {
 														src='icon/location_outlined.png'
 														alt='location_outlined'
 													/>
-													<span>{demos[i]?.address}</span>
+													<span>{demos[i]?.region.name}</span>
 												</div>
 											</li>
 											<li className='mb-6'>
@@ -188,11 +188,9 @@ const HomeHotDemo = () => {
 													<h3 className='fw-700 fs-6 text-truncate'>
 														{demos[i]?.title}
 													</h3>
-													<img
-														className='align-top'
-														src='icon/Bookmark_add.png'
-														alt='Bookmark_add'
-													/>
+													<span className='material-symbols-outlined p-0 fs-6'>
+														bookmark_add
+													</span>
 												</div>
 											</li>
 											<li className='mb-6'>
@@ -276,7 +274,7 @@ const HomeHotDemo = () => {
 											src='icon/location_outlined.png'
 											alt='location_outlined'
 										/>
-										<span>{hotDemo[0]?.address}</span>
+										<span>{hotDemo[0]?.region.name}</span>
 									</div>
 								</li>
 								<li className='mb-6'>
@@ -285,7 +283,7 @@ const HomeHotDemo = () => {
 											{hotDemo[0]?.title}
 										</h3>
 										<span className='material-symbols-outlined p-0 fs-6'>
-											bookmarks
+											bookmark_add
 										</span>
 									</div>
 								</li>
@@ -360,7 +358,7 @@ const HomeHotDemo = () => {
 														src='icon/location_outlined.png'
 														alt='location_outlined'
 													/>
-													<span>{demos[i]?.address}</span>
+													<span>{demos[i]?.region.name}</span>
 												</div>
 											</li>
 											<li className='mb-6'>
@@ -368,11 +366,9 @@ const HomeHotDemo = () => {
 													<h3 className='fw-700 fs-6 text-truncate'>
 														{demos[i]?.title}
 													</h3>
-													<img
-														className='align-top'
-														src='icon/Bookmark_add.png'
-														alt='Bookmark_add'
-													/>
+													<span className='material-symbols-outlined p-0 fs-6'>
+														bookmark_add
+													</span>
 												</div>
 											</li>
 											<li className='mb-6'>

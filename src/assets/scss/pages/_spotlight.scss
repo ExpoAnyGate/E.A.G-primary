@@ -405,3 +405,16 @@
       pointer-events: none;
      }
   }
+
+
+  .card-spotlight {
+    position: relative;
+    border-radius: 0;
+    border: 0px solid #222;
+    background-color: #111;
+    padding:20px;
+    overflow: hidden;
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+    --spotlight-color: rgba(255, 255, 255, 0.05);
+  }

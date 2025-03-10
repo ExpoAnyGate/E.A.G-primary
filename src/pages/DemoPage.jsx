@@ -8,8 +8,10 @@ import axios from "axios";
 import {useParams } from "react-router-dom";
 
 // const API_URL = "https://e-a-g-api.vercel.app/"; // 替換成實際 API 路徑
-const API_URL = "http://localhost:3000/"; 
-const API_KEY = "ZtQ5rmRFtoev3sK1eFTLnEaP"; // 替換成你的 API Key
+// const API_URL = "http://localhost:3000/"; 
+// const API_KEY = "ZtQ5rmRFtoev3sK1eFTLnEaP"; // 替換成你的 API Key
+const API_URL = import.meta.env.VITE_API_URL;
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 export default function DemoPage({}) {
     
@@ -40,7 +42,7 @@ export default function DemoPage({}) {
     const getDemoData = async () => {
         try {
           const response = await axios.get(`${API_URL}api/exhibitions/${demo_id}?userId=${localStorage.getItem("userId")}&_expand=organizers`,{
-            // headers: { "api-key": `${API_KEY}` }, 
+            headers: { "api-key": `${API_KEY}` }, 
           });
           console.log(response.data);
           setDemo(response.data);

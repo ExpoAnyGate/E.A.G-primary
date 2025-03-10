@@ -167,7 +167,7 @@ export default function HomeDemoRecommend() {
 														</h3>
 														<button
 															className='btn p-0'
-															onClick={() => postAddBookmark(1, demo.id, i)}>
+															onClick={() => postAddBookmark(localStorage.getItem("userId"), demo.id, i)}>
 															<span
 																className={`material-symbols-outlined p-0 fs-6 ${
 																	demo.isBookmarked &&

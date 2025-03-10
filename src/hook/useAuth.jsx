@@ -54,14 +54,34 @@ export const AuthProvider = ({ children }) => {
 	// 	return false;
 	// };
 
+	// const handleLogin = async (inputAccount, inputPassword, inputCaptcha) => {
+	// 	try {
+	// 	  const response = await axios.post(`${API_URL}api/login`, {
+	// 		email: inputAccount,
+	// 		password: inputPassword,
+	// 		// captcha: inputCaptcha,
+	// 	  });
+	
+	// 	  if (response.status === 200 && response.data) {
+	// 		localStorage.setItem("isLoggedIn", "true");
+	// 		localStorage.setItem("userId", response.data.id);
+	// 		setIsLoggedIn(true);
+	// 		return true;
+	// 	  }
+	// 	} catch (error) {
+	// 	  console.error("登入失敗", error);
+	// 	}
+	// 	return false;
+	//   };
+
 	const handleLogin = async (inputAccount, inputPassword, inputCaptcha) => {
 		try {
 		  const response = await axios.post(`${API_URL}api/login`, {
 			email: inputAccount,
 			password: inputPassword,
-			// captcha: inputCaptcha,
+			captcha: inputCaptcha,
 		  });
-	
+	  
 		  if (response.status === 200 && response.data) {
 			localStorage.setItem("isLoggedIn", "true");
 			localStorage.setItem("userId", response.data.id);
@@ -78,6 +98,7 @@ export const AuthProvider = ({ children }) => {
 		localStorage.removeItem("isLoggedIn");
 		localStorage.removeItem("userId");
 		setIsLoggedIn(false);
+		window.location.reload();
 	};
 
 	return (

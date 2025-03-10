@@ -34,10 +34,10 @@ export default function FrontLayout() {
 									</li>
 								);
 							})}
-
-						<AuthProvider>
-							<LoginStatus />
-						</AuthProvider>
+						{/* <AuthProvider> */}
+						<LoginStatus />
+						{/* </AuthProvider> */}
+						
 					</ul>
 				</div>
 			</nav>

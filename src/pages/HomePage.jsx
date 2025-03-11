@@ -11,11 +11,11 @@ import { useEffect } from "react";
 
 export default function HomePage() {
 	useEffect(() => {
+		window.scrollTo(0, 0);
 		AOS.init({ once: false });
 		setTimeout(() => {
 			AOS.refresh();
-		}, 300);
-		window.scrollTo(0, 0);
+		}, 100);
 	}, []);
 
 	return (

@@ -1,7 +1,7 @@
 import { use, useEffect, useState } from "react";
 import { useAuth } from "../hook/useAuth";
 import { useNavigate } from "react-router-dom";
-import LoginForm from "./loginForm";
+import LoginForm from "./LoginForm";
 
 
 const LoginStatus = () => {

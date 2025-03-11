@@ -57,4 +57,4 @@ const GoodsList = () => {
     );
 };
 
-export default GoodList;
+export default GoodsList;

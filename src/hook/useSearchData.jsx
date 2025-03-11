@@ -13,7 +13,7 @@ export const fetchSearchData = createAsyncThunk(
     try {
       const { regionId, category, keyWord, start_date, end_date } = filters;
       const response = await axios.get(
-        `${API_URL}/api/exhibitions?_page=${page}&_limit=6&startDate=${start_date}&endDate=${end_date}&exhibitions_categoriesId=${category}&search=${keyWord}&regionId=${regionId}&_expand=region,exhibitions_categories`,{
+        `${API_URL}/api/exhibitions?_page=${page}&_limit=6&startDate=${start_date}&endDate=${end_date}&exhibitions_categoriesId=${category}&search=${keyWord}&regionId=${regionId}&_expand=region,exhibitions_categories&userId=${localStorage.getItem("userId")}`,{
           headers: { "api-key": `${API_KEY}` }
       });
 

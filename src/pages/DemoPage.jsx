@@ -69,7 +69,7 @@ export default function DemoPage({}) {
         <div class="demo-top w-100 d-flex gap-4 mt-17">
           <div class="main-demo">
             <div class="border border-gray-700 rounded-3 p-10">
-              <div class="demo-card-header d-flex">
+              <div class="demo-card-header d-flex flex-column">
                 <div class="demo-title d-flex align-items-center">
                   <p class="fs-12 fw-bold me-2">{demo.title}</p>
                   {/* <span

@@ -15,7 +15,7 @@ export default function HomePage() {
 		AOS.init({ once: false });
 		setTimeout(() => {
 			AOS.refresh();
-		}, 300);
+		}, 100);
 	}, []);
 
 	return (

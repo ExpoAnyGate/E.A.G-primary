@@ -118,7 +118,7 @@ const HomeLastDemo = () => {
 														{demo.title}
 													</h3>
 													<span className='material-symbols-outlined p-0 fs-6'>
-														bookmarks
+														bookmark_add
 													</span>
 												</div>
 											</li>
@@ -198,7 +198,7 @@ const HomeLastDemo = () => {
 														{demo.title}
 													</h3>
 													<span className='material-symbols-outlined p-0 fs-6'>
-														bookmarks
+														bookmark_add
 													</span>
 												</div>
 											</li>

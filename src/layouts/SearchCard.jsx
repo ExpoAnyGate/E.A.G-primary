@@ -29,9 +29,19 @@ const SearchCard = ({ data }) => {
               <div className="card-title">
                 <div className="d-flex align-items-center">
                   <h3 className="fw-700 title-font-size">{data.title}</h3>
-                  <span className="material-symbols-outlined title-font-size">
+                  {/* <span className="material-symbols-outlined title-font-size">
                     bookmark_add
+                  </span> */}
+
+                  <span
+                    id="bookmark-icon"
+                    className={`material-symbols-outlined title-font-size ${data.isFavorite ? 'material-symbols-rounded demo-bookmark-added' : ''}`}
+                    // onClick={toggleFavorite}
+                  >
+                    {data.isFavorite ? 'bookmark_added' : 'bookmark_add'}
+                    {data.isFavorite ? console.log('bookmark true') : console.log('bookmark false')}
                   </span>
+
                 </div>
               </div>
               {Array.isArray(data.tags) && data.tags.length > 0 && (

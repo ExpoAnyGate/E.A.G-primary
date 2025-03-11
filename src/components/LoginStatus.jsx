@@ -1,29 +1,44 @@
 import { use, useEffect, useState } from "react";
 import { useAuth } from "../hook/useAuth";
 import { useNavigate } from "react-router-dom";
+import LoginForm from "./LoginForm";
+
 
 const LoginStatus = () => {
 	const { isLoggedIn, handleLogin, handleLogout } = useAuth();
 	const navigate = useNavigate();
-	const handleUserLogin = () => {
-		handleLogin();
-		// 利用路由傳遞登入的訊號
-		navigate("/", {
-			state: {
-				isLoggedIn: true,
-			},
-		});
-	};
+	// const handleUserLogin = () => {
+	// 	handleLogin();
+	// 	// 利用路由傳遞登入的訊號
+	// 	navigate("/", {
+	// 		state: {
+	// 			isLoggedIn: true,
+	// 		},
+			
+	// 	});
+	// };
 
-	const handleUserLogout = () => {
-		handleLogout();
-		// 利用路由傳遞登出的訊號
-		navigate("/", {
-			state: {
-				isLoggedIn: false,
-			},
-		});
-	};
+	// const handleUserLogout = () => {
+	// 	handleLogout();
+	// 	// 利用路由傳遞登出的訊號
+	// 	navigate("/", {
+	// 		state: {
+	// 			isLoggedIn: false,
+	// 		},
+	// 	});
+	// };
+	// const handleUserLogout = () => {
+	// 	handleLogout();
+	// 	navigate("/", { state: { isLoggedIn: false } });
+	// 	window.location.reload();  // 強制刷新頁面
+	//   };
+	  
+
+//   useEffect(() => {
+// 		if (location.pathname === "/") {
+// 			setIsOpen(false);
+// 		}
+// 	}, [location.pathname]);
 
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -114,7 +129,7 @@ const LoginStatus = () => {
 							</li>
 							<li>
 								<button
-									onClick={() => handleUserLogout()}
+									onClick={() => handleLogout()}
 									className='dropdown-item p-item d-flex align-items-center'>
 									<img src='icon/Login.png' alt='Login.png' className='me-4' />
 									<span>會員登出</span>
@@ -182,7 +197,7 @@ const LoginStatus = () => {
 											</span>
 										</li>
 										<li className='col-8'>
-											<form>
+											{/* <form>
 												<div className='mb-3'>
 													<div className='form-floating'>
 														<input
@@ -276,11 +291,12 @@ const LoginStatus = () => {
 													className='btn btn-primary-600 text-gray-000 w-50 py-3 ms-3'
 													data-bs-dismiss='modal'
 													id='login-btn'
-													onClick={() => handleUserLogin()}
+													onClick={() => handleLogin()}
 													aria-label='Close'>
 													登入
 												</button>
-											</div>
+											</div> */}
+                      <LoginForm />
 											<div className='d-flex flex-wrap justify-content-between'>
 												<a
 													href='#'

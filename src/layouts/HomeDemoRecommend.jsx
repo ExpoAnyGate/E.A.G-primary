@@ -5,7 +5,7 @@ import axios from "axios";
 import "swiper/css/pagination";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useAuth } from "../hook/useAuth";
 const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -18,8 +18,9 @@ export default function HomeDemoRecommend() {
 		{ sm: "Demo/demo-sm-13.png", lg: "Demo/demo-lg-13.png" },
 	];
 
-	const location = useLocation();
-	const isLoggedIn = (location.state && location.state.isLoggedIn) || false;
+	// const location = useLocation();
+	// const isLoggedIn = (location.state && location.state.isLoggedIn) || false;
+	const isLoggedIn = localStorage.getItem("isLoggedIn")==='true' ? true : false;
 
 	const getRecommendDemo = async () => {
 		try {
@@ -30,6 +31,27 @@ export default function HomeDemoRecommend() {
 				}
 			);
 			setRecommendDemo(res.data.data);
+		} catch (error) {}
+	};
+
+	const postAddBookmark = async (userId, exhibitionId, index) => {
+		try {
+			//參數順序(路徑,data,header)
+			await axios.post(
+				`${API_URL}/api/users/${userId}/favorites`,
+				{
+					userId,
+					exhibitionId,
+					id: 3,
+				},
+				{
+					headers: { "api-key": `${API_KEY}` },
+				}
+			);
+			//先淺拷貝一份，當使用者加入喜愛此展覽，新增一個屬性，最後用新的陣列去覆蓋舊的（刷新元件）
+			const newRecommendDemo = [...recommendDemo];
+			newRecommendDemo[index].isBookmarked = true;
+			setRecommendDemo(newRecommendDemo);
 		} catch (error) {}
 	};
 
@@ -97,8 +119,8 @@ export default function HomeDemoRecommend() {
 							{recommendDemo.map((demo, i) => {
 								return (
 									<SwiperSlide key={demo.id} className='swiper-slide'>
-										<Link to={`/demo/${demo.id}`} className='d-block'>
-											<div className='d-flex flex-column'>
+										<div className='d-flex flex-column'>
+											<Link to={`/demo/${demo.id}`}>
 												<picture>
 													<source
 														media='(min-width: 768px)'
@@ -120,68 +142,74 @@ export default function HomeDemoRecommend() {
 														alt='demo-sm-6'
 													/>
 												</picture>
-												<ul className='mt-4 text-gray-700'>
-													<li className='mb-4 d-flex justify-content-between'>
-														<time
-															dateTime={`${demo.start_date} - ${demo.end_date}`}
-															className='font-family-Noto'>
-															{`${demo.start_date.split("-").join("/")} - 
+											</Link>
+											<ul className='mt-4 text-gray-700'>
+												<li className='mb-4 d-flex justify-content-between'>
+													<time
+														dateTime={`${demo.start_date} - ${demo.end_date}`}
+														className='font-family-Noto'>
+														{`${demo.start_date.split("-").join("/")} - 
 														${demo.end_date.split("-").join("/")}`}
-														</time>
+													</time>
+													<div>
+														<img
+															className='align-top'
+															src='icon/location_outlined.png'
+															alt='location_outlined'
+														/>
+														<span>{demo.region.name}</span>
+													</div>
+												</li>
+												<li className='mb-4'>
+													<div className='d-flex'>
+														<h3 className='fw-700 fs-6 text-truncate'>
+															{demo.title}
+														</h3>
+														<button
+															className='btn p-0'
+															onClick={() => postAddBookmark(localStorage.getItem("userId"), demo.id, i)}>
+															<span
+																className={`material-symbols-outlined p-0 fs-6 ${
+																	demo.isBookmarked &&
+																	"material-symbols-filled text-warning"
+																}`}>
+																bookmark_add
+															</span>
+														</button>
+													</div>
+												</li>
+												<li className='mb-4'>
+													{demo.tags.map((tag) => {
+														return (
+															<span
+																key={tag}
+																className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2 me-5'>
+																#{tag}
+															</span>
+														);
+													})}
+												</li>
+												<li className='mb-4'>
+													<p className='fs-4 fw-400'>{demo.description}</p>
+												</li>
+												<li className='mb-4'>
+													<div className='d-flex'>
 														<div>
-															<img
-																className='align-top'
-																src='icon/location_outlined.png'
-																alt='location_outlined'
-															/>
-															<span>{demo.region.name}</span>
+															<span className='fs-6 text-danger align-middle me-1 p-0 material-symbols-outlined material-symbols-filled'>
+																favorite
+															</span>
+															<span>{demo.likes}</span>
 														</div>
-													</li>
-													<li className='mb-4'>
-														<div className='d-flex'>
-															<h3 className='fw-700 fs-6 text-truncate'>
-																{demo.title}
-															</h3>
-															<img
-																className='align-top'
-																src='icon/Bookmark_add.png'
-																alt='Bookmark_add'
-															/>
+														<div className='ms-6'>
+															<span className='fs-6 align-middle me-1 p-0 material-symbols-outlined material-symbols-filled '>
+																visibility
+															</span>
+															<span>{demo.views}</span>
 														</div>
-													</li>
-													<li className='mb-4'>
-														{demo.tags.map((tag) => {
-															return (
-																<span
-																	key={tag}
-																	className='rounded-pill text-gray-700 border-gray-700 border bg-gray-000 py-1 px-2 me-5'>
-																	#{tag}
-																</span>
-															);
-														})}
-													</li>
-													<li className='mb-4'>
-														<p className='fs-4 fw-400'>{demo.description}</p>
-													</li>
-													<li className='mb-4'>
-														<div className='d-flex'>
-															<div>
-																<span className='fs-6 text-danger align-middle me-1 p-0 material-symbols-outlined material-symbols-filled'>
-																	favorite
-																</span>
-																<span>{demo.likes}</span>
-															</div>
-															<div className='ms-6'>
-																<span className='fs-6 align-middle me-1 p-0 material-symbols-outlined material-symbols-filled '>
-																	visibility
-																</span>
-																<span>{demo.views}</span>
-															</div>
-														</div>
-													</li>
-												</ul>
-											</div>
-										</Link>
+													</div>
+												</li>
+											</ul>
+										</div>
 									</SwiperSlide>
 								);
 							})}

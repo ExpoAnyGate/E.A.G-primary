@@ -3,8 +3,10 @@ import axios from "axios";
 const AuthContext = createContext();
 
 // const API_URL = "https://e-a-g-api.vercel.app/"; // 替換成實際 API 路徑
-const API_URL = "http://localhost:3000/"; 
-const API_KEY = "ZtQ5rmRFtoev3sK1eFTLnEaP"; // 替換成你的 API Key
+// const API_URL = "http://localhost:3000/"; 
+// const API_KEY = "ZtQ5rmRFtoev3sK1eFTLnEaP"; // 替換成你的 API Key
+const API_URL = import.meta.env.VITE_API_URL;
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 export const AuthProvider = ({ children }) => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,6 +25,7 @@ export const AuthProvider = ({ children }) => {
 			email: inputAccount,
 			password: inputPassword,
 			captcha: inputCaptcha,
+			headers: { "api-key": `${API_KEY}` }
 		  });
 	  
 		  if (response.status === 200 && response.data) {

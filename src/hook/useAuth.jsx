@@ -24,7 +24,8 @@ export const AuthProvider = ({ children }) => {
 		  const response = await axios.post(`${API_URL}/api/login`, {
 			email: inputAccount,
 			password: inputPassword,
-			captcha: inputCaptcha,
+			captcha: inputCaptcha
+		},{
 			headers: { "api-key": `${API_KEY}` }
 		  });
 	  

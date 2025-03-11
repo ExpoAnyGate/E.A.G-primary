@@ -42,6 +42,8 @@ export default function DemoPage({}) {
       const apiEndpoint = `${API_URL}/api/users/${localStorage.getItem("userId")}/favorites`;
       const method = isFavorite ? 'delete' : 'post';
 
+      console.log(`method: ${method}`);
+
       axios({
         method: method,
         url: apiEndpoint,

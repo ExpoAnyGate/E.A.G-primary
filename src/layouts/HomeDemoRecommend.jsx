@@ -12,6 +12,7 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 export default function HomeDemoRecommend() {
 	const swiperRef = useRef(null);
 	const [recommendDemo, setRecommendDemo] = useState([]);
+	// const [isFavorite, setIsFavorite] = useState(false); 
 	const recommendDemoImg = [
 		{ sm: "Demo/demo-sm-6.png", lg: "Demo/demo-lg-6.png" },
 		{ sm: "Demo/demo-sm-3.png", lg: "Demo/demo-lg-3.png" },
@@ -22,10 +23,41 @@ export default function HomeDemoRecommend() {
 	// const isLoggedIn = (location.state && location.state.isLoggedIn) || false;
 	const isLoggedIn = localStorage.getItem("isLoggedIn")==='true' ? true : false;
 
+	const toggleFavorite = ({demo_id, prevState}) => {
+		setRecommendDemo((prevRecommendDemo) =>
+			prevRecommendDemo.map((demo) =>
+				demo.id === demo_id ? { ...demo, isFavorite: !prevState } : demo
+			)
+		);
+		// 切換收藏狀態
+		// setIsFavorite(prevState => !prevState);
+		console.log(`isFavorite: ${prevState}`);
+		// 根據 isFavorite 狀態決定要打哪一隻 API
+		console.log(`userId: ${localStorage.getItem("userId")}`);
+		const apiEndpoint = `${API_URL}/api/users/${localStorage.getItem("userId")}/favorites`;
+		const method = prevState ? 'delete' : 'post';
+
+		console.log(`method: ${method}`);
+
+		axios({
+			method: method,
+			url: apiEndpoint,
+			headers: { "api-key": `${API_KEY}` },
+			data: {
+				// isFavorite: !isFavorite,
+				exhibitionId: demo_id
+			}
+			}).then(response => {
+			console.log('Favorite status updated');
+			}).catch(error => {
+			console.error('Error updating favorite status:', error);
+		});
+	};
+
 	const getRecommendDemo = async () => {
 		try {
 			const res = await axios.get(
-				`${API_URL}/api/exhibitions?featured=true&_page=0&_limit=5&_expand=region`,
+				`${API_URL}/api/exhibitions?_sort=start_date&_order=asc&featured=true&_page=0&_limit=5&_expand=region&userId=${localStorage.getItem("userId")}`,
 				{
 					headers: { "api-key": `${API_KEY}` },
 				}
@@ -165,7 +197,7 @@ export default function HomeDemoRecommend() {
 														<h3 className='fw-700 fs-6 text-truncate'>
 															{demo.title}
 														</h3>
-														<button
+														{/* <button
 															className='btn p-0'
 															onClick={() => postAddBookmark(localStorage.getItem("userId"), demo.id, i)}>
 															<span
@@ -175,7 +207,14 @@ export default function HomeDemoRecommend() {
 																}`}>
 																bookmark_add
 															</span>
-														</button>
+														</button> */}
+														<span
+															id="bookmark-icon"
+															className={`material-symbols-outlined p-0 fs-6 demo-bookmark ${demo.isFavorite ? 'material-symbols-rounded demo-bookmark-added' : ''}`}
+															onClick={() => toggleFavorite({demo_id: demo.id, prevState: demo.isFavorite})}
+														>
+															{demo.isFavorite ? 'bookmark_added' : 'bookmark_add'}
+														</span>
 													</div>
 												</li>
 												<li className='mb-4'>

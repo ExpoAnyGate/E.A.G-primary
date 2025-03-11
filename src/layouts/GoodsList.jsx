@@ -6,7 +6,7 @@ import GoodsModal from "./GoodsModal";
 const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const GoodList = () => {
+const GoodsList = () => {
     const [goods, setGoods] = useState([]);
     const [selectedGood, setSelectedGood] = useState(null);
     const [isLoading, setIsLoading] = useState(false); // 控制載入狀態

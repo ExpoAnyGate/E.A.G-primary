@@ -95,6 +95,9 @@
     max-width: 320px;
     border: 1px solid $primary-900;
     border-radius: 64px 64px 24px 24px;
+    @include media-breakpoint-up(lg) {
+        max-width: 405px;
+    }
 
     .goods-item-upper {
         width: calc(100% + var(--bs-gutter-x));
@@ -103,10 +106,14 @@
     .goods-image-wrapper {
         border-radius: 8px;
         overflow: hidden;
+        @include media-breakpoint-up(md) {
+            aspect-ratio: 4 / 3; 
+        }
     }
 
     img {
         height: 240px;
+        object-fit: cover;
     }
 }
 
@@ -114,14 +121,12 @@
     border-radius: 100px;
     width: 54px;
     height: 54px;
-}
-
-@media (min-width: 768px) {
-    .good-card {
-        max-width: 405px;
-
+    @include media-breakpoint-up(lg) {
+        width: 70px;
+        height: 70px;
     }
 }
+
 
 //goods-modal
 .goods-modal {

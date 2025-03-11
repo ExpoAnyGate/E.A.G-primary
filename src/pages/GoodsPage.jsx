@@ -1,5 +1,5 @@
 import FloatingButton from "../components/WalletKun";
-import GoodList from "../layouts/GoodList";
+import GoodList from "../layouts/GoodsList";
 // import GoodsCard from "./GoodsCard";
 
 const API_URL = "https://e-a-g-api.vercel.app/"; // 替換成實際 API 路徑

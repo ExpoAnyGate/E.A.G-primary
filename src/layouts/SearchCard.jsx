@@ -1,6 +1,33 @@
 import PropTypes from "prop-types";
 
 const SearchCard = ({ data }) => {
+
+  // const toggleFavorite = ({demo_id}) => {
+  //   // 切換收藏狀態
+  //   setIsFavorite(prevState => !prevState);
+  //   // 根據 isFavorite 狀態決定要打哪一隻 API
+  //   console.log(`userId: ${localStorage.getItem("userId")}`);
+  //   const apiEndpoint = `${API_URL}/api/users/${localStorage.getItem("userId")}/favorites`;
+  //   const method = isFavorite ? 'delete' : 'post';
+
+  //   console.log(`method: ${method}`);
+
+  //   axios({
+  //     method: method,
+  //     url: apiEndpoint,
+  //     headers: { "api-key": `${API_KEY}` },
+  //     data: {
+  //       // isFavorite: !isFavorite,
+  //       exhibitionId: demo_id
+  //     }
+  //   }).then(response => {
+  //     console.log('Favorite status updated');
+  //   }).catch(error => {
+  //     console.error('Error updating favorite status:', error);
+  //   });
+  // };
+
+
   return (
     <>
       {/* <!-- 小card --> */}
@@ -36,7 +63,7 @@ const SearchCard = ({ data }) => {
                   <span
                     id="bookmark-icon"
                     className={`material-symbols-outlined title-font-size ${data.isFavorite ? 'material-symbols-rounded demo-bookmark-added' : ''}`}
-                    // onClick={toggleFavorite}
+                    // onClick={ () => toggleFavorite(data.id) }
                   >
                     {data.isFavorite ? 'bookmark_added' : 'bookmark_add'}
                     {data.isFavorite ? console.log('bookmark true') : console.log('bookmark false')}

@@ -304,8 +304,8 @@ export default function DemoPage({}) {
               alt="line-3"
             />
           </div>
-
-          <MapComponent />
+                {console.log(`demo.address: ${demo.address}`)}
+          <MapComponent  defaultLocation={demo.address}/>
         </div>
 
 

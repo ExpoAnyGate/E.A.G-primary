@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 
-const MapComponent = () => {
-  const defaultLocation = "三創生活園區";
+const MapComponent = ({defaultLocation}) => {
+  // const defaultLocation = "台北101";
   const [embedUrl, setEmbedUrl] = useState("");
+  console.log(`defaultLocation: ${defaultLocation}`);
 
   useEffect(() => {
     const fetchMap = async () => {
@@ -21,7 +22,7 @@ const MapComponent = () => {
     };
 
     fetchMap();
-  }, []); // 空依賴陣列表示這個 effect 只在組件初次掛載時執行
+  }, [defaultLocation]); // 空依賴陣列表示這個 effect 只在組件初次掛載時執行
 
   return (
     <div>
@@ -37,7 +38,9 @@ const MapComponent = () => {
           className="w-100 mt-10 rounded-4 border-3 border-gray-200"
         ></iframe>
       ) : (
-        <p>Loading map...</p>
+        <div className='spinner-border spinner-border-sm' role='status'>
+          <span className='visually-hidden'>Loading map...</span>
+        </div>
       )}
     </div>
   );

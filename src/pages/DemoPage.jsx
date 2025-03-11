@@ -39,7 +39,7 @@ export default function DemoPage({}) {
       // });
       // 根據 isFavorite 狀態決定要打哪一隻 API
       console.log(`userId: ${localStorage.getItem("userId")}`);
-      const apiEndpoint = `${API_URL}/api/users/${userId}/favorites${isFavorite ? `?_expand=exhibitions` : ''}`; 
+      const apiEndpoint = `${API_URL}/api/users/${localStorage.getItem("userId")}/favorites${isFavorite ? `?_expand=exhibitions` : ''}`; 
       const method = isFavorite ? 'delete' : 'post';
 
       axios({

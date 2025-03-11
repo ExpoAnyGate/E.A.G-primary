@@ -91,3 +91,19 @@
       )
     )
   );
+
+
+// font-size-breakpoints
+// 生成 .fs-{breakpoint}-{size}，並提升優先權
+
+@each $breakpoint, $size in $grid-breakpoints {
+  @if $size != 0 { // 忽略 `xxs: 0`
+      @media (min-width: #{$size}) {
+          @each $key, $value in $font-sizes {
+              body .fs-#{$breakpoint}-#{$key} {
+                  font-size: $value !important;
+              }
+          }
+      }
+  }
+}

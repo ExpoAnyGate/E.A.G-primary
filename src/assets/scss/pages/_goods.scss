@@ -23,78 +23,72 @@
     z-index: 1;
 }
 
-.capsule-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    z-index: 1;
+.gashapon-image {
+    max-height: 80vh;
 }
 
+// Capsule 樣式
 .capsule {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-}
+    animation: float 3s infinite ease-in-out;
+    transition: transform 0.4s ease-in-out;
 
-.capsule-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-}
-
-.capsule {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-}
-
-.capsule-container {
-    clip-path: ellipse(60% 80% at center);
-}
-
-@keyframes float {
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
-}
-
-.capsule {
-    animation: float 2s infinite ease-in-out;
-}
-
-@media (min-width: 767px) {
-    .capsule {
+    @include media-breakpoint-up(md) {
         width: 75px;
         height: 75px;
     }
 }
 
+// Capsule 容器
+.capsule-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    min-height: 300px;
+}
+
+// 浮動動畫
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+.capsule:nth-child(odd) {
+    animation-delay: 1s;
+}
+
+.capsule:nth-child(even) {
+    animation-delay: 0.5s;
+}
+
 // goods-list
 .goods-list {
     gap: 12px;
-}
 
-@media (min-width: 768px) {
-    .goods-list {
+    @include media-breakpoint-up(md) {
         gap: 40px;
         row-gap: 64px;
     }
 }
 
 .goods-card {
+    cursor: pointer;
     max-width: 320px;
     border: 1px solid $primary-900;
     border-radius: 64px 64px 24px 24px;
+
+    @include media-breakpoint-up(lg) {
+        max-width: 405px;
+    }
 
     .goods-item-upper {
         width: calc(100% + var(--bs-gutter-x));
@@ -103,10 +97,15 @@
     .goods-image-wrapper {
         border-radius: 8px;
         overflow: hidden;
+
+        @include media-breakpoint-up(md) {
+            aspect-ratio: 4 / 3;
+        }
     }
 
     img {
         height: 240px;
+        object-fit: cover;
     }
 }
 
@@ -114,19 +113,22 @@
     border-radius: 100px;
     width: 54px;
     height: 54px;
-}
 
-@media (min-width: 768px) {
-    .good-card {
-        max-width: 405px;
-
+    @include media-breakpoint-up(lg) {
+        width: 70px;
+        height: 70px;
     }
 }
+
 
 //goods-modal
 .goods-modal {
     .modal-content {
         border-radius: 24px;
+
+        @include media-breakpoint-up(md) {
+            width: 624px;
+        }
     }
 
     h6 {
@@ -143,15 +145,6 @@
         padding: 0px;
         margin-right: 8px;
         vertical-align: middle;
-    }
-}
-
-@media (min-width: 768px) {
-    .goods-modal {
-        .modal-content {
-            width: 624px;
-        }
-
     }
 }
 
@@ -175,21 +168,28 @@
         display: block;
         width: 54px;
         height: 48px;
-        background-image: url("../assets/images/goods/goods-polygon-sm.svg");
+        background-image: url(/Goods/goods-polygon-sm.svg);
         background-size: contain;
         background-repeat: no-repeat;
         position: absolute;
         bottom: -48px;
         right: 35%;
-    }
 
-    @media (min-width: 768px) {
-        .message-box::after {
+        @include media-breakpoint-up(sm) {
+            width: 70px;
+            height: 70px;
+            bottom: -68px;
+            right: 33%;
+            background-image: url(/Goods/goods-polygon-lg.svg);
+
+        }
+
+        @include media-breakpoint-up(lg) {
             width: 100px;
             height: 100px;
             bottom: -98px;
-            right: 20%;
-            background-image: url("../assets/images/goods/goods-polygon-lg.svg");
+            right: 25%;
+            background-image: url(/Goods/goods-polygon-lg.svg);
         }
     }
 
@@ -197,20 +197,12 @@
         list-style-type: disc;
     }
 
-    .support-sub-title {
-        font-size: 18px;
-        font-weight: bold;
+    .support-list li::marker {
+        color: $primary-800;
     }
 
     .support-detail {
         margin-left: -32px;
-    }
-
-    .support-robot-img-wrapper {
-        margin-left: auto;
-        margin-right: -20px;
-        max-width: calc(100% - 20px);
-        overflow: hidden;
     }
 
     .support-robot-img {
@@ -221,11 +213,6 @@
 
 }
 
-@media (min-width: 768px) {
-    .support-sub-title {
-        font-size: 24px;
-    }
-}
 
 .support-robot-section {
     .circle-position-left {

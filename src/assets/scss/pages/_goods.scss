@@ -175,7 +175,7 @@
         display: block;
         width: 54px;
         height: 48px;
-        background-image: url("../assets/images/goods/goods-polygon-sm.svg");
+        background-image: url(/Goods/goods-polygon-sm.svg);
         background-size: contain;
         background-repeat: no-repeat;
         position: absolute;
@@ -185,14 +185,22 @@
 
     @media (min-width: 768px) {
         .message-box::after {
+            width: 70px;
+            height: 70px;
+            bottom: -68px;
+            right: 33%;
+            background-image: url(/Goods/goods-polygon-lg.svg);        
+        }
+    }
+    @media (min-width: 992px) {
+        .message-box::after {
             width: 100px;
             height: 100px;
             bottom: -98px;
-            right: 20%;
-            background-image: url("../assets/images/goods/goods-polygon-lg.svg");
+            right: 25%;
+            background-image: url(/Goods/goods-polygon-lg.svg);        
         }
     }
-
     .support-list {
         list-style-type: disc;
     }
@@ -204,13 +212,6 @@
 
     .support-detail {
         margin-left: -32px;
-    }
-
-    .support-robot-img-wrapper {
-        margin-left: auto;
-        margin-right: -20px;
-        max-width: calc(100% - 20px);
-        overflow: hidden;
     }
 
     .support-robot-img {

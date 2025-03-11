@@ -5,7 +5,7 @@ import axios from "axios";
 import "swiper/css/pagination";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hook/useAuth";
 const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -18,8 +18,9 @@ export default function HomeDemoRecommend() {
 		{ sm: "Demo/demo-sm-13.png", lg: "Demo/demo-lg-13.png" },
 	];
 
-	const { isLoggedIn } = useAuth();
-	console.log("isLoggedIn", isLoggedIn);
+	// const location = useLocation();
+	// const isLoggedIn = (location.state && location.state.isLoggedIn) || false;
+	const isLoggedIn = localStorage.getItem("isLoggedIn")==='true' ? true : false;
 
 	const getRecommendDemo = async () => {
 		try {
@@ -57,6 +58,42 @@ export default function HomeDemoRecommend() {
 	useEffect(() => {
 		getRecommendDemo();
 	}, []);
+
+	const toggleFavorite = () => {
+		// 切換收藏狀態
+		setIsFavorite(prevState => !prevState);
+	
+		// 假設 API 可以更新收藏狀態，發送請求來更新
+		// axios.post(`${API_URL}api/exhibitions/${demo_id}/favorite`, {
+		//   isFavorite: !isFavorite,
+		// }, {
+		//   headers: { "api-key": `${API_KEY}` },
+		// }).then(response => {
+		//   console.log('Favorite status updated');
+		// }).catch(error => {
+		//   console.error('Error updating favorite status:', error);
+		// });
+		// 根據 isFavorite 狀態決定要打哪一隻 API
+		console.log(`userId: ${localStorage.getItem("userId")}`);
+		const apiEndpoint = `${API_URL}/api/users/${localStorage.getItem("userId")}/favorites`;
+		const method = isFavorite ? 'delete' : 'post';
+  
+		console.log(`method: ${method}`);
+  
+		axios({
+		  method: method,
+		  url: apiEndpoint,
+		  headers: { "api-key": `${API_KEY}` },
+		  data: {
+			// isFavorite: !isFavorite,
+			exhibitionId: demo_id
+		  }
+		}).then(response => {
+		  console.log('Favorite status updated');
+		}).catch(error => {
+		  console.error('Error updating favorite status:', error);
+		});
+	  };
 
 	return (
 		isLoggedIn && (
@@ -164,9 +201,9 @@ export default function HomeDemoRecommend() {
 														<h3 className='fw-700 fs-6 text-truncate'>
 															{demo.title}
 														</h3>
-														<button
+														{/* <button
 															className='btn p-0'
-															onClick={() => postAddBookmark(1, demo.id, i)}>
+															onClick={() => postAddBookmark(localStorage.getItem("userId"), demo.id, i)}>
 															<span
 																className={`material-symbols-outlined p-0 fs-6 ${
 																	demo.isBookmarked &&
@@ -174,7 +211,14 @@ export default function HomeDemoRecommend() {
 																}`}>
 																bookmark_add
 															</span>
-														</button>
+														</button> */}
+														<span
+															id="bookmark-icon"
+															className={`material-symbols-outlined fs-6 px-0 demo-bookmark ${isFavorite ? 'material-symbols-rounded demo-bookmark-added' : ''}`}
+															onClick={toggleFavorite}
+														>
+															{isFavorite ? 'bookmark_added' : 'bookmark_add'}
+														</span>
 													</div>
 												</li>
 												<li className='mb-4'>

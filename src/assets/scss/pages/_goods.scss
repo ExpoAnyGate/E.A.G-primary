@@ -1,0 +1,265 @@
+.font-bagel-fat-one {
+    font-family: "Bagel Fat One", "Noto serif", serif;
+}
+
+//goods-banner
+.circle-position-left {
+    position: absolute;
+    left: 0;
+    top: 30%;
+    transform: translate(-70%, 0%);
+    z-index: 0;
+}
+
+.circle-position-right {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(60%, -80%);
+    z-index: 0;
+}
+
+.goods-banner-image-wrapper {
+    z-index: 1;
+}
+
+.capsule-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    z-index: 1;
+}
+
+.capsule {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.capsule-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.capsule {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.capsule-container {
+    clip-path: ellipse(60% 80% at center);
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.capsule {
+    animation: float 2s infinite ease-in-out;
+}
+
+@media (min-width: 767px) {
+    .capsule {
+        width: 75px;
+        height: 75px;
+    }
+}
+
+// goods-list
+.goods-list {
+    gap: 12px;
+}
+
+@media (min-width: 768px) {
+    .goods-list {
+        gap: 40px;
+        row-gap: 64px;
+    }
+}
+
+.goods-card {
+    max-width: 320px;
+    border: 1px solid $primary-900;
+    border-radius: 64px 64px 24px 24px;
+
+    .goods-item-upper {
+        width: calc(100% + var(--bs-gutter-x));
+    }
+
+    .goods-image-wrapper {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    img {
+        height: 240px;
+    }
+}
+
+.goods-number {
+    border-radius: 100px;
+    width: 54px;
+    height: 54px;
+}
+
+@media (min-width: 768px) {
+    .good-card {
+        max-width: 405px;
+
+    }
+}
+
+//goods-modal
+.goods-modal {
+    .modal-content {
+        border-radius: 24px;
+    }
+
+    h6 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .material-symbols-outlined {
+        font-size: 24px;
+        padding: 0px;
+        margin-right: 8px;
+        vertical-align: middle;
+    }
+}
+
+@media (min-width: 768px) {
+    .goods-modal {
+        .modal-content {
+            width: 624px;
+        }
+
+    }
+}
+
+// gacha-Modal
+.gacha-modal {
+    .modal-content {
+        border-radius: 24px;
+    }
+}
+
+//support-robot-section
+.support-robot-section {
+    .message-box {
+        border-radius: 32px;
+        max-width: 1076px;
+
+    }
+
+    .message-box::after {
+        content: "";
+        display: block;
+        width: 54px;
+        height: 48px;
+        background-image: url("../assets/images/goods/goods-polygon-sm.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        bottom: -48px;
+        right: 35%;
+    }
+
+    @media (min-width: 768px) {
+        .message-box::after {
+            width: 100px;
+            height: 100px;
+            bottom: -98px;
+            right: 20%;
+            background-image: url("../assets/images/goods/goods-polygon-lg.svg");
+        }
+    }
+
+    .support-list {
+        list-style-type: disc;
+    }
+
+    .support-sub-title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .support-detail {
+        margin-left: -32px;
+    }
+
+    .support-robot-img-wrapper {
+        margin-left: auto;
+        margin-right: -20px;
+        max-width: calc(100% - 20px);
+        overflow: hidden;
+    }
+
+    .support-robot-img {
+        position: relative; //須設定為relative才能使z-index生效
+        margin-top: 40px;
+        z-index: 2;
+    }
+
+}
+
+@media (min-width: 768px) {
+    .support-sub-title {
+        font-size: 24px;
+    }
+}
+
+.support-robot-section {
+    .circle-position-left {
+        position: absolute;
+        left: 0;
+        top: 24px;
+        transform: translate(-50%, 0%);
+    }
+
+    .circle-position-right {
+        position: absolute;
+        right: 0;
+        top: 30%;
+        transform: translate(70%, 0%);
+    }
+
+    .circle-position-bottom {
+        position: absolute;
+        left: 0;
+        bottom: 0px;
+        transform: translate(-50%, 25%);
+    }
+}
+
+@media (min-width: 768px) {
+    .support-robot-section {
+        .circle-position-left {
+            top: 80px;
+            transform: translate(-25%, 0%);
+
+        }
+
+        .circle-position-bottom {
+            left: 30%;
+        }
+    }
+}

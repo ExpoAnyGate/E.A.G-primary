@@ -25,7 +25,7 @@ const HomeLastDemo = () => {
 		try {
 			setIsWaiting(true);
 			const res = await axios.get(
-				`${API_URL}/api/exhibitions?_sort=start_date&_order=desc&_page=${page}&_limit=3`,
+				`${API_URL}/api/exhibitions?_sort=start_date&_order=desc&_page=${page}&_limit=3&userId=${localStorage.getItem("userId")}`,
 				{
 					headers: { "api-key": `${API_KEY}` },
 				}
@@ -117,8 +117,15 @@ const HomeLastDemo = () => {
 													<h3 className='fw-700 fs-6 text-truncate'>
 														{demo.title}
 													</h3>
-													<span className='material-symbols-outlined p-0 fs-6'>
+													{/* <span className='material-symbols-outlined p-0 fs-6'>
 														bookmark_add
+													</span> */}
+													<span
+														id="bookmark-icon"
+														className={`material-symbols-outlined p-0 fs-6 demo-bookmark ${demo?.isFavorite ? 'material-symbols-rounded demo-bookmark-added' : ''}`}
+														// onClick={() => toggleFavorite({demo_id: demo.id, prevState: demo.isFavorite})}
+													>
+														{demo?.isFavorite ? 'bookmark_added' : 'bookmark_add'}
 													</span>
 												</div>
 											</li>
@@ -197,8 +204,15 @@ const HomeLastDemo = () => {
 													<h3 className='fw-700 fs-6 text-truncate'>
 														{demo.title}
 													</h3>
-													<span className='material-symbols-outlined p-0 fs-6'>
+													{/* <span className='material-symbols-outlined p-0 fs-6'>
 														bookmark_add
+													</span> */}
+													<span
+														id="bookmark-icon"
+														className={`material-symbols-outlined p-0 fs-6 demo-bookmark ${demo?.isFavorite ? 'material-symbols-rounded demo-bookmark-added' : ''}`}
+														// onClick={() => toggleFavorite({demo_id: demo.id, prevState: demo.isFavorite})}
+													>
+														{demo?.isFavorite ? 'bookmark_added' : 'bookmark_add'}
 													</span>
 												</div>
 											</li>

@@ -1,7 +1,4 @@
-import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-
-
 
 const WishPkCard = ({
   expoData = {},onButtonClick,regionList}) => {
@@ -9,7 +6,7 @@ const WishPkCard = ({
     regionList.length > 0
       ? regionList.find((region) => region.id === expoData.regionId)?.name ||
         expoData.location
-      : "載入中...";
+      : "";
   return (
     <>
       <div className="col-lg-5">

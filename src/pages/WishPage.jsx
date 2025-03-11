@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import WishMarquee from "../components/WishMarquee";
 import FloatingButton from "../components/WalletKun";
+import WishPkCard from "../layouts/WishPkCard";
+import ExpoDetailModal from "../layouts/ExpoDetailModal";
+import WishBoxModal from "../layouts/WishBoxModal";
+import axios from "axios";
 
 export default function WishPage() {
   const targetDate = new Date("2025-03-18T00:00:00").getTime(); //目標時間
@@ -8,8 +12,96 @@ export default function WishPage() {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
-  const [charCount, setCharCount] = useState(0);
-  const maxLength = 1000;
+  const [isModalOpen, setIsModalOpen] = useState(false); //更多介紹Modal
+  const [selectedExpo, setSelectedExpo] = useState(null);
+  const [expoDataList, setExpoDataList] = useState([]);
+  const [isDataReady, setIsDataReady] = useState(false);
+
+  const API_URL1 = import.meta.env.VITE_API_URL;
+  const API_KEY = import.meta.env.VITE_API_KEY;
+
+  const API_URL = "http://localhost:3000/";
+
+
+  const [userInfo, setUserInfo] = useState({
+  userId: 0,
+  userName: '',
+  email: ''
+});
+
+  const [loading, setLoading] = useState(false);
+  //const [message, setMessage] = useState("");
+
+  const handleCardClick = (expoData) => {
+    setSelectedExpo(expoData);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const getExpoDataList = async () => {
+    try {
+      //   const response = await axios.get(
+      //     `${API_URL}api/exhibitions?startDate=2025-8-08&endDate=2025-09-18&_page=0&_limit=6&regionId=1`,
+      //     {
+      //       headers: { "api-key": `${API_KEY}` },
+      //     }
+      //   );
+
+      //打本地API
+      const response = await axios.get(`${API_URL}api/exhibition_pk`);
+      setExpoDataList(response.data);
+    } catch (error) {
+      console.error("Error  setExpoDataList:", error);
+    }
+  };
+
+  const [regionList, setRegionList] = useState([]);
+
+  const getRegionList = async () => {
+    try {
+      const res = await axios.get(`${API_URL1}/api/regions`, {
+        headers: { "api-key": `${API_KEY}` },
+      });
+      setRegionList(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await getExpoDataList();
+      await getRegionList();
+      setIsDataReady(true); // 確保資料拿到後才設定為 true
+      //會員資訊暫時先寫死
+      
+      setUserInfo({
+       userId: 4,
+       userName: "Nicole",
+       email: "nicole@gmail.com"
+      });
+    };
+
+    fetchData();
+  }, []);
+
+  //許願箱Modal
+  const [isWishBoxModalOpen, setIsWishBoxModalOpen] = useState(false);
+  const handleOpenWishBoxModal = () => {
+    setIsWishBoxModalOpen(true);
+  };
+
+  const handleCloseWishBoxModal = () => {
+    setIsWishBoxModalOpen(false);
+  };
+
+    const handleSubmitWish = (wishData) => {
+      console.log("收到許願資料:", wishData);
+      alert("您的許願已發送 email@expoanygate.com");
+    };
 
   //倒數計時
   const updateCountdown = () => {
@@ -46,6 +138,25 @@ export default function WishPage() {
     { icon: "candle", text: "阿鼠：許願獵人原畫展@台北！" },
     { icon: "family_star", text: "1457：吉卜力展覽快來@新竹~~" },
   ];
+
+  //投票
+  const handleVote = async (exhibitionPkId) => {
+    setLoading(true);
+   //setMessage("");
+
+    try {
+       const response =await axios.post(`${API_URL}api/pk_vote`, {
+        userId: userInfo.userId,
+        exhibition_pkId: exhibitionPkId,
+      });
+      alert(response.data.message || "投票成功！");
+     
+    } catch (error) {
+        alert(error.response?.data?.message || `投票失敗`);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -114,7 +225,8 @@ export default function WishPage() {
         <div className="vsCard">
           <div className="container">
             <div className="row gx-12 d-flex justify-content-center">
-              <div className="col-lg-5">
+              {/* <!-- 左卡片 --> */}
+              {/* <div className="col-lg-5">
                 <div className=" mb-6 d-flex flex-column rounded-4 vs-search-card">
                   <div className="d-flex justify-content-between align-items-center rounded-top-4 border-custom py-4 px-6">
                     <p className="mb-0">2024/8/15 - 2024/9/15</p>
@@ -159,14 +271,24 @@ export default function WishPage() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
+              {isDataReady ? (
+                <WishPkCard
+                  expoData={expoDataList[0] || {}}
+                  onButtonClick={() => handleCardClick(expoDataList[0])}
+                  regionList={regionList}
+                  handleVote={handleVote}
+                />
+              ) : (
+                <></>
+              )}
 
               {/* <!-- 分隔線 --> */}
               <div className="col-auto d-flex align-items-center d-none d-lg-block">
                 <div className="separator mb-5"></div>
               </div>
               {/* <!-- 右卡片 --> */}
-              <div className="col-lg-5">
+              {/* <div className="col-lg-5">
                 <div className=" mb-6 d-flex flex-column rounded-4 vs-search-card">
                   <div className="d-flex justify-content-between align-items-center rounded-top-4 border-custom py-4 px-6">
                     <p className="mb-0">2024/8/15 - 2024/9/15</p>
@@ -216,11 +338,27 @@ export default function WishPage() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
+              {isDataReady ? (
+                <WishPkCard
+                  expoData={expoDataList[1] || {}}
+                  onButtonClick={() => handleCardClick(expoDataList[1])}
+                  regionList={regionList}
+                  handleVote={handleVote}
+                />
+              ) : (
+                <></>
+              )}
             </div>
           </div>
           {/* <!-- 更多介紹 Modal--> */}
-          <div
+          <ExpoDetailModal
+            isOpen={isModalOpen}
+            expoData={selectedExpo}
+            onClose={handleCloseModal}
+            handleVote={handleVote}
+          />
+          {/* <div
             className="modal fade wish-backdrop-modal"
             id="expoDetailModal"
             tabIndex={-1}
@@ -240,7 +378,6 @@ export default function WishPage() {
                     aria-label="Close"
                   ></button>
                 </div>
-                {/* <!-- style="border: 1px solid rgb(206, 51, 188);" --> */}
                 <div className="moreDetail modal-body">
                   <div className="">
                     <div className="modal-div">
@@ -332,7 +469,7 @@ export default function WishPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* <!-- 進度條 --> */}
@@ -641,13 +778,20 @@ export default function WishPage() {
               id="wishButton"
               data-bs-toggle="modal"
               data-bs-target="#wishBoxModal"
+              onClick={handleOpenWishBoxModal}
             >
               許願展覽
             </button>
           </div>
 
           {/* <!-- 許願 Modal--> */}
-          <div
+          <WishBoxModal
+            isWishBoxModalOpen={isWishBoxModalOpen}
+            handleCloseWishBoxModal={handleCloseWishBoxModal}
+            userInfo={userInfo}
+            handleSubmitWish={handleSubmitWish}
+          />
+          {/* <div
             className="modal fade"
             id="wishBoxModal"
             tabIndex={-1}
@@ -744,7 +888,7 @@ export default function WishPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <picture>

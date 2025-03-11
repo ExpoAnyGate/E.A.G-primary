@@ -1,9 +1,19 @@
-import { useState, useEffect } from "react";
+
 import PropTypes from "prop-types";
 
-const ExpoDetailModal = ({ isOpen, onClose, expoData, handleVote }) => {
+const ExpoDetailModal = ({
+  isOpen,
+  onClose,
+  expoData,
+  handleVote,
+  regionList,
+}) => {
   if (!isOpen) return null;
-
+  const locationName =
+    regionList.length > 0
+      ? regionList.find((region) => region.id === expoData.regionId)?.name ||
+        expoData.location
+      : "";
   return (
     <div
       className="modal fade show wish-backdrop-modal d-block"
@@ -37,7 +47,7 @@ const ExpoDetailModal = ({ isOpen, onClose, expoData, handleVote }) => {
                 <DetailRow
                   icon="location_on"
                   label="地點"
-                  content={expoData.location}
+                  content={locationName}
                 />
                 <DetailRow
                   icon="calendar_month"
@@ -107,7 +117,8 @@ ExpoDetailModal.propTypes = {
   isOpen: PropTypes.bool,
   onClose: PropTypes.func,
   expoData: PropTypes.object,
-  handleVote:PropTypes.func,
+  handleVote: PropTypes.func,
+  regionList :PropTypes.array,
 };
 
 export default ExpoDetailModal;

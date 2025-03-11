@@ -17,17 +17,16 @@ export default function WishPage() {
   const [expoDataList, setExpoDataList] = useState([]);
   const [isDataReady, setIsDataReady] = useState(false);
 
-  const API_URL1 = import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
   const API_KEY = import.meta.env.VITE_API_KEY;
 
-  const API_URL = "http://localhost:3000/";
-
+  const API_URL_LOCAL = "http://localhost:3000";
 
   const [userInfo, setUserInfo] = useState({
-  userId: 0,
-  userName: '',
-  email: ''
-});
+    userId: 0,
+    userName: "",
+    email: "",
+  });
 
   const [loading, setLoading] = useState(false);
   //const [message, setMessage] = useState("");
@@ -43,15 +42,9 @@ export default function WishPage() {
 
   const getExpoDataList = async () => {
     try {
-      //   const response = await axios.get(
-      //     `${API_URL}api/exhibitions?startDate=2025-8-08&endDate=2025-09-18&_page=0&_limit=6&regionId=1`,
-      //     {
-      //       headers: { "api-key": `${API_KEY}` },
-      //     }
-      //   );
-
-      //打本地API
-      const response = await axios.get(`${API_URL}api/exhibition_pk`);
+      const response = await axios.get(`${API_URL}/api/exhibition_pk`, {
+        headers: { "api-key": `${API_KEY}` },
+      });
       setExpoDataList(response.data);
     } catch (error) {
       console.error("Error  setExpoDataList:", error);
@@ -62,7 +55,7 @@ export default function WishPage() {
 
   const getRegionList = async () => {
     try {
-      const res = await axios.get(`${API_URL1}/api/regions`, {
+      const res = await axios.get(`${API_URL}/api/regions`, {
         headers: { "api-key": `${API_KEY}` },
       });
       setRegionList(res.data);
@@ -77,11 +70,11 @@ export default function WishPage() {
       await getRegionList();
       setIsDataReady(true); // 確保資料拿到後才設定為 true
       //會員資訊暫時先寫死
-      
+
       setUserInfo({
-       userId: 4,
-       userName: "Nicole",
-       email: "nicole@gmail.com"
+        userId: 4,
+        userName: "Nicole",
+        email: "nicole@gmail.com",
       });
     };
 
@@ -98,10 +91,10 @@ export default function WishPage() {
     setIsWishBoxModalOpen(false);
   };
 
-    const handleSubmitWish = (wishData) => {
-      console.log("收到許願資料:", wishData);
-      alert("您的許願已發送 email@expoanygate.com");
-    };
+  const handleSubmitWish = (wishData) => {
+    console.log("收到許願資料:", wishData);
+    alert("您的許願已發送 email@expoanygate.com");
+  };
 
   //倒數計時
   const updateCountdown = () => {
@@ -142,17 +135,16 @@ export default function WishPage() {
   //投票
   const handleVote = async (exhibitionPkId) => {
     setLoading(true);
-   //setMessage("");
+    //setMessage("");
 
     try {
-       const response =await axios.post(`${API_URL}api/pk_vote`, {
+      const response = await axios.post(`${API_URL}api/pk_vote`, {
         userId: userInfo.userId,
         exhibition_pkId: exhibitionPkId,
       });
       alert(response.data.message || "投票成功！");
-     
     } catch (error) {
-        alert(error.response?.data?.message || `投票失敗`);
+      alert(error.response?.data?.message || `投票失敗`);
     } finally {
       setLoading(false);
     }
@@ -226,52 +218,6 @@ export default function WishPage() {
           <div className="container">
             <div className="row gx-12 d-flex justify-content-center">
               {/* <!-- 左卡片 --> */}
-              {/* <div className="col-lg-5">
-                <div className=" mb-6 d-flex flex-column rounded-4 vs-search-card">
-                  <div className="d-flex justify-content-between align-items-center rounded-top-4 border-custom py-4 px-6">
-                    <p className="mb-0">2024/8/15 - 2024/9/15</p>
-                    <div className="d-flex align-items-center">
-                      <span className="material-symbols-outlined fs-6 px-0">
-                        location_on
-                      </span>
-                      <p className="mb-0 nowrap">台北市</p>
-                    </div>
-                  </div>
-                  <div className=" border border-primary-900 py-6 px-6 rounded-bottom-4 h-100">
-                    <div className="card mx-auto py-0 no-border rounded-4">
-                      <div className="img-240 rounded-4">
-                        <img
-                          src="Wish/wish-lg-4.jpeg"
-                          className="card-img-top rounded-4 w-100 img-enlarge"
-                          alt="..."
-                        />
-                      </div>
-                      <div className="card-body pb-0">
-                        <div className="card-title">
-                          <div className="d-flex align-items-center">
-                            <h3 className="fw-700 title-font-size">
-                              後端工程師技術體驗展
-                            </h3>
-                          </div>
-                        </div>
-                        <div className="d-flex flex-column">
-                          <div className="card-tag mb-6">
-                            <span className="badge rounded-pill border border-gray-700 text-gray-700 fw-400 px-2 py-1">
-                              #程式
-                            </span>
-                            <span className="badge rounded-pill border border-gray-700 text-gray-700 fw-400 px-2 py-1 ms-4">
-                              #技能
-                            </span>
-                          </div>
-                          <button className="btn bg-white rounded-2 border border-gray-200">
-                            更多介紹
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
               {isDataReady ? (
                 <WishPkCard
                   expoData={expoDataList[0] || {}}
@@ -288,57 +234,6 @@ export default function WishPage() {
                 <div className="separator mb-5"></div>
               </div>
               {/* <!-- 右卡片 --> */}
-              {/* <div className="col-lg-5">
-                <div className=" mb-6 d-flex flex-column rounded-4 vs-search-card">
-                  <div className="d-flex justify-content-between align-items-center rounded-top-4 border-custom py-4 px-6">
-                    <p className="mb-0">2024/8/15 - 2024/9/15</p>
-                    <div className="d-flex align-items-center">
-                      <span className="material-symbols-outlined fs-6 px-0">
-                        location_on
-                      </span>
-                      <p className="mb-0 nowrap">台北市</p>
-                    </div>
-                  </div>
-                  <div className=" border border-primary-900 py-6 px-6 rounded-bottom-4 h-100">
-                    <div className="card mx-auto py-0 no-border rounded-4">
-                      <div className="img-240 rounded-4">
-                        <img
-                          src="Wish/wish-lg-3.jpeg"
-                          className="card-img-top rounded-4 w-100 img-enlarge"
-                          alt="..."
-                        />
-                      </div>
-                      <div className="card-body pb-0">
-                        <div className="card-title">
-                          <div className="d-flex align-items-center">
-                            <h3 className="fw-700 title-font-size">
-                              質感香氛體驗展
-                            </h3>
-                          </div>
-                        </div>
-                        <div className="d-flex flex-column">
-                          <div className="card-tag mb-6">
-                            <span className="badge rounded-pill border border-gray-700 text-gray-700 fw-400 px-2 py-1">
-                              #五感
-                            </span>
-                            <span className="badge rounded-pill border border-gray-700 text-gray-700 fw-400 px-2 py-1 ms-4">
-                              #體驗
-                            </span>
-                          </div>
-
-                          <button
-                            className="btn bg-white rounded-2 border border-gray-200 w-100"
-                            data-bs-toggle="modal"
-                            data-bs-target="#expoDetailModal"
-                          >
-                            更多介紹2
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
               {isDataReady ? (
                 <WishPkCard
                   expoData={expoDataList[1] || {}}
@@ -357,119 +252,8 @@ export default function WishPage() {
             expoData={selectedExpo}
             onClose={handleCloseModal}
             handleVote={handleVote}
+            regionList={regionList}
           />
-          {/* <div
-            className="modal fade wish-backdrop-modal"
-            id="expoDetailModal"
-            tabIndex={-1}
-            aria-labelledby="expoDetailModalLabel"
-            aria-hidden="true"
-          >
-            <div className="modal-dialog modal-lg">
-              <div className="modal-content bg-secondary-50">
-                <div className="modal-header">
-                  <h5 className="modal-title" id="expoDetailModalLabel">
-                    質感香氛體驗
-                  </h5>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div className="moreDetail modal-body">
-                  <div className="">
-                    <div className="modal-div">
-                      <img
-                        className="rounded-3"
-                        src="Wish/wish-lg-3.jpeg"
-                        alt=""
-                      />
-                    </div>
-                    <div className="m-5">
-                      <div className="mb-4 expoRow">
-                        <div className="d-flex align-items-center title">
-                          <span className="material-symbols-outlined fs-6 px-0">
-                            location_on
-                          </span>
-                          <p className="">地點</p>
-                        </div>
-                        <p className="content">台北市</p>
-                      </div>
-
-                      <div className="mb-4 expoRow">
-                        <div className="d-flex align-items-center title">
-                          <span className="material-symbols-outlined fs-6 px-0">
-                            calendar_month
-                          </span>
-                          <p className="">時間</p>
-                        </div>
-                        <p className="content">2024/8/15 - 2024/9/15</p>
-                      </div>
-
-                      <div className="mb-4 expoRow">
-                        <div className="d-flex align-items-center title">
-                          <span className="material-symbols-outlined fs-6 px-0">
-                            kid_star
-                          </span>
-                          <p className="">展覽亮點</p>
-                        </div>
-                        <p className="content">
-                          用香氣描繪生活的精緻,將質感化為觸手可及的感動。每一個氣味，都是一場專屬於嗅覺的冒險。
-                        </p>
-                      </div>
-
-                      <div className="mb-4 expoRow">
-                        <div className="d-flex align-items-center title">
-                          <span className="material-symbols-outlined fs-6 px-0">
-                            palette
-                          </span>
-                          <p className="">主題體驗</p>
-                        </div>
-                        <p className="content">
-                          感官漫遊-穿越花香、木質與清新調性的香氣迷宮，發現最適合你的專屬味道。
-                        </p>
-                        <p className="content">
-                          調香工坊-親手調製一款獨一無二的香水,記錄你專屬的氣味故事。
-                        </p>
-                        <p className="content">
-                          香氛生活提案-探討香氛與空間美學的結合,啟發質感生活靈感。
-                        </p>
-                      </div>
-
-                      <div className="mb-4 expoRow">
-                        <div className="d-flex align-items-center title">
-                          <span className="material-symbols-outlined fs-6 px-0">
-                            saved_search
-                          </span>
-                          <p className="">展覽特色</p>
-                        </div>
-                        <p className="content">
-                          來自全球的經典香氛品牌,攜手新銳調香師,共同打造氣味的饗宴。精緻展區設計,結合燈光、音樂與互動科技,提供沉浸式感官體驗。
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="modal-footer d-flex justify-content-center">
-                  <button
-                    type="button"
-                    className="btn btn-secondary me-8"
-                    data-bs-dismiss="modal"
-                  >
-                    關閉
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-secondary-800 text-white"
-                  >
-                    投我
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
 
         {/* <!-- 進度條 --> */}
@@ -791,104 +575,6 @@ export default function WishPage() {
             userInfo={userInfo}
             handleSubmitWish={handleSubmitWish}
           />
-          {/* <div
-            className="modal fade"
-            id="wishBoxModal"
-            tabIndex={-1}
-            aria-labelledby="wishBoxModalLabel"
-            aria-hidden="true"
-          >
-            <div className="modal-dialog modal-lg">
-              <div className="modal-content bg-secondary-50">
-                <div className="modal-header">
-                  <h5 className="modal-title" id="wishBoxModalLabel">
-                    許願展覽
-                  </h5>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div className="modal-body">
-                  <form>
-                    <div className="mb-3">
-                      <label
-                        htmlFor="recipient-name"
-                        className="col-form-label"
-                      >
-                        帳號:
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="recipient-name"
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <label htmlFor="message-text" className="col-form-label">
-                        Email:
-                      </label>
-                      <input
-                        type="email"
-                        className="form-control"
-                        id="message-text"
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <label htmlFor="message-text" className="col-form-label">
-                        希望展覽在哪個縣市舉辦？
-                      </label>
-                      <select className="form-select" id="location-select">
-                        <option value="">請選擇縣市</option>
-                        <option value="Taipei">台北市</option>
-                        <option value="NewTaipei">新北市</option>
-                        <option value="Taichung">台中市</option>
-                        <option value="Tainan">台南市</option>
-                        <option value="Kaohsiung">高雄市</option>
-                        <option value="Keelung">基隆市</option>
-                        <option value="Hsinchu">新竹市</option>
-                        <option value="Chiayi">嘉義市</option>
-                      </select>
-                    </div>
-                    <div className="mb-3">
-                      <label htmlFor="describe-text" className="col-form-label">
-                        請描述你希望主辦單位推出什麼展覽？
-                      </label>
-                      <textarea
-                        className="form-control"
-                        id="describe-text"
-                        maxLength={maxLength}
-                        style={{ height: "200px" }}
-                        onChange={(e) => setCharCount(e.target.value.length)}
-                      ></textarea>
-                      <div
-                        id="char-count"
-                        className="fs-3 text-muted text-end mt-2"
-                      >
-                        <p className="fs-3 text-muted text-end mt-2">
-                          {charCount}/{maxLength}
-                        </p>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <div className="modal-footer d-flex justify-content-center flex-column">
-                  <button
-                    type="button"
-                    className="btn btn-secondary-800 text-white"
-                    data-bs-dismiss="modal"
-                  >
-                    送出許願
-                  </button>
-                  <p className="fs-3 text-muted text-end mt-2">
-                    按下 [送出許願] 會將內容送至 email@expoanygate.com
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
 
         <picture>

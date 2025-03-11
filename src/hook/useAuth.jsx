@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
 
 	const handleLogin = async (inputAccount, inputPassword, inputCaptcha) => {
 		try {
-		  const response = await axios.post(`${API_URL}api/login`, {
+		  const response = await axios.post(`${API_URL}/api/login`, {
 			email: inputAccount,
 			password: inputPassword,
 			captcha: inputCaptcha,

@@ -28,10 +28,28 @@ export default function DemoPage({}) {
       setIsFavorite(prevState => !prevState);
   
       // 假設 API 可以更新收藏狀態，發送請求來更新
-      axios.post(`${API_URL}api/exhibitions/${demo_id}/favorite`, {
-        isFavorite: !isFavorite,
-      }, {
+      // axios.post(`${API_URL}api/exhibitions/${demo_id}/favorite`, {
+      //   isFavorite: !isFavorite,
+      // }, {
+      //   headers: { "api-key": `${API_KEY}` },
+      // }).then(response => {
+      //   console.log('Favorite status updated');
+      // }).catch(error => {
+      //   console.error('Error updating favorite status:', error);
+      // });
+      // 根據 isFavorite 狀態決定要打哪一隻 API
+      console.log(`userId: ${localStorage.getItem("userId")}`);
+      const apiEndpoint = `${API_URL}/api/users/${localStorage.getItem("userId")}/favorites`;
+      const method = isFavorite ? 'delete' : 'post';
+
+      axios({
+        method: method,
+        url: apiEndpoint,
         headers: { "api-key": `${API_KEY}` },
+        data: {
+          // isFavorite: !isFavorite,
+          exhibitionId: demo_id
+        }
       }).then(response => {
         console.log('Favorite status updated');
       }).catch(error => {
@@ -176,7 +194,7 @@ export default function DemoPage({}) {
               </div>
 
               <div class="mt-8 p-10 bg-secondary-100 rounded-2 d-flex flex-column gap-4">
-                <h4 class="fs-6 fw-700">體驗亮點</h4>
+                <h4 class="fs-6 fw-700">活動亮點</h4>
                 <ul class="d-flex flex-column gap-4 demo-highlight fs-5 fw-700">
                   <li>
                     創作互動：

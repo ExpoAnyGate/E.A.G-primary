@@ -12,6 +12,7 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 export default function HomeDemoRecommend() {
 	const swiperRef = useRef(null);
 	const [recommendDemo, setRecommendDemo] = useState([]);
+	const [isFavorite, setIsFavorite] = useState(false); 
 	const recommendDemoImg = [
 		{ sm: "Demo/demo-sm-6.png", lg: "Demo/demo-lg-6.png" },
 		{ sm: "Demo/demo-sm-3.png", lg: "Demo/demo-lg-3.png" },

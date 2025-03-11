@@ -117,12 +117,12 @@ export default function DemoPage({}) {
                   </span>
                   <span>{demo.address}</span>
                 </li>
-                <li class="d-flex align-items-center gap-3">
+                {/* <li class="d-flex align-items-center gap-3">
                   <span class="material-symbols-outlined fs-6 px-0 py-0">
                     public
                   </span>
                   <span>{demo.url}</span>
-                </li>
+                </li> */} 
               </ul>
 
               <p class="mt-6">

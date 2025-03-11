@@ -135,13 +135,15 @@ export default function WishPage() {
   //投票
   const handleVote = async (exhibitionPkId) => {
     setLoading(true);
-    //setMessage("");
-
     try {
-      const response = await axios.post(`${API_URL}api/pk_vote`, {
-        userId: userInfo.userId,
-        exhibition_pkId: exhibitionPkId,
-      });
+      const response = await axios.post(
+        `${API_URL}/api/pk_vote`,
+        {
+          userId: userInfo.userId,
+          exhibition_pkId: exhibitionPkId,
+        },
+        { headers: { "api-key": `${API_KEY}` }}
+      );
       alert(response.data.message || "投票成功！");
     } catch (error) {
       alert(error.response?.data?.message || `投票失敗`);

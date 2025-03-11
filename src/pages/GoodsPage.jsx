@@ -153,34 +153,34 @@ export default function GoodsPage() {
             {/* support - list */}
             <ol className="support-list ms-8">
               <li className="mb-8">
-                <p className="support-sub-title fs-4 fs-md-6 mb-2">乾爹回饋</p>
+                <p className="support-sub-title text-primary-800 fw-bold fs-4 fs-md-6 mb-2">乾爹回饋</p>
                 <p className="support-detail">
-                  感恩支持藝術家創作與平台發展，抖內plus 會員每月可獲得<strong>1個E幣</strong>；
-                  抖內pro max 每月可獲得<strong>2個E幣</strong>。
+                  感恩支持藝術家創作與平台發展，抖內plus 會員每月可獲得<strong class="text-primary-800">1個E幣</strong>；
+                  抖內pro max 每月可獲得<strong class="text-primary-800">2個E幣</strong>。
                 </p>
               </li>
               <li className="mb-8">
-                <p className="support-sub-title fs-4 fs-md-6 mb-2">展覽互動</p>
+                <p className="support-sub-title text-primary-800 fw-bold fs-4 fs-md-6 mb-2">展覽互動</p>
                 <p className="support-detail">
-                  參加特定藝術展覽活動，可獲取<strong>1至3個E幣</strong>的參與獎勵，讓您的支持成為藝術的一部分。
+                  參加特定藝術展覽活動，可獲取<strong class="text-primary-800">1至3個E幣</strong>的參與獎勵，讓您的支持成為藝術的一部分。
                 </p>
               </li>
               <li className="mb-8">
-                <p className="support-sub-title fs-4 fs-md-6 mb-2">節日活動</p>
+                <p className="support-sub-title text-primary-800 fw-bold fs-4 fs-md-6 mb-2">節日活動</p>
                 <p className="support-detail">
-                  特殊節日將舉辦限時活動，完成挑戰有機會獲得<strong>1至3個E幣</strong>的獎勵。
+                  特殊節日將舉辦限時活動，完成挑戰有機會獲得<strong class="text-primary-800">1至3個E幣</strong>的獎勵。
                 </p>
               </li>
               <li className="mb-8">
-                <p className="support-sub-title fs-4 fs-md-6 mb-2">心得分享</p>
+                <p className="support-sub-title text-primary-800 fw-bold fs-4 fs-md-6 mb-2">心得分享</p>
                 <p className="support-detail">
-                  發布與展覽相關的文章或評論，經審核通過後，可根據內容深度與質量獲得<strong>1至3個E幣</strong>。
+                  發布與展覽相關的文章或評論，經審核通過後，可根據內容深度與質量獲得<strong class="text-primary-800">1至3個E幣</strong>。
                 </p>
               </li>
               <li>
-                <p className="support-sub-title fs-4 fs-md-6 ">許願池驚喜</p>
+                <p className="support-sub-title text-primary-800 fw-bold fs-4 fs-md-6 ">許願池驚喜</p>
                 <p className="support-detail">
-                  參與平台「許願池」活動，有機會隨機獲得 <strong>E幣</strong>，探索藝術的無限可能。
+                  參與平台「許願池」活動，有機會<strong class="text-primary-800">隨機獲得 E幣</strong>，探索藝術的無限可能。
                 </p>
               </li>
             </ol>

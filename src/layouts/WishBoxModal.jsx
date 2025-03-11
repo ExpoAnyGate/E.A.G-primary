@@ -102,14 +102,28 @@ const WishBoxModal = ({
                     required
                   >
                     <option value="">請選擇縣市</option>
-                    <option value="Taipei">台北市</option>
-                    <option value="NewTaipei">新北市</option>
-                    <option value="Taichung">台中市</option>
-                    <option value="Tainan">台南市</option>
-                    <option value="Kaohsiung">高雄市</option>
-                    <option value="Keelung">基隆市</option>
-                    <option value="Hsinchu">新竹市</option>
-                    <option value="Chiayi">嘉義市</option>
+                    <option value="1">台北市</option>
+                    <option value="2">新北市</option>
+                    <option value="3">基隆市</option>
+                    <option value="4">新竹市</option>
+                    <option value="5">桃園市</option>
+                    <option value="6">新竹縣</option>
+                    <option value="7">宜蘭縣</option>
+                    <option value="8">臺中市</option>
+                    <option value="9">苗栗縣</option>
+                    <option value="10">彰化縣</option>
+                    <option value="11">南投縣</option>
+                    <option value="12">雲林縣</option>
+                    <option value="13">高雄市</option>
+                    <option value="14">臺南市</option>
+                    <option value="15">嘉義市</option>
+                    <option value="16">嘉義縣</option>
+                    <option value="17">屏東縣</option>
+                    <option value="18">澎湖縣</option>
+                    <option value="19">花蓮縣</option>
+                    <option value="20">臺東縣</option>
+                    <option value="21">金門縣</option>
+                    <option value="22">連江縣</option>
                   </select>
                 </div>
                 <div className="mb-3">

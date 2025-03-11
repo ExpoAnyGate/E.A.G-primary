@@ -3,6 +3,8 @@
 }
 
 //goods-banner
+.goods-banner{
+}
 .circle-position-left {
     position: absolute;
     left: 0;
@@ -21,6 +23,9 @@
 
 .goods-banner-image-wrapper {
     z-index: 1;
+}
+.gashapon-image{
+    max-height:80vh;
 }
 
 .capsule-container {
@@ -70,22 +75,17 @@
 
 .capsule {
     animation: float 2s infinite ease-in-out;
-}
-
-@media (min-width: 767px) {
-    .capsule {
+    @include media-breakpoint-up(md) {
         width: 75px;
         height: 75px;
     }
 }
 
+
 // goods-list
 .goods-list {
     gap: 12px;
-}
-
-@media (min-width: 768px) {
-    .goods-list {
+    @include media-breakpoint-up(md) {
         gap: 40px;
         row-gap: 64px;
     }
@@ -132,6 +132,9 @@
 .goods-modal {
     .modal-content {
         border-radius: 24px;
+        @include media-breakpoint-up(md) {
+            width: 624px;
+        }
     }
 
     h6 {
@@ -148,15 +151,6 @@
         padding: 0px;
         margin-right: 8px;
         vertical-align: middle;
-    }
-}
-
-@media (min-width: 768px) {
-    .goods-modal {
-        .modal-content {
-            width: 624px;
-        }
-
     }
 }
 
@@ -186,19 +180,15 @@
         position: absolute;
         bottom: -48px;
         right: 35%;
-    }
-
-    @media (min-width: 768px) {
-        .message-box::after {
+        @include media-breakpoint-up(md) {
             width: 70px;
             height: 70px;
             bottom: -68px;
             right: 33%;
-            background-image: url(/Goods/goods-polygon-lg.svg);        
+            background-image: url(/Goods/goods-polygon-lg.svg);   
+       
         }
-    }
-    @media (min-width: 992px) {
-        .message-box::after {
+        @include media-breakpoint-up(lg) {
             width: 100px;
             height: 100px;
             bottom: -98px;
@@ -206,12 +196,12 @@
             background-image: url(/Goods/goods-polygon-lg.svg);        
         }
     }
+
     .support-list {
         list-style-type: disc;
     }
 
     .support-sub-title {
-        font-size: 18px;
         font-weight: bold;
     }
 
@@ -227,11 +217,6 @@
 
 }
 
-@media (min-width: 768px) {
-    .support-sub-title {
-        font-size: 24px;
-    }
-}
 
 .support-robot-section {
     .circle-position-left {

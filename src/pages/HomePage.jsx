@@ -11,13 +11,11 @@ import { useEffect } from "react";
 
 export default function HomePage() {
 	useEffect(() => {
-		//不的出現在AOS之後，影響捲軸定位
 		window.scrollTo(0, 0);
-
 		AOS.init({ once: false });
 		setTimeout(() => {
 			AOS.refresh();
-		}, 100);
+		}, 300);
 	}, []);
 
 	return (

@@ -5,6 +5,7 @@ import WishPkCard from "../layouts/WishPkCard";
 import ExpoDetailModal from "../layouts/ExpoDetailModal";
 import WishBoxModal from "../layouts/WishBoxModal";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export default function WishPage() {
   const targetDate = new Date("2025-03-18T00:00:00").getTime(); //目標時間
@@ -93,7 +94,12 @@ export default function WishPage() {
 
   const handleSubmitWish = (wishData) => {
     console.log("收到許願資料:", wishData);
-    alert("您的許願已發送 email@expoanygate.com");
+     Swal.fire({
+       title: "許願成功！",
+       text: "您的許願已發送 email@expoanygate.com",
+       icon: "success",
+       confirmButtonText: "確定",
+     });
   };
 
   //倒數計時
@@ -144,9 +150,18 @@ export default function WishPage() {
         },
         { headers: { "api-key": `${API_KEY}` }}
       );
-      alert(response.data.message || "投票成功！");
+       Swal.fire({
+         title: "投票成功！",
+         icon: "success",
+         confirmButtonText: "確定",
+       });
     } catch (error) {
-      alert(error.response?.data?.message || `投票失敗`);
+      Swal.fire({
+        title: "投票失敗",
+        text: error.response?.data?.message,
+        icon: "error",
+        confirmButtonText: "確定",
+      });
     } finally {
       setLoading(false);
     }

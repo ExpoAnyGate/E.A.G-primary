@@ -28,6 +28,9 @@ const WishBoxModal = ({
 
     handleSubmitWish(wishData); // 傳回上一層 WishPage
     handleCloseWishBoxModal(); // 關閉 Modal
+    setExpoName('');
+    setRegionId('');
+    setDescription('');
   };
 
   return (

@@ -1,5 +1,6 @@
 import { useAuth } from "../hook/useAuth";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const LoginForm = () => {
   const { handleLogin, setAccount, setPassword, setCaptcha } = useAuth();
@@ -31,10 +32,23 @@ const handleSubmit = async (e) => {
     const success = await handleLogin(account, password, captcha);
     if (success) {
       console.log("登入成功");
+      Swal.fire({
+        title: "登入成功",
+        text: "請檢查帳號、密碼或驗證碼",
+        icon: "success",
+        confirmButtonText: "確定",
+      });
       // navigate("/");
       window.location.reload();
     } else {
-      alert("登入失敗，請檢查帳號、密碼或驗證碼");
+      // alert("登入失敗，請檢查帳號、密碼或驗證碼");
+      Swal.fire({
+        title: "登入失敗",
+        text: "請檢查帳號、密碼或驗證碼",
+        icon: "error",
+        confirmButtonText: "確定",
+      });
+
     }
   };
 

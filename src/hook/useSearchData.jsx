@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // API URL
-// const API_URL = "http://localhost:3000/";
 const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY; 
 
@@ -13,7 +12,7 @@ export const fetchSearchData = createAsyncThunk(
     try {
       const { regionId, category, keyWord, start_date, end_date } = filters;
       const response = await axios.get(
-        `${API_URL}/api/exhibitions?_sort=start_date&_order=asc&_page=${page}&_limit=6&startDate=${start_date}&endDate=${end_date}&exhibitions_categoriesId=${category}&search=${keyWord}&regionId=${regionId}&_expand=region,exhibitions_categories&userId=${localStorage.getItem("userId")}`,{
+        `${API_URL}/api/exhibitions?_sort=start_date&_order=asc&_page=${page}&_limit=6&startDate=${start_date}&endDate=${end_date}&exhibitions_categoriesId=${category}&search=${keyWord}&regionId=${regionId}&_expand=region,exhibitions_categories&userId=${sessionStorage.getItem("userId")}`,{
           headers: { "api-key": `${API_KEY}` }
       });
 

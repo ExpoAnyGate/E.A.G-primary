@@ -8,7 +8,7 @@ import SearchCardFocus from "../layouts/SearchCardFocus";
 import SearchCard from "../layouts/SearchCard";
 import Pagination from "../components/Pagination";
 import FloatingButton from "../components/WalletKun";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function SearchPage() {
   const dispatch = useDispatch();
@@ -16,12 +16,28 @@ export default function SearchPage() {
   const totalPages = useSelector((state) => state.search.totalPages);
   const status = useSelector((state) => state.search.status); // 修正 loading 狀態
   const filters = useSelector((state) => state.filters); // 確保 filters 來自正確的 slice
-  console.log(filters); 
+  const location = useLocation();
   const [page, setPage] = useState(1);
+  const [filtersSet, setFiltersSet] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchSearchData({ filters, page })); // 使用 Redux action 來請求 API
-  }, [filters, page, dispatch]);
+    const storedFilters = JSON.parse(sessionStorage.getItem("searchFilters")) || {
+      regionId: "",
+      category: "",
+      keyWord: "",
+      start_date: "",
+      end_date: "",
+    };
+
+    dispatch(setFilters(storedFilters));
+    setFiltersSet(true);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (filtersSet) {
+      dispatch(fetchSearchData({ filters, page })); // 使用 Redux action 來請求 API
+    }
+  }, [filters, page, dispatch, filtersSet]);
 
   const handlePageChange = (newPage) => {
     setPage(newPage);

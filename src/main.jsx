@@ -15,11 +15,11 @@ import "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js";
 createRoot(document.getElementById("root")).render(
 	<StrictMode>
 		<Provider store={store}>
-			<PersistGate loading={null} persistor={persistor}>
+			{/* <PersistGate loading={null} persistor={persistor}> */}
 				<AuthProvider>
 					<RouterProvider router={router} />
 				</AuthProvider>
-			</PersistGate>
+			{/* </PersistGate> */}
 		</Provider>
 	</StrictMode>
 );

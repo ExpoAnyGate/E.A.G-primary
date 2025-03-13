@@ -1,9 +1,8 @@
 import { TempusDominus } from "@eonasdan/tempus-dominus";
 import "@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -16,16 +15,11 @@ const DemoSearchBar = ({ setFilters }) => {
   const timePickerInstanceLG = useRef(null);
 
   const [dateSelected, setDateSelected] = useState([]);
-  //const [keyWordInput, setKeyWordInput] = useState("");
-  //const [regionSelected, setRegionSelected] = useState("");
-  //const [categorySelected, setCategorySelected] = useState("");
-
   const [regionList, setRegionList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [isValid, setIsValid] = useState(false);
 
   const navigate = useNavigate();
-  //存在sessionStorage中 避免從首頁跳轉時搜尋條件被清空
   const [searchInput, setSearchInput] = useState(() => {
     return (
       JSON.parse(sessionStorage.getItem("searchFilters")) || {
@@ -38,7 +32,6 @@ const DemoSearchBar = ({ setFilters }) => {
     );
   });
 
-  // 處理輸入變更
   const handleChangeSearchInfo = (e) => {
     setSearchInput((prev) => ({
       ...prev,
@@ -48,7 +41,7 @@ const DemoSearchBar = ({ setFilters }) => {
 
   const handleSearch = () => {
     sessionStorage.setItem("searchFilters", JSON.stringify(searchInput)); // 存入 sessionStorage
-
+    // setFilters(searchInput); // 確保設置最新的 searchInput
     if (location.hash === "#/search") {
       setFilters(searchInput);
     } else {
@@ -56,29 +49,9 @@ const DemoSearchBar = ({ setFilters }) => {
     }
   };
 
-  //以下為整理資料的方法，能夠把使用者提供的資料轉成JSON格式
-  //   const handleSearchInfo = (
-  //     regionSelected,
-  //     categorySelected,
-  //     keyWordInput,
-  //     dateSelected
-  //   ) => {
-  //     return {
-  //       regionId: Number(regionSelected),
-  //       category: Number(categorySelected),
-  //       keyWord: keyWordInput,
-  //       start_date: dateSelected[0] && dateSelected[0].split("/").join("-"),
-  //       end_date: dateSelected[1]
-  //         ? dateSelected[1].split("/").join("-")
-  //         : dateSelected[0]?.split("/").join("-"),
-  //     };
-  //   };
-
-
   const checkValid = (searchInput) => {
     const { regionId, category, keyWord, start_date } = searchInput;
     if (start_date || category || keyWord || regionId) {
-      // 有效代表使用者至少有一個篩選條件
       setIsValid(true);
     }
   };
@@ -87,12 +60,9 @@ const DemoSearchBar = ({ setFilters }) => {
     checkValid(searchInput);
   }, [searchInput]);
 
-
   const getRegionList = async () => {
     try {
-      const res = await axios.get(`${API_URL}/api/regions`, {
-        headers: { "api-key": `${API_KEY}` },
-      });
+      const res = await axios.get(`${API_URL}/api/regions`);
       setRegionList(res.data);
     } catch (error) {
       console.log(error);
@@ -101,9 +71,7 @@ const DemoSearchBar = ({ setFilters }) => {
 
   const getCategoryList = async () => {
     try {
-      const res = await axios.get(`${API_URL}/api/exhibitions_categories`, {
-        headers: { "api-key": `${API_KEY}` },
-      });
+      const res = await axios.get(`${API_URL}/api/exhibitions_categories`);
       setCategoryList(res.data);
     } catch (error) {
       console.log(error);
@@ -122,7 +90,6 @@ const DemoSearchBar = ({ setFilters }) => {
     timePickerInstanceLG.current.dates.clear();
     setIsValid(false);
   };
-
 
   const getTimePicker = (timePicker, timePickerInstance) => {
     if (timePicker.current) {
@@ -152,10 +119,8 @@ const DemoSearchBar = ({ setFilters }) => {
         multipleDatesSeparator: "-",
       });
 
-
-      // 監聽日期變更事件
       timePicker.current.addEventListener("change.td", () => {
-        const inputValue = timePicker.current.querySelector("input").value; // 取得 input 標籤裡面的值
+        const inputValue = timePicker.current.querySelector("input").value;
         const dates = inputValue.split("-");
         setDateSelected(dates);
         const start_date = dates[0] && dates[0].split("/").join("-");
@@ -169,7 +134,7 @@ const DemoSearchBar = ({ setFilters }) => {
       });
 
       return () => {
-        timePickerInstance.current.dispose(); // 清除事件監聽，防止記憶體洩漏
+        timePickerInstance.current.dispose();
       };
     }
   };
@@ -190,38 +155,31 @@ const DemoSearchBar = ({ setFilters }) => {
               <select
                 className="form-select px-6 py-3 fs-4 border-gray-400"
                 aria-label="Default select example"
-                // onChange={(e) => setRegionSelected(e.target.value)}
                 name="regionId"
                 value={searchInput.regionId}
                 onChange={handleChangeSearchInfo}
               >
                 <option value="">地區(縣/市)</option>
-                {regionList.map((city) => {
-                  return (
-                    <option key={city.id} value={city.id}>
-                      {city.name}
-                    </option>
-                  );
-                })}
+                {regionList.map((city) => (
+                  <option key={city.id} value={city.id}>
+                    {city.name}
+                  </option>
+                ))}
               </select>
             </li>
             <li className="col-6">
               <select
                 className="form-select px-6 py-3 fs-4 border-gray-400"
-                // value={categorySelected}
-                // onChange={(e) => setCategorySelected(e.target.value)}
                 name="category"
                 value={searchInput.category}
                 onChange={handleChangeSearchInfo}
               >
                 <option value="">展覽類別</option>
-                {categoryList.map((category) => {
-                  return (
-                    <option key={category.id} value={category.id}>
-                      {category.name}
-                    </option>
-                  );
-                })}
+                {categoryList.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
               </select>
             </li>
             <li className="col-12">
@@ -232,7 +190,6 @@ const DemoSearchBar = ({ setFilters }) => {
                 <input
                   id="startDateInput"
                   type="text"
-                  //type="date"
                   className="form-control py-3 fs-4 border-gray-400 ps-6"
                   placeholder="展覽日期"
                 />
@@ -251,7 +208,6 @@ const DemoSearchBar = ({ setFilters }) => {
                   type="search"
                   placeholder="關鍵字搜尋"
                   aria-label="Search"
-                  //onChange={(e) => setKeyWordInput(e.target.value)}
                   name="keyWord"
                   value={searchInput.keyWord}
                   onChange={handleChangeSearchInfo}
@@ -264,7 +220,6 @@ const DemoSearchBar = ({ setFilters }) => {
                   <Link
                     to={"/search"}
                     className="btn btn-gray-700 w-65 py-3"
-                    // onClick={() => getSearchInfo(searchInfo)}
                     onClick={handleSearch}
                   >
                     搜尋
@@ -277,7 +232,7 @@ const DemoSearchBar = ({ setFilters }) => {
 
                 <button
                   type="button"
-                  onClick={() => cleanSearch()}
+                  onClick={cleanSearch}
                   className="btn btn-gray-000 w-30 py-3 border-gray-400"
                 >
                   清除篩選
@@ -297,13 +252,11 @@ const DemoSearchBar = ({ setFilters }) => {
                   onChange={handleChangeSearchInfo}
                 >
                   <option value="">地區(縣/市)</option>
-                  {regionList.map((city) => {
-                    return (
-                      <option key={city.id} value={city.id}>
-                        {city.name}
-                      </option>
-                    );
-                  })}
+                  {regionList.map((city) => (
+                    <option key={city.id} value={city.id}>
+                      {city.name}
+                    </option>
+                  ))}
                 </select>
 
                 <button
@@ -320,25 +273,19 @@ const DemoSearchBar = ({ setFilters }) => {
                   </span>
                 </button>
 
-
                 <select
                   className="form-select py-3 fs-4 w-15 border-gray-400"
-                  //   value={categorySelected}
-                  //   onChange={(e) => setCategorySelected(e.target.value)}
                   name="category"
                   value={searchInput.category}
                   onChange={handleChangeSearchInfo}
                 >
                   <option value="">展覽類別</option>
-                  {categoryList.map((category) => {
-                    return (
-                      <option key={category.id} value={category.id}>
-                        {category.name}
-                      </option>
-                    );
-                  })}
+                  {categoryList.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.name}
+                    </option>
+                  ))}
                 </select>
-
 
                 <form
                   className="position-relative text-gray-500 w-bp-20-25"
@@ -348,8 +295,6 @@ const DemoSearchBar = ({ setFilters }) => {
                     search
                   </span>
                   <input
-                    //onChange={(e) => setKeyWordInput(e.target.value)}
-                    //value={keyWordInput}
                     className="form-control ps-8 py-3 fs-4 border-gray-400"
                     type="search"
                     placeholder="關鍵字搜尋"
@@ -362,7 +307,6 @@ const DemoSearchBar = ({ setFilters }) => {
 
                 {isValid ? (
                   <Link
-                    // onClick={() => getSearchInfo(searchInfo)}
                     onClick={handleSearch}
                     className="btn btn-gray-700 w-10 py-3"
                   >
@@ -376,7 +320,7 @@ const DemoSearchBar = ({ setFilters }) => {
 
                 <button
                   type="button"
-                  onClick={() => cleanSearch()}
+                  onClick={cleanSearch}
                   className="btn btn-gray-000 w-auto py-3 border-gray-400"
                 >
                   清除篩選
@@ -389,6 +333,7 @@ const DemoSearchBar = ({ setFilters }) => {
     </>
   );
 };
+
 DemoSearchBar.propTypes = {
   setFilters: PropTypes.func,
   filters: PropTypes.object,

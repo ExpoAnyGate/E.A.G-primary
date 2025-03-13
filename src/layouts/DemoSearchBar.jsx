@@ -62,7 +62,13 @@ const DemoSearchBar = ({ setFilters }) => {
 
   const getRegionList = async () => {
     try {
-      const res = await axios.get(`${API_URL}/api/regions`);
+      const res = await axios.get(`${API_URL}/api/regions`,
+        {
+          headers: {
+            "api-key": `${API_KEY}`
+          }
+        }
+      );
       setRegionList(res.data);
     } catch (error) {
       console.log(error);
@@ -71,7 +77,13 @@ const DemoSearchBar = ({ setFilters }) => {
 
   const getCategoryList = async () => {
     try {
-      const res = await axios.get(`${API_URL}/api/exhibitions_categories`);
+      const res = await axios.get(`${API_URL}/api/exhibitions_categories`,
+        {
+          headers: {
+            "api-key": `${API_KEY}`
+          }
+        }
+      );
       setCategoryList(res.data);
     } catch (error) {
       console.log(error);

@@ -1,8 +1,14 @@
+import { useState, useEffect } from "react";
 import FloatingButton from "../components/WalletKun";
 import GoodList from "../layouts/GoodsList";
-// import GoodsCard from "./GoodsCard";
+import GachaModal from "../layouts/GachaModal";
 
 export default function GoodsPage() {
+  const API_URL = import.meta.env.VITE_API_URL;
+  const API_KEY = import.meta.env.VITE_API_KEY;
+
+
+
   return (
     <>
       {/* goods-banner-section */}
@@ -69,76 +75,12 @@ export default function GoodsPage() {
           {/* goods-list */}
           <GoodList />
 
-          {/* 我要轉扭蛋-btn */}
-          <div className="text-center mt-17 mt-xl-20">
-            <a
-              href="#"
-              className="btn btn-gray-700 text-gray-000 py-2 px-4"
-              data-bs-toggle="modal"
-              data-bs-target="#gachaModal-1"
-            >
-              我要轉扭蛋
-            </a>
-          </div>
+          {/* 我要轉扭蛋 */}
           {/* gacha-Modal */}
-          {/* gacha-Modal-1 */}
-          <div
-            className="gacha-modal modal fade"
-            id="gachaModal-1"
-            tabIndex={-1}
-            aria-hidden="true"
-          >
-            <div className="modal-dialog modal-dialog-centered">
-              <div className="modal-content bg-secondary-50 px-6 px-md-15 pt-6 pb-10">
-                <div className="modal-header p-0 border-bottom-0">
-                  <h5 className="modal-title fs-5 fw-700">轉扭蛋</h5>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  />
-                </div>
-                <div className="modal-body text-center">
-                  <img
-                    src="Goods/goods-gashapon-sm.png"
-                    alt="扭蛋機"
-                  />
-                  <div className="gacha-container text-center">
-                    <span className="fw-bold">我想轉</span>
-                    {/* 下拉選單 */}
-                    <select id="gachaCount" className="gacha-select">
-                      <option value={1}>1</option>
-                      <option value={2} selected="">
-                        2
-                      </option>
-                      <option value={3}>3</option>
-                      <option value={4}>4</option>
-                      <option value={5}>5</option>
-                    </select>
-                    <span className="fw-bold">次扭蛋</span>
-                    <p>
-                      你總共有{" "}
-                      <span id="totalEcoins" className="text-primary fw-bold">
-                        100
-                      </span>{" "}
-                      個E幣，
-                    </p>
-                    <p>
-                      此次會花掉{" "}
-                      <span id="costEcoins" className="text-danger fw-bold">
-                        60
-                      </span>{" "}
-                      個E幣
-                    </p>
-                  </div>
-                  <button className="btn btn-dark" id="startGacha">
-                    抽起來
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <GachaModal  id={userId}/>
+
+
+          
         </div>
       </section>
 

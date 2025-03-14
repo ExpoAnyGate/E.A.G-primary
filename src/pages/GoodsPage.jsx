@@ -77,7 +77,7 @@ export default function GoodsPage() {
 
           {/* 我要轉扭蛋 */}
           {/* gacha-Modal */}
-          <GachaModal  id={userId}/>
+          <GachaModal/>
 
 
           

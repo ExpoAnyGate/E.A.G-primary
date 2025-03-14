@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Modal } from 'bootstrap';
 import LoginForm from "../components/LoginForm"; // 引入登入表單組件
 
 const GachaModal = () => {
@@ -15,6 +16,8 @@ const GachaModal = () => {
     const [selectedCount, setSelectedCount] = useState(1);
     const [showLogin, setShowLogin] = useState(false); // 控制登入 Modal
     const [showConfirmModal, setShowConfirmModal] = useState(false); // 確認抽獎 Modal
+    const [showResultModal, setShowResultModal] = useState(false); // 結果 Modal
+    const [prizeSummary, setPrizeSummary] = useState({}); // 存儲獎品資訊
     const [errorMessage, setErrorMessage] = useState(""); // 錯誤訊息狀態
     const costPerGacha = 30;
 
@@ -24,7 +27,7 @@ const GachaModal = () => {
             setECoins(0);
             return;
         }
-        
+
         const fetchUserECoins = async () => {
             try {
                 const res = await axios.get(`${API_URL}/api/users/${userId}`, {
@@ -54,37 +57,132 @@ const GachaModal = () => {
 
         setShowConfirmModal(true); // 顯示確認抽獎 Modal
         setErrorMessage(""); // 清除錯誤訊息
+
+        // **關閉 `gachaModal-1`**
+        setTimeout(() => {
+            const firstModal = document.getElementById("gachaModal-1");
+            if (firstModal) {
+                const modalInstance = Modal.getInstance(firstModal);
+                if (modalInstance) modalInstance.hide(); // **確保 Bootstrap 處理**
+            }
+        }, 300);
+
+        // **開啟 `gachaModal-2`**
+        setTimeout(() => {
+            const confirmModal = document.getElementById("gachaModal-2");
+            if (confirmModal) {
+                const confirmModalInstance = Modal.getOrCreateInstance(confirmModal);
+                confirmModalInstance.show();
+            }
+        }, 300);
     };
+
+    const handleOpenGachaModal = () => {
+        const firstModal = document.getElementById("gachaModal-1");
+        if (firstModal) {
+            firstModal.style.display = "block"; // **確保可見**
+            firstModal.removeAttribute("aria-hidden");
+            firstModal.classList.add("show");
+
+            // **確保 Bootstrap Modal 狀態**
+            const modalInstance = Modal.getOrCreateInstance(firstModal);
+            modalInstance.show();
+        }
+    };
+
+
+    const closeAllModals = () => {
+        setShowConfirmModal(false);
+        setShowResultModal(false);
+
+        setTimeout(() => {
+            // 移除所有 `.modal-backdrop`
+            document.querySelectorAll(".modal-backdrop").forEach(backdrop => backdrop.remove());
+
+            // 移除 `modal-open`，恢復頁面可滾動
+            document.body.classList.remove("modal-open");
+            document.body.style.overflow = "";
+
+            // **確保所有 Modal 狀態重置**
+            ["gachaModal-1", "gachaModal-2", "gachaModal-3"].forEach(modalId => {
+                const modalElement = document.getElementById(modalId);
+                if (modalElement) {
+                    const modalInstance = Modal.getInstance(modalElement);
+                    if (modalInstance) modalInstance.hide();
+                    modalElement.classList.remove("show");
+                    modalElement.setAttribute("aria-hidden", "true");
+                    modalElement.style.display = "none"; // **強制隱藏**
+                }
+            });
+
+            // **確保 `gachaModal-1` 重新啟動**
+            const firstModal = document.getElementById("gachaModal-1");
+            if (firstModal) {
+                const modalInstance = Modal.getOrCreateInstance(firstModal);
+                modalInstance.hide(); // **先確保它是隱藏的**
+                firstModal.classList.remove("show");
+                firstModal.setAttribute("aria-hidden", "true");
+                firstModal.style.display = "none"; // **確保不會被 Bootstrap 錯誤控制**
+            }
+        }, 300); // **避免 Bootstrap 動畫衝突**
+    };
+
+
+
+
 
     const confirmGacha = async () => {
         setShowConfirmModal(false);
+
+        if (!userId) {
+            console.error("❌ userId 未定義，請檢查登入狀態");
+            return;
+        }
+
+        console.log("📢 Sending request with userId:", userId, "count:", selectedCount);
+
         try {
             const res = await axios.post(`${API_URL}/api/draw`, {
-                count: selectedCount,
-                userId: userId
+                userId: Number(userId), // 確保 userId 為數字
+                count: selectedCount
             }, {
                 headers: { "api-key": API_KEY }
             });
+
             console.log("🎉 Gacha Result:", res.data);
             setECoins((prev) => prev - selectedCount * costPerGacha);
+            setPrizeSummary(res.data.prizeSummary || {});
+            setShowResultModal(true); // 顯示結果 Modal
+
+            // **手動關閉 `gachaModal-2`**
+            setTimeout(() => {
+                const confirmModal = document.getElementById("gachaModal-2");
+                if (confirmModal) {
+                    const confirmModalInstance = Modal.getInstance(confirmModal);
+                    if (confirmModalInstance) confirmModalInstance.hide();
+                }
+            }, 300);
+
         } catch (err) {
-            console.error("❌ Error drawing gacha:", err);
+            console.error("❌ Error drawing gacha:", err.response?.data || err.message);
         }
     };
+
+
 
     return (
         <>
             <div className="text-center mt-17 mt-xl-20">
-                <a
-                    href="#"
+                <button
+                    type="button"
                     className="btn btn-gray-700 text-gray-000 py-2 px-4"
-                    data-bs-toggle="modal"
-                    data-bs-target="#gachaModal-2"
+                    onClick={handleOpenGachaModal} // **開啟 gachaModal-1**
                 >
                     我要轉扭蛋
-                </a>
+                </button>
             </div>
-            <div className="gacha-modal modal fade" id="gachaModal-2" tabIndex={-1} aria-hidden="true">
+            {/* gachaModal-1 */}
+            <div className="gacha-modal modal fade" id="gachaModal-1" tabIndex={-1} aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content bg-secondary-50 px-6 px-md-15 pt-6 pb-10">
                         <div className="modal-header p-0 border-bottom-0">
@@ -121,19 +219,72 @@ const GachaModal = () => {
                     </div>
                 </div>
             </div>
-            {/* 確認抽獎 Modal */}
+            {/* 確認抽獎 gachaModal-2 */}
             {showConfirmModal && (
-                <div className="modal fade show d-block" tabIndex={-1} aria-modal="true" role="dialog">
+                <div
+                    className="modal fade show d-block"
+                    id="gachaModal-2"
+                    tabIndex={-1}
+                    aria-modal="true"
+                    role="dialog"
+                >
                     <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content p-6 text-center">
-                            <h5 className="modal-title fw-700">轉扭蛋</h5>
-                            <p>確定要花 <span className="text-danger fw-bold">{selectedCount * costPerGacha}</span> 個E幣</p>
-                            <p className="fw-bold fs-5">扭 <span className="text-primary fw-bold">{selectedCount}</span> 次扭蛋嗎？</p>
-                            <button className="btn btn-dark" onClick={confirmGacha}>確定</button>
+                            <div className="modal-header">
+                                <h5 className="modal-title fw-700">轉扭蛋</h5>
+                                <button
+                                    type="button"
+                                    className="btn-close"
+                                    onClick={closeAllModals} // **確保取消後不會卡住**
+                                />
+                            </div>
+                            <div className="modal-body">
+                                <p>確定要花 <span className="text-danger fw-bold">{selectedCount * costPerGacha}</span> 個E幣</p>
+                                <p className="fw-bold fs-5">扭 <span className="text-primary fw-bold">{selectedCount}</span> 次扭蛋嗎？</p>
+                            </div>
+                            <div className="modal-footer">
+                                <button
+                                    className="btn btn-secondary me-3"
+                                    onClick={closeAllModals}
+                                >
+                                    取消
+                                </button>
+                                <button
+                                    className="btn btn-dark"
+                                    onClick={confirmGacha}
+                                >
+                                    確定
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             )}
+            {/* 抽獎結果 gachaModal-3*/}
+            {showResultModal && (
+                <div className="modal fade show d-block" tabIndex={-1} aria-modal="true" role="dialog">
+                    <div className="modal-dialog modal-dialog-centered">
+                        <div className="modal-content p-6 text-center">
+                            <div className="modal-header">
+                                <h5 className="modal-title fw-700">登登登登～</h5>
+                                <button type="button" className="btn-close" onClick={closeAllModals}></button>
+                            </div>
+                            <div className="modal-body">
+                                <p>恭喜獲得</p>
+                                {Object.entries(prizeSummary).map(([key, value], index) => (
+                                    <p key={index} className="text-primary fw-bold">
+                                        {key}   {value}個
+                                    </p>
+                                ))}
+                            </div>
+                            <div className="modal-footer">
+                                <button className="btn btn-dark" onClick={closeAllModals}>確定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* 登入 Modal */}
             {showLogin && <LoginForm onClose={() => setShowLogin(false)} />}
         </>

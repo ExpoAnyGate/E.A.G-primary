@@ -61,7 +61,7 @@ const GachaModal = () => {
         try {
             const res = await axios.post(`${API_URL}/api/draw`, {
                 count: selectedCount,
-                id: userId
+                userId: userId
             }, {
                 headers: { "api-key": API_KEY }
             });

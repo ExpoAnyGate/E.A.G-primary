@@ -1,10 +1,17 @@
 import ContactFooter from "../layouts/ContactFooter";
 import DonatePlanSwiper from "../components/DonatePlanSwiper";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Modal } from "bootstrap";
+import Swal from "sweetalert2";
+import { NavLink } from "react-router-dom";
 export default function DonatePage() {
 	const donateModal = useRef(null);
 	const donateModalInstance = useRef(null);
+	const [selected, setSelected] = useState([
+		{ planName: "mini", active: false },
+		{ planName: "plus", active: false },
+		{ planName: "pro", active: false },
+	]);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -17,6 +24,31 @@ export default function DonatePage() {
 
 	const closeDonateModal = () => {
 		donateModalInstance.current.hide();
+	};
+
+	const selectDonatePlan = (activeIndex) => {
+		setSelected((pre) => {
+			const newSelected = [...pre];
+			newSelected[activeIndex].active = true;
+			newSelected.forEach((_, i) => {
+				if (activeIndex !== i) {
+					newSelected[i].active = false;
+				}
+			});
+			return newSelected;
+		});
+	};
+
+	const addDonateMember = () => {
+		selected.forEach((plan) => {
+			if (plan.active) {
+				Swal.fire({
+					title: `成功訂閱抖內 ${plan.planName} !`,
+					icon: "success",
+					confirmButtonText: "確定",
+				});
+			}
+		});
 	};
 
 	return (
@@ -373,89 +405,108 @@ export default function DonatePage() {
 									<ul className='row'>
 										<li className='col-4'>
 											<div className='card h-100'>
-												<img
-													src='Donate/donate-plan-mini.png'
-													className='card-img-top'
-													alt='donate-plan-mini'
-												/>
-												<div className='card-body px-12'>
-													<h2 className='fs-8 text-center'>抖內 Mini</h2>
-													<ul className='card-text'>
-														<li className='mt-4'>
-															<span>適合族群：</span>
-															<span className='badge rounded-pill px-2 py-2 bg-gray-000 text-gray-700 fs-875 border-gray-700'>
-																#學生
-															</span>
-														</li>
-														<li className='mt-4'>
-															<p>開局禮包：展覽折價券*2</p>
-														</li>
-														<li className='mt-4'>
-															每月抖內價格:{" "}
-															<strong className='fs-5'>30元/月</strong>
-														</li>
-													</ul>
-												</div>
+												<NavLink
+													className={`Nav-link border-0 ${
+														selected[0].active ? "bg-primary-600" : ""
+													}`}
+													onClick={() => selectDonatePlan(0)}>
+													<img
+														src='Donate/donate-plan-mini.png'
+														className='card-img-top'
+														alt='donate-plan-mini'
+													/>
+													<div className='card-body px-12'>
+														<h2 className='fs-8 text-center'>抖內 Mini</h2>
+														<ul className='card-text'>
+															<li className='mt-4'>
+																<span>適合族群：</span>
+																<span className='badge rounded-pill px-2 py-2 bg-gray-000 text-gray-700 fs-875 border-gray-700'>
+																	#學生
+																</span>
+															</li>
+															<li className='mt-4'>
+																<p>開局禮包：展覽折價券*2</p>
+															</li>
+															<li className='mt-4'>
+																每月抖內價格:{" "}
+																<strong className='fs-5'>30元/月</strong>
+															</li>
+														</ul>
+													</div>
+												</NavLink>
 											</div>
 										</li>
 										<li className='col-4'>
 											<div className='card h-100'>
-												<img
-													src='Donate/donate-plan-plus.png'
-													className='card-img-top'
-													alt='donate-plan-plus'
-												/>
-												<div className='card-body px-12'>
-													<h2 className='fs-8 text-center'>抖內 Plus</h2>
-													<ul className='card-text'>
-														<li className='mt-4'>
-															<span>適合族群：</span>
-															<span className='badge rounded-pill px-2 py-2 bg-gray-000 text-gray-700 fs-875 border-gray-700'>
-																#上班族
-															</span>
-														</li>
-														<li className='mt-4'>
-															<p>開局禮包：展覽折價券*4 + 加贈 1 顆 E 幣</p>
-														</li>
-														<li className='mt-4'>
-															每月抖內價格:{" "}
-															<strong className='fs-5'>75元/月</strong>
-														</li>
-													</ul>
-												</div>
+												<NavLink
+													className={`Nav-link border-0 ${
+														selected[1].active ? "bg-primary-600" : ""
+													}`}
+													onClick={() => selectDonatePlan(1)}>
+													<img
+														src='Donate/donate-plan-plus.png'
+														className='card-img-top'
+														alt='donate-plan-plus'
+													/>
+													<div className='card-body px-12'>
+														<h2 className='fs-8 text-center'>抖內 Plus</h2>
+														<ul className='card-text'>
+															<li className='mt-4'>
+																<span>適合族群：</span>
+																<span className='badge rounded-pill px-2 py-2 bg-gray-000 text-gray-700 fs-875 border-gray-700'>
+																	#上班族
+																</span>
+															</li>
+															<li className='mt-4'>
+																<p>開局禮包：展覽折價券*4 + 加贈 1 顆 E 幣</p>
+															</li>
+															<li className='mt-4'>
+																每月抖內價格:{" "}
+																<strong className='fs-5'>75元/月</strong>
+															</li>
+														</ul>
+													</div>
+												</NavLink>
 											</div>
 										</li>
 										<li className='col-4'>
 											<div className='card h-100'>
-												<img
-													src='Donate/donate-plan-pro.png'
-													className='card-img-top'
-													alt='donate-plan-pro'
-												/>
-												<div className='card-body px-12'>
-													<h2 className='fs-8 text-center'>抖內 Pro</h2>
-													<ul className='card-text'>
-														<li className='mt-4'>
-															<span>適合族群：</span>
-															<span className='badge rounded-pill px-2 py-2 bg-gray-000 text-gray-700 fs-875 border-gray-700'>
-																#展覽狂粉
-															</span>
-														</li>
-														<li className='mt-4'>
-															<p>開局禮包：展覽折價券*6 + 加贈 2 顆 E 幣</p>
-														</li>
-														<li className='mt-4'>
-															每月抖內價格:{" "}
-															<strong className='fs-5'>150元/月</strong>
-														</li>
-													</ul>
-												</div>
+												<NavLink
+													className={`Nav-link border-0 ${
+														selected[2].active ? "bg-primary-600" : ""
+													}`}
+													onClick={() => selectDonatePlan(2)}>
+													<img
+														src='Donate/donate-plan-pro.png'
+														className='card-img-top'
+														alt='donate-plan-pro'
+													/>
+													<div className='card-body px-12'>
+														<h2 className='fs-8 text-center'>抖內 Pro</h2>
+														<ul className='card-text'>
+															<li className='mt-4'>
+																<span>適合族群：</span>
+																<span className='badge rounded-pill px-2 py-2 bg-gray-000 text-gray-700 fs-875 border-gray-700'>
+																	#展覽狂粉
+																</span>
+															</li>
+															<li className='mt-4'>
+																<p>開局禮包：展覽折價券*6 + 加贈 2 顆 E 幣</p>
+															</li>
+															<li className='mt-4'>
+																每月抖內價格:{" "}
+																<strong className='fs-5'>150元/月</strong>
+															</li>
+														</ul>
+													</div>
+												</NavLink>
 											</div>
 										</li>
 									</ul>
 								</div>
 								<div className='modal-footer border-0 justify-content-center'>
 									<button
+										onClick={addDonateMember}
 										type='button'
 										className='btn btn-primary btn-gray-700 donate-btn'>
 										立即抖內

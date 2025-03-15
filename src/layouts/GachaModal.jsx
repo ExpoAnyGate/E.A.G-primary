@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Modal } from 'bootstrap';
-import LoginForm from "../components/LoginForm"; // 引入登入表單組件
 
 const GachaModal = () => {
     const API_URL = import.meta.env.VITE_API_URL;
@@ -27,7 +26,7 @@ const GachaModal = () => {
             setECoins(0);
             return;
         }
-
+    
         const fetchUserECoins = async () => {
             try {
                 const res = await axios.get(`${API_URL}/api/users/${userId}`, {
@@ -39,10 +38,17 @@ const GachaModal = () => {
                 console.error("❌ Error fetching user data:", err);
             }
         };
+    
         fetchUserECoins();
+    
+        // 清理 body 的 padding-right，防止 modal 影響
+        return () => {
+            document.body.style.paddingRight = "";
+        };
     }, [userId]);
 
     const handleGacha = () => {
+
         if (!isLoggedIn) {
             console.error("❌ 使用者未登入，彈出登入視窗");
             setShowLogin(true);
@@ -89,11 +95,18 @@ const GachaModal = () => {
             modalInstance.show();
         }
     };
-
+    const handleCloseModal = () => {
+        document.body.style.paddingRight = "";
+    };
 
     const closeAllModals = () => {
         setShowConfirmModal(false);
         setShowResultModal(false);
+
+        setTimeout(() => {
+            document.body.style.paddingRight = "";
+            document.body.classList.remove("modal-open");
+        }, 300); // 等待 Bootstrap modal fade-out 動畫結束
 
         setTimeout(() => {
             // 移除所有 `.modal-backdrop`
@@ -177,6 +190,7 @@ const GachaModal = () => {
                     type="button"
                     className="btn btn-gray-700 text-gray-000 py-2 px-4"
                     onClick={handleOpenGachaModal} // **開啟 gachaModal-1**
+                    onClose={handleCloseModal}
                 >
                     我要轉扭蛋
                 </button>
@@ -236,6 +250,7 @@ const GachaModal = () => {
                                     type="button"
                                     className="btn-close"
                                     onClick={closeAllModals} // **確保取消後不會卡住**
+                                    onClose={handleCloseModal}
                                 />
                             </div>
                             <div className="modal-body">
@@ -267,7 +282,7 @@ const GachaModal = () => {
                         <div className="modal-content p-6 text-center">
                             <div className="modal-header">
                                 <h5 className="modal-title fw-700">登登登登～</h5>
-                                <button type="button" className="btn-close" onClick={closeAllModals}></button>
+                                <button type="button" className="btn-close" onClick={closeAllModals} onClose={handleCloseModal}></button>
                             </div>
                             <div className="modal-body">
                                 <p>恭喜獲得</p>
@@ -285,8 +300,6 @@ const GachaModal = () => {
                 </div>
             )}
 
-            {/* 登入 Modal */}
-            {showLogin && <LoginForm onClose={() => setShowLogin(false)} />}
         </>
     );
 };

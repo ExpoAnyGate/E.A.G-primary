@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 const AuthContext = createContext();
+import Swal from "sweetalert2";
 
 // const API_URL = "https://e-a-g-api.vercel.app/"; // 替換成實際 API 路徑
 // const API_URL = "http://localhost:3000/"; 
@@ -37,6 +38,12 @@ export const AuthProvider = ({ children }) => {
 		  }
 		} catch (error) {
 		  console.error("登入失敗", error);
+		  Swal.fire({
+			title: "登入失敗",
+			text: "請檢查帳號、密碼或驗證碼",
+			icon: "error",
+			// confirmButtonText: "確定",
+		  });
 		}
 		return false;
 	  };

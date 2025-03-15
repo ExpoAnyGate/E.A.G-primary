@@ -6,6 +6,8 @@ import ExpoDetailModal from "../layouts/ExpoDetailModal";
 import WishBoxModal from "../layouts/WishBoxModal";
 import axios from "axios";
 import Swal from "sweetalert2";
+import GradientText from '../components/GradientText/GradientText'
+
 
 export default function WishPage() {
   const targetDate = new Date("2025-03-18T00:00:00").getTime(); //目標時間
@@ -180,13 +182,31 @@ export default function WishPage() {
           {/* <!-- 電腦版（單行）d-md-block : ≥768px（平板以上）時顯示 --> */}
           <h1 className="fs-8 fw-700 position-absolute top-50 start-50 translate-middle text-white text-nowrap d-none d-md-block">
             還在祈禱夢寐以求的展覽嗎？沒關係，湖中女神幫您實現。
+            <GradientText
+            colors={["#74583e", "#ffffff", "#dac69b", "#f6e1b7", "#78634a"]}
+            animationSpeed={5}
+            showBorder={false}
+            className="custom-class flipped-text"
+          >
+          還在祈禱夢寐以求的展覽嗎？沒關係，湖中女神幫您實現。
+          </GradientText>
           </h1>
+          
 
           {/* <!-- 平板 & 手機版（兩行） --> */}
           <h1 className="fs-8 fw-700 position-absolute text-center top-50 start-50 translate-middle text-white text-nowrap d-block d-md-none text-center">
             還在祈禱夢寐以求的展覽嗎？
             <br />
             沒關係，湖中女神幫您實現。
+
+            <GradientText
+            colors={["#74583e", "#ffffff", "#dac69b", "#f6e1b7", "#78634a"]}
+            animationSpeed={5}
+            showBorder={false}
+            className="custom-class flipped-text"
+          >
+          還在祈禱夢寐以求的展覽嗎？<br />沒關係，湖中女神幫您實現。
+          </GradientText>
           </h1>
         </div>
       </section>

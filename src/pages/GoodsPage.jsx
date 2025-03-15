@@ -25,8 +25,8 @@ export default function GoodsPage() {
         />
         <div className="goods-banner-image-wrapper position-relative">
           <div className="container-fluid d-flex justify-content-center">
-            <div className="capsule-container">
-              <div className="capsule-box d-flex mx-md-3 mx-md-6 gap-md-3">
+            <div className="capsule-container d-flex align-items-center justify-content-center">
+              <div className="capsule-box d-flex mt-auto mx-md-3 mx-md-6 gap-md-3">
                 <div className="capsule bg-official-good-5 mt-auto mb-17"></div>
                 <div className="capsule bg-official-good-4 mt-auto"></div>
                 <div className="capsule bg-official-good-2 mt-auto mb-6 ms-5"></div>
@@ -49,8 +49,8 @@ export default function GoodsPage() {
               />
             </picture>
 
-            <div className="capsule-container">
-              <div className="capsule-box d-flex mx-md-3 mx-md-6 gap-md-3">
+            <div className="capsule-container d-flex align-items-center justify-content-center">
+              <div className="capsule-box d-flex mt-auto mx-md-3 mx-md-6 gap-md-3">
                 <div className="capsule bg-official-good-3 mt-auto mb-15 mb-sm-20"></div>
                 <div className="capsule bg-official-good-1 mt-auto mb-6"></div>
                 <div className="capsule bg-official-good-6 mt-auto mb-12 ms-5"></div>

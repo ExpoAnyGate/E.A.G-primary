@@ -1,7 +1,7 @@
 import ContactFooter from "../layouts/ContactFooter";
 import DemoSearchBar from "../layouts/DemoSearchBar";
 import FloatingButton from "../components/WalletKun";
-import HomeBanner from "../components/HmeBanner";
+import HomeBanner from "../components/HomeBanner";
 import HomeHotDemo from "../layouts/HomeHotDemo";
 import HomeLastDemo from "../layouts/HomeLastDemo";
 import HomeDemoRecommend from "../layouts/HomeDemoRecommend";
@@ -57,7 +57,7 @@ export default function HomePage() {
 					<HomeBanner device={"sm"} />
 				</div>
 				{/* <!-- 平板以上 --> */}
-				<div className='container-fluid d-none d-md-block p-0 banner position-relative'>
+				<div className='container-fluid d-none d-md-block p-0 banner position-relative mb-n1'>
 					<div className='text-gray-000 text-nowrap position-absolute banner-text'>
 						<h1 className='fs-15 fw-900 mb-2'>E.A.G - 藝展任意門</h1>
 						<p className='fs-6 fw-500 mb-6'>

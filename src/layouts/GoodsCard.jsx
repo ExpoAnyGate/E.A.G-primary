@@ -7,7 +7,7 @@ const GoodsCard = ({ good, setSelectedGood }) => {
             onClick={() => setSelectedGood(good)} // 設定選擇的商品
         >
             <div className="goods-item-upper d-flex justify-content-center border-bottom border-primary-900 py-4">
-                <div className="goods-number bg-official-good-1 d-flex justify-content-center align-items-center">
+            <div className={`goods-number ${good.color} d-flex justify-content-center align-items-center`}>
                     <p className="font-family-Noto fs-5 fs-lg-9 fw-bold text-gray-000 pb-1">
                         {good.id}
                     </p>

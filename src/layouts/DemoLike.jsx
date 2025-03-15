@@ -9,12 +9,12 @@ export default function DemoLike({}) {
   
   useEffect(() => {
     // 隨機生成第一個數字
-    const randomIndex1 = Math.floor(Math.random() * 10); // 假設有10筆資料
+    const randomIndex1 = Math.floor(Math.random() * 5); // 假設有10筆資料
 
     // 隨機生成第二個數字，確保不與第一個數字相同
     let randomIndex2;
     do {
-      randomIndex2 = Math.floor(Math.random() * 10);
+      randomIndex2 = Math.floor(Math.random() * 5);
     } while (randomIndex1 === randomIndex2);
 
     // 分別呼叫兩次 API 並取得資料

@@ -6,44 +6,46 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 
 export default function DemoLike({}) {
   const [exhibitions, setExhibitions] = useState([]);
-  
+  const [loading, setLoading] = useState(true); // 加入 loading 狀態
+
   useEffect(() => {
-    // 隨機生成第一個數字
-    const randomIndex1 = Math.floor(Math.random() * 5); // 假設有10筆資料
+    const fetchExhibitions = async () => {
+      try {
+        // 先假設 API 內有 10 筆資料 (根據你的 API 需求調整)
+        const maxExhibitions = 5; 
+        const randomIndex1 = Math.floor(Math.random() * maxExhibitions) + 1;
+        let randomIndex2;
+        do {
+          randomIndex2 = Math.floor(Math.random() * maxExhibitions) + 1;
+        } while (randomIndex1 === randomIndex2);
 
-    // 隨機生成第二個數字，確保不與第一個數字相同
-    let randomIndex2;
-    do {
-      randomIndex2 = Math.floor(Math.random() * 5);
-    } while (randomIndex1 === randomIndex2);
+        const responses = await Promise.all([
+          axios.get(`${API_URL}/api/exhibitions/${randomIndex1}?&_expand=region`, {
+            headers: { "api-key": API_KEY }
+          }),
+          axios.get(`${API_URL}/api/exhibitions/${randomIndex2}?&_expand=region`, {
+            headers: { "api-key": API_KEY }
+          })
+        ]);
 
-    // 分別呼叫兩次 API 並取得資料
-    Promise.all([
-      axios.get(
-        `${API_URL}/api/exhibitions/${randomIndex1}?&_expand=region`,{
-          headers: { "api-key": `${API_KEY}` }
-      }),
-      axios.get(
-        `${API_URL}/api/exhibitions/${randomIndex2}?&_expand=region`,{
-          headers: { "api-key": `${API_KEY}` }
-      })
-    ])
-      .then((responses) => {
-        // 提取兩筆資料並設定狀態
-        const randomExhibitions = [
-          responses[0].data,
-          responses[1].data,
-        ];
-        setExhibitions(randomExhibitions);
-      })
-      .catch((error) => {
+        const validExhibitions = responses
+          .map((res) => res.data)
+          .filter((item) => item !== undefined); // 避免 API 回傳 undefined
+
+        setExhibitions(validExhibitions);
+      } catch (error) {
         console.error("Error fetching exhibitions:", error);
-      });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchExhibitions();
   }, []);
 
-  // 確保 exhibitions 已經有值再進行渲染
-  if (exhibitions.length === 0) {
-    return <div>正在加載...</div>; // 或是顯示載入中的提示
+  // **新增 Loading 狀態**
+  if (loading) {
+    return <div>正在加載...</div>;
   }
 
   return (

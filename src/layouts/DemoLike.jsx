@@ -143,7 +143,7 @@ export default function DemoLike({}) {
                 <span className="material-symbols-outlined fs-6 px-0 py-0">
                   location_on
                 </span>
-                <span className="nowrap">{exhibition.regions?.name}</span>
+                <span className="nowrap">{exhibition.region?.name}</span>
               </div>
             </div>
 

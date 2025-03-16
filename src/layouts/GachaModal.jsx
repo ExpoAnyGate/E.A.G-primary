@@ -26,7 +26,7 @@ const GachaModal = () => {
             setECoins(0);
             return;
         }
-    
+
         const fetchUserECoins = async () => {
             try {
                 const res = await axios.get(`${API_URL}/api/users/${userId}`, {
@@ -38,9 +38,9 @@ const GachaModal = () => {
                 console.error("❌ Error fetching user data:", err);
             }
         };
-    
+
         fetchUserECoins();
-    
+
         // 清理 body 的 padding-right，防止 modal 影響
         return () => {
             document.body.style.paddingRight = "";
@@ -188,7 +188,7 @@ const GachaModal = () => {
             <div className="text-center mt-17 mt-xl-20">
                 <button
                     type="button"
-                    className="btn btn-gray-700 text-gray-000 py-2 px-4"
+                    className="btn btn-gray-700 gacha-btn text-gray-000 py-2 px-4"
                     onClick={handleOpenGachaModal} // **開啟 gachaModal-1**
                     onClose={handleCloseModal}
                 >
@@ -196,47 +196,69 @@ const GachaModal = () => {
                 </button>
             </div>
             {/* gachaModal-1 */}
-            <div className="gacha-modal modal fade" id="gachaModal-1" tabIndex={-1} aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content bg-secondary-50 px-6 px-md-15 pt-6 pb-10">
-                        <div className="modal-header p-0 border-bottom-0">
-                            <h5 className="modal-title fs-5 fw-700">轉扭蛋</h5>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
-                        </div>
-                        <div className="modal-body text-center">
-                            <img src="Goods/goods-gashapon-sm.png" alt="扭蛋機" />
-                            <div className="gacha-container text-center">
-                                <span className="fw-bold">我想轉</span>
-                                <select
-                                    id="gachaCount"
-                                    className="gacha-select"
-                                    value={selectedCount}
-                                    onChange={(e) => setSelectedCount(parseInt(e.target.value))}
-                                >
-                                    {[1, 2, 3, 4, 5].map((num) => (
-                                        <option key={num} value={num}>{num}</option>
-                                    ))}
-                                </select>
-                                <span className="fw-bold">次扭蛋</span>
-                                <p>
-                                    你總共有 <span id="totalEcoins" className="text-primary fw-bold">{eCoins}</span> 個E幣，
-                                </p>
-                                <p>
-                                    此次會花掉 <span id="costEcoins" className="text-danger fw-bold">{selectedCount * costPerGacha}</span> 個E幣
-                                </p>
-                                {errorMessage && <p className="text-danger fw-bold">{errorMessage}</p>}
+            <div className="container">
+                <div className="gacha-modal modal fade" id="gachaModal-1" tabIndex={-1} aria-hidden="true">
+                    <div className="modal-dialog modal-dialog-centered gacha-modal-width">
+                        <div className="modal-content bg-secondary-50 px-6 px-md-15 pt-6 pb-6">
+                            <div className="modal-header p-0 border-bottom-0">
+                                <h5 className="modal-title fs-5 fw-700">轉扭蛋</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
                             </div>
-                            <button className="btn btn-dark" id="startGacha" onClick={handleGacha}>
-                                抽起來
-                            </button>
+                            <div className="modal-body text-center">
+                                <div className="gacha-container d-flex align-items-center justify-content-center">
+                                    <div className="gacha-capsule-container d-none d-sm-block mt-auto">
+                                        <div className="capsule-box d-flex mx-md-3 mx-md-6 gap-md-3">
+                                            <div className="capsule bg-official-good-3 mt-auto mb-12 mb-sm-15"></div>
+                                            <div className="capsule bg-official-good-1 mt-auto mb-6"></div>
+                                            <div className="capsule bg-official-good-6 mt-auto mb-10 ms-5"></div>
+                                        </div>
+                                    </div>
+                                    <img src="Goods/goods-gashapon-sm.png" alt="扭蛋機" />
+                                    <div className="gacha-capsule-container  d-none d-sm-block  mt-auto">
+                                        <div className="capsule-box d-flex mx-md-3 mx-md-6 gap-md-3">
+                                            <div className="capsule bg-official-good-5 mt-auto mb-6"></div>
+                                            <div className="capsule bg-official-good-4 mt-auto"></div>
+                                            <div className="capsule bg-official-good-2 mt-auto mb-12"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="gacha-text-container text-center align-bottom my-12">
+                                    
+                                    <div className="d-flex justify-content-center align-items-center">
+                                        <span className="d-inline-block fw-bold fs-7 fs-lg-9">我想轉</span>
+                                    <select
+                                        id="gachaCount"
+                                        className="gacha-select mx-4 mx-md-8 px-6 py-3 "
+                                        value={selectedCount}
+                                        onChange={(e) => setSelectedCount(parseInt(e.target.value))}
+                                        >
+                                        {[1, 2, 3, 4, 5].map((num) => (
+                                            <option key={num} value={num}>{num}</option>
+                                        ))}
+                                    </select>
+                                    <span className="fw-bold fs-7 fs-lg-9">次扭蛋</span>
+                                        </div>
+                                    <p className="mt-6">
+                                        你總共有 <span id="totalEcoins" className="text-primary fw-bold text-secondary-900">{eCoins}</span> 個E幣，
+                                        <br className="d-sm-none"/>
+                                        此次會花掉 <span id="costEcoins" className="text-danger fw-bold text-secondary-900">{selectedCount * costPerGacha}</span> 個E幣~
+                                    </p>
+                                    {errorMessage && <p className="text-danger fw-bold">{errorMessage}</p>}
+                                </div>
+                                <button className="btn btn-dark py-2 px-4" id="startGacha" onClick={handleGacha}>
+                                    <span className="fw-bold">抽起來</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             {/* 確認抽獎 gachaModal-2 */}
             {showConfirmModal && (
                 <div
-                    className="modal fade show d-block"
+                    className="gacha-modal modal fade show d-block"
                     id="gachaModal-2"
                     tabIndex={-1}
                     aria-modal="true"
@@ -244,8 +266,8 @@ const GachaModal = () => {
                 >
                     <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content p-6 text-center">
-                            <div className="modal-header">
-                                <h5 className="modal-title fw-700">轉扭蛋</h5>
+                            <div className="modal-header border-0">
+                                <h5 className="modal-title fw-700 fs-5">轉扭蛋</h5>
                                 <button
                                     type="button"
                                     className="btn-close"
@@ -253,19 +275,19 @@ const GachaModal = () => {
                                     onClose={handleCloseModal}
                                 />
                             </div>
-                            <div className="modal-body">
-                                <p>確定要花 <span className="text-danger fw-bold">{selectedCount * costPerGacha}</span> 個E幣</p>
-                                <p className="fw-bold fs-5">扭 <span className="text-primary fw-bold">{selectedCount}</span> 次扭蛋嗎？</p>
+                            <div className="modal-body mb-12">
+                                <p className="mb-4">確定要花 <span className="text-secondary-900 fw-bold">{selectedCount * costPerGacha}</span> 個E幣</p>
+                                <p className="fw-bold fs-7 fs-lg-9">扭  <span className="text-secondary-900 fw-bold">{selectedCount}</span>  次扭蛋嗎?</p>
                             </div>
-                            <div className="modal-footer">
+                            <div className="modal-footer border-0">
                                 <button
-                                    className="btn btn-secondary me-3"
+                                    className="btn btn-secondary me-3 py-2 px-4"
                                     onClick={closeAllModals}
                                 >
                                     取消
                                 </button>
                                 <button
-                                    className="btn btn-dark"
+                                    className="btn btn-dark py-2 px-4"
                                     onClick={confirmGacha}
                                 >
                                     確定
@@ -277,23 +299,33 @@ const GachaModal = () => {
             )}
             {/* 抽獎結果 gachaModal-3*/}
             {showResultModal && (
-                <div className="modal fade show d-block" tabIndex={-1} aria-modal="true" role="dialog">
+                <div className=" gacha-modal modal fade show d-block" tabIndex={-1} aria-modal="true" role="dialog">
                     <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content p-6 text-center">
-                            <div className="modal-header">
-                                <h5 className="modal-title fw-700">登登登登～</h5>
+                            <div className="modal-header border-0">
+                                <h5 className="modal-title fs-5 fw-700">登登登登～</h5>
                                 <button type="button" className="btn-close" onClick={closeAllModals} onClose={handleCloseModal}></button>
                             </div>
-                            <div className="modal-body">
-                                <p>恭喜獲得</p>
+                            <div className="modal-body mb-8">
+                                <p className="mb-4">恭喜獲得</p>
                                 {Object.entries(prizeSummary).map(([key, value], index) => (
-                                    <p key={index} className="text-primary fw-bold">
+                                    <p key={index} className="text-secondary-900 fw-bold fs-5">
                                         {key}   {value}個
                                     </p>
                                 ))}
                             </div>
-                            <div className="modal-footer">
-                                <button className="btn btn-dark" onClick={closeAllModals}>確定</button>
+                            <div className="gacha-capsule-container mt-auto">
+                                        <div className="capsule-box d-flex justify-content-center mt-auto mx-md-3 mx-md-6 gap-md-5">
+                                            <div className="capsule bg-official-good-6 mt-auto mb-3"></div>
+                                            <div className="capsule bg-official-good-5 mt-auto"></div>
+                                            <div className="capsule bg-official-good-4 mt-auto mb-3"></div>
+                                            <div className="capsule bg-official-good-3 mt-auto mb-4"></div>
+                                            <div className="capsule bg-official-good-2 mt-auto"></div>
+                                            <div className="capsule bg-official-good-1 mt-auto mb-3"></div>
+                                        </div>
+                                    </div>
+                            <div className="modal-footer border-0">
+                                <button className="btn btn-dark py-2 px-4" onClick={closeAllModals}>確定</button>
                             </div>
                         </div>
                     </div>

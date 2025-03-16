@@ -1,11 +1,25 @@
-import { useState, useEffect } from "react";
 import FloatingButton from "../components/WalletKun";
 import GoodList from "../layouts/GoodsList";
 import GachaModal from "../layouts/GachaModal";
+import AOS from "aos";
+import { useEffect } from "react";
+
 
 export default function GoodsPage() {
-  const API_URL = import.meta.env.VITE_API_URL;
-  const API_KEY = import.meta.env.VITE_API_KEY;
+
+  useEffect(() => {
+    AOS.init({
+      duration: 700,
+      once: false,
+      delay: 0,
+      offset: 50,
+    });
+  
+    // 強制 AOS 重新偵測滾動
+    setTimeout(() => {
+      AOS.refresh();
+    }, 500);
+  }, []);
 
 
 
@@ -25,8 +39,8 @@ export default function GoodsPage() {
         />
         <div className="goods-banner-image-wrapper position-relative">
           <div className="container-fluid d-flex justify-content-center">
-            <div className="capsule-container">
-              <div className="capsule-box d-flex mx-md-3 mx-md-6 gap-md-3">
+            <div className="capsule-container d-flex align-items-center justify-content-center">
+              <div className="capsule-box d-flex mt-auto mx-md-3 mx-md-6 gap-md-3">
                 <div className="capsule bg-official-good-5 mt-auto mb-17"></div>
                 <div className="capsule bg-official-good-4 mt-auto"></div>
                 <div className="capsule bg-official-good-2 mt-auto mb-6 ms-5"></div>
@@ -49,8 +63,8 @@ export default function GoodsPage() {
               />
             </picture>
 
-            <div className="capsule-container">
-              <div className="capsule-box d-flex mx-md-3 mx-md-6 gap-md-3">
+            <div className="capsule-container d-flex align-items-center justify-content-center">
+              <div className="capsule-box d-flex mt-auto mx-md-3 mx-md-6 gap-md-3">
                 <div className="capsule bg-official-good-3 mt-auto mb-15 mb-sm-20"></div>
                 <div className="capsule bg-official-good-1 mt-auto mb-6"></div>
                 <div className="capsule bg-official-good-6 mt-auto mb-12 ms-5"></div>
@@ -77,17 +91,17 @@ export default function GoodsPage() {
 
           {/* 我要轉扭蛋 */}
           {/* gacha-Modal */}
-          <GachaModal/>
+          <GachaModal />
 
 
-          
+
         </div>
       </section>
 
       {/* support - robot */}
       <section className="support-robot-section bg-secondary-50 py-17 py-lg-20">
         <div className="message-container container-lg d-flex flex-column justify-content-center align-items-center">
-          <div className="message-box bg-gray-000 col-12 p-8 position-relative">
+          <div data-aos="fade-up-left" className="message-box bg-gray-000 col-12 p-8 position-relative">
             <h3 className="support-title fs-6 fs-md-8 fw-700 mb-8">
               為鼓勵支持藝術家和平台運營
             </h3>

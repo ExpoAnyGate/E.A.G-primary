@@ -188,7 +188,7 @@ const GachaModal = () => {
             <div className="text-center mt-17 mt-xl-20">
                 <button
                     type="button"
-                    className="btn btn-gray-700 text-gray-000 py-2 px-4"
+                    className="btn btn-gray-700 gacha-btn text-gray-000 py-2 px-4"
                     onClick={handleOpenGachaModal} // **開啟 gachaModal-1**
                     onClose={handleCloseModal}
                 >
@@ -303,7 +303,7 @@ const GachaModal = () => {
                     <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content p-6 text-center">
                             <div className="modal-header border-0">
-                                <h5 className="modal-title fw-700">登登登登～</h5>
+                                <h5 className="modal-title fs-5 fw-700">登登登登～</h5>
                                 <button type="button" className="btn-close" onClick={closeAllModals} onClose={handleCloseModal}></button>
                             </div>
                             <div className="modal-body mb-8">

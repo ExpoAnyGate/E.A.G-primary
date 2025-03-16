@@ -152,6 +152,13 @@
 }
 
 // gacha-Modal
+.gacha-btn{
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+    &:hover{
+        background-color: $gray-600;
+    }
+}
+
 .gacha-modal {
     .modal-content {
         border-radius: 24px;

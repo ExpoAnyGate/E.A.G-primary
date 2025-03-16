@@ -73,6 +73,57 @@
     animation-delay: 0.5s;
 }
 
+.gachapon-container {
+    min-height: 200px;
+    cursor: pointer;
+}
+.gachaBox-img-sm {
+    position: absolute;
+    top: 103%; /* 讓它顯示在 container 的正下方 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, filter 0.3s ease, transform 0.3s ease;
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.2));
+
+    @include media-breakpoint-up(sm) {
+        display: none; /* 當視窗大於 sm 就隱藏 */
+    }
+}
+
+.gachaBox-img-md {
+    display: none;
+
+    @include media-breakpoint-up(sm) {
+        display: block;
+        position: absolute;
+        top: 60%;
+        right: -150px;
+        transform: translateY(-50%);
+        width: 150px;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out, filter 0.3s ease, transform 0.3s ease;
+        filter: drop-shadow(0px 8px 20px rgba(0, 0, 0, 0.3));
+    }
+
+    @include media-breakpoint-up(md) {
+        right: -250px;
+        width: 200px;
+    }
+
+    @include media-breakpoint-up(lg) {
+        right: -320px;
+        width: 300px;
+    }
+}
+
+.gachapon-container:hover .gachaBox-img-md, .gachapon-container:hover .gachaBox-img-sm {
+    opacity: 1;
+    z-index: 2;
+}
+
+
 // goods-list
 .goods-list {
     gap: 12px;
@@ -152,9 +203,10 @@
 }
 
 // gacha-Modal
-.gacha-btn{
+.gacha-btn {
     transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
-    &:hover{
+
+    &:hover {
         background-color: $gray-600;
     }
 }

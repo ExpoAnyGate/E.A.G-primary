@@ -2,10 +2,11 @@ import FloatingButton from "../components/WalletKun";
 import GoodList from "../layouts/GoodsList";
 import GachaModal from "../layouts/GachaModal";
 import AOS from "aos";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 
 export default function GoodsPage() {
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     AOS.init({
@@ -14,12 +15,15 @@ export default function GoodsPage() {
       delay: 0,
       offset: 50,
     });
-  
+
     // 強制 AOS 重新偵測滾動
     setTimeout(() => {
       AOS.refresh();
     }, 500);
   }, []);
+
+
+
 
 
 
@@ -46,22 +50,40 @@ export default function GoodsPage() {
                 <div className="capsule bg-official-good-2 mt-auto mb-6 ms-5"></div>
               </div>
             </div>
+            {/* 扭蛋機 + Hover 事件 */}
+            <div className="gachapon-container position-relative"
+              onMouseEnter={() => {
+                console.log("Hovered: true");
+                setIsHovered(true);
+              }}
+              onMouseLeave={() => {
+                console.log("Hovered: false");
+                setIsHovered(false);
+              }}
+              >
+              <picture>
+                <source
+                  srcSet="Goods/goods-gashapon-lg.png"
+                  media="(min-width: 992px)"
+                />
+                <source
+                  srcSet="Goods/goods-gashapon-md.png"
+                  media="(min-width: 768px)"
+                />
+                <img
+                  className="gashapon-image"
+                  src="Goods/goods-gashapon-sm.png"
+                  alt="gashapon image"
+                />
+              </picture>
+              {isHovered && (
+                <img src="Goods/gachaBox-sm.svg" alt="gachaBox-sm" className="gachaBox-img-sm" />
+              )}
+              {isHovered && (
+                <img src="Goods/gachaBox-md.svg" alt="gachaBox-md" className="gachaBox-img-md" />
+              )}
+            </div>
 
-            <picture>
-              <source
-                srcSet="Goods/goods-gashapon-lg.png"
-                media="(min-width: 992px)"
-              />
-              <source
-                srcSet="Goods/goods-gashapon-md.png"
-                media="(min-width: 768px)"
-              />
-              <img
-                className="gashapon-image"
-                src="Goods/goods-gashapon-sm.png"
-                alt="gashapon image"
-              />
-            </picture>
 
             <div className="capsule-container d-flex align-items-center justify-content-center">
               <div className="capsule-box d-flex mt-auto mx-md-3 mx-md-6 gap-md-3">
@@ -72,6 +94,7 @@ export default function GoodsPage() {
             </div>
           </div>
         </div>
+
       </section>
 
       {/* goods-list-section */}

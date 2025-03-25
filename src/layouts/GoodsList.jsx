@@ -15,7 +15,7 @@ const GoodsList = () => {
         try {
             setIsLoading(true); // 開始載入
             const response = await fetch(`${API_URL}/api/gotcha_goods`, {
-                headers: { "api-key": API_KEY },
+                headers: { "api-key": `${API_KEY}` },
             });
 
             if (!response.ok) {

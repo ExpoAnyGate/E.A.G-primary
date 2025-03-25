@@ -1,10 +1,10 @@
 import { useAuth } from "../hook/useAuth";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const LoginForm = () => {
   const { handleLogin, setAccount, setPassword, setCaptcha } = useAuth();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // const handleSubmit = (e) => {
   //   e.preventDefault();
   //   const account = e.target.Account.value;
@@ -121,7 +121,6 @@ const handleSubmit = async (e) => {
           aria-label="Close"
           id='login-btn'
           data-bs-dismiss='modal'
-          aria-label='Close'
         >
           登入
         </button>

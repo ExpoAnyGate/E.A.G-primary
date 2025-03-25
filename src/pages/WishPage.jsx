@@ -23,7 +23,7 @@ export default function WishPage() {
   const API_URL = import.meta.env.VITE_API_URL;
   const API_KEY = import.meta.env.VITE_API_KEY;
 
-  const API_URL_LOCAL = "http://localhost:3000";
+  // const API_URL_LOCAL = "http://localhost:3000";
 
   const [userInfo, setUserInfo] = useState({
     userId: 0,
@@ -31,7 +31,7 @@ export default function WishPage() {
     email: "",
   });
 
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   //const [message, setMessage] = useState("");
 
   const handleCardClick = (expoData) => {
@@ -85,7 +85,7 @@ export default function WishPage() {
   }, []);
 
   //許願箱Modal
-  const [isWishBoxModalOpen, setIsWishBoxModalOpen] = useState(false);
+  const [, setIsWishBoxModalOpen] = useState(false);
   const handleOpenWishBoxModal = () => {
     setIsWishBoxModalOpen(true);
   };
@@ -144,13 +144,15 @@ export default function WishPage() {
   const handleVote = async (exhibitionPkId) => {
     setLoading(true);
     try {
-      const response = await axios.post(
+      await axios.post(
         `${API_URL}/api/pk_vote`,
         {
           userId: userInfo.userId,
           exhibition_pkId: exhibitionPkId,
         },
-        { headers: { "api-key": `${API_KEY}` }}
+        { 
+          headers: { "api-key": `${API_KEY}` }
+        }
       );
        Swal.fire({
          title: "投票成功！",
@@ -607,7 +609,7 @@ export default function WishPage() {
 
           {/* <!-- 許願 Modal--> */}
           <WishBoxModal
-            isWishBoxModalOpen={isWishBoxModalOpen}
+            // isWishBoxModalOpen={isWishBoxModalOpen}
             handleCloseWishBoxModal={handleCloseWishBoxModal}
             userInfo={userInfo}
             handleSubmitWish={handleSubmitWish}

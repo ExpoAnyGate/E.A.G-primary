@@ -8,7 +8,7 @@ import SearchCardFocus from "../layouts/SearchCardFocus";
 import SearchCard from "../layouts/SearchCard";
 import Pagination from "../components/Pagination";
 import FloatingButton from "../components/WalletKun";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function SearchPage() {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ export default function SearchPage() {
   const totalPages = useSelector((state) => state.search.totalPages);
   const status = useSelector((state) => state.search.status); // 修正 loading 狀態
   const filters = useSelector((state) => state.filters); // 確保 filters 來自正確的 slice
-  const location = useLocation();
+
   const [page, setPage] = useState(1);
   const [filtersSet, setFiltersSet] = useState(false);
 

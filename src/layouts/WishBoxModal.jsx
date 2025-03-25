@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const WishBoxModal = ({
   userInfo,
-  isWishBoxModalOpen,
+  // isWishBoxModalOpen,
   handleCloseWishBoxModal,
   handleSubmitWish,
 }) => {

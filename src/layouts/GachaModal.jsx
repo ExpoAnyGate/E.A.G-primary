@@ -10,10 +10,10 @@ const GachaModal = () => {
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
     const storedUserId = isLoggedIn ? localStorage.getItem("userId") : null;
 
-    const [userId, setUserId] = useState(storedUserId);
+    const [userId] = useState(storedUserId);
     const [eCoins, setECoins] = useState(0);
     const [selectedCount, setSelectedCount] = useState(1);
-    const [showLogin, setShowLogin] = useState(false); // 控制登入 Modal
+    const [, setShowLogin] = useState(false); // 控制登入 Modal
     const [showConfirmModal, setShowConfirmModal] = useState(false); // 確認抽獎 Modal
     const [showResultModal, setShowResultModal] = useState(false); // 結果 Modal
     const [prizeSummary, setPrizeSummary] = useState({}); // 存儲獎品資訊
@@ -30,7 +30,7 @@ const GachaModal = () => {
         const fetchUserECoins = async () => {
             try {
                 const res = await axios.get(`${API_URL}/api/users/${userId}`, {
-                    headers: { "api-key": API_KEY }
+                    headers: { "api-key": `${API_KEY}` }
                 });
                 console.log("✅ API 回應:", res.data);
                 setECoins(res.data.e_coin);
@@ -95,9 +95,9 @@ const GachaModal = () => {
             modalInstance.show();
         }
     };
-    const handleCloseModal = () => {
-        document.body.style.paddingRight = "";
-    };
+    // const handleCloseModal = () => {
+    //     document.body.style.paddingRight = "";
+    // };
 
     const closeAllModals = () => {
         setShowConfirmModal(false);
@@ -159,7 +159,7 @@ const GachaModal = () => {
                 userId: Number(userId), // 確保 userId 為數字
                 count: selectedCount
             }, {
-                headers: { "api-key": API_KEY }
+                headers: { "api-key": `${API_KEY}` }
             });
 
             console.log("🎉 Gacha Result:", res.data);
@@ -190,7 +190,7 @@ const GachaModal = () => {
                     type="button"
                     className="btn btn-gray-700 gacha-btn text-gray-000 py-2 px-4"
                     onClick={handleOpenGachaModal} // **開啟 gachaModal-1**
-                    onClose={handleCloseModal}
+                    // onClose={handleCloseModal}
                 >
                     我要轉扭蛋
                 </button>
@@ -272,7 +272,7 @@ const GachaModal = () => {
                                     type="button"
                                     className="btn-close"
                                     onClick={closeAllModals} // **確保取消後不會卡住**
-                                    onClose={handleCloseModal}
+                                    // onClose={handleCloseModal}
                                 />
                             </div>
                             <div className="modal-body mb-12">
@@ -304,7 +304,9 @@ const GachaModal = () => {
                         <div className="modal-content p-6 text-center">
                             <div className="modal-header border-0">
                                 <h5 className="modal-title fs-5 fw-700">登登登登～</h5>
-                                <button type="button" className="btn-close" onClick={closeAllModals} onClose={handleCloseModal}></button>
+                                <button type="button" className="btn-close" onClick={closeAllModals} 
+                                // onClose={handleCloseModal}
+                                ></button>
                             </div>
                             <div className="modal-body mb-8">
                                 <p className="mb-4">恭喜獲得</p>

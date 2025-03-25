@@ -1,12 +1,12 @@
-import { use, useEffect, useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../hook/useAuth";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import LoginForm from "./LoginForm";
 
 
 const LoginStatus = () => {
-	const { isLoggedIn, handleLogin, handleLogout } = useAuth();
-	const navigate = useNavigate();
+	const { isLoggedIn, handleLogout } = useAuth();
+	// const navigate = useNavigate();
 	// const handleUserLogin = () => {
 	// 	handleLogin();
 	// 	// 利用路由傳遞登入的訊號

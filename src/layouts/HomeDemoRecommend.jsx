@@ -5,7 +5,7 @@ import axios from "axios";
 import "swiper/css/pagination";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../hook/useAuth";
+
 const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -47,7 +47,7 @@ export default function HomeDemoRecommend() {
 				// isFavorite: !isFavorite,
 				exhibitionId: demo_id
 			}
-			}).then(response => {
+			}).then(() => {
 			console.log('Favorite status updated');
 			}).catch(error => {
 			console.error('Error updating favorite status:', error);
@@ -63,29 +63,33 @@ export default function HomeDemoRecommend() {
 				}
 			);
 			setRecommendDemo(res.data.data);
-		} catch (error) {}
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
-	const postAddBookmark = async (userId, exhibitionId, index) => {
-		try {
-			//參數順序(路徑,data,header)
-			await axios.post(
-				`${API_URL}/api/users/${userId}/favorites`,
-				{
-					userId,
-					exhibitionId,
-					id: 3,
-				},
-				{
-					headers: { "api-key": `${API_KEY}` },
-				}
-			);
-			//先淺拷貝一份，當使用者加入喜愛此展覽，新增一個屬性，最後用新的陣列去覆蓋舊的（刷新元件）
-			const newRecommendDemo = [...recommendDemo];
-			newRecommendDemo[index].isBookmarked = true;
-			setRecommendDemo(newRecommendDemo);
-		} catch (error) {}
-	};
+	// const postAddBookmark = async (userId, exhibitionId, index) => {
+	// 	try {
+	// 		//參數順序(路徑,data,header)
+	// 		await axios.post(
+	// 			`${API_URL}/api/users/${userId}/favorites`,
+	// 			{
+	// 				userId,
+	// 				exhibitionId,
+	// 				id: 3,
+	// 			},
+	// 			{
+	// 				headers: { "api-key": `${API_KEY}` },
+	// 			}
+	// 		);
+	// 		//先淺拷貝一份，當使用者加入喜愛此展覽，新增一個屬性，最後用新的陣列去覆蓋舊的（刷新元件）
+	// 		const newRecommendDemo = [...recommendDemo];
+	// 		newRecommendDemo[index].isBookmarked = true;
+	// 		setRecommendDemo(newRecommendDemo);
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+	// };
 
 	useEffect(() => {
 		getRecommendDemo();

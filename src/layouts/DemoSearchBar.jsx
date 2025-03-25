@@ -14,7 +14,7 @@ const DemoSearchBar = ({ setFilters }) => {
   const timePickerInstanceSM = useRef(null);
   const timePickerInstanceLG = useRef(null);
 
-  const [dateSelected, setDateSelected] = useState([]);
+  const [setDateSelected] = useState([]);
   const [regionList, setRegionList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
   const [isValid, setIsValid] = useState(false);
@@ -64,9 +64,7 @@ const DemoSearchBar = ({ setFilters }) => {
     try {
       const res = await axios.get(`${API_URL}/api/regions`,
         {
-          headers: {
-            "api-key": `${API_KEY}`
-          }
+          headers: { "api-key": `${API_KEY}` }
         }
       );
       setRegionList(res.data);
@@ -79,9 +77,7 @@ const DemoSearchBar = ({ setFilters }) => {
     try {
       const res = await axios.get(`${API_URL}/api/exhibitions_categories`,
         {
-          headers: {
-            "api-key": `${API_KEY}`
-          }
+          headers: { "api-key": `${API_KEY}` }
         }
       );
       setCategoryList(res.data);

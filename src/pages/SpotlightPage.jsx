@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+
 import ArtistSwiper from "../components/mySwiper";
 
 import MarqueePhoto from "../components/MarqueePhoto";
@@ -29,11 +29,11 @@ export default function SpotlightPage() {
   return (
     <>
     <SpotlightCard spotlightColor="rgba(222, 32, 32, 0.34)" className="w-100">
-      <div class="spotlight-banner mt-bp-140-0 d-flex align-items-center">
+      <div className="spotlight-banner mt-bp-140-0 d-flex align-items-center">
         
-        <div class="spotlight-banner-text text-center w-100">
-          <h1 class="fs-15 fw-900 text-primary-800">藝展聚光燈</h1>
-          <h3 class="fs-6 fw-400 text-primary-800 mt-2">
+        <div className="spotlight-banner-text text-center w-100">
+          <h1 className="fs-15 fw-900 text-primary-800">藝展聚光燈</h1>
+          <h3 className="fs-6 fw-400 text-primary-800 mt-2">
             透過藝術特寫、會員投稿與回顧特寫，感受展覽的每一份感動。
           </h3>
         </div>
@@ -41,44 +41,44 @@ export default function SpotlightPage() {
       </div>
       </SpotlightCard>
 
-      <section class="overflow-hidden">
-        <div class="spotlight-card d-flex flex-column">
-          <div class="spotlight-card-title d-inline-flex me-auto">
-            <div class="spotlight-card-topic fw-700">藝術特寫</div>
+      <section className="overflow-hidden">
+        <div className="spotlight-card d-flex flex-column">
+          <div className="spotlight-card-title d-inline-flex me-auto">
+            <div className="spotlight-card-topic fw-700">藝術特寫</div>
 
-            <div class="spotlight-card-title-info">
+            <div className="spotlight-card-title-info">
               不定期推出藝術家或策展人的專訪，一窺展覽背後的故事
             </div>
           </div>
 
-          <div class="spotlight-card-info">
-            <div class="container d-flex flex-column">
-              <div class="spotlight-card-tag">#藝術家專訪</div>
-              <div class="spotlight-card-subtitle fs-8 fw-700 mb-10">
+          <div className="spotlight-card-info">
+            <div className="container d-flex flex-column">
+              <div className="spotlight-card-tag">#藝術家專訪</div>
+              <div className="spotlight-card-subtitle fs-8 fw-700 mb-10">
                 釋放內心的小野獸 插畫家陳純虹勇敢畫下自己的《戀物癖》
               </div>
 
-              <div class="artist-spotlight-card-content d-flex gap-15">
-                <div class="spotlight-card-content-text d-flex flex-column">
-                  <p class="fs-5">
+              <div className="artist-spotlight-card-content d-flex gap-15">
+                <div className="spotlight-card-content-text d-flex flex-column">
+                  <p className="fs-5">
                     「我是浸潤在日本次文化下長大的。」
                     起源於8、90年代的流行名詞「哈日族」，是許多7年級生共同的回憶，那些曾經風行青少年間的傑尼斯、帕妃、SPEED等偶像明星，以及美少女戰士、幽遊白書和灌籃高手等動漫畫，這些次文化就像被嚥下的食物，經由消化早已流淌於身體中，化為骨血的一部分，是共同語言、也是大無畏的少年時代無可取代的回憶。
                     7年級後段班的插畫家Eszter
                     Chen陳純虹，在2017年年初受邀為Apple官網繪製新年桌布，是台灣第一位獲邀的插畫家，當我們問起創作靈感，正好經歷「哈日族」次文化高峰的她說：「那些偶像周邊產品，或是長輩從日本帶回來的糖果餅乾，都被顏色鮮明的包裝或插圖給包裹，每次拿到我都覺得好幸福」，深受日本次文化的衝擊，經過累積與內化，陳純虹的作品色彩飽和而強烈，沒有光源與陰影，超平面的構圖概念，描繪出卡通式的可愛詼諧，彷彿帶領著觀賞者的思緒穿越時光隧道，再次回到日本次文化流行高峰之時。
                   </p>
                   <div>
-                    <button class="mt-8 btn">了解更多</button>
+                    <button className="mt-8 btn">了解更多</button>
                   </div>
                 </div>
-                <div class="spotlight-card-content-img bg-secondary-50">
+                <div className="spotlight-card-content-img bg-secondary-50">
                   
                   <ArtistSwiper />
                 </div>
               </div>
-              <div class="d-flex justify-content-center mb-17">
+              <div className="d-flex justify-content-center mb-17">
                 <button
                   type="button"
-                  class="btn btn-gray-700 spotlight-button mt-8 px-6 py-4"
+                  className="btn btn-gray-700 spotlight-button mt-8 px-6 py-4"
                 >
                   查看全部藝術特寫
                 </button>
@@ -87,27 +87,27 @@ export default function SpotlightPage() {
           </div>
         </div>
 
-        <div class="spotlight-card d-flex flex-column">
-          <div class="spotlight-card-title d-inline-flex ms-auto">
-            <div class="spotlight-card-topic fw-700">會員投稿</div>
+        <div className="spotlight-card d-flex flex-column">
+          <div className="spotlight-card-title d-inline-flex ms-auto">
+            <div className="spotlight-card-topic fw-700">會員投稿</div>
 
-            <div class="spotlight-card-title-info fw-500">
+            <div className="spotlight-card-title-info fw-500">
               逛展的感動不只留給自己，拉更多人一起入坑展覽的美好世界吧！
             </div>
           </div>
 
-          <div class="spotlight-card-info">
-            <div class="container d-flex flex-column">
+          <div className="spotlight-card-info">
+            <div className="container d-flex flex-column">
 
 
               
 
-              <div class="spotlight-card-content d-flex gap-15 flex-column px-15 mail">
-                <div class="spotlight-card-content-text-member-mail d-flex flex-column mail-letter">
+              <div className="spotlight-card-content d-flex gap-15 flex-column px-15 mail">
+                <div className="spotlight-card-content-text-member-mail d-flex flex-column mail-letter">
                   <div className="mb-8">
                     <h3>復古奇幻：細膩插畫與水彩創作的魅力</h3>
                   </div>
-                  <p class="fs-5">
+                  <p className="fs-5">
                     第一眼看到她的作品，就被細膩的畫風還有時不時出現的可愛角色所吸引。展出的畫作都很耐看，即使先快速看過一遍，還是可以再觀察畫中的細節，我常常忍不住貼近仔細看她細緻的排線。
                     <br />
                     <br />
@@ -154,13 +154,13 @@ export default function SpotlightPage() {
                   <br />
                   <br />
 
-                  <p class="fs-5 mb-15">展覽中最吸睛可愛的 GUSTAVE 君</p>
+                  <p className="fs-5 mb-15">展覽中最吸睛可愛的 GUSTAVE 君</p>
                   <br />
                   <br />
                   <br />
                 </div>
                 {/* <img
-                    class="position-absolute mail-letter"
+                    className="position-absolute mail-letter"
                     src="Spotlight/mail_back.png"
                     alt="mail_back.png"
 
@@ -168,17 +168,17 @@ export default function SpotlightPage() {
               </div>
 
               {/* <img
-                    class="position-absolute mail-letter"
+                    className="position-absolute mail-letter"
                     src="Spotlight/mail_back.png"
                     alt="mail_back.png"
 
                   /> */}
               
 
-              <div class="d-flex justify-content-center my-20">
+              <div className="d-flex justify-content-center my-20">
                 <button
                   type="button"
-                  class="btn btn-gray-700 spotlight-button px-6 py-4"
+                  className="btn btn-gray-700 spotlight-button px-6 py-4"
                 >
                   查看全部藝術特寫
                 </button>
@@ -187,31 +187,31 @@ export default function SpotlightPage() {
           </div>
         </div>
 
-        <div class="spotlight-card d-flex flex-column">
-          <div class="spotlight-card-title d-inline-flex me-auto">
-            <div class="spotlight-card-topic fw-700">回顧精彩</div>
+        <div className="spotlight-card d-flex flex-column">
+          <div className="spotlight-card-title d-inline-flex me-auto">
+            <div className="spotlight-card-topic fw-700">回顧精彩</div>
 
-            <div class="spotlight-card-title-info fw-500">
+            <div className="spotlight-card-title-info fw-500">
               重溫展覽的精彩時刻
             </div>
           </div>
 
-          <div class="spotlight-card-info  pb-20">
+          <div className="spotlight-card-info  pb-20">
 
             <MemorySwiper />
           </div>
         </div>
 
-        <div class="spotlight-card mb-17 d-flex flex-column">
-          <div class="spotlight-card-title d-inline-flex ms-auto">
-            <div class="spotlight-card-topic fw-700">合作夥伴</div>
+        <div className="spotlight-card mb-17 d-flex flex-column">
+          <div className="spotlight-card-title d-inline-flex ms-auto">
+            <div className="spotlight-card-topic fw-700">合作夥伴</div>
 
-            <div class="spotlight-card-title-info fw-500">
+            <div className="spotlight-card-title-info fw-500">
               歡迎成為合作夥伴，讓展覽融入日常，讓藝術觸手可及
             </div>
           </div>
 
-          <div class="spotlight-card-info">
+          <div className="spotlight-card-info">
             <div className="py-22">
 
               <MarqueePhoto images={sponsors} /> 

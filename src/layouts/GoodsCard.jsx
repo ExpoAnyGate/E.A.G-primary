@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const GoodsCard = ({ good, setSelectedGood }) => {
     return (
         <li
@@ -21,6 +23,16 @@ const GoodsCard = ({ good, setSelectedGood }) => {
             </div>
         </li>
     );
+};
+
+GoodsCard.propTypes = {
+    good: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        image: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        color: PropTypes.string.isRequired,
+    }).isRequired,
+    setSelectedGood: PropTypes.func.isRequired,
 };
 
 export default GoodsCard;

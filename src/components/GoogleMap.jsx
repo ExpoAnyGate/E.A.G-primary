@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from 'prop-types';
 
 const MapComponent = ({defaultLocation}) => {
   // const defaultLocation = "台北101";
@@ -44,6 +45,9 @@ const MapComponent = ({defaultLocation}) => {
       )}
     </div>
   );
+};
+MapComponent.propTypes = {
+  defaultLocation: PropTypes.string.isRequired,
 };
 
 export default MapComponent;

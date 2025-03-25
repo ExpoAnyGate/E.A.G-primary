@@ -1,4 +1,6 @@
 
+import PropTypes from 'prop-types';
+
 const GoodsModal = ({ good }) => {
     if (!good) return null;
 
@@ -90,5 +92,21 @@ const GoodsModal = ({ good }) => {
     );
 };
 
+
+GoodsModal.propTypes = {
+    good: PropTypes.shape({
+        name: PropTypes.string,
+        image: PropTypes.string,
+        description: PropTypes.string,
+        features: PropTypes.arrayOf(
+            PropTypes.shape({
+                title: PropTypes.string,
+                content: PropTypes.string,
+            })
+        ),
+        usage: PropTypes.string,
+        offer: PropTypes.string,
+    }),
+};
 
 export default GoodsModal;

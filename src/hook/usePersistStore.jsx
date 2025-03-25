@@ -9,7 +9,7 @@ const persistConfig = {
   key: 'root',
   storage, // 默认是使用 localStorage，也可以选择 sessionStorage
 };
-const persistedSearchReducer = persistReducer(persistConfig, searchReducer);
+// const persistedSearchReducer = persistReducer(persistConfig, searchReducer);
 
 const persistedReducer = persistReducer(persistConfig, filtersReducer);
 

@@ -112,6 +112,11 @@ const DetailRow = ({ icon, label, content }) => (
     )}
   </div>
 );
+DetailRow.propTypes = {
+  icon: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  content: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
+};
 
 ExpoDetailModal.propTypes = {
   isOpen: PropTypes.bool,

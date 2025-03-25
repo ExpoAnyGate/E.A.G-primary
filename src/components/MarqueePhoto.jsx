@@ -1,4 +1,5 @@
 import Marquee from "react-fast-marquee";
+import PropTypes from 'prop-types';
 
 const MarqueePhoto = ({ images }) => {
   return (
@@ -13,6 +14,9 @@ const MarqueePhoto = ({ images }) => {
       ))}
     </Marquee>
   );
+};
+MarqueePhoto.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default MarqueePhoto;

@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import PropTypes from "prop-types";
 import "./SpotlightCard.css";
 
 const SpotlightCard = ({
@@ -27,6 +28,11 @@ const SpotlightCard = ({
       {children}
     </div>
   );
+};
+SpotlightCard.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  spotlightColor: PropTypes.string,
 };
 
 export default SpotlightCard;

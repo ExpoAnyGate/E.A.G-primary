@@ -1,7 +1,8 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
 const AuthContext = createContext();
 import Swal from "sweetalert2";
+import PropTypes from "prop-types";
 
 // const API_URL = "https://e-a-g-api.vercel.app/"; // 替換成實際 API 路徑
 // const API_URL = "http://localhost:3000/"; 
@@ -53,6 +54,9 @@ export const AuthProvider = ({ children }) => {
 		localStorage.removeItem("userId");
 		setIsLoggedIn(false);
 		window.location.reload();
+	};
+	AuthProvider.propTypes = {
+		children: PropTypes.node.isRequired,
 	};
 
 	return (

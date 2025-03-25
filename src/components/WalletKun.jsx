@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Magnet from "./Magnet/Magnet";
 import { useState } from "react";
 
-const FloatingButton = ({}) => {
+const FloatingButton = () => {
   const navigate = useNavigate();
   const style = {
     width: "80px",
